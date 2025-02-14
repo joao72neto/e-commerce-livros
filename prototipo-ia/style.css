@@ -26,15 +26,16 @@ body{
     font-weight: bold;
     text-align: center;
     border-radius: 20px;
+    border: 1px solid white;
+    box-shadow: 0px 0px 10px #00000054;
+    transition: 0.2s;
 
     &:hover{
         border-radius: 100%;
         cursor: pointer;
         background-color: #d1d1d1;
         color: black;
-        box-shadow: 0px 0px 10px #0000007c;
-        transition: 0.5s ease;
-    }
+    } 
 }
 
 
@@ -51,7 +52,22 @@ body{
     
 }
 
-/*ChatBot */
+.selected{
+    display: flex;
+    justify-content: flex-end;
+    margin: 1% 1% 0 0;
+}
+
+.selected span{
+    border-radius: 100%;
+    cursor: pointer;
+    background-color: #d1d1d1;
+    color: black;
+    box-shadow: 0px 0px 10px #0000007c;
+    transition: 0.5s ease;
+}
+
+/*ChatBot*/
 
 
 .chat{
@@ -101,7 +117,7 @@ body{
 }
 
 .chat .screen p{
-    margin: 60px 20px 0px 0px;
+    margin: 60px 20px 30px 0px;
     padding: 15px;
     color: white;
     background-color: #80808080;
@@ -125,7 +141,12 @@ body{
     border-radius: 0px 0px 0px 20px;
     border: none;
     width: 198px;
+
+    &:focus{
+        outline: none;
+    }
 }
+
 
 .chat .input button{
     position: absolute;
