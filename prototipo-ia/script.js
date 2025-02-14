@@ -33,7 +33,14 @@ let click_ia = () => {
     chat_button.addEventListener('click', () => {
         let chat = document.querySelector('.chat');
 
-        if(!chat.classList.contains('show')){
+        if(chat.classList.length == 1){
+            chat.classList.add('fade');
+            return;
+
+        }
+
+        if(chat.classList.contains('fade')){
+            chat.classList.remove('fade');
             chat.classList.add('show');
             return;
         }
