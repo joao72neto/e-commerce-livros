@@ -1,13 +1,13 @@
 //Elements
-let button = document.querySelector('button');
 let chat = document.querySelector('.chat');
-let chat_button = document.querySelector('.chat-button');
-let screen = document.querySelector('.screen');
-
 chat.classList.add('fade');
 
 //Functions
 let click_msg = () => {
+
+    //Elements
+    let screen = document.querySelector('.screen');
+    let button = document.querySelector('button');
 
     button.addEventListener('click', () => {
 
@@ -33,16 +33,15 @@ let click_msg = () => {
 }
 
 let click_ia = () => {
+
+    let chat_button = document.querySelector('.chat-button');
     chat_button.addEventListener('click', () => {
 
-        let chat_button_span = document.querySelector('.chat-button span');
-        
         chat_button.classList.toggle('selected');
 
         if(chat.classList.length == 1){
             chat.classList.add('fade');
             return;
-
         }
 
         if(chat.classList.contains('fade')){
