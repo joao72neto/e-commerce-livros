@@ -38,6 +38,19 @@ body{
 }
 
 
+/*JavaScript Classe*/
+
+.fade{
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+.show{
+    opacity: 1;
+    transition: 0.5s ease;
+    
+}
+
 /*ChatBot */
 
 
