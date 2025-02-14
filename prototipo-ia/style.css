@@ -1,3 +1,5 @@
+/*Global Settings*/
+
 *{
     margin: 0;
     padding: 0;
@@ -16,9 +18,9 @@ body{
 }
 
 .chat-button span{
-    flex-basis: 25px;
+    flex-basis: 22px;
     margin: 10px;
-    padding: 20px;
+    padding: 18px;
     background-color: gray;
     color: white;
     font-weight: bold;
@@ -36,14 +38,13 @@ body{
 }
 
 
-
 /*ChatBot */
 
 .chat{
     position: fixed;
     display: flex;
-    bottom: 50px;
-    right: 50px;
+    top: 25px;
+    right: 120px;
     border: 1px solid white;
     height: 400px;
     width: 300px;
