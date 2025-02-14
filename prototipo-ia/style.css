@@ -7,6 +7,38 @@ body{
     font-family: sans-serif;
 }
 
+/*Chat Button*/
+
+.chat-button{
+    display: flex;
+    justify-content: flex-end;
+    margin: 1% 1% 0 0;
+}
+
+.chat-button span{
+    flex-basis: 25px;
+    margin: 10px;
+    padding: 20px;
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 20px;
+
+    &:hover{
+        border-radius: 100%;
+        cursor: pointer;
+        background-color: rgb(209, 209, 209);
+        color: black;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.63);
+        transition: 0.5s ease;
+    }
+}
+
+
+
+/*ChatBot */
+
 .chat{
     position: fixed;
     display: flex;
