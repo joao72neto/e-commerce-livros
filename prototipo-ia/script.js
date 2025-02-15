@@ -17,7 +17,9 @@ let click_msg = () => {
 
             screen.innerHTML += `<p 
                                     style="margin: 0 0 0 20px; 
-                                    border-radius: 20px 0px 0px 20px;"
+                                    border-radius: 20px 0px 0px 20px;
+                                    background-color: #F4F440;
+                                    color: black;"
                                 >${input}</p>`;
 
             screen.innerHTML += `<p 
