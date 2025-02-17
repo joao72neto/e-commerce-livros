@@ -23,7 +23,7 @@ let click_msg = () => {
                                 >${input}</p>`;
 
             screen.innerHTML += `<p 
-                                    style="margin: 30px 0px;"
+                                    style="margin: 30px 20px 30px 0;"
                                 >Parece que você está muito interessado em ${input}</p>`;
             return;
         }
