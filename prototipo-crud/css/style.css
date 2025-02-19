@@ -1,0 +1,80 @@
+/*WebSite colors*/
+
+
+/*Global Settings*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    height: 100vh;
+}
+
+select{
+    width: 100px;
+}
+
+.container-index{
+    flex-basis: 800px;
+    padding: 20px;
+    max-width: 800px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px #0000005b;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 20px; 
+    font-size: 1.8em;
+}
+
+#filtro{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#filtro_clientes{
+    text-align: center;
+}
+
+.cliente-wrapper{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #0000005b;
+}
+
+.cliente-wrapper .acoes{
+    align-self: center;
+}
+
+.cliente-wrapper .acoes a{
+    text-decoration: none;
+    color: white;
+    background-color: gray;
+    padding: 10px;
+    border-radius: 10px;
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+.button{
+    text-align: center;
+}
+
+.button button{
+    padding: 10px;
+    border-radius: 10px;
+
+}
