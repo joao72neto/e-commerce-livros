@@ -61,3 +61,6 @@ document.querySelector('#bsc').addEventListener('click',() => {
         filtro_clientes.style.padding = '10px';
     }
 });
+
+//Changing a user
+document.querySelector('')

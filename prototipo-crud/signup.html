@@ -3,9 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Sign-up</title>
 </head>
 <body>
-    <h1>Esta é a pagina de cadastro</h1>
+    <div class="voltar"><a href="index.html">Voltar</a></div>
+
+    <div class="container-signup">
+    
+        <h2>Cadastro de Cliente</h2>
+        <form>
+            <div class="container-forms">
+                <div class="cliente">
+                    <h3>Informações Pessoais</h3>
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" required>
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" required>
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" required>
+                    <label for="confirma_senha">Confirme a Senha</label>
+                    <input type="password" id="confirma_senha" name="confirma_senha" required>
+                </div>
+                <div class="endereco_cobranca">
+                    <h3>Endereço de Cobrança</h3>
+                    <label for="tipo_residencia">Tipo de Residência</label>
+                    <input type="text" id="tipo_residencia" name="tipo_residencia" required>
+        
+                    <label for="tipo_logradouro">Tipo de Logradouro</label>
+                    <input type="text" id="tipo_logradouro" name="tipo_logradouro" required>
+        
+                    <label for="logradouro">Logradouro</label>
+                    <input type="text" id="logradouro" name="logradouro" required>
+        
+                    <label for="numero">Número</label>
+                    <input type="text" id="numero" name="numero" required>
+        
+                    <label for="bairro">Bairro</label>
+                    <input type="text" id="bairro" name="bairro" required>
+        
+                    <label for="cep">CEP</label>
+                    <input type="text" id="cep" name="cep" required>
+        
+                    <label for="cidade">Cidade</label>
+                    <input type="text" id="cidade" name="cidade" required>
+        
+                    <label for="estado">Estado</label>
+                    <input type="text" id="estado" name="estado" required>
+        
+                    <label for="pais">País</label>
+                    <input type="text" id="pais" name="pais" required>
+        
+                    <label for="observacoes">Observações</label>
+                    <input type="text" id="observacoes" name="observacoes">
+                </div>
+                <!-- <label>
+                    <input type="checkbox" id="mesmo_endereco" onclick="toggleEnderecoEntrega()" checked>
+                    Usar este endereço como endereço de entrega
+                </label> -->
+                <div class="endereco_entrega">
+                    <h3>Endereço de Entrega</h3>
+                    <label for="logradouro_entrega">Logradouro</label>
+                    <input type="text" id="logradouro_entrega" name="logradouro_entrega">
+        
+                    <label for="numero_entrega">Número</label>
+                    <input type="text" id="numero_entrega" name="numero_entrega">
+        
+                    <label for="bairro_entrega">Bairro</label>
+                    <input type="text" id="bairro_entrega" name="bairro_entrega">
+                </div>
+        
+                <div class="cartoes">
+                    <h3>Cadastro de Cartão de Crédito</h3>
+                    <label for="numero_cartao">Número do Cartão</label>
+                    <input type="text" name="numero_cartao" required>
+        
+                    <label for="nome_cartao">Nome Impresso no Cartão</label>
+                    <input type="text" name="nome_cartao" required>
+        
+                    <label for="bandeira_cartao">Bandeira do Cartão</label>
+                    <input type="text" name="bandeira_cartao" required>
+        
+                    <label for="codigo_seguranca">Código de Segurança</label>
+                    <input type="text" name="codigo_seguranca" required>
+                </div>
+        
+                <!-- <button type="button" onclick="adicionarCartao()">Adicionar outro cartão</button> -->
+                <button type="submit">Cadastrar</button>
+            </div>
+        </form>
+    </div>
 </body>
+</html>
+
 </html>

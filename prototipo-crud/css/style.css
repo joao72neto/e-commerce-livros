@@ -9,11 +9,7 @@
 }
 
 body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-family: sans-serif;
-    height: 100vh;
 }
 
 select{
@@ -21,10 +17,18 @@ select{
 }
 
 
-/*Design CRUD*/
+/*CRUD Settings*/
+
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
 .container-index{
     flex-basis: 800px;
+    margin: 20px auto 0 auto;
     padding: 20px;
     max-width: 800px;
     border-radius: 20px;
@@ -81,25 +85,24 @@ h1{
 }
 
 .button{
+    padding: 20px;
     text-align: center;
 }
 
 
-.button button{
+.button a{
+    text-decoration: none;
+    color: white;
+    background-color: gray;
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid black;
-    font-size: 1em;
-    margin-bottom: 10px;
+    border: 1px solid gray;
 
     &:hover{
-        background-color: gray;
-        color: white;
-        box-shadow: 0 0 15px #00000028;
-        cursor: pointer;
-        border: 1px solid gray;
+        background-color: lightgray;
+        color: black;
         transition: 0.2s;
-    
+        border: 1px solid black;
     }
 
 }
@@ -130,6 +133,92 @@ h1{
         color: black;
         transition: 0.2s;
         border: 1px solid black;
+    }
+}
+
+/*Sign-up settings*/
+
+.voltar{
+    position: fixed;
+    top: 30px;
+    left: 10px;
+    
+}
+
+.voltar a{
+    text-decoration: none;
+    color: white;
+    background-color: gray;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid gray;
+
+    &:hover{
+        background-color: lightgray;
+        color: black;
+        transition: 0.2s;
+        border: 1px solid black;
+    }
+}
+
+.container-signup{
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 25px;
+    box-shadow: 0px 0px 20px #0000005b;
+    border-radius: 20px;
+}
+
+.container-signup h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container-forms{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 25px;
+}
+
+.container-forms input{
+    padding-left: 20px;
+    height: 40px;
+    border-radius: 10px;
+    margin: 10px 0px;
+    display: block;
+    width: 100%;
+    font-size: 1em;
+}
+
+.container-forms .cliente{
+    grid-column: span 2;
+}
+
+.container-forms .cartoes{
+    grid-column: span 2;
+}
+
+.container-forms .endereco_cobranca{
+    grid-row: 2;
+    grid-column: span 2;
+}
+
+.container-forms .endereco_entrega{
+    grid-row: 2;
+    grid-column: span 2;
+}
+
+.container-forms button[type='submit']{
+    grid-column: span 4;
+    justify-self: center;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 100px;
+    font-size: 1em;
+
+    &:hover{
+        cursor: pointer;
     }
 }
 
