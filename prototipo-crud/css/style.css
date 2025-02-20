@@ -45,39 +45,35 @@ h1{
     cursor: pointer;
 }
 
-.filtro_clientes, .busca_clientes{
+.filtro_clientes{
     
     display: flex;
     justify-content: center;
     gap: 30px;
-}
-
-.filtro_clientes{
     padding: 10px;
 }
 
-.busca_clientes input{
-    height: 40px;
-    padding-left: 15px;
-    font-size: 1em;
-    border-radius: 10px;
-    width: 60%;
-
-    &:focus{
-        outline: none;
-    }
-
-}
-
-
 .filtro_clientes select{
 
+    height: 40px;
     padding: 8px;
     border-radius: 10px;
 
     &:hover{
         cursor: pointer;
     }
+
+    &:focus{
+        outline: none;
+    }
+}
+
+.filtro_clientes input{
+    height: 40px;
+    padding-left: 15px;
+    font-size: 1em;
+    border-radius: 10px;
+    width: 60%;
 
     &:focus{
         outline: none;

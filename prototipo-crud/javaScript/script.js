@@ -1,15 +1,5 @@
-
-/*Filtering Clients*/ 
-document.querySelector('#flt').addEventListener('click', () => {
-    
-    let filtro_clientes = document.querySelector('.filtro_clientes');
-
-    if(filtro_clientes.innerHTML.trim() === ''){
-
-        filtro_clientes.style.padding = '30px';
-        document.querySelector('.filtro_clientes').innerHTML = `
-        
-            <select name="nomes" id="nomes">
+let filtro_clientes = document.querySelector('.filtro_clientes');
+let filtro = ` <select name="nomes" id="nomes">
                     <option value="nome">Nome</option>
                     <option value="joaldo">Joaldo</option>
                     <option value="jose">José</option>
@@ -35,9 +25,19 @@ document.querySelector('#flt').addEventListener('click', () => {
                     <option value="guararema">Guararema</option>
                     <option value="poa">Poá</option>
                     <option value="mogi">Mogi</option>
-                </select>
-        
-        `;
+                </select>`;
+
+let input = `<input class="busca_clientes" type="text" placeholder="Busque clientes...">`
+
+/*Filtering Clients*/ 
+document.querySelector('#flt').addEventListener('click', () => {
+    
+    
+    if(filtro_clientes.innerHTML.trim() === '' || 
+       filtro_clientes.innerHTML === input){
+
+        filtro_clientes.style.padding = '30px';
+        document.querySelector('.filtro_clientes').innerHTML = filtro;
 
         
     }else{
@@ -46,22 +46,18 @@ document.querySelector('#flt').addEventListener('click', () => {
     }
 });
 
-/*Searching for Clients*/
+/*Searching for a client*/
 document.querySelector('#bsc').addEventListener('click',() => {
-    let busca_clientes = document.querySelector('.busca_clientes');
 
-    if(busca_clientes.innerHTML.trim() === ''){
+    if(filtro_clientes.innerHTML.trim() === '' ||
+       filtro_clientes.innerHTML === filtro){
 
-        busca_clientes.style.padding = '15px 0 30px 0';
-        document.querySelector('.busca_clientes').innerHTML = `
-        
-            <input type="text" placeholder="Busque clientes...">
-        
-        `;
+        filtro_clientes.style.padding = '30px';
+        filtro_clientes.innerHTML = input;
 
         
     }else{
-        busca_clientes.innerHTML = '';
-        busca_clientes.style.padding = '0';
+        filtro_clientes.innerHTML = '';
+        filtro_clientes.style.padding = '10px';
     }
 });
