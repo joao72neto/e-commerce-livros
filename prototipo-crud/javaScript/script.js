@@ -63,4 +63,17 @@ document.querySelector('#bsc').addEventListener('click',() => {
 });
 
 //Changing a user
-document.querySelector('')
+document.querySelector('.alt').addEventListener('click', () => {
+    let submenu = document.querySelector('.alt_submenu');
+
+    if(submenu.innerHTML.trim() === ''){
+        submenu.innerHTML = `
+            <a href="password.html">Alterar senha</a>
+            <a href="address.html">Alterar endereço</a>
+            <a href="card.html">Alterar pagamento</a>
+            <a href="signup.html">Alterar tudo</a>
+        `;
+    }else{
+        submenu.innerHTML = '';
+    }
+});

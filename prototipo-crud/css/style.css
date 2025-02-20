@@ -136,6 +136,29 @@ h1{
     }
 }
 
+/*Submenu*/
+
+.alt_submenu{
+    border: 1px solid black;
+    border-radius: 10px;
+    position: fixed;
+    left: 55%;
+    bottom: 12%;
+    background-color: white;
+
+}
+
+.alt_submenu a{
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 20px;
+
+    &:hover{
+        background-color: lightgray;
+    }
+}
+
 /*Sign-up settings*/
 
 .voltar{
