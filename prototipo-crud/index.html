@@ -11,14 +11,17 @@
 
         <h1>Gerenciamento de Clientes</h1>
 
-        <p id="filtro">Filtro</p>
+        <div class="filtro">
+            <span id="flt">Filtro</span>
+            <span id="bsc">Busca</span>
+        </div>
 
-        <div id="filtro_clientes">
-            <label><input type="checkbox" value="todos">Todos</label>
-            <label><input type="checkbox" value="nome">Nome</label>
-            <label><input type="checkbox" value="idade">Idade</label>
-            <label><input type="checkbox" value="endereco">Endereço</label>
-            <label><input type="checkbox" value="pais">País</label>
+
+        <div class="filtro_clientes"></div>
+        <div class="busca_clientes"></div>
+
+        <div class="button">
+            <button>Cadastrar Cliente</button>
         </div>
 
         <div class="cliente-wrapper">
@@ -33,9 +36,20 @@
             </div>
         </div>
 
-        <div class="button">
-            <button>Cadastrar Cliente</button>
+        <div class="cliente-wrapper">
+            <div class="cliente">
+                <p>Josel</p>
+                <p>josel.ohh@gmail.com</p>
+            </div>
+            <div class="acoes">
+                <a href="#">Alterar</a>
+                <a href="#">Inativar</a>
+                <a href="#">Transações</a>  
+            </div>
         </div>
+
     </div>
+
+    <script src="javaScript/script.js"></script>
 </body>
 </html>

@@ -20,6 +20,9 @@ select{
     width: 100px;
 }
 
+
+/*Design CRUD*/
+
 .container-index{
     flex-basis: 800px;
     padding: 20px;
@@ -34,14 +37,75 @@ h1{
     font-size: 1.8em;
 }
 
-#filtro{
-    text-align: center;
+.filtro{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
     font-weight: bold;
-    margin-bottom: 10px;
+    cursor: pointer;
 }
 
-#filtro_clientes{
+.filtro_clientes, .busca_clientes{
+    
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.filtro_clientes{
+    padding: 10px;
+}
+
+.busca_clientes input{
+    height: 40px;
+    padding-left: 15px;
+    font-size: 1em;
+    border-radius: 10px;
+    width: 60%;
+
+    &:focus{
+        outline: none;
+    }
+
+}
+
+
+.filtro_clientes select{
+
+    padding: 8px;
+    border-radius: 10px;
+
+    &:hover{
+        cursor: pointer;
+    }
+
+    &:focus{
+        outline: none;
+    }
+}
+
+.button{
     text-align: center;
+}
+
+
+.button button{
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: 1em;
+    margin-bottom: 10px;
+
+    &:hover{
+        background-color: gray;
+        color: white;
+        box-shadow: 0 0 15px #00000028;
+        cursor: pointer;
+        border: 1px solid gray;
+        transition: 0.2s;
+    
+    }
+
 }
 
 .cliente-wrapper{
@@ -63,18 +127,13 @@ h1{
     background-color: gray;
     padding: 10px;
     border-radius: 10px;
+    border: 1px solid gray;
 
     &:hover{
-        text-decoration: underline;
+        background-color: lightgray;
+        color: black;
+        transition: 0.2s;
+        border: 1px solid black;
     }
 }
 
-.button{
-    text-align: center;
-}
-
-.button button{
-    padding: 10px;
-    border-radius: 10px;
-
-}
