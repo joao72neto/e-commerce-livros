@@ -53,6 +53,12 @@ a{
     }
 }
 
+.voltar{
+    position: fixed;
+    top: 30px;
+    left: 10px;
+}
+
 
 /*CRUD Settings*/
 
@@ -162,13 +168,6 @@ h1{
 
 /*Sign-up settings*/
 
-.voltar{
-    position: fixed;
-    top: 30px;
-    left: 10px;
-    
-}
-
 .container-signup{
     max-width: 1000px;
     margin: 20px auto;
@@ -215,12 +214,53 @@ h1{
 .container-forms button[type='submit']{
     grid-column: span 4;
     justify-self: center;
-    
-
-    &:hover{
-        cursor: pointer;
-    }
 }
+
+/*Address settings*/
+
+.container-address{
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 25px;
+    box-shadow: 0px 0px 20px #0000005b;
+    border-radius: 20px;
+}
+
+.container-address h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container-forms-address{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 25px;
+}
+
+.container-forms-address .title{
+    grid-column: span 4;
+}
+
+.container-forms-address input{
+    margin: 10px 0px;
+    width: 100%;
+}
+
+.container-forms-address .endereco_cobranca{
+    grid-row: 2;
+    grid-column: span 2;
+}
+
+.container-forms-address .endereco_entrega{
+    grid-row: 2;
+    grid-column: span 2;
+}
+
+.container-forms-address button{
+    grid-column: span 4;
+    justify-self: center;
+}
+
 
 /*Password*/
 .container-password{
