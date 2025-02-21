@@ -3,13 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Transações</title>
 </head>
 <body>
-    <h2>Transações de <span id="nome-cliente"></span></h2>
-    <p>Email: <span id="email-cliente"></span></p>
-
-    <div id="lista-transacoes"></div>
+    <div class="voltar"><a href="index.html">Voltar</a></div>
+    <div class="container-tran">
+        <div class="transaction">
+            <h2>Transações de <span id="nome-cliente"></span></h2>
+            <p>Email: <span id="email-cliente"></span></p>
+            <div id="lista-transacoes">
+                <ul>
+                    <li>Transação 01</li>
+                    <li>Transação 02</li>
+                    <li>Transação 03</li>
+                    <li>Transação 04</li>
+                    <li>Transação 05</li>
+                    <li>Transação 06</li>
+                    <li>Transação 07</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
