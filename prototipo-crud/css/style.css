@@ -237,10 +237,6 @@ h1{
     grid-gap: 25px;
 }
 
-.container-forms-address .title{
-    grid-column: span 4;
-}
-
 .container-forms-address input{
     margin: 10px 0px;
     width: 100%;
@@ -257,9 +253,56 @@ h1{
 }
 
 .container-forms-address button{
+    grid-row: 3;
     grid-column: span 4;
     justify-self: center;
 }
+
+
+/*Card settings*/
+
+.container-card{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    flex-basis: 800px;
+    margin: 20px auto;
+    padding: 25px;
+    box-shadow: 0px 0px 20px #0000005b;
+    border-radius: 20px;
+}
+
+.card h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container-forms-card{
+   display: grid;
+   grid-template-columns: 1fr;
+}
+
+.container-forms-card input{
+    margin: 10px 0px;
+    width: 100%;
+}
+
+.container-forms-card .cartoes{
+    margin: 30px 80px;
+}
+
+.container-forms-card button{
+    grid-column: span 2;
+    justify-self: center;
+}
+
+
+
+
 
 
 /*Password*/
