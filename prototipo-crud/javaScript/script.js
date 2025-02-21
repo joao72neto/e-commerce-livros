@@ -63,19 +63,32 @@ document.querySelector('#bsc').addEventListener('click',() => {
 });
 
 //CHANGING USER
-document.querySelector('.alt').addEventListener('click', () => {
-    let submenu = document.querySelector('.alt_submenu');
+document.querySelectorAll('.alt').forEach(botao => {
+    botao.addEventListener('click', function (event) {
+        event.preventDefault();
 
-    if(submenu.innerHTML.trim() === ''){
-        submenu.innerHTML = `
-            <a href="password.html">Alterar senha</a>
-            <a href="address.html">Alterar endereço</a>
-            <a href="card.html">Alterar pagamento</a>
-            <a href="signup.html">Alterar tudo</a>
-        `;
-    }else{
-        submenu.innerHTML = '';
-    }
+        // Verifica se já existe um submenu ativo
+        let submenu = this.parentElement.querySelector('.alt_submenu');
+
+        if (!submenu) {
+            // Criando submenu dinamicamente
+            submenu = document.createElement('div');
+            submenu.classList.add('alt_submenu');
+
+            submenu.innerHTML = `
+                <a href="password.html">Alterar senha</a>
+                <a href="address.html">Alterar endereço</a>
+                <a href="card.html">Alterar pagamento</a>
+                <a href="signup.html">Alterar tudo</a>
+            `;
+
+            // Adicionando submenu ao lado do botão clicado
+            this.parentElement.appendChild(submenu);
+        }
+
+        // Alterna a visibilidade do submenu
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    });
 });
 
 //DEACTIVATING CLIENTS
@@ -159,6 +172,5 @@ document.querySelectorAll('.tran').forEach(botao => {
     });
 });
 
-//Exibindo os dados
 
 
