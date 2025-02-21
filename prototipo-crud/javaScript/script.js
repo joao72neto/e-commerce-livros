@@ -92,121 +92,27 @@ document.querySelectorAll('.alt').forEach(botao => {
 });
 
 //DEACTIVATING CLIENTS
-// document.querySelectorAll('.inat').forEach(button => {
-//     button.addEventListener('click', function(){
+let clientesInativos = [];
 
-//         let clienteWrapper = this.closest('.cliente-wrapper');
+document.querySelectorAll('.inat').forEach(button => {
+    button.addEventListener('click', function(){
 
-//         if(clienteWrapper){
+        let clienteWrapper = document.querySelector('.cliente-wrapper');
 
-//             let nome = clienteWrapper.querySelector('p:nth-child(1)');
-//             let email = clienteWrapper.querySelector('p:nth-child(2)');
-//             let cliente = {nome, email};
+        if(clienteWrapper){
+            let nome = document.querySelectorAll('p:nth-child(1)').textContent;
+            let email = document.querySelectorAll('p:nth-child(2)').textContent;
+            let cliente = {nome, email};
 
-//             //Guardando o cliente no localStorage
-//             let clientesInativos = JSON.parse(localStorage.getItem('clientesInativos')) || [];
-//             clientesInativos.push(cliente);
-//             localStorage.setItem('clientesInativos', JSON.stringify(clientesInativos));
-
-//             //Removendo o cliente
-//             clienteWrapper.remove();
-
-//             //Chamando a criação do botrão
-//             criarBotaoInativados();
-//         }
-
-//     });
-// });
-
-// //Mostrar Inativados
-// let clientesInativos = JSON.parse(localStorage.getItem('clientesInativos')) || [];
-// let container = document.querySelectorAll('#clientes-inativos');
-
-// if(clientesInativos.length === 0){
-//     container.innerHTML = '<p>Nenhum cliente inativo.</p>';
-    
-// }else{
-//     clientesInativos.forEach(cliente => {
-//         let div = document.createElement('div');
-//         div.classList.add('cliente-wrapper');
-//         div.innerHTML `
-
-//             <div class="cliente">
-//                     <p>${cliente.nome}</p>
-//                     <p>${cliente.email}</p>
-//                 </div>
-//             <button class="reativar">Reativar</button>
-//         `;
-
-//         container.appendChild(div);
-//     });
-// }
-
-
-document.querySelectorAll('.inat').forEach(botao => {
-    botao.addEventListener('click', function (event) {
-        event.preventDefault();
-        let clienteWrapper = this.closest('.cliente-wrapper');
-
-        if (clienteWrapper) {
-            let clienteNome = clienteWrapper.querySelector("p:nth-child(1)").textContent;
-            let clienteEmail = clienteWrapper.querySelector("p:nth-child(2)").textContent;
-
-            let cliente = { nome: clienteNome, email: clienteEmail };
-
-            // Pegando clientes inativos já armazenados
-            let clientesInativos = JSON.parse(localStorage.getItem("clientesInativos")) || [];
             clientesInativos.push(cliente);
 
-            // Salvando no localStorage
-            localStorage.setItem("clientesInativos", JSON.stringify(clientesInativos));
-
-            // Removendo o cliente da tela
             clienteWrapper.remove();
 
-            // Criar botão para inativados se ainda não existir
             criarBotaoInativados();
         }
+  
     });
 });
-
-document.addEventListener("DOMContentLoaded", function () {
-    let clientesInativos = JSON.parse(localStorage.getItem("clientesInativos")) || [];
-    let container = document.getElementById("clientes-inativos");
-
-    if (clientesInativos.length === 0) {
-        container.innerHTML = "<p>Nenhum cliente inativo.</p>";
-        return;
-    }
-
-    clientesInativos.forEach(cliente => {
-        let div = document.createElement("div");
-        div.classList.add("cliente-wrapper");
-        div.innerHTML = `
-            <div class="cliente">
-                <p>${cliente.nome}</p>
-                <p>${cliente.email}</p>
-            </div>
-            <button class="reativar">Reativar</button>
-        `;
-        container.appendChild(div);
-    });
-
-    // Reativar cliente
-    document.querySelectorAll(".reativar").forEach(botao => {
-        botao.addEventListener("click", function () {
-            let clienteDiv = this.closest(".cliente-wrapper");
-            let clienteEmail = clienteDiv.querySelector("p:nth-child(2)").textContent;
-
-            // Remover do localStorage
-            let novosClientes = clientesInativos.filter(cliente => cliente.email !== clienteEmail);
-            localStorage.setItem("clientesInativos", JSON.stringify(novosClientes));
-
-            clienteDiv.remove();
-        });
-    });
-});
-
 
 function criarBotaoInativados() {
     if (!document.getElementById("btn-inativados")) {
