@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes Inativos</title>
+</head>
+<body>
+    <h1>Clientes Inativos</h1>
+    <div id="clientes-inativos"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let clientesInativos = JSON.parse(localStorage.getItem("clientesInativos")) || [];
+            let container = document.getElementById("clientes-inativos");
+
+            if (clientesInativos.length === 0) {
+                container.innerHTML = "<p>Nenhum cliente inativo.</p>";
+                return;
+            }
+
+            clientesInativos.forEach(cliente => {
+                let div = document.createElement("div");
+                div.classList.add("cliente-wrapper");
+                div.innerHTML = `
+                    <p>${cliente.nome}</p>
+                    <p>${cliente.email}</p>
+                    <button class="reativar">Reativar</button>
+                `;
+                container.appendChild(div);
+            });
+
+            // Reativar cliente
+            document.querySelectorAll(".reativar").forEach(botao => {
+                botao.addEventListener("click", function () {
+                    let clienteDiv = this.closest(".cliente-wrapper");
+                    let clienteEmail = clienteDiv.querySelector("p:nth-child(2)").textContent;
+
+                    // Remover do localStorage
+                    let novosClientes = clientesInativos.filter(cliente => cliente.email !== clienteEmail);
+                    localStorage.setItem("clientesInativos", JSON.stringify(novosClientes));
+
+                    clienteDiv.remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

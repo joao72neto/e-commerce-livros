@@ -77,3 +77,62 @@ document.querySelector('.alt').addEventListener('click', () => {
         submenu.innerHTML = '';
     }
 });
+
+//Inativating clients
+document.querySelectorAll('.inat').forEach(botao => {
+    botao.addEventListener('click', function (event) {
+        event.preventDefault();
+        let clienteWrapper = this.closest('.cliente-wrapper');
+
+        if (clienteWrapper) {
+            let clienteNome = clienteWrapper.querySelector("p:nth-child(1)").textContent;
+            let clienteEmail = clienteWrapper.querySelector("p:nth-child(2)").textContent;
+
+            let cliente = { nome: clienteNome, email: clienteEmail };
+
+            // Pegando clientes inativos já armazenados
+            let clientesInativos = JSON.parse(localStorage.getItem("clientesInativos")) || [];
+            clientesInativos.push(cliente);
+
+            // Salvando no localStorage
+            localStorage.setItem("clientesInativos", JSON.stringify(clientesInativos));
+
+            // Removendo o cliente da tela
+            clienteWrapper.remove();
+
+            // Criar botão para inativados se ainda não existir
+            criarBotaoInativados();
+        }
+    });
+});
+
+function criarBotaoInativados() {
+    if (!document.getElementById("btn-inativados")) {
+        let botao = document.createElement("a");
+        botao.id = "btn-inativados";
+        botao.href = "inativos.html"; 
+        botao.textContent = "Ver inativados";
+        botao.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: red;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        `;
+
+        document.body.appendChild(botao);
+    }
+}
+
+// Mostrar o botão automaticamente se já houver inativos
+document.addEventListener("DOMContentLoaded", function () {
+    let clientesInativos = JSON.parse(localStorage.getItem("clientesInativos")) || [];
+    if (clientesInativos.length > 0) {
+        criarBotaoInativados();
+    }
+});
