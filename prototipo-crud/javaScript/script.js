@@ -29,7 +29,7 @@ let filtro = ` <select name="nomes" id="nomes">
 
 let input = `<input class="busca_clientes" type="text" placeholder="Busque clientes...">`
 
-/*Filtering Clients*/ 
+//FILTERING CLIENTS
 document.querySelector('#flt').addEventListener('click', () => {
     
     
@@ -46,7 +46,7 @@ document.querySelector('#flt').addEventListener('click', () => {
     }
 });
 
-/*Searching for a client*/
+//SEARCHING FOR CLIENTS
 document.querySelector('#bsc').addEventListener('click',() => {
 
     if(filtro_clientes.innerHTML.trim() === '' ||
@@ -62,7 +62,7 @@ document.querySelector('#bsc').addEventListener('click',() => {
     }
 });
 
-//Changing a user
+//CHANGING USER
 document.querySelector('.alt').addEventListener('click', () => {
     let submenu = document.querySelector('.alt_submenu');
 
@@ -78,7 +78,7 @@ document.querySelector('.alt').addEventListener('click', () => {
     }
 });
 
-//Inativating clients
+//DEACTIVATING CLIENTS
 document.querySelectorAll('.inat').forEach(botao => {
     botao.addEventListener('click', function (event) {
         event.preventDefault();
@@ -136,3 +136,29 @@ document.addEventListener("DOMContentLoaded", function () {
         criarBotaoInativados();
     }
 });
+
+
+//TRANSACTIONS
+document.querySelectorAll('.tran').forEach(botao => {
+    botao.addEventListener('click', function (event) {
+        event.preventDefault();
+        let clienteWrapper = this.closest('.cliente-wrapper');
+
+        if (clienteWrapper) {
+            let clienteNome = clienteWrapper.querySelector("p:nth-child(1)").textContent;
+            let clienteEmail = clienteWrapper.querySelector("p:nth-child(2)").textContent;
+
+            let cliente = { nome: clienteNome, email: clienteEmail };
+
+            // Armazena os dados do cliente no localStorage
+            localStorage.setItem("clienteTransacoes", JSON.stringify(cliente));
+
+            // Redireciona para a página de transações
+            window.location.href = "transacoes.html";
+        }
+    });
+});
+
+//Exibindo os dados
+
+

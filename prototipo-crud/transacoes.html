@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transações</title>
+</head>
+<body>
+    <h2>Transações de <span id="nome-cliente"></span></h2>
+    <p>Email: <span id="email-cliente"></span></p>
+
+    <div id="lista-transacoes"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let cliente = JSON.parse(localStorage.getItem("clienteTransacoes"));
+        
+            if (cliente) {
+                document.getElementById("nome-cliente").textContent = cliente.nome;
+                document.getElementById("email-cliente").textContent = cliente.email;
+            }
+        });
+        
+    </script>
+
+</body>
+</html>
