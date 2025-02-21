@@ -357,3 +357,15 @@ h1{
 .transaction li{
     margin: 20px 0;
 }
+
+/*Inativos*/
+.container-inat {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.inativos{
+    width: 500px;  
+}
