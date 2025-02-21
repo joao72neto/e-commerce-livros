@@ -1,3 +1,4 @@
+//FILTERING CLIENTS
 let filtro_clientes = document.querySelector('.filtro_clientes');
 let filtro = ` <select name="nomes" id="nomes">
                     <option value="nome">Nome</option>
@@ -29,7 +30,6 @@ let filtro = ` <select name="nomes" id="nomes">
 
 let input = `<input class="busca_clientes" type="text" placeholder="Busque clientes...">`
 
-//FILTERING CLIENTS
 document.querySelector('#flt').addEventListener('click', () => {
     
     
@@ -46,7 +46,7 @@ document.querySelector('#flt').addEventListener('click', () => {
     }
 });
 
-//SEARCHING FOR CLIENTS
+//Searching for clients
 document.querySelector('#bsc').addEventListener('click',() => {
 
     if(filtro_clientes.innerHTML.trim() === '' ||
@@ -92,6 +92,57 @@ document.querySelectorAll('.alt').forEach(botao => {
 });
 
 //DEACTIVATING CLIENTS
+// document.querySelectorAll('.inat').forEach(button => {
+//     button.addEventListener('click', function(){
+
+//         let clienteWrapper = this.closest('.cliente-wrapper');
+
+//         if(clienteWrapper){
+
+//             let nome = clienteWrapper.querySelector('p:nth-child(1)');
+//             let email = clienteWrapper.querySelector('p:nth-child(2)');
+//             let cliente = {nome, email};
+
+//             //Guardando o cliente no localStorage
+//             let clientesInativos = JSON.parse(localStorage.getItem('clientesInativos')) || [];
+//             clientesInativos.push(cliente);
+//             localStorage.setItem('clientesInativos', JSON.stringify(clientesInativos));
+
+//             //Removendo o cliente
+//             clienteWrapper.remove();
+
+//             //Chamando a criação do botrão
+//             criarBotaoInativados();
+//         }
+
+//     });
+// });
+
+// //Mostrar Inativados
+// let clientesInativos = JSON.parse(localStorage.getItem('clientesInativos')) || [];
+// let container = document.querySelectorAll('#clientes-inativos');
+
+// if(clientesInativos.length === 0){
+//     container.innerHTML = '<p>Nenhum cliente inativo.</p>';
+    
+// }else{
+//     clientesInativos.forEach(cliente => {
+//         let div = document.createElement('div');
+//         div.classList.add('cliente-wrapper');
+//         div.innerHTML `
+
+//             <div class="cliente">
+//                     <p>${cliente.nome}</p>
+//                     <p>${cliente.email}</p>
+//                 </div>
+//             <button class="reativar">Reativar</button>
+//         `;
+
+//         container.appendChild(div);
+//     });
+// }
+
+
 document.querySelectorAll('.inat').forEach(botao => {
     botao.addEventListener('click', function (event) {
         event.preventDefault();
@@ -119,6 +170,44 @@ document.querySelectorAll('.inat').forEach(botao => {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    let clientesInativos = JSON.parse(localStorage.getItem("clientesInativos")) || [];
+    let container = document.getElementById("clientes-inativos");
+
+    if (clientesInativos.length === 0) {
+        container.innerHTML = "<p>Nenhum cliente inativo.</p>";
+        return;
+    }
+
+    clientesInativos.forEach(cliente => {
+        let div = document.createElement("div");
+        div.classList.add("cliente-wrapper");
+        div.innerHTML = `
+            <div class="cliente">
+                <p>${cliente.nome}</p>
+                <p>${cliente.email}</p>
+            </div>
+            <button class="reativar">Reativar</button>
+        `;
+        container.appendChild(div);
+    });
+
+    // Reativar cliente
+    document.querySelectorAll(".reativar").forEach(botao => {
+        botao.addEventListener("click", function () {
+            let clienteDiv = this.closest(".cliente-wrapper");
+            let clienteEmail = clienteDiv.querySelector("p:nth-child(2)").textContent;
+
+            // Remover do localStorage
+            let novosClientes = clientesInativos.filter(cliente => cliente.email !== clienteEmail);
+            localStorage.setItem("clientesInativos", JSON.stringify(novosClientes));
+
+            clienteDiv.remove();
+        });
+    });
+});
+
+
 function criarBotaoInativados() {
     if (!document.getElementById("btn-inativados")) {
         let botao = document.createElement("a");
@@ -129,13 +218,6 @@ function criarBotaoInativados() {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: red;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
         `;
 
         document.body.appendChild(botao);
@@ -153,8 +235,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //TRANSACTIONS
 document.querySelectorAll('.tran').forEach(botao => {
-    botao.addEventListener('click', function (event) {
-        event.preventDefault();
+    botao.addEventListener('click', function() {
+
         let clienteWrapper = this.closest('.cliente-wrapper');
 
         if (clienteWrapper) {
