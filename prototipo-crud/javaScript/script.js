@@ -114,6 +114,31 @@ document.querySelectorAll('.inat').forEach(button => {
     });
 });
 
+
+//Mostrando clientes desativados
+let container = document.querySelectorAll('#clientes-inativos');
+container.innerHTML = '';
+
+if(clientesInativos.length === 0){
+    container.innerHTML = '<p>Nenhum cliente foi inativado</p>';
+}else{
+    clientesInativos.forEach(cliente => {
+        let div = document.createElement('div');
+        div.className.add('cliente-wrapper');
+        div.innerHTML = `
+            <div class="cliente">
+                <p>${cliente.nome}</p>
+                <p>${cliente.email}</p>
+            </div>
+            <button class="reativar" data-index="${index}">Reativar</button>
+        
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+
 function criarBotaoInativados() {
     if (!document.getElementById("btn-inativados")) {
         let botao = document.createElement("a");
