@@ -217,6 +217,8 @@ h1{
     justify-self: center;
 }
 
+/*Address main settings*/
+
 /*Address settings*/
 
 .container-address{
@@ -258,6 +260,10 @@ h1{
     grid-column: span 4;
     justify-self: center;
 }
+
+
+/*Card-main settings*/
+
 
 
 /*Card settings*/

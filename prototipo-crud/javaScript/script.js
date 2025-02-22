@@ -111,8 +111,8 @@ document.querySelectorAll('.alt').forEach(botao => {
 
             submenu.innerHTML = `
                 <a href="password.html">Alterar senha</a>
-                <a href="address.html">Alterar endereço</a>
-                <a href="card.html">Alterar pagamento</a>
+                <a href="address/address-main.html">Alterar endereço</a>
+                <a href="card/card-main.html">Alterar pagamento</a>
                 <a href="signup.html">Alterar tudo</a>
             `;
 
