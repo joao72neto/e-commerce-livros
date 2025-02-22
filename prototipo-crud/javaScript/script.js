@@ -92,52 +92,32 @@ document.querySelectorAll('.alt').forEach(botao => {
 });
 
 //DEACTIVATING CLIENTS
-let clientesInativos = [];
-
 document.querySelectorAll('.inat').forEach(button => {
     button.addEventListener('click', function(){
 
-        let clienteWrapper = document.querySelector('.cliente-wrapper');
+        let clienteWrapper = this.closest('.cliente-wrapper');
 
         if(clienteWrapper){
-            let nome = document.querySelectorAll('p:nth-child(1)').textContent;
-            let email = document.querySelectorAll('p:nth-child(2)').textContent;
+            let nome = document.querySelector('.cliente p:nth-child(1)').textContent;
+            let email = document.querySelector('.cliente p:nth-child(2)').textContent;
             let cliente = {nome, email};
+
+            //Guardando os dados no sessionStorage
+            let clientesInativos = JSON.parse(sessionStorage.getItem('clientesInativos')) || [];
 
             clientesInativos.push(cliente);
 
+            sessionStorage.setItem('clientesInativos', JSON.stringify(clientesInativos));
+            
+            //Removendo o cliente
             clienteWrapper.remove();
 
+            //Criando um botão para a página de inativos
             criarBotaoInativados();
         }
   
     });
 });
-
-
-//Mostrando clientes desativados
-let container = document.querySelectorAll('#clientes-inativos');
-container.innerHTML = '';
-
-if(clientesInativos.length === 0){
-    container.innerHTML = '<p>Nenhum cliente foi inativado</p>';
-}else{
-    clientesInativos.forEach(cliente => {
-        let div = document.createElement('div');
-        div.className.add('cliente-wrapper');
-        div.innerHTML = `
-            <div class="cliente">
-                <p>${cliente.nome}</p>
-                <p>${cliente.email}</p>
-            </div>
-            <button class="reativar" data-index="${index}">Reativar</button>
-        
-        `;
-
-        container.appendChild(div);
-    });
-}
-
 
 function criarBotaoInativados() {
     if (!document.getElementById("btn-inativados")) {
@@ -162,6 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
         criarBotaoInativados();
     }
 });
+
 
 
 //TRANSACTIONS
