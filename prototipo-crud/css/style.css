@@ -301,8 +301,21 @@ h1{
     margin-bottom: 30px;
 }
 
+.preferencia-cartao{
+    text-align: center;
+}
+
+.preferencia-cartao select{
+    width: 150px;
+    height: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
 .container-card-main .card-wrapper{
     display: flex;
+
+    margin: 20px 0;
     box-shadow: 0px 0px 10px #0000005b;
     border-radius: 20px;
     padding: 30px;
