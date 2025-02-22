@@ -1,3 +1,42 @@
+//Mostrando clientes ativos
+let container_index = document.querySelector('.container-index');
+
+//Guardando os dados no sessionStorage
+let clientesInativos = JSON.parse(sessionStorage.getItem('clientesInativos')) || [];
+
+let clientesAtivos = [];
+let todosClientes = [
+    { nome: 'João Neto', email: 'joao72neto@gmail.com' },
+    { nome: 'Josel', email: 'josel.ohh@gmail.com' },
+ 
+];
+
+//Separando os clientes ativos
+clientesAtivos = todosClientes.filter(cliente => {
+    return !clientesInativos.some(inativo => inativo.email === cliente.email);
+});
+
+
+clientesAtivos.forEach(cliente => {
+    let div = document.createElement('div');
+    div.classList.add('cliente-wrapper');
+    div.innerHTML = `
+    
+        <div class="cliente">
+            <p>${cliente.nome}</p>
+            <p>${cliente.email}</p>
+        </div>
+        <div class="acoes">
+            <a class="alt" href="#">Alterar</a>
+            <a class="inat" href="#">Inativar</a>
+            <a class="tran" href="#">Transações</a>
+        </div>
+    `;
+
+    container_index.appendChild(div);
+});
+
+
 //FILTERING CLIENTS
 let filtro_clientes = document.querySelector('.filtro_clientes');
 let filtro = ` <select name="nomes" id="nomes">
@@ -102,9 +141,6 @@ document.querySelectorAll('.inat').forEach(button => {
             let email = clienteWrapper.querySelector('p:nth-child(2)').textContent;
             let cliente = {nome:nome, email:email};
 
-            //Guardando os dados no sessionStorage
-            let clientesInativos = JSON.parse(sessionStorage.getItem('clientesInativos')) || [];
-
             clientesInativos.push(cliente);
 
             sessionStorage.setItem('clientesInativos', JSON.stringify(clientesInativos));
@@ -136,13 +172,10 @@ function criarBotaoInativados() {
 }
 
 // Mostrar o botão automaticamente se já houver inativos
-document.addEventListener("DOMContentLoaded", function () {
-    let clientesInativos = JSON.parse(localStorage.getItem("clientesInativos")) || [];
-    if (clientesInativos.length > 0) {
-        criarBotaoInativados();
-    }
-});
-
+clientesInativos = JSON.parse(sessionStorage.getItem("clientesInativos")) || [];
+if (clientesInativos.length > 0) {
+    criarBotaoInativados();
+}
 
 
 //TRANSACTIONS
