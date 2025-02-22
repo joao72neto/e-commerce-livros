@@ -19,6 +19,7 @@ select{
 input{
     display: block;
     padding-left: 20px;
+    padding-right: 20px;
     height: 40px;
     border-radius: 10px;
     font-size: 1em;
@@ -192,6 +193,24 @@ h1{
     margin: 10px 0px;
     width: 100%;
   
+}
+
+.container-forms .genero{
+    margin: 20px 0;
+    background-color: rgba(211, 211, 211, 0.548);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.container-forms .genero input[type="radio"]{
+    width: 30px;
+    display: inline;
+    height: 20px;
+}
+
+.container-forms .genero span{
+    display: block;
+    text-align: center;
 }
 
 .container-forms .cliente{
