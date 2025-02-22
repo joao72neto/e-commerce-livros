@@ -219,7 +219,6 @@ h1{
 
 /*Address main settings*/
 
-
 .container-address{
     width: 800px;
 }
@@ -287,7 +286,38 @@ h1{
 
 /*Card-main settings*/
 
+.container-card-main{
+    max-width: 800px;
+    margin: 20px auto;
+    border-radius: 20px;
+    width: 100%;
+    box-shadow: 0px 0px 10px #0000005b;
+    padding: 30px 60px 60px 60px;
+}
 
+
+.container-card-main h2{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.container-card-main .card-wrapper{
+    display: flex;
+    box-shadow: 0px 0px 10px #0000005b;
+    border-radius: 20px;
+    padding: 30px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.container-card-main .card-wrapper .acoes-card{
+    align-self: center;
+}
+
+.container-card-main .card-add{
+    margin-top: 50px;
+    text-align: center;
+}
 
 /*Card settings*/
 
