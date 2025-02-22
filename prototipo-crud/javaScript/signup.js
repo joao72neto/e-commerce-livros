@@ -4,9 +4,15 @@ document.querySelector('input[type="checkbox"]').addEventListener('click', funct
     let container = document.querySelector('.container-forms');
     let div = document.createElement('div');
     let endereco_entrega = document.querySelector('.endereco_entrega');
+    let cartoes = document.querySelector('.container-forms .cartoes');
     
     if(!this.checked){
         if(!endereco_entrega){
+
+            cartoes.style.cssText = `
+                grid-row: 4;
+            `;
+
             div.classList.add('endereco_entrega');
             div.innerHTML = `
                 <h3>Endereço de Entrega</h3>
@@ -47,6 +53,11 @@ document.querySelector('input[type="checkbox"]').addEventListener('click', funct
     }else{
         if (endereco_entrega){
             endereco_entrega.remove();
+
+            cartoes.style.cssText = `
+                grid-row: 1;
+            `;
         }
     }
 });
+
