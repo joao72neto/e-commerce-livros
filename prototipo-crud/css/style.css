@@ -289,6 +289,13 @@ h1{
     margin-bottom: 20px;
 }
 
+
+.container-forms-address .checkbox{
+    grid-column: span 2;
+    text-align: center;
+}
+
+
 .container-forms-address{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
