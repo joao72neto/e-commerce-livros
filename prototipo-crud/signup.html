@@ -22,17 +22,19 @@
                     <input type="email" id="email" name="email" required>
                     <label for="telefone">Telefone</label>
                     <input type="tel" id="telefone" name="telefone" required>
+                    <label for="cpf">CPF</label>
+                    <input type="cpf" id="cpf" name="cpf" required>
 
                     <div class="genero">
                         <span>Genero</span>
                         <div>
-                            <input type="radio" id="gen" name="gen" required>Masculino
+                            <input type="radio" id="gen01" name="gen" required>Masculino
                         </div>
                         <div>
-                            <input type="radio" id="gen" name="gen" required>Feminino
+                            <input type="radio" id="gen02" name="gen" required>Feminino
                         </div>
                         <div>
-                            <input type="radio" id="gen" name="gen" required>Outro
+                            <input type="radio" id="gen03" name="gen" required>Outro
                         </div>
                     </div>
 
@@ -44,6 +46,12 @@
                     <label for="confirma_senha">Confirme a Senha</label>
                     <input type="password" id="confirma_senha" name="confirma_senha" required>
                 </div>
+
+                <label class="checkbox">
+                    <input type="checkbox" id="mesmo_endereco" checked>
+                    Usar este endereço como endereço de entrega
+                </label>
+
                 <div class="endereco_cobranca">
                     <h3>Endereço de Cobrança</h3>
                     <label for="tipo_residencia">Tipo de Residência</label>
@@ -76,11 +84,8 @@
                     <label for="observacoes">Observações</label>
                     <input type="text" id="observacoes" name="observacoes">
                 </div>
-                <!-- <label>
-                    <input type="checkbox" id="mesmo_endereco" onclick="toggleEnderecoEntrega()" checked>
-                    Usar este endereço como endereço de entrega
-                </label> -->
-                <div class="endereco_entrega">
+                
+                <!-- <div class="endereco_entrega">
                     <h3>Endereço de Entrega</h3>
                     <label for="logradouro_entrega">Logradouro</label>
                     <input type="text" id="logradouro_entrega" name="logradouro_entrega">
@@ -90,7 +95,7 @@
         
                     <label for="bairro_entrega">Bairro</label>
                     <input type="text" id="bairro_entrega" name="bairro_entrega">
-                </div>
+                </div> -->
         
                 <div class="cartoes">
                     <h3>Cadastro de Cartão de Crédito</h3>
@@ -112,6 +117,8 @@
             </div>
         </form>
     </div>
+
+    <script src="javaScript/signup.js"></script>
 </body>
 </html>
 

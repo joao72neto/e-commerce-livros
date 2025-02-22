@@ -25,6 +25,11 @@ input{
     font-size: 1em;
 }
 
+input[type="checkbox"]{
+    height: 35px;
+    border-radius: 10px;
+}
+
 button{
     padding: 10px;
     border: 1px solid black;
@@ -214,6 +219,7 @@ h1{
 }
 
 .container-forms .cliente{
+    grid-row: 1 / 3;
     grid-column: span 2;
 }
 
@@ -221,13 +227,21 @@ h1{
     grid-column: span 2;
 }
 
-.container-forms .endereco_cobranca{
-    grid-row: 2;
+.container-forms .checkbox{
+    grid-row: 3;
     grid-column: span 2;
+    text-align: center;
+  
+}
+
+.container-forms .endereco_cobranca{
+    grid-row: 4;
+    grid-column: span 2;
+    
 }
 
 .container-forms .endereco_entrega{
-    grid-row: 2;
+    grid-row: 2 / 5;
     grid-column: span 2;
 }
 
