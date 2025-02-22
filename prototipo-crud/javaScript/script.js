@@ -98,9 +98,9 @@ document.querySelectorAll('.inat').forEach(button => {
         let clienteWrapper = this.closest('.cliente-wrapper');
 
         if(clienteWrapper){
-            let nome = document.querySelector('.cliente p:nth-child(1)').textContent;
-            let email = document.querySelector('.cliente p:nth-child(2)').textContent;
-            let cliente = {nome, email};
+            let nome = clienteWrapper.querySelector('p:nth-child(1)').textContent;
+            let email = clienteWrapper.querySelector('p:nth-child(2)').textContent;
+            let cliente = {nome:nome, email:email};
 
             //Guardando os dados no sessionStorage
             let clientesInativos = JSON.parse(sessionStorage.getItem('clientesInativos')) || [];
