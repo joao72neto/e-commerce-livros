@@ -3,18 +3,13 @@ let container_index = document.querySelector('.container-index');
 
 //Guardando os dados no sessionStorage
 let clientesInativos = JSON.parse(sessionStorage.getItem('clientesInativos')) || [];
+let clientesAtivos = JSON.parse(sessionStorage.getItem('clientesAtivos')) || 
 
-let clientesAtivos = [];
-let todosClientes = [
+[
     { nome: 'João Neto', email: 'joao72neto@gmail.com' },
     { nome: 'Josel', email: 'josel.ohh@gmail.com' },
  
 ];
-
-//Separando os clientes ativos
-clientesAtivos = todosClientes.filter(cliente => {
-    return !clientesInativos.some(inativo => inativo.email === cliente.email);
-});
 
 
 clientesAtivos.forEach(cliente => {
@@ -142,8 +137,10 @@ document.querySelectorAll('.inat').forEach(button => {
             let cliente = {nome:nome, email:email};
 
             clientesInativos.push(cliente);
+            clientesAtivos = clientesAtivos.filter(c => c.email !== cliente.email);
 
             sessionStorage.setItem('clientesInativos', JSON.stringify(clientesInativos));
+            sessionStorage.setItem('clientesAtivos', JSON.stringify(clientesAtivos));
             
             //Removendo o cliente
             clienteWrapper.remove();

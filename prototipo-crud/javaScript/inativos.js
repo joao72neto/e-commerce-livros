@@ -23,20 +23,24 @@ if(clientesInativos.length === 0){
     });
 }
 
+
 //Reativando os clientes inativos
 document.querySelectorAll('.reativar').forEach(button => {
     button.addEventListener('click', function(){
         let index = this.getAttribute('data-index');
+        
 
         if(index != null){
 
             //Pegando o cliente a ser inativado
             let clientesInativos = JSON.parse(sessionStorage.getItem('clientesInativos')) || [];
+            let clientesAtivos = JSON.parse(sessionStorage.getItem('clientesAtivos')) || [];
 
-            clientesInativos.splice(index, 1)[0];
+            clientesAtivos.push(clientesInativos.splice(index, 1)[0]);
 
             //Atualizando o sessionStorage
             sessionStorage.setItem('clientesInativos', JSON.stringify(clientesInativos));
+            sessionStorage.setItem('clientesAtivos',JSON.stringify(clientesAtivos));
 
             //Removendo o cliente
             this.closest('.cliente-wrapper').remove();
