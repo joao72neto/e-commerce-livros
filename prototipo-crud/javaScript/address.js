@@ -4,9 +4,26 @@ document.querySelector('input[type="checkbox"]').addEventListener('click', funct
     let container = document.querySelector('.container-forms-address');
     let div = document.createElement('div');
     let endereco_entrega = document.querySelector('.endereco_entrega');
+
+    let checkbox = document.querySelector('.container-forms-address .checkbox');
+    let endereco_cobranca = document.querySelector('.container-forms-address .endereco_cobranca');
     
     if(!this.checked){
         if(!endereco_entrega){
+
+
+            endereco_cobranca.style.cssText = `
+                grid-row: 2;
+                grid-column: span 2;
+                justify-self: none;
+                width: 100%;
+            `;
+
+            checkbox.style.cssText = `
+                grid-column: span 2;
+                text-align: center;
+            `;
+
             div.classList.add('endereco_entrega');
             div.innerHTML = `
                 <h3>Endereço de Entrega</h3>
@@ -46,6 +63,19 @@ document.querySelector('input[type="checkbox"]').addEventListener('click', funct
 
     }else{
         if (endereco_entrega){
+
+            endereco_cobranca.style.cssText = `
+                grid-row: 2;
+                grid-column: span 4;
+                justify-self: center;
+                width: 65%;
+            `;
+
+            checkbox.style.cssText = `
+                grid-column: span 4;
+                text-align: center;
+            `;
+
             endereco_entrega.remove();
         }
     }

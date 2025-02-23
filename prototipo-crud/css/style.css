@@ -298,13 +298,6 @@ h1{
     margin-bottom: 20px;
 }
 
-
-.container-forms-address .checkbox{
-    grid-column: span 2;
-    text-align: center;
-}
-
-
 .container-forms-address{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -316,9 +309,17 @@ h1{
     width: 100%;
 }
 
+
+.container-forms-address .checkbox{
+    grid-column: span 4;
+    text-align: center;
+}
+
 .container-forms-address .endereco_cobranca{
     grid-row: 2;
-    grid-column: span 2;
+    grid-column: span 4;
+    justify-self: center;
+    width: 65%;
 }
 
 .container-forms-address .endereco_entrega{
