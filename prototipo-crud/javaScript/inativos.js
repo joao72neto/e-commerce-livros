@@ -15,7 +15,7 @@ if(clientesInativos.length === 0){
                 <p>${cliente.nome}</p>
                 <p>${cliente.email}</p>
             </div>
-            <button class="reativar" data-index="${index}">Reativar</button>
+            <button class="reativar" data-email="${cliente.email}">Reativar</button>
         
         `;
 
@@ -27,7 +27,7 @@ if(clientesInativos.length === 0){
 //Reativando os clientes inativos
 document.querySelectorAll('.reativar').forEach(button => {
     button.addEventListener('click', function(){
-        let index = this.getAttribute('data-index');
+        let index = this.getAttribute('data-email');
         
 
         if(index != null){
