@@ -35,6 +35,7 @@ input{
     height: 40px;
     border-radius: 10px;
     font-size: 1em;
+    border: 1px solid black;
 }
 
 input[type="checkbox"]{
@@ -62,12 +63,14 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    
 }
 th, td {
-    padding: 10px;
+    padding: 15px;
     text-align: left;
     border-bottom: 1px solid var(--cinza);
-    background-color: white;
+   
+    text-align: center;
 }
 th {
     background-color: var(--preto);
@@ -349,8 +352,8 @@ h1{
     width: 800px;
 }
 
-.container-address h2{
-    margin: 20px;
+.container-address .title{
+    margin: 20px 0 30px 0;
 }
 
 .container-address .endereco-wrapper{
