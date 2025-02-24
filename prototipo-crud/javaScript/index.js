@@ -7,8 +7,9 @@ let clientesAtivos = JSON.parse(sessionStorage.getItem('clientesAtivos')) ||
 
 [
     { nome: 'João Neto', email: 'joao72neto@gmail.com' },
-    { nome: 'Josel', email: 'josel.ohh@gmail.com' },
-    { nome: 'teste', email: 'teste.ohh@gmail.com' }
+    { nome: 'Lucas', email: 'lucas.silva@gmail.com' },
+    { nome: 'Joel', email: 'joel.dias@gmail.com' },
+    { nome: 'Renato', email: 'renato.souza@gmail.com' }
  
 ];
 
@@ -37,9 +38,10 @@ clientesAtivos.forEach(cliente => {
 let filtro_clientes = document.querySelector('.filtro_clientes');
 let filtro = ` <select name="nomes" id="nomes">
                     <option value="nome">Nome</option>
-                    <option value="joaldo">Joaldo</option>
-                    <option value="jose">José</option>
-                    <option value="joel">Joel</option>
+                    <option value="joaldo">Joel</option>
+                    <option value="jose">Renato</option>
+                    <option value="joel">João Neto</option>
+                    <option value="joel">Lucas</option>
                 </select>
 
                 <select name="paises" id="paises">
