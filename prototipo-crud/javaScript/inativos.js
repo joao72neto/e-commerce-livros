@@ -1,4 +1,4 @@
-//Mostrando clientes desativados
+//MOSTRANDO OS CLIENTES QUE ESTÃO INATIVADOS
 let container = document.querySelector('#clientes-inativos');
 container.innerHTML = '';
 
@@ -7,7 +7,7 @@ let clientesInativos = JSON.parse(sessionStorage.getItem('clientesInativos')) ||
 if(clientesInativos.length === 0){
     container.innerHTML = '<p style="text-align: center;">Nenhum cliente foi inativado</p>';
 }else{
-    clientesInativos.forEach((cliente, index) => {
+    clientesInativos.forEach(cliente => {
         let div = document.createElement('div');
         div.classList.add('cliente-wrapper');
         div.innerHTML = `
@@ -24,16 +24,15 @@ if(clientesInativos.length === 0){
 }
 
 
-//Reativando os clientes inativos
+//REATIVANDO CLIENTES INATIVADOS
 document.querySelectorAll('.reativar').forEach(button => {
     button.addEventListener('click', function(){
+
         let index = this.getAttribute('data-email');
         
-
         if(index != null){
 
             //Pegando o cliente a ser inativado
-            let clientesInativos = JSON.parse(sessionStorage.getItem('clientesInativos')) || [];
             let clientesAtivos = JSON.parse(sessionStorage.getItem('clientesAtivos')) || [];
 
             clientesAtivos.push(clientesInativos.splice(index, 1)[0]);

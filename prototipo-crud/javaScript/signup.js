@@ -1,4 +1,4 @@
-//checkbox
+//ADICIONANDO O FUNCIONAMENTO DA CHECKBOX
 document.querySelector('input[type="checkbox"]').addEventListener('click', function(){
     
     let container = document.querySelector('.container-forms');
