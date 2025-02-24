@@ -1,5 +1,11 @@
 /*WebSite colors*/
-
+:root{
+    --amarelo-claro: #FFFF9B;
+    --amarelo: #F4F440;
+    --preto: #292929;
+    --cinza: #E8E8E8;
+    --branco: #F6F6F6;
+}
 
 
 /*Global Settings*/
@@ -14,6 +20,7 @@ body{
 }
 
 select{
+    background-color: white;
     width: 100px;
 }
 
@@ -33,13 +40,16 @@ input[type="checkbox"]{
 
 button{
     padding: 10px;
-    border: 1px solid black;
+    border: 1px solid var(--preto);
     border-radius: 10px;
     width: 100px;
     font-size: 1em;
+    background-color: var(--preto);
+    color: var(--branco);
 
     &:hover{
-        background-color: lightgray;
+        background-color: var(--amarelo-claro);
+        color: var(--preto);
         cursor: pointer;
     }
 }
@@ -52,26 +62,27 @@ table {
 th, td {
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--cinza);
+    background-color: white;
 }
 th {
-    background-color: gray;
-    color: white;
+    background-color: var(--preto);
+    color: var(--branco);
 }
 
 a{
     text-decoration: none;
-    color: white;
-    background-color: gray;
+    color: var(--branco);
+    background-color: var(--preto);
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid gray;
+    border: 1px solid var(--preto);
 
     &:hover{
-        background-color: lightgray;
-        color: black;
+        background-color: var(--amarelo-claro);
+        color: var(--preto);
         transition: 0.2s;
-        border: 1px solid black;
+        border: 1px solid var(--preto);
     }
 }
 
@@ -92,6 +103,7 @@ a{
 
 .container-index{
     position: relative;
+    background-color: var(--branco);
     flex-basis: 800px;
     margin: 20px auto 0 auto;
     padding: 20px;
@@ -112,6 +124,10 @@ h1{
     gap: 50px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.filtro img{
+    width: 30px;
 }
 
 .filtro_clientes{
@@ -153,6 +169,7 @@ h1{
 
 .cliente-wrapper{
     display: flex;
+    background-color: white;
     justify-content: space-between;
     margin: 20px;
     padding: 20px;
@@ -182,7 +199,7 @@ h1{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: var(--branco);
 }
 
 .popup .button-popup{
@@ -208,24 +225,24 @@ h1{
 
 /*Submenu*/
 .alt_submenu{
-    border: 1px solid black;
+    border: 1px solid var(--preto);
     border-radius: 10px;
     position: absolute;
     top: 40px;
-    background-color: white;
+    background-color: var(--branco);
     z-index: 2;
 
 }
 
 .alt_submenu a{
     display: block;
-    background-color: white;
+    background-color: var(--branco);
     border: none;
     color: black;
     padding: 20px;
 
     &:hover{
-        background-color: lightgray;
+        background-color: var(--amarelo-claro);
     }
 }
 
@@ -257,7 +274,7 @@ h1{
 
 .container-forms .genero{
     margin: 20px 0;
-    background-color: rgba(211, 211, 211, 0.548);
+    background-color: var(--cinza);
     padding: 35px 20px;
     border-radius: 20px;
 }
@@ -322,10 +339,12 @@ h1{
 }
 
 .container-address{
+    background-color: var(--branco);
     width: 800px;
 }
 
 .container-address .endereco-wrapper{
+    background-color: white;
     display: flex;
     justify-content: space-between;
     margin: 20px;
@@ -403,6 +422,7 @@ h1{
 }
 
 .container-card-main{
+    background-color: var(--branco);
     max-width: 800px;
     margin: 20px auto;
     border-radius: 20px;
@@ -430,7 +450,7 @@ h1{
 
 .container-card-main .card-wrapper{
     display: flex;
-
+    background-color: white;
     margin: 20px 0;
     box-shadow: 0px 0px 10px #0000005b;
     border-radius: 20px;
@@ -457,6 +477,7 @@ h1{
 }
 
 .card{
+    background-color: var(--branco);
     flex-basis: 800px;
     margin: 20px auto;
     padding: 25px;
@@ -498,6 +519,7 @@ h1{
 }
 
 .senha{
+    background-color: var(--branco);
     box-shadow: 0px 0px 20px #0000005b;
     border-radius: 20px;
     padding: 30px 60px;
@@ -520,6 +542,7 @@ h1{
 }
 
 .transaction{
+    background-color: var(--branco);
     padding: 30px 60px;
     text-align: center;
     border-radius: 20px;

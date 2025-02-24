@@ -106,7 +106,7 @@ document.querySelectorAll('.alt').forEach(botao => {
         let submenuExiste = this.querySelector('.alt_submenu');
 
         if(submenuExiste){
-            submenuExiste.style.display = submenuExiste.style.display === 'block' ? 'none' : 'block';
+            submenuExiste.remove();
 
         }else{
             let submenu = document.createElement('div');
@@ -123,8 +123,6 @@ document.querySelectorAll('.alt').forEach(botao => {
             // Adicionando submenu ao lado do botão clicado
             this.appendChild(submenu);
 
-            //Mostrnado o submenu novamente
-            submenu.style.display = 'block';
         }
     });
 });
