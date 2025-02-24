@@ -226,7 +226,7 @@ document.querySelectorAll('.cliente-wrapper .cliente').forEach(wrapper => {
                 </div>
                 <h2>Dados de ${dados.nome}</h2>
                 <p><strong>Nome Completo: </strong>João Salvador Neto<p/>
-                <p><strong>E-mail: </strong>joao72neto@gmail.com<p/>
+                <p><strong>E-mail: </strong>${dados.email}<p/>
                 <p><strong>Telefone: </strong>(55) 11 9453-2245<p/>
                 <p><strong>CPF: </strong>486.904.748.97<p/>
                 <p><strong>Gênero: </strong>Masculino<p/>

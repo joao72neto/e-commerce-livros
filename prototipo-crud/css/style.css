@@ -170,11 +170,10 @@ h1{
     position: relative;
     align-self: center;
 }
-/*Pop-up*/
 
+/*Pop-up*/
 .popup{
 
-    margin: 20px;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0px 0px 10px #0000005b;
@@ -314,6 +313,14 @@ h1{
 }
 
 /*Address main settings*/
+
+.container-address-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .container-address{
     width: 800px;
 }
@@ -387,6 +394,14 @@ h1{
 
 
 /*Card-main settings*/
+
+.container-card-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .container-card-main{
     max-width: 800px;
     margin: 20px auto;
