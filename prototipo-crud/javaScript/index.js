@@ -1,4 +1,4 @@
-//Mostrando clientes ativos
+//MOSTRANDO CLIENTES ATIVOS
 let container_index = document.querySelector('.container-index');
 
 //Guardando os dados no sessionStorage
@@ -8,6 +8,7 @@ let clientesAtivos = JSON.parse(sessionStorage.getItem('clientesAtivos')) ||
 [
     { nome: 'João Neto', email: 'joao72neto@gmail.com' },
     { nome: 'Josel', email: 'josel.ohh@gmail.com' },
+    { nome: 'teste', email: 'teste.ohh@gmail.com' }
  
 ];
 
@@ -32,7 +33,7 @@ clientesAtivos.forEach(cliente => {
 });
 
 
-//FILTERING CLIENTS
+//FILTRANDO CLIENTES
 let filtro_clientes = document.querySelector('.filtro_clientes');
 let filtro = ` <select name="nomes" id="nomes">
                     <option value="nome">Nome</option>
@@ -64,6 +65,7 @@ let filtro = ` <select name="nomes" id="nomes">
 
 let input = `<input class="busca_clientes" type="text" placeholder="Busque clientes...">`
 
+//Filtro
 document.querySelector('#flt').addEventListener('click', () => {
     
     
@@ -80,7 +82,7 @@ document.querySelector('#flt').addEventListener('click', () => {
     }
 });
 
-//Searching for clients
+//Input
 document.querySelector('#bsc').addEventListener('click',() => {
 
     if(filtro_clientes.innerHTML.trim() === '' ||
@@ -96,17 +98,18 @@ document.querySelector('#bsc').addEventListener('click',() => {
     }
 });
 
-//CHANGING USER
+//ALTERALÇÃO DE USUÁRIO
 document.querySelectorAll('.alt').forEach(botao => {
-    botao.addEventListener('click', function (event) {
-        event.preventDefault();
+    botao.addEventListener('click', function () {
 
-        // Verifica se já existe um submenu ativo
-        let submenu = this.parentElement.querySelector('.alt_submenu');
+        // Criando submenu dinamicamente
+        let submenuExiste = this.querySelector('.alt_submenu');
 
-        if (!submenu) {
-            // Criando submenu dinamicamente
-            submenu = document.createElement('div');
+        if(submenuExiste){
+            submenuExiste.style.display = submenuExiste.style.display === 'block' ? 'none' : 'block';
+
+        }else{
+            let submenu = document.createElement('div');
             submenu.classList.add('alt_submenu');
 
             submenu.innerHTML = `
@@ -114,18 +117,19 @@ document.querySelectorAll('.alt').forEach(botao => {
                 <a href="address/address-main.html">Alterar endereço</a>
                 <a href="card/card-main.html">Alterar pagamento</a>
                 <a href="signup.html">Alterar tudo</a>
+
             `;
 
             // Adicionando submenu ao lado do botão clicado
-            this.parentElement.appendChild(submenu);
-        }
+            this.appendChild(submenu);
 
-        // Alterna a visibilidade do submenu
-        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+            //Mostrnado o submenu novamente
+            submenu.style.display = 'block';
+        }
     });
 });
 
-//DEACTIVATING CLIENTS
+//DESATIVANDO CLIENTES
 document.querySelectorAll('.inat').forEach(button => {
     button.addEventListener('click', function(){
 
@@ -153,11 +157,11 @@ document.querySelectorAll('.inat').forEach(button => {
 });
 
 function criarBotaoInativados() {
-    if (!document.getElementById("btn-inativados")) {
-        let botao = document.createElement("a");
-        botao.id = "btn-inativados";
-        botao.href = "inativos.html"; 
-        botao.textContent = "Ver inativados";
+    if (!document.getElementById('btn-inativados')) {
+        let botao = document.createElement('a');
+        botao.id = 'btn-inativados';
+        botao.href = 'inativos.html'; 
+        botao.textContent = 'Ver Inativados';
         botao.style.cssText = `
             position: fixed;
             bottom: 20px;
@@ -169,13 +173,12 @@ function criarBotaoInativados() {
 }
 
 // Mostrar o botão automaticamente se já houver inativos
-clientesInativos = JSON.parse(sessionStorage.getItem("clientesInativos")) || [];
 if (clientesInativos.length > 0) {
     criarBotaoInativados();
 }
 
 
-//TRANSACTIONS
+//TRANSAÇÕES
 document.querySelectorAll('.tran').forEach(botao => {
     botao.addEventListener('click', function() {
 
@@ -187,7 +190,7 @@ document.querySelectorAll('.tran').forEach(botao => {
 
             let cliente = {nome: clienteNome, email: clienteEmail };
 
-            // Armazena os dados do cliente no localStorage
+            // Armazena os dados do cliente no sessionStorage
             sessionStorage.setItem("clienteTransacoes", JSON.stringify(cliente));
 
             // Redireciona para a página de transações
