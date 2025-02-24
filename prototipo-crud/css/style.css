@@ -43,6 +43,21 @@ button{
     }
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: gray;
+    color: white;
+}
+
 a{
     text-decoration: none;
     color: white;
@@ -461,20 +476,6 @@ h1{
 }
 
 .transaction h2{
-    margin: 20px 0;
-}
-
-.transaction p{
-    border: 1px solid #00000070;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.transaction ul{
-    list-style-type: none;
-}
-
-.transaction li{
     margin: 20px 0;
 }
 

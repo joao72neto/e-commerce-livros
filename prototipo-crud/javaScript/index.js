@@ -185,10 +185,10 @@ document.querySelectorAll('.tran').forEach(botao => {
             let clienteNome = clienteWrapper.querySelector("p:nth-child(1)").textContent;
             let clienteEmail = clienteWrapper.querySelector("p:nth-child(2)").textContent;
 
-            let cliente = { nome: clienteNome, email: clienteEmail };
+            let cliente = {nome: clienteNome, email: clienteEmail };
 
             // Armazena os dados do cliente no localStorage
-            localStorage.setItem("clienteTransacoes", JSON.stringify(cliente));
+            sessionStorage.setItem("clienteTransacoes", JSON.stringify(cliente));
 
             // Redireciona para a página de transações
             window.location.href = "transacoes.html";
