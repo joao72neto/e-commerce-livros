@@ -179,10 +179,8 @@ if (clientesInativos.length > 0) {
 
 
 //TRANSAÇÕES
-document.querySelectorAll('.tran').forEach(botao => {
-    botao.addEventListener('click', function() {
-
-        let clienteWrapper = this.closest('.cliente-wrapper');
+function pegarDados(obj){
+    let clienteWrapper = obj.closest('.cliente-wrapper');
 
         if (clienteWrapper) {
             let clienteNome = clienteWrapper.querySelector("p:nth-child(1)").textContent;
@@ -192,12 +190,60 @@ document.querySelectorAll('.tran').forEach(botao => {
 
             // Armazena os dados do cliente no sessionStorage
             sessionStorage.setItem("clienteTransacoes", JSON.stringify(cliente));
+   
+        }
+}
 
-            // Redireciona para a página de transações
-            window.location.href = "transacoes.html";
+document.querySelectorAll('.tran').forEach(botao => {
+    botao.addEventListener('click', function() {
+        pegarDados(this);
+        window.location.href = "transacoes.html";
+    });
+});
+
+// ADICIONANDO UM POP-UP COM OS DADOS DO CLIENTE
+document.querySelectorAll('.cliente-wrapper .cliente').forEach(wrapper => {
+    wrapper.addEventListener('click', function(){
+
+        let containerIndex = document.querySelector('.container-index');
+        let popupExistente = document.querySelector('.popup');
+
+        if (popupExistente) {
+            
+            popupExistente.remove();
+        } else {
+            // Criando o popup
+            let popup = document.createElement('div');
+            popup.classList.add('popup');
+
+            // Pegando os dados do cliente
+            pegarDados(this);
+            let dados = JSON.parse(sessionStorage.getItem('clienteTransacoes'));
+
+            popup.innerHTML = `
+                <div class="button-popup">
+                    <button>X</button>
+                </div>
+                <h2>Dados de ${dados.nome}</h2>
+                <p><strong>Nome Completo: </strong>João Salvador Neto<p/>
+                <p><strong>E-mail: </strong>joao72neto@gmail.com<p/>
+                <p><strong>Telefone: </strong>(55) 11 9453-2245<p/>
+                <p><strong>CPF: </strong>486.904.748.97<p/>
+                <p><strong>Gênero: </strong>Masculino<p/>
+                <p><strong>Data Nascimento: </strong>19/07/2004<p/>
+                <p><strong>E-mail: </strong>joao72neto@gmail.com<p/>
+            `;
+
+            containerIndex.appendChild(popup);
+
+            // Evento para fechar o popup ao clicar no botão "X"
+            document.querySelector('.button-popup button').addEventListener('click', function(){
+                popup.remove();
+            });
         }
     });
 });
+
 
 
 
