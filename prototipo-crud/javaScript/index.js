@@ -104,28 +104,31 @@ document.querySelector('#bsc').addEventListener('click',() => {
 document.querySelectorAll('.alt').forEach(botao => {
     botao.addEventListener('click', function () {
 
+        document.querySelectorAll('.alt_submenu').forEach(menu => menu.remove);
+
         // Criando submenu dinamicamente
         let submenuExiste = this.querySelector('.alt_submenu');
 
         if(submenuExiste){
             submenuExiste.remove();
-
-        }else{
-            let submenu = document.createElement('div');
-            submenu.classList.add('alt_submenu');
-
-            submenu.innerHTML = `
-                <a href="password.html">Alterar senha</a>
-                <a href="address/address-main.html">Alterar endereço</a>
-                <a href="card/card-main.html">Alterar pagamento</a>
-                <a href="signup.html">Alterar tudo</a>
-
-            `;
-
-            // Adicionando submenu ao lado do botão clicado
-            this.appendChild(submenu);
-
+            return;
         }
+
+        let submenu = document.createElement('div');
+        submenu.classList.add('alt_submenu');
+
+        submenu.innerHTML = `
+            <a href="password.html">Alterar senha</a>
+            <a href="address/address-main.html">Alterar endereço</a>
+            <a href="card/card-main.html">Alterar pagamento</a>
+            <a href="signup.html">Alterar tudo</a>
+
+        `;
+
+        // Adicionando submenu ao lado do botão clicado
+        this.appendChild(submenu);
+
+      
     });
 });
 
