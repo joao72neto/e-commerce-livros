@@ -207,6 +207,7 @@ h1{
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--branco);
+    z-index: 2;
 }
 
 .popup .button-popup{
