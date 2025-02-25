@@ -6,10 +6,10 @@ let clientesInativos = JSON.parse(sessionStorage.getItem('clientesInativos')) ||
 let clientesAtivos = JSON.parse(sessionStorage.getItem('clientesAtivos')) || 
 
 [
-    { nome: 'João Neto', email: 'joao72neto@gmail.com' },
-    { nome: 'Lucas', email: 'lucas.silva@gmail.com' },
-    { nome: 'Joel', email: 'joel.dias@gmail.com' },
-    { nome: 'Renato', email: 'renato.souza@gmail.com' }
+    { id: 1, nome: 'João Neto', email: 'joao72neto@gmail.com' },
+    { id: 2, nome: 'Lucas', email: 'lucas.silva@gmail.com' },
+    { id: 3, nome: 'Joel', email: 'joel.dias@gmail.com' },
+    { id: 4, nome: 'Renato', email: 'renato.souza@gmail.com' }
  
 ];
 
