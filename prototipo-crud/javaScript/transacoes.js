@@ -1,9 +1,12 @@
 //Dados fictícios
 const transacoes = [
-    { id: 1, produto: "O Senhor dos Anéis", quantidade: 1, preco: 120.00, pagamento: "Cartão", data: "2025-02-24" },
-    { id: 2, produto: "Harry Potter", quantidade: 1, preco: 45.00, pagamento: "PIX", data: "2025-02-23" },
-    { id: 3, produto: "Dom Quixote", quantidade: 1, preco: 60.00, pagamento: "Boleto", data: "2025-02-22" }
+    { id: 1, data: '2025-02-24T15:30:00', tipo: 'Alteração de Perfil', acao: 'E-mail foi alterado para joao72neto@gmail.com', status: 'Confirmado' },
+    { id: 2, data: '2025-02-25T17:30:00', tipo: 'Alteração de Perfil', acao: 'Novo endereço adicionado "Estrada Antiga Imperial"', status: 'Confirmado' },
+    { id: 3, data: '2025-02-26T19:30:00', tipo: 'Alteração de Perfil', acao: 'Cartão de crédito "Visa-3020" removido', status: 'Confirmado' },
+    { id: 4, data: '2025-02-27T21:30:00', tipo: 'Compra', acao: 'Compra do livro "Senhor dos Anéis" realizada', status: 'Pendente' },
+    { id: 5, data: '2025-02-28T23:30:00', tipo: 'Segurança', acao: 'Senha alterada', status: 'Confirmado' }
 ];
+
 
 //Carregando os dados
 const tabela = document.querySelector("#transactionTable");
@@ -15,11 +18,11 @@ let tbody = document.createElement('tbody');
 
 transacoes.forEach(transacao => {
     const linha = `<tr>
-        <td>${transacao.produto}</td>
-        <td>${transacao.quantidade}</td>
-        <td>R$ ${transacao.preco.toFixed(2)}</td>
-        <td>${transacao.pagamento}</td>
+        <td>${transacao.id}</td>
         <td>${transacao.data}</td>
+        <td>${transacao.tipo}</td>
+        <td>${transacao.acao}</td>
+        <td>${transacao.status}</td>
     </tr>`;
 
     tbody.innerHTML += linha;
