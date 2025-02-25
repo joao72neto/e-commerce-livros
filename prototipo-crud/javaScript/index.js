@@ -104,15 +104,20 @@ document.querySelector('#bsc').addEventListener('click',() => {
 document.querySelectorAll('.alt').forEach(botao => {
     botao.addEventListener('click', function () {
 
-        document.querySelectorAll('.alt_submenu').forEach(menu => menu.remove);
+        // Verificando se o menu já existe
+        let submenuExiste = document.querySelectorAll('.alt_submenu').forEach(menu => {
+            if(menu){
+                menu.remove();
+            }
 
-        // Criando submenu dinamicamente
-        let submenuExiste = this.querySelector('.alt_submenu');
+            let thisSubmenuExiste = document.querySelectorAll('.alt_submenu');
 
-        if(submenuExiste){
-            submenuExiste.remove();
+            if(thisSubmenuExiste){
+                thisSubmenuExiste.remove();
+            }
+
             return;
-        }
+        });
 
         let submenu = document.createElement('div');
         submenu.classList.add('alt_submenu');
@@ -128,7 +133,6 @@ document.querySelectorAll('.alt').forEach(botao => {
         // Adicionando submenu ao lado do botão clicado
         this.appendChild(submenu);
 
-      
     });
 });
 
