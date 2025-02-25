@@ -35,8 +35,10 @@ document.querySelectorAll('.reativar').forEach(button => {
             //Pegando o cliente a ser inativado
             let clientesAtivos = JSON.parse(sessionStorage.getItem('clientesAtivos')) || [];
 
-            clientesAtivos.push(clientesInativos.splice(index, 1)[0]);
-
+            clientesAtivos.push(clientesInativos.filter(c => c.email === index)[0]);
+            clientesInativos = clientesInativos.filter(c => c.email !== index);
+            
+            
             //Atualizando o sessionStorage
             sessionStorage.setItem('clientesInativos', JSON.stringify(clientesInativos));
             sessionStorage.setItem('clientesAtivos',JSON.stringify(clientesAtivos));
