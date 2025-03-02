@@ -15,8 +15,13 @@
     box-sizing: border-box;
 }
 
+html, body{
+    height: 100%;
+}
+
 body{
     font-family: sans-serif;
+    zoom: 80%;
 }
 
 select{
@@ -100,12 +105,12 @@ a{
 }
 
 
-/*CRUD Settings*/
+/*CRUD Settings - index*/
 .flex-container{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
 }
 
 .container-index{
@@ -345,7 +350,7 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
 }
 
 .container-address{
@@ -432,7 +437,7 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
 }
 
 .container-card-main{
@@ -485,7 +490,7 @@ h1{
 /*Card settings*/
 .container-card{
     display: flex;
-    height: 100vh;
+    height: 100%;
     justify-content: center;
     align-items: center;
 }
@@ -527,7 +532,7 @@ h1{
 /*Password*/
 .container-password{
     display: flex;
-    height: 100vh;
+    height: 100%;
     justify-content: center;
     align-items: center;
 }
@@ -550,7 +555,7 @@ h1{
 /*Transaction*/
 .container-tran{
     display: flex;
-    height: 100vh;
+    height: 100%;
     justify-content: center;
     align-items: center;
 }
@@ -570,7 +575,7 @@ h1{
 /*Inativos*/
 .container-inat {
     display: flex;
-    height: 100vh;
+    height: 100%;
     justify-content: center;
     align-items: center;
 }
