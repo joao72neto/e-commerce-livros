@@ -1,0 +1,14 @@
+{
+  "name": "crud-clientes",
+  "version": "1.0.0",
+  "description": "Cadastro de clientes do e-commerce de livros",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "João Neto",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
