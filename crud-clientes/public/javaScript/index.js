@@ -123,10 +123,10 @@ document.querySelectorAll('.alt').forEach(botao => {
         submenu.classList.add('alt_submenu');
 
         submenu.innerHTML = `
-            <a href="password.html">Alterar senha</a>
-            <a href="address/address-main.html">Alterar endereço</a>
-            <a href="card/card-main.html">Alterar pagamento</a>
-            <a href="signup.html">Alterar tudo</a>
+            <a href="/password">Alterar senha</a>
+            <a href="/address">Alterar endereço</a>
+            <a href="/card">Alterar pagamento</a>
+            <a href="/signup">Alterar tudo</a>
 
         `;
 
@@ -167,7 +167,7 @@ function criarBotaoInativados() {
     if (!document.getElementById('btn-inativados')) {
         let botao = document.createElement('a');
         botao.id = 'btn-inativados';
-        botao.href = 'inativos.html'; 
+        botao.href = '/inativos'; 
         botao.textContent = 'Ver Inativados';
         botao.style.cssText = `
             position: fixed;
@@ -204,7 +204,7 @@ function pegarDados(obj){
 document.querySelectorAll('.tran').forEach(botao => {
     botao.addEventListener('click', function() {
         pegarDados(this);
-        window.location.href = "transacoes.html";
+        window.location.href = "/transacoes";
     });
 });
 
