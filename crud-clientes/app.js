@@ -1,10 +1,14 @@
-let express = require('express');
+//Modules
+const express = require('express');
+const toController = require('./controller/crud-controller');
 
-app = express();
+//Iniciando o express
+const app = express();
 
-app.get('/', (req, res) => {
-    res.end('Hello World!');
-})
+//Encaminhando para os endpoints
+toController(app);
 
-app.listen(3000, 'localhost');
-console.log('Servidor rodando na porta 3000...')
+//Rodando o servidor localmente na porta 3000
+app.listen(3000, () => {
+    console.log('Servidor rodando na porta 3000...');
+});
