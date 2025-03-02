@@ -5,8 +5,8 @@ const toController = require('./controller/crud-controller');
 //Iniciando o express
 const app = express();
 
-//Deixando arquivos públicos
 app.use(express.static('./public'));
+app.set('view engine', 'ejs');
 
 //Encaminhando para os endpoints
 toController(app);
