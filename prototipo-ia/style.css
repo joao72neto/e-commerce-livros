@@ -5,8 +5,25 @@
     padding: 0;
 }
 
+html, body{
+    height: 100%;
+}
+
 body{
     font-family: sans-serif;
+    zoom: 80%;
+}
+
+p{
+    -ms-word-break: break-all;
+    -ms-word-wrap: break-all;
+    -webkit-word-break: break-word;
+    -webkit-word-wrap: break-word;
+    word-break: break-word;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
 }
 
 /*Chat Button*/
@@ -14,7 +31,7 @@ body{
 .chat-button{
     display: flex;
     justify-content: flex-end;
-    margin: 1% 1% 0 0;
+    padding: 10px;
 }
 
 .chat-button span{
@@ -55,7 +72,7 @@ body{
 .selected{
     display: flex;
     justify-content: flex-end;
-    margin: 1% 1% 0 0;
+    padding: 10px;
 }
 
 .selected span{
