@@ -1,9 +1,9 @@
-const db  = require('../config/db');
+const db = require('../config/db');
 
 //Pegando todos os clientes do banc (teste)
 async function buscarTodosClientes() {
     try{
-        const [clientes] = await db.query('select * from Clientes');
+        const [clientes] = await db.query('select * from clientes');
         return clientes;
     }catch(err){
         console.error(`Deu ruim: ${err}`);
@@ -11,4 +11,4 @@ async function buscarTodosClientes() {
     }
 }
 
-console.log(buscarTodosClientes());
+module.exports = {buscarTodosClientes};

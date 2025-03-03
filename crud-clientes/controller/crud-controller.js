@@ -1,7 +1,18 @@
+//Pegando o banco
+const {buscarTodosClientes} = require('../model/crud-model');
+
 module.exports = function(app){
 
-    app.get('/', (req, res) => {
-        res.render('index');
+    app.get('/', async (req, res) => {
+        try{
+            const clientes = await buscarTodosClientes();
+            console.log(clientes);
+            res.render('index');
+        }catch(err){
+            console.error(`Não deu para imprimir os clientes: ${err}`);
+            res.status(500).send('Erro ao buscar o clientes');
+        }
+        
     });
 
     app.get('/signup', (req, res) => {
