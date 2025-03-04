@@ -136,69 +136,82 @@ document.querySelectorAll('.alt').forEach(botao => {
     });
 });
 
-//DESATIVANDO CLIENTES
-document.querySelectorAll('.inat').forEach(button => {
-    button.addEventListener('click', function(){
+// //DESATIVANDO CLIENTES
+// document.querySelectorAll('.inat').forEach(button => {
+//     button.addEventListener('click', function(){
 
-        let clienteWrapper = this.closest('.cliente-wrapper');
+//         let clienteWrapper = this.closest('.cliente-wrapper');
 
-        if(clienteWrapper){
-            let nome = clienteWrapper.querySelector('p:nth-child(1)').textContent;
-            let email = clienteWrapper.querySelector('p:nth-child(2)').textContent;
-            let cliente = {nome:nome, email:email};
+//         if(clienteWrapper){
+//             let nome = clienteWrapper.querySelector('p:nth-child(1)').textContent;
+//             let email = clienteWrapper.querySelector('p:nth-child(2)').textContent;
+//             let cliente = {nome:nome, email:email};
 
-            clientesInativos.push(cliente);
-            clientesAtivos = clientesAtivos.filter(c => c.email !== cliente.email);
+//             clientesInativos.push(cliente);
+//             clientesAtivos = clientesAtivos.filter(c => c.email !== cliente.email);
 
-            sessionStorage.setItem('clientesInativos', JSON.stringify(clientesInativos));
-            sessionStorage.setItem('clientesAtivos', JSON.stringify(clientesAtivos));
+//             sessionStorage.setItem('clientesInativos', JSON.stringify(clientesInativos));
+//             sessionStorage.setItem('clientesAtivos', JSON.stringify(clientesAtivos));
             
-            //Removendo o cliente
-            clienteWrapper.remove();
+//             //Removendo o cliente
+//             clienteWrapper.remove();
 
-            //Criando um botão para a página de inativos
-            criarBotaoInativados();
-        }
+//             //Criando um botão para a página de inativos
+//             criarBotaoInativados();
+//         }
   
-    });
-});
+//     });
+// });
 
-function criarBotaoInativados() {
-    if (!document.getElementById('btn-inativados')) {
-        let botao = document.createElement('a');
-        botao.id = 'btn-inativados';
-        botao.href = '/inativos'; 
-        botao.textContent = 'Ver Inativados';
-        botao.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-        `;
+// function criarBotaoInativados() {
+//     if (!document.getElementById('btn-inativados')) {
+//         let botao = document.createElement('a');
+//         botao.id = 'btn-inativados';
+//         botao.href = '/inativos'; 
+//         botao.textContent = 'Ver Inativados';
+//         botao.style.cssText = `
+//             position: fixed;
+//             bottom: 20px;
+//             right: 20px;
+//         `;
 
-        document.body.appendChild(botao);
-    }
-}
+//         document.body.appendChild(botao);
+//     }
+// }
 
-// Mostrar o botão automaticamente se já houver inativos
-if (clientesInativos.length > 0) {
-    criarBotaoInativados();
-}
+// // Mostrar o botão automaticamente se já houver inativos
+// if (clientesInativos.length > 0) {
+//     criarBotaoInativados();
+// }
 
 
 //TRANSAÇÕES
-function pegarDados(obj){
-    let clienteWrapper = obj.closest('.cliente-wrapper');
+// function pegarDados(obj){
+//     let clienteWrapper = obj.closest('.cliente-wrapper');
 
-        if (clienteWrapper) {
-            let clienteNome = clienteWrapper.querySelector("p:nth-child(1)").textContent;
-            let clienteEmail = clienteWrapper.querySelector("p:nth-child(2)").textContent;
+//         if (clienteWrapper) {
+//             let clienteNome = clienteWrapper.querySelector("p:nth-child(1)").textContent;
+//             let clienteEmail = clienteWrapper.querySelector("p:nth-child(2)").textContent;
 
-            let cliente = {nome: clienteNome, email: clienteEmail };
+//             let cliente = {nome: clienteNome, email: clienteEmail };
 
-            // Armazena os dados do cliente no sessionStorage
-            sessionStorage.setItem("clienteTransacoes", JSON.stringify(cliente));
+//             // Armazena os dados do cliente no sessionStorage
+//             sessionStorage.setItem("clienteTransacoes", JSON.stringify(cliente));
    
-        }
+//         }
+// }
+
+async function pegarDadosClientes() {
+    try{
+
+        const res = await fetch('/api/clientes');
+        const clientes = await res.json();
+        return clientes;
+
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
 }
 
 document.querySelectorAll('.tran').forEach(botao => {
@@ -210,10 +223,11 @@ document.querySelectorAll('.tran').forEach(botao => {
 
 // ADICIONANDO UM POP-UP COM OS DADOS DO CLIENTE
 document.querySelectorAll('.cliente-wrapper .cliente').forEach(wrapper => {
-    wrapper.addEventListener('click', function(){
+    wrapper.addEventListener('click', async function(){
 
         let containerIndex = document.querySelector('.container-index');
         let popupExistente = document.querySelector('.popup');
+        let id = Number(this.querySelector('p:nth-child(1)').textContent);
 
         if (popupExistente) {
             
@@ -224,24 +238,36 @@ document.querySelectorAll('.cliente-wrapper .cliente').forEach(wrapper => {
             popup.classList.add('popup');
 
             // Pegando os dados do cliente
-            pegarDados(this);
-            let dados = JSON.parse(sessionStorage.getItem('clienteTransacoes'));
+            // pegarDados(this);
+            // let dados = JSON.parse(sessionStorage.getItem('clienteTransacoes'));
 
-            popup.innerHTML = `
-                <div class="button-popup">
-                    <button>X</button>
-                </div>
-                <h2>Dados de ${dados.nome}</h2>
-                <p><strong>Nome Completo: </strong>João Salvador Neto<p/>
-                <p><strong>E-mail: </strong>${dados.email}<p/>
-                <p><strong>Telefone: </strong>(55) 11 9453-2245<p/>
-                <p><strong>CPF: </strong>486.904.748.97<p/>
-                <p><strong>Gênero: </strong>Masculino<p/>
-                <p><strong>Data Nascimento: </strong>19/07/2004<p/>
-                <p><strong>E-mail: </strong>joao72neto@gmail.com<p/>
-            `;
 
-            containerIndex.appendChild(popup);
+            try{
+                let clientes = await pegarDadosClientes();
+
+                //Filtrando os clientes pelo id o cliente pelo id
+                let cliente = clientes.find(clt => clt.clt_id === id);
+
+                popup.innerHTML = `
+                    <div class="button-popup">
+                        <button>X</button>
+                    </div>
+                    <h2>Dados de ${cliente.clt_nome}</h2>
+                    <p><strong>Nome Completo: </strong>${cliente.clt_nome}<p/>
+                    <p><strong>E-mail: </strong>${cliente.clt_email}<p/>
+                    <p><strong>Telefone: </strong>${cliente.clt_telefone}<p/>
+                    <p><strong>CPF: </strong>${cliente.clt_cpf}<p/>
+                    <p><strong>Gênero: </strong>${cliente.clt_genero}<p/>
+                    <p><strong>Data Nascimento: </strong>${cliente.clt_dataNasc}<p/>
+                    <p><strong>Ranking: </strong>${cliente.clt_ranking}<p/>
+                `;
+
+                containerIndex.appendChild(popup);
+
+            }catch(err){
+                console.error(`Erro ao buscar clientes ${err}`);
+                return;
+            }
 
             // Evento para fechar o popup ao clicar no botão "X"
             document.querySelector('.button-popup button').addEventListener('click', function(){

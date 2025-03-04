@@ -195,6 +195,10 @@ h1{
     }
 }
 
+.cliente-wrapper .cliente .invisible{
+    display: none;
+}
+
 .cliente-wrapper .acoes{
     position: relative;
     align-self: center;

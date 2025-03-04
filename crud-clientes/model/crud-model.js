@@ -1,6 +1,6 @@
 const db = require('../config/db');
 
-//Consultando todos os usuários cadastrados no banco 
+//Bsucando todos os clientes do banco de dados
 async function buscarTodosClientes() {
     try{
         const [clientes] = await db.query('select * from clientes');
@@ -11,4 +11,16 @@ async function buscarTodosClientes() {
     }
 }
 
-module.exports = {buscarTodosClientes};
+//Buscando cliente por id
+async function buscarClientesId(id) {
+    try{
+        const [clientes] = await db.query(`select * from clientes where clt_id=${id}`);
+        return clientes;
+    }catch(err){
+        console.error(`Deu ruim: ${err}`);
+        throw err;
+    }
+}
+
+module.exports = {buscarTodosClientes, buscarClientesId};
+
