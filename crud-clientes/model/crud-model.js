@@ -6,21 +6,24 @@ async function buscarTodosClientes() {
         const [clientes] = await db.query('select * from clientes');
         return clientes;
     }catch(err){
-        console.error(`Deu ruim: ${err}`);
+        console.error(`Erro: ${err}`);
         throw err;
     }
 }
 
-//Buscando cliente por id
-async function buscarClientesId(id) {
+
+//Buscando todas as transações do banco
+async function buscarTodasTransacoes() {
     try{
-        const [clientes] = await db.query(`select * from clientes where clt_id=${id}`);
-        return clientes;
+        const [transacoes] = await db.query('select * from transacoes');
+        return transacoes;
+        
     }catch(err){
-        console.error(`Deu ruim: ${err}`);
+        console.error(`Erro: ${err}`);
         throw err;
     }
 }
 
-module.exports = {buscarTodosClientes, buscarClientesId};
+
+module.exports = {buscarTodosClientes, buscarTodasTransacoes};
 

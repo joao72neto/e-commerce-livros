@@ -1,16 +1,5 @@
 //Função que pega todos os clientes do banco
-async function pegarDadosClientes() {
-    try{
-
-        const res = await fetch('/api/clientes');
-        const clientes = await res.json();
-        return clientes;
-
-    }catch(err){
-        console.error(`Erro: ${err}`);
-        throw err;
-    }
-}
+import { pegarTodosClientes } from "/javaScript/apiService.js";
 
 
 // //MOSTRANDO CLIENTES ATIVOS
@@ -243,7 +232,7 @@ document.querySelectorAll('.cliente-wrapper .cliente').forEach(wrapper => {
             popup.classList.add('popup');
 
             try{
-                let clientes = await pegarDadosClientes();
+                let clientes = await pegarTodosClientes();
 
                 //Filtrando os clientes pelo id o cliente pelo id
                 let cliente = clientes.find(clt => clt.clt_id === id);
