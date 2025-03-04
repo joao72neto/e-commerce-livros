@@ -1,6 +1,6 @@
 const db = require('../config/db');
 
-//Pegando todos os clientes do banc (teste)
+//Consultando todos os usuários cadastrados no banco 
 async function buscarTodosClientes() {
     try{
         const [clientes] = await db.query('select * from clientes');

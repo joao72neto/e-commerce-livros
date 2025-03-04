@@ -1,12 +1,13 @@
 //Pegando o banco
 const {buscarTodosClientes} = require('../model/crud-model');
 
-module.exports = function(app){
+module.exports = function (app){
 
+    //Tela principal dos usuários cadastrados no sistema
     app.get('/', async (req, res) => {
         try{
             const clientes = await buscarTodosClientes();
-            console.log(clientes);
+            res.json(clientes);
             res.render('index');
         }catch(err){
             console.error(`Não deu para imprimir os clientes: ${err}`);
@@ -15,6 +16,8 @@ module.exports = function(app){
         
     });
 
+
+    // -------------------------------------------
     app.get('/signup', (req, res) => {
         res.render('signup');
     });

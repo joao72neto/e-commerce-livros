@@ -1,6 +1,6 @@
 //Modules
 const express = require('express');
-const toController = require('./controller/crud-controller');
+const routes = require('./routes/index');
 
 //Iniciando o express
 const app = express();
@@ -8,8 +8,8 @@ const app = express();
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 
-//Encaminhando para os endpoints
-toController(app);
+//Usando as rotas
+app.use(routes);
 
 //Rodando o servidor localmente na porta 3000
 app.listen(3000, () => {
