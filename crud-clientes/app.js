@@ -1,6 +1,6 @@
 //Modules
 const express = require('express');
-const routes = require('./routes/index');
+const routes = require('./routes');
 
 //Iniciando o express
 const app = express();

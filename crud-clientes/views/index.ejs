@@ -21,6 +21,23 @@
             <div class="button">
                 <a href="/signup">Cadastrar Cliente</a>
             </div>
+
+            <%
+                clientes.forEach(cliente => { %>
+                    <div class="cliente-wrapper">
+                        <div class="cliente">
+                            <p><%=cliente.clt_nome%></p>
+                            <p><%=cliente.clt_email%></p>
+                        </div>
+                        <div class="acoes">
+                            <a class="alt" href="#">Alterar</a>
+                            <a class="inat" href="#">Inativar</a>
+                            <a class="tran" href="#">Transações</a>
+                        </div>
+                    </div>
+                    <%
+                });
+            %>
         </div>
     </div>
 
