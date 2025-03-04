@@ -325,6 +325,7 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`transacoes` (
   `trs_dataHora` DATETIME NOT NULL,
   `trs_tipo` VARCHAR(45) NOT NULL,
   `trs_status` ENUM('confirmado', 'pendente') NOT NULL,
+  `trs_acao` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`trs_id`),
   INDEX `fk_trc_clt_idx` (`trs_clt_id` ASC) VISIBLE,
   CONSTRAINT `fk_trs_clt`
