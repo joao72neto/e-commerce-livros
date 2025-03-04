@@ -1,3 +1,18 @@
+//Função que pega todos os clientes do banco
+async function pegarDadosClientes() {
+    try{
+
+        const res = await fetch('/api/clientes');
+        const clientes = await res.json();
+        return clientes;
+
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+}
+
+
 // //MOSTRANDO CLIENTES ATIVOS
 // const container_index = document.querySelector('.container-index');
 
@@ -201,22 +216,11 @@ document.querySelectorAll('.alt').forEach(botao => {
 //         }
 // }
 
-async function pegarDadosClientes() {
-    try{
 
-        const res = await fetch('/api/clientes');
-        const clientes = await res.json();
-        return clientes;
-
-    }catch(err){
-        console.error(`Erro: ${err}`);
-        throw err;
-    }
-}
 
 document.querySelectorAll('.tran').forEach(botao => {
     botao.addEventListener('click', function() {
-        pegarDados(this);
+        //pegarDados(this);
         window.location.href = "/transacoes";
     });
 });
@@ -233,14 +237,10 @@ document.querySelectorAll('.cliente-wrapper .cliente').forEach(wrapper => {
             
             popupExistente.remove();
         } else {
+
             // Criando o popup
             let popup = document.createElement('div');
             popup.classList.add('popup');
-
-            // Pegando os dados do cliente
-            // pegarDados(this);
-            // let dados = JSON.parse(sessionStorage.getItem('clienteTransacoes'));
-
 
             try{
                 let clientes = await pegarDadosClientes();
@@ -248,6 +248,7 @@ document.querySelectorAll('.cliente-wrapper .cliente').forEach(wrapper => {
                 //Filtrando os clientes pelo id o cliente pelo id
                 let cliente = clientes.find(clt => clt.clt_id === id);
 
+                //Mostrando todos os dados
                 popup.innerHTML = `
                     <div class="button-popup">
                         <button>X</button>
