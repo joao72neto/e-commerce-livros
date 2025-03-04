@@ -1,36 +1,46 @@
 import { pegarTodosClientes } from "/javaScript/apiService.js";
 import { pegarTodasTransacoes } from "/javaScript/apiService.js";
 
+async function mostrarTransacoes() {
+    try{
+        let cliente = await pegarTodosClientes();
+        let transacoes = await pegarTodasTransacoes();
 
-//Carregando os dados
-//const tabela = document.querySelector("#transactionTable");
-let container = document.querySelector('#lista-transacoes');
+        console.log(transacoes);
+        
+        //Filtrando os dados
+        const id = Number(sessionStorage.getItem('clt_id'));
+        cliente = cliente.find(clt => clt.clt_id === id);
+        transacoes = transacoes.filter(trs => Number(trs.trs_clt_id) === id);
 
-//Criando um elemento para colocar os Dados
-let tbody = document.createElement('tbody');
+        document.querySelector('#nome-cliente').textContent = cliente.clt_nome;
+        document.querySelector('#email-cliente').textContent = cliente.clt_email;
 
+        //const tabela = document.querySelector("#transactionTable");
+        let container = document.querySelector('#lista-transacoes');
 
-transacoes.forEach(transacao => {
-    const linha = `<tr>
-        <td>${transacao.id}</td>
-        <td>${transacao.data}</td>
-        <td>${transacao.tipo}</td>
-        <td>${transacao.acao}</td>
-        <td>${transacao.status}</td>
-    </tr>`;
-
-    tbody.innerHTML += linha;
-});
-
-container.appendChild(tbody);
+        //Criando um elemento para colocar os Dados
+        let tbody = document.createElement('tbody');
 
 
-//Pegando o nome e o e-mail do usuário que fez a transação
-let nome = document.querySelector('#nome-cliente');
-let email = document.querySelector('#email-cliente');
+        transacoes.forEach(transacao => {
+            const linha = `<tr>
+                <td>${transacao.trs_id}</td>
+                <td>${transacao.trs_dataHora}</td>
+                <td>${transacao.trs_tipo}</td>
+                <td>${transacao.trs_acao}</td>
+                <td>${transacao.trs_status}</td>
+            </tr>`;
+        
+            tbody.innerHTML += linha;
+        });
+        
+        container.appendChild(tbody);
 
-//let dados = JSON.parse(sessionStorage.getItem('clienteTransacoes'));
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+}
 
-nome.textContent = dados.nome;
-email.textContent = dados.email;
-
+mostrarTransacoes();

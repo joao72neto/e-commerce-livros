@@ -16,7 +16,7 @@ export async function pegarTodosClientes() {
 export async function pegarTodasTransacoes() {
     try{
 
-        const res = await fetch('/api/trasacoes');
+        const res = await fetch('/api/transacoes');
         const transacoes = await res.json();
         return transacoes;
 
@@ -25,6 +25,7 @@ export async function pegarTodasTransacoes() {
         throw err;
     }
 }
+
 
 
 

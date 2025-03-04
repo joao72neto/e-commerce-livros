@@ -6,5 +6,5 @@ module.exports.getTransacoes = (req, res) => {
 
 module.exports.getApiTransacoes = async (req, res) => {
     const transacoes = await buscarTodasTransacoes();
-    res.jason(transacoes);
+    res.json(transacoes);
 };

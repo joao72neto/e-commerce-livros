@@ -207,10 +207,18 @@ document.querySelectorAll('.alt').forEach(botao => {
 
 
 
-document.querySelectorAll('.tran').forEach(botao => {
-    botao.addEventListener('click', function() {
-        //pegarDados(this);
-        window.location.href = "/transacoes";
+//Salvando o id do cliente clicado
+document.querySelectorAll('.cliente-wrapper').forEach(cliente => {
+    
+    cliente.addEventListener('click', function(event){
+
+        if (event.target.classList.contains('tran')){
+
+            let id = this.querySelector('p:nth-child(1)').textContent;
+            console.log('O botao foi clicado e sue id eh ' + id);
+            sessionStorage.setItem('clt_id', id);
+            window.location.href = '/transacoes';
+        }
     });
 });
 
