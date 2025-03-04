@@ -1,50 +1,38 @@
 //MOSTRANDO CLIENTES ATIVOS
 const container_index = document.querySelector('.container-index');
 
-// //Guardando os dados no sessionStorage
-// let clientesInativos = JSON.parse(sessionStorage.getItem('clientesInativos')) || [];
-// let clientesAtivos = JSON.parse(sessionStorage.getItem('clientesAtivos')) || 
+//Guardando os dados no sessionStorage
+let clientesInativos = JSON.parse(sessionStorage.getItem('clientesInativos')) || [];
+let clientesAtivos = JSON.parse(sessionStorage.getItem('clientesAtivos')) || 
 
-// [
-//     { nome: 'João Neto', email: 'joao72neto@gmail.com' },
-//     { nome: 'Lucas', email: 'lucas.silva@gmail.com' },
-//     { nome: 'Joel', email: 'joel.dias@gmail.com' },
-//     { nome: 'Renato', email: 'renato.souza@gmail.com' }
+[
+    { nome: 'João Neto', email: 'joao72neto@gmail.com' },
+    { nome: 'Lucas', email: 'lucas.silva@gmail.com' },
+    { nome: 'Joel', email: 'joel.dias@gmail.com' },
+    { nome: 'Renato', email: 'renato.souza@gmail.com' }
  
-// ];
+];
 
 
-// async function mostrarClientes() {
-//     try{
+clientesAtivos.forEach(cliente => {
+    let div = document.createElement('div');
+    div.classList.add('cliente-wrapper');
+    div.innerHTML = `
+    
+        <div class="cliente">
+            <p>${cliente.nome}</p>
+            <p>${cliente.email}</p>
+        </div>
+        <div class="acoes">
+            <a class="alt" href="#">Alterar</a>
+            <a class="inat" href="#">Inativar</a>
+            <a class="tran" href="#">Transações</a>
+        </div>
+    `;
 
-//         const clientes = await db.buscarTodosClientes();
+    container_index.appendChild(div);
+});
 
-//         clientes.forEach(cliente => {
-//             let div = document.createElement('div');
-//             div.classList.add('cliente-wrapper');
-//             div.innerHTML = `
-            
-//                 <div class="cliente">
-//                     <p>${cliente.nome}</p>
-//                     <p>${cliente.email}</p>
-//                 </div>
-//                 <div class="acoes">
-//                     <a class="alt" href="#">Alterar</a>
-//                     <a class="inat" href="#">Inativar</a>
-//                     <a class="tran" href="#">Transações</a>
-//                 </div>
-//             `;
-        
-//             container_index.appendChild(div);
-//         });
-
-//     }catch(err){
-//         console.error(`Erro: ${err}`);
-//         throw err;
-//     }
-// }
-
-// mostrarClientes();
 
 //FILTRANDO CLIENTES
 let filtro_clientes = document.querySelector('.filtro_clientes');
