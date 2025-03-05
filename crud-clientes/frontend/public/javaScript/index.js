@@ -1,6 +1,6 @@
 //Função que pega todos os clientes do banco
 import { geararPopup } from "/javaScript/functions/popup.js";
-import { pegarTodosClientes } from "/javaScript/functions/apiService.js";
+import { pegarTodosClientes } from "/javaScript/service/serviceClientes.js";
 
 
 //FILTRANDO CLIENTES
@@ -153,22 +153,33 @@ document.querySelectorAll('.alt').forEach(botao => {
 //     criarBotaoInativados();
 // }
 
+//TRANSAÇÕES
 
-
-//TRASAÇÔES 
-document.querySelectorAll('.cliente-wrapper').forEach(cliente => {
+//pegando o ID do cliente
+function pegarClienteId(wrapper, pagina){
+    document.querySelectorAll(wrapper).forEach(elemento => {
     
-    cliente.addEventListener('click', function(event){
+        elemento.addEventListener('click', function(event){
+    
+            if (event.target.classList.contains('tran') ||
+                event.target.classList.contains('alt') ||
+                event.target.classList.contains('inat')){
+    
+                let id = this.querySelector('p:nth-child(1)').textContent;
+                sessionStorage.setItem('clt_id', id);
+            }
+        });
+    });
+}
 
-        if (event.target.classList.contains('tran')){
-
-            let id = this.querySelector('p:nth-child(1)').textContent;
-            console.log('O botao foi clicado e sue id eh ' + id);
-            sessionStorage.setItem('clt_id', id);
-            window.location.href = '/transacoes';
-        }
+//Redirecionando para a página de transacoes
+pegarClienteId('.cliente-wrapper');
+document.querySelectorAll('.tran').forEach(button => {
+    button.addEventListener('click', () => {
+        window.location.href = '/transacoes';
     });
 });
+
 
 // POP-UP
 const clienteWrapper = '.cliente-wrapper .cliente';

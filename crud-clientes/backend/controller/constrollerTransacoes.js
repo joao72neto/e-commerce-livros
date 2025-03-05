@@ -1,4 +1,4 @@
-const { buscarTodasTransacoes } = require("../model/modelClientes");
+const { buscarTodasTransacoes } = require("../model/modelTransacoes");
 
 module.exports.getTransacoes = (req, res) => {
     res.render('transacoes');

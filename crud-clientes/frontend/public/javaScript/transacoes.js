@@ -1,12 +1,10 @@
-import { pegarTodosClientes } from "/javaScript/functions/apiService.js";
-import { pegarTodasTransacoes } from "/javaScript/functions/apiService.js";
+import { pegarTodosClientes } from "/javaScript/service/serviceClientes.js";
+import { pegarTodasTransacoes } from "/javaScript/service/serviceTransacoes.js";
 
 async function mostrarTransacoes() {
     try{
         let cliente = await pegarTodosClientes();
         let transacoes = await pegarTodasTransacoes();
-
-        console.log(transacoes);
         
         //Filtrando os dados
         const id = Number(sessionStorage.getItem('clt_id'));

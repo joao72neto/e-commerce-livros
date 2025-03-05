@@ -11,19 +11,6 @@ async function buscarTodosClientes() {
     }
 }
 
-
-//Buscando todas as transações do banco
-async function buscarTodasTransacoes() {
-    try{
-        const [transacoes] = await db.query('select * from transacoes');
-        return transacoes;
-        
-    }catch(err){
-        console.error(`Erro: ${err}`);
-        throw err;
-    }
-}
-
-
-module.exports = {buscarTodosClientes, buscarTodasTransacoes};
+//Exportando as funções
+module.exports = {buscarTodosClientes};
 
