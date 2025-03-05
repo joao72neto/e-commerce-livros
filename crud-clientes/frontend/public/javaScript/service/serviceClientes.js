@@ -17,8 +17,8 @@ export async function pegarClientesId(id) {
     try{
 
         const res = await fetch(`/api/clientes/${id}`);
-        const clientesId = await res.json();
-        return clientesId;
+        const cliente = await res.json();
+        return cliente;
 
     }catch(err){
         console.error(`Erro: ${err}`);

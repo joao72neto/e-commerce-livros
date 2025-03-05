@@ -12,7 +12,7 @@ async function buscarTodasTransacoes() {
     }
 }
 
-//Buscando transações por id
+//Buscando transações por id de clientes
 async function buscarTransacoesClienteId(id) {
     try{
         const [transacoes] = await db.query(`select * from transacoes where trs_clt_id = ${id}`);

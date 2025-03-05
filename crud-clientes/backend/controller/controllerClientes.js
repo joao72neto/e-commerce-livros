@@ -11,7 +11,7 @@ module.exports.getApiClientes = async (req, res) => {
 };
 
 module.exports.getApiClientesId = async (req, res) => {
-    const clientesId = await buscarClientesId(req.params.id);
-    res.json(clientesId);
+    const cliente = await buscarClientesId(req.params.id);
+    res.json(cliente);
 };
 

@@ -3,6 +3,26 @@ import { geararPopup } from "/javaScript/functions/popup.js";
 import { pegarTodosClientes } from "/javaScript/service/serviceClientes.js";
 
 
+//PEGANDO ID DOS CLIENTES
+function pegarClienteId(wrapper, pagina){
+    document.querySelectorAll(wrapper).forEach(elemento => {
+    
+        elemento.addEventListener('click', function(event){
+    
+            if (event.target.classList.contains('tran') ||
+                event.target.classList.contains('alt') ||
+                event.target.classList.contains('inat')){
+    
+                let id = this.querySelector('.cliente-id').textContent;
+                console.log(id)
+                sessionStorage.setItem('clt_id', id);
+            }
+        });
+    });
+}
+
+pegarClienteId('.cliente-wrapper');
+
 //FILTRANDO CLIENTES
 let filtro_clientes = document.querySelector('.filtro_clientes');
 let filtro = ` <select name="nomes" id="nomes">
@@ -71,22 +91,11 @@ document.querySelector('#bsc').addEventListener('click',() => {
 
 //ALTERALÇÃO DE USUÁRIO
 document.querySelectorAll('.alt').forEach(botao => {
-    botao.addEventListener('click', function () {
+    botao.addEventListener('click', function (event) {
 
-        // Verificando se o menu já existe
-        let submenuExiste = document.querySelectorAll('.alt_submenu').forEach(menu => {
-            if(menu){
-                menu.remove();
-            }
+        event.stopPropagation();
 
-            let thisSubmenuExiste = document.querySelectorAll('.alt_submenu');
-
-            if(thisSubmenuExiste){
-                thisSubmenuExiste.remove();
-            }
-
-            return;
-        });
+        document.querySelectorAll('.alt_submenu').forEach(menu => menu.remove());
 
         let submenu = document.createElement('div');
         submenu.classList.add('alt_submenu');
@@ -103,6 +112,11 @@ document.querySelectorAll('.alt').forEach(botao => {
         this.appendChild(submenu);
 
     });
+});
+
+//Removendo o submenu ao clicar fora da tela
+document.addEventListener('click', () => {
+    document.querySelectorAll('.alt_submenu').forEach(menu => menu.remove());
 });
 
 // //DESATIVANDO CLIENTES
@@ -154,26 +168,6 @@ document.querySelectorAll('.alt').forEach(botao => {
 // }
 
 //TRANSAÇÕES
-
-//pegando o ID do cliente
-function pegarClienteId(wrapper, pagina){
-    document.querySelectorAll(wrapper).forEach(elemento => {
-    
-        elemento.addEventListener('click', function(event){
-    
-            if (event.target.classList.contains('tran') ||
-                event.target.classList.contains('alt') ||
-                event.target.classList.contains('inat')){
-    
-                let id = this.querySelector('p:nth-child(1)').textContent;
-                sessionStorage.setItem('clt_id', id);
-            }
-        });
-    });
-}
-
-//Redirecionando para a página de transacoes
-pegarClienteId('.cliente-wrapper');
 document.querySelectorAll('.tran').forEach(button => {
     button.addEventListener('click', () => {
         window.location.href = '/transacoes';

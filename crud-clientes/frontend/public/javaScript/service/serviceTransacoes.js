@@ -17,8 +17,8 @@ export async function pegarTransacoesClienteId(id) {
     try{
 
         const res = await fetch(`/api/transacoes/${id}`);
-        const transacoesId = await res.json();
-        return transacoesId;
+        const transacoes = await res.json();
+        return transacoes;
 
     }catch(err){
         console.error(`Erro: ${err}`);

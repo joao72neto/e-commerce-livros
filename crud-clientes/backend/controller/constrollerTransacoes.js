@@ -10,6 +10,6 @@ module.exports.getApiTransacoes = async (req, res) => {
 };
 
 module.exports.getApiTransacoesClienteId = async(req, res) => {
-    const transacoesId = await buscarTransacoesClienteId(req.params.id);
-    res.json(transacoesId);
+    const transacoes = await buscarTransacoesClienteId(req.params.id);
+    res.json(transacoes);
 };
