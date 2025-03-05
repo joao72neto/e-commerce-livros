@@ -13,10 +13,17 @@
         <div class="container-address">
             <h2 class="title">Endereços</h2>
 
-            <% enderecos.forEach(endereco => { %>
+            <% 
+            
+                enderecos.forEach(endereco => { 
+                
+                
+
+            %>
 
                 <div class="endereco-wrapper">
                     <div class="endereco">
+                        <p class="invisible"><%=endereco.end_id%></p>
                         <h2>Estrada Antiga Imperial</h2>
                         <p>Via São Paulo</p>
                         <p><strong>Número: </strong>250</p>
@@ -30,7 +37,7 @@
             <% }); %>
 
 
-            <div class="endereco-wrapper">
+            <!-- <div class="endereco-wrapper">
                 <div class="endereco">
                     <h2>Estrada Antiga Imperial</h2>
                     <p>Via São Paulo</p>
@@ -51,7 +58,7 @@
                     <a href="/address/alt">Alterar</a>
                     <a href="">Excluir</a>
                 </div>
-            </div>
+            </div> -->
             <div class="endereco-add">
                 <a href="/address/add">Adicionar novo endereço</a>
             </div>
