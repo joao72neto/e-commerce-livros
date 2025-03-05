@@ -11,3 +11,18 @@ export async function pegarTodasTransacoes() {
         throw err;
     }
 }
+
+//Pegando transações por id
+export async function pegarTransacoesClienteId(id) {
+    try{
+
+        const res = await fetch(`/api/transacoes/${id}`);
+        const transacoesId = await res.json();
+        return transacoesId;
+
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+}
+

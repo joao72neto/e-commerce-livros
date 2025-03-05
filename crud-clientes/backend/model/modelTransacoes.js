@@ -12,4 +12,16 @@ async function buscarTodasTransacoes() {
     }
 }
 
-module.exports = {buscarTodasTransacoes};
+//Buscando transações por id
+async function buscarTransacoesClienteId(id) {
+    try{
+        const [transacoes] = await db.query(`select * from transacoes where trs_clt_id = ${id}`);
+        return transacoes;
+        
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+}
+
+module.exports = {buscarTodasTransacoes,buscarTransacoesClienteId};

@@ -1,4 +1,4 @@
-import {pegarTodosClientes} from './apiService.js';
+import {pegarClientesId} from '/javaScript/service/serviceClientes.js';
 
 
 export function geararPopup(cliente_wrapper, container){
@@ -19,10 +19,9 @@ export function geararPopup(cliente_wrapper, container){
                 popup.classList.add('popup');
     
                 try{
-                    let clientes = await pegarTodosClientes();
-    
-                    //Filtrando os clientes pelo id o cliente pelo id
-                    let cliente = clientes.find(clt => clt.clt_id === id);
+                    
+                    let cliente = await pegarClientesId(id);
+                    cliente = cliente[0];
     
                     //Mostrando todos os dados
                     popup.innerHTML = `

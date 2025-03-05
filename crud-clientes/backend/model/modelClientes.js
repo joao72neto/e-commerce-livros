@@ -11,6 +11,18 @@ async function buscarTodosClientes() {
     }
 }
 
+//Bsucando clientes por id
+async function buscarClientesId(id) {
+    try{
+        const [clientes] = await db.query(`select * from clientes where clt_id = ${id}`);
+        return clientes;
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+}
+
+
 //Exportando as funções
-module.exports = {buscarTodosClientes};
+module.exports = {buscarTodosClientes, buscarClientesId};
 

@@ -1,18 +1,17 @@
-import { pegarTodosClientes } from "/javaScript/service/serviceClientes.js";
-import { pegarTodasTransacoes } from "/javaScript/service/serviceTransacoes.js";
+import { pegarClientesId } from "/javaScript/service/serviceClientes.js";
+import { pegarTransacoesClienteId } from "/javaScript/service/serviceTransacoes.js";
+
 
 async function mostrarTransacoes() {
     try{
-        let cliente = await pegarTodosClientes();
-        let transacoes = await pegarTodasTransacoes();
         
-        //Filtrando os dados
+        //Pegando os dados por id
         const id = Number(sessionStorage.getItem('clt_id'));
-        cliente = cliente.find(clt => clt.clt_id === id);
-        transacoes = transacoes.filter(trs => Number(trs.trs_clt_id) === id);
+        let transacoes = await pegarTransacoesClienteId(id);
+        let cliente = await pegarClientesId(id);
 
-        document.querySelector('#nome-cliente').textContent = cliente.clt_nome;
-        document.querySelector('#email-cliente').textContent = cliente.clt_email;
+        document.querySelector('#nome-cliente').textContent = cliente[0].clt_nome;
+        document.querySelector('#email-cliente').textContent = cliente[0].clt_email;
 
         //const tabela = document.querySelector("#transactionTable");
         let container = document.querySelector('#lista-transacoes');

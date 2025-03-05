@@ -1,4 +1,4 @@
-const { buscarTodosClientes } = require("../model/modelClientes");
+const { buscarTodosClientes, buscarClientesId } = require("../model/modelClientes");
 
 module.exports.getClientes = async (req, res) => {
     const clientes = await buscarTodosClientes();
@@ -8,5 +8,10 @@ module.exports.getClientes = async (req, res) => {
 module.exports.getApiClientes = async (req, res) => {
     const clientes = await buscarTodosClientes();
     res.json(clientes);
+};
+
+module.exports.getApiClientesId = async (req, res) => {
+    const clientesId = await buscarClientesId(req.params.id);
+    res.json(clientesId);
 };
 
