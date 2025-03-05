@@ -1,27 +1,6 @@
 //Função que pega todos os clientes do banco
 import { geararPopup } from "/javaScript/functions/popup.js";
-import { pegarTodosClientes } from "/javaScript/service/serviceClientes.js";
 
-
-//PEGANDO ID DOS CLIENTES
-function pegarClienteId(wrapper, pagina){
-    document.querySelectorAll(wrapper).forEach(elemento => {
-    
-        elemento.addEventListener('click', function(event){
-    
-            if (event.target.classList.contains('tran') ||
-                event.target.classList.contains('alt') ||
-                event.target.classList.contains('inat')){
-    
-                let id = this.querySelector('.cliente-id').textContent;
-                console.log(id)
-                sessionStorage.setItem('clt_id', id);
-            }
-        });
-    });
-}
-
-pegarClienteId('.cliente-wrapper');
 
 //FILTRANDO CLIENTES
 let filtro_clientes = document.querySelector('.filtro_clientes');
@@ -94,6 +73,18 @@ document.querySelectorAll('.alt').forEach(botao => {
     botao.addEventListener('click', function (event) {
 
         event.stopPropagation();
+        
+        //Obetendo o id
+        let clienteWrapper = this.closest('.cliente-wrapper');
+        let clt_id = clienteWrapper.querySelector('.cliente-id').textContent;
+
+        //Retirando o menu ao clicar de novo
+        let submenuAtual = this.querySelector('.alt_submenu');
+
+        if(submenuAtual){
+            submenuAtual.remove();
+            return;
+        }
 
         document.querySelectorAll('.alt_submenu').forEach(menu => menu.remove());
 
@@ -101,8 +92,8 @@ document.querySelectorAll('.alt').forEach(botao => {
         submenu.classList.add('alt_submenu');
 
         submenu.innerHTML = `
-            <a href="/password">Alterar senha</a>
-            <a href="/address">Alterar endereço</a>
+            <a href="#">Alterar senha</a>
+            <a href="/address/${clt_id}">Alterar endereço</a>
             <a href="/card">Alterar pagamento</a>
             <a href="/signup">Alterar tudo</a>
 
@@ -113,6 +104,7 @@ document.querySelectorAll('.alt').forEach(botao => {
 
     });
 });
+
 
 //Removendo o submenu ao clicar fora da tela
 document.addEventListener('click', () => {
@@ -169,7 +161,14 @@ document.addEventListener('click', () => {
 
 //TRANSAÇÕES
 document.querySelectorAll('.tran').forEach(button => {
-    button.addEventListener('click', () => {
+
+    button.addEventListener('click', function(){
+
+        let clienteWrapper = this.closest('.cliente-wrapper');
+        let clt_id = clienteWrapper.querySelector('.cliente-id').textContent;
+
+        sessionStorage.setItem('clt_id', clt_id);
+
         window.location.href = '/transacoes';
     });
 });
