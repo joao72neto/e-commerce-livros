@@ -1,8 +1,8 @@
-const { buscarTodosClientes } = require("../model/crud-model");
+const { buscarTodosClientes } = require("../model/modelClientes");
 
-module.exports.getIndex = async (req, res) => {
+module.exports.getClientes = async (req, res) => {
     const clientes = await buscarTodosClientes();
-    res.render('index', {clientes: clientes});
+    res.render('clientes', {clientes: clientes});
 }
 
 module.exports.getApiClientes = async (req, res) => {

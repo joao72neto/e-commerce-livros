@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 //Pegando todas as rotas
-const routeIndex = require('./routeIndex');
+const routeClientes = require('./routeClientes');
 const routeAddress = require('./routeAddress');
 const routeCard = require('./routeCard');
 const routeInativos = require('./routeInativos');
@@ -11,7 +11,7 @@ const routeSignup = require('./routeSignup');
 const routeTransacoes = require('./routeTransacoes');
 
 //Juntando todas as rotas
-router.use('/', routeIndex);
+router.use('/', routeClientes);
 router.use('/', routeAddress);
 router.use('/', routeCard);
 router.use('/', routeInativos);
