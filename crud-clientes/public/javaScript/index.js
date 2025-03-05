@@ -1,5 +1,7 @@
 //Função que pega todos os clientes do banco
+import { geararPopup } from "./functions/popup.js";
 import { pegarTodosClientes } from "/javaScript/apiService.js";
+
 
 
 // //MOSTRANDO CLIENTES ATIVOS
@@ -208,72 +210,76 @@ document.querySelectorAll('.alt').forEach(botao => {
 
 
 //Salvando o id do cliente clicado
-document.querySelectorAll('.cliente-wrapper').forEach(cliente => {
+
+// document.querySelectorAll('.cliente-wrapper').forEach(cliente => {
     
-    cliente.addEventListener('click', function(event){
+//     cliente.addEventListener('click', function(event){
 
-        if (event.target.classList.contains('tran')){
+//         if (event.target.classList.contains('tran')){
 
-            let id = this.querySelector('p:nth-child(1)').textContent;
-            console.log('O botao foi clicado e sue id eh ' + id);
-            sessionStorage.setItem('clt_id', id);
-            window.location.href = '/transacoes';
-        }
-    });
-});
+//             let id = this.querySelector('p:nth-child(1)').textContent;
+//             console.log('O botao foi clicado e sue id eh ' + id);
+//             sessionStorage.setItem('clt_id', id);
+//             window.location.href = '/transacoes';
+//         }
+//     });
+// });
 
-// ADICIONANDO UM POP-UP COM OS DADOS DO CLIENTE
-document.querySelectorAll('.cliente-wrapper .cliente').forEach(wrapper => {
-    wrapper.addEventListener('click', async function(){
+// // ADICIONANDO UM POP-UP COM OS DADOS DO CLIENTE
+const clienteWrapper = '.cliente-wrapper .cliente';
+const container = '.container-index';
+geararPopup(clienteWrapper, container);
+// document.querySelectorAll('.cliente-wrapper .cliente').forEach(wrapper => {
+//     wrapper.addEventListener('click', async function(){
 
-        let containerIndex = document.querySelector('.container-index');
-        let popupExistente = document.querySelector('.popup');
-        let id = Number(this.querySelector('p:nth-child(1)').textContent);
+//         let containerIndex = document.querySelector('.container-index');
+//         let popupExistente = document.querySelector('.popup');
+//         let id = Number(this.querySelector('p:nth-child(1)').textContent);
 
-        if (popupExistente) {
+//         if (popupExistente) {
             
-            popupExistente.remove();
-        } else {
+//             popupExistente.remove();
+//         } else {
 
-            // Criando o popup
-            let popup = document.createElement('div');
-            popup.classList.add('popup');
+//             // Criando o popup
+//             let popup = document.createElement('div');
+//             popup.classList.add('popup');
 
-            try{
-                let clientes = await pegarTodosClientes();
+//             try{
+//                 let clientes = await pegarTodosClientes();
 
-                //Filtrando os clientes pelo id o cliente pelo id
-                let cliente = clientes.find(clt => clt.clt_id === id);
+//                 //Filtrando os clientes pelo id o cliente pelo id
+//                 let cliente = clientes.find(clt => clt.clt_id === id);
 
-                //Mostrando todos os dados
-                popup.innerHTML = `
-                    <div class="button-popup">
-                        <button>X</button>
-                    </div>
-                    <h2>Dados de ${cliente.clt_nome}</h2>
-                    <p><strong>Nome Completo: </strong>${cliente.clt_nome}<p/>
-                    <p><strong>E-mail: </strong>${cliente.clt_email}<p/>
-                    <p><strong>Telefone: </strong>${cliente.clt_telefone}<p/>
-                    <p><strong>CPF: </strong>${cliente.clt_cpf}<p/>
-                    <p><strong>Gênero: </strong>${cliente.clt_genero}<p/>
-                    <p><strong>Data Nascimento: </strong>${cliente.clt_dataNasc}<p/>
-                    <p><strong>Ranking: </strong>${cliente.clt_ranking}<p/>
-                `;
+//                 //Mostrando todos os dados
+//                 popup.innerHTML = `
+//                     <div class="button-popup">
+//                         <button>X</button>
+//                     </div>
+//                     <h2>Dados de ${cliente.clt_nome}</h2>
+//                     <p><strong>Nome Completo: </strong>${cliente.clt_nome}<p/>
+//                     <p><strong>E-mail: </strong>${cliente.clt_email}<p/>
+//                     <p><strong>Telefone: </strong>${cliente.clt_telefone}<p/>
+//                     <p><strong>CPF: </strong>${cliente.clt_cpf}<p/>
+//                     <p><strong>Gênero: </strong>${cliente.clt_genero}<p/>
+//                     <p><strong>Data Nascimento: </strong>${cliente.clt_dataNasc}<p/>
+//                     <p><strong>Ranking: </strong>${cliente.clt_ranking}<p/>
+//                 `;
 
-                containerIndex.appendChild(popup);
+//                 containerIndex.appendChild(popup);
 
-            }catch(err){
-                console.error(`Erro ao buscar clientes ${err}`);
-                return;
-            }
+//             }catch(err){
+//                 console.error(`Erro ao buscar clientes ${err}`);
+//                 return;
+//             }
 
-            // Evento para fechar o popup ao clicar no botão "X"
-            document.querySelector('.button-popup button').addEventListener('click', function(){
-                popup.remove();
-            });
-        }
-    });
-});
+//             // Evento para fechar o popup ao clicar no botão "X"
+//             document.querySelector('.button-popup button').addEventListener('click', function(){
+//                 popup.remove();
+//             });
+//         }
+//     });
+// });
 
 
 
