@@ -2,7 +2,7 @@ const { buscarTodosClientes } = require("../model/modelClientes");
 
 module.exports.getClientes = async (req, res) => {
     const clientes = await buscarTodosClientes();
-    res.render('clientes', {clientes: clientes});
+    res.render('../../frontend/views/clientes', {clientes: clientes});
 }
 
 module.exports.getApiClientes = async (req, res) => {

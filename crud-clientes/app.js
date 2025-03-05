@@ -1,12 +1,18 @@
 //Modules
+const path = require('path');
 const express = require('express');
-const routes = require('./routes');
+const routes = require('./backend/routes');
 
 //Iniciando o express
 const app = express();
 
-app.use(express.static('./public'));
+app.use(express.static('./frontend/public'));
+
+//Configurando o motor de visualização
 app.set('view engine', 'ejs');
+
+//Configurando o caminho das views
+app.set('views', path.join(__dirname + '/frontend/views'));
 
 //Usando as rotas
 app.use(routes);
