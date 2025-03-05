@@ -1,5 +1,5 @@
-import { pegarTodosClientes } from "/javaScript/apiService.js";
-import { pegarTodasTransacoes } from "/javaScript/apiService.js";
+import { pegarTodosClientes } from "/javaScript/functions/apiService.js";
+import { pegarTodasTransacoes } from "/javaScript/functions/apiService.js";
 
 async function mostrarTransacoes() {
     try{
