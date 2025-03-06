@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>CRUD</title>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="container-index">
+            <h1>CRUD de Clientes</h1>
+            
+            <div class="filtro">
+                <span id="flt"><img src="images/filtro.png" alt="filtro"></span>
+                <span id="bsc"><img src="images/busca.png" alt="busca"></span>
+            </div>
+
+            <div class="filtro_clientes"></div>
+
+            <div class="button">
+                <a href="/signup">Cadastrar Cliente</a>
+            </div>
+
+            <%
+                clientes.forEach(cliente => { %>
+                    <div class="cliente-wrapper">
+                        <div class="cliente">
+                            <p class="invisible cliente-id"><%=cliente.clt_id%></p>
+                            <p><%=cliente.clt_nome%></p>
+                            <p><%=cliente.clt_email%></p>
+                        </div>
+                        <div class="acoes">
+                            <a class="alt" href="#">Alterar</a>
+                            <a class="inat" href="#">Inativar</a>
+                            <a class="tran" href="#">Transações</a>
+                        </div>
+                    </div>
+                    <%
+                });
+            %>
+        </div>
+    </div>
+
+    <script type="module" src="/javaScript/clientes.js"></script>
+    <script type="module" src="/javaScript/components/popupClientes.js"></script>
+</body>
+</html>
