@@ -23,6 +23,20 @@
                         <th>Status</th>
                     </tr>
                 </thead>
+                <tbody>
+
+                    <% transacoes.forEach(transacao => { %>
+
+                        <tr>
+                            <td><%=transacao.trs_id%></td>
+                            <td><%=transacao.trs_dataHora%></td>
+                            <td><%=transacao.trs_tipo%></td>
+                            <td><%=transacao.trs_acao%></td>
+                            <td><%=transacao.trs_status%></td>
+                        </tr>
+                        
+                    <% }); %>
+                </tbody>
             </table>
         </div>
     </div>

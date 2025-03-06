@@ -167,9 +167,9 @@ document.querySelectorAll('.tran').forEach(button => {
         let clienteWrapper = this.closest('.cliente-wrapper');
         let clt_id = clienteWrapper.querySelector('.cliente-id').textContent;
 
-        sessionStorage.setItem('clt_id', clt_id);
+        //sessionStorage.setItem('clt_id', clt_id);
 
-        window.location.href = '/transacoes';
+        window.location.href = `/transacoes/${clt_id}`;
     });
 });
 
