@@ -19,28 +19,24 @@
                     <option value="mastercard-8020">Matercard-8020</option>
                 </select>
             </div>
-            <div class="card-wrapper">
-                <div class="card-main">
-                    <h3>Visa</h3>
-                    <p><strong>Final: </strong>3020</p>
+
+            <% cartoes.forEach(carttao => { %>
+
+                <div class="card-wrapper">
+                    <div class="card-main">
+                        <h3><%=carttao.car_bandeira%></h3>
+                        <p><strong>Final: </strong><%=carttao.car_numero.slice(-4)%></p>
+                    </div>
+                    <div class="acoes-card">
+                        <a href="/card/<%=carttao.car_clt_id%>/alt">Alterar</a>
+                        <a href="">excluir</a>
+                    </div>
                 </div>
-                <div class="acoes-card">
-                    <a href="/card/alt">Alterar</a>
-                    <a href="">excluir</a>
-                </div>
-            </div>
-            <div class="card-wrapper">
-                <div class="card-main">
-                    <h3>Mastercard</h3>
-                    <p><strong>Final: </strong>8020</p>
-                </div>
-                <div class="acoes-card">
-                    <a href="/card/alt">Alterar</a>
-                    <a href="">excluir</a>
-                </div>
-            </div>
+
+            <% }); %>
+
             <div class="card-add">
-                <a href="/card/add">Adicionar novo cartão</a>
+                <a href="/card/<%=cartoes[0].car_clt_id%>/add">Adicionar novo cartão</a>
             </div>
         </div>
     </div>

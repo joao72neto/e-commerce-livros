@@ -94,7 +94,7 @@ document.querySelectorAll('.alt').forEach(botao => {
         submenu.innerHTML = `
             <a href="/password">Alterar senha</a>
             <a href="/address/${clt_id}">Alterar endereço</a>
-            <a href="/card">Alterar pagamento</a>
+            <a href="/card/${clt_id}">Alterar pagamento</a>
             <a href="/signup">Alterar tudo</a>
 
         `;
