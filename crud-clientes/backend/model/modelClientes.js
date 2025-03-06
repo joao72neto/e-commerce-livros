@@ -6,7 +6,6 @@ const db = require('../config/db');
 async function inativarCliente(id) {
     try{
         await db.query(`update clientes set clt_status = 0 where clt_id = ${id}`);
-
     }catch(err){
         console.error(`Erro: ${err}`);
         throw err;
@@ -16,8 +15,7 @@ async function inativarCliente(id) {
 //Ativando um cliente específico
 async function ativarCliente(id) {
     try{
-        const [clientes] = await db.query(`update clientes set clt_status = 1 where clt_id = ${id}`);
-        return clientes;
+        await db.query(`update clientes set clt_status = 1 where clt_id = ${id}`);
     }catch(err){
         console.error(`Erro: ${err}`);
         throw err;
@@ -60,10 +58,10 @@ async function buscarTodosClientes() {
 }
 
 //Bsucando clientes por id
-async function buscarClientesId(id) {
+async function buscarClienteId(id) {
     try{
-        const [clientes] = await db.query(`select * from clientes where clt_id = ${id}`);
-        return clientes;
+        const [cliente] = await db.query(`select * from clientes where clt_id = ${id}`);
+        return cliente;
     }catch(err){
         console.error(`Erro: ${err}`);
         throw err;
@@ -73,7 +71,7 @@ async function buscarClientesId(id) {
 
 //Exportando as funções de busca
 module.exports = {buscarTodosClientes, 
-                  buscarClientesId,
+                  buscarClienteId,
                   buscarClientesInativos,
                   buscarClientesAtivos, 
                   inativarCliente,

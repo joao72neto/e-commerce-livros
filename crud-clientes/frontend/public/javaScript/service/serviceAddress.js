@@ -4,7 +4,7 @@ export async function pegarEnderecoId(id) {
 
         const res = await fetch(`/api/address/${id}`);
         const endereco = await res.json();
-        return endereco;
+        return endereco[0];
 
     }catch(err){
         console.error(`Erro: ${err}`);

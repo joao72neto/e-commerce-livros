@@ -6,7 +6,7 @@ const controllerClientes = require('../controller/controllerClientes');
 router.get('/', controllerClientes.getClientes);
 
 //Rotas para apis
-router.get('/api/clientes/id/:id', controllerClientes.getApiClientesId);
+router.get('/api/clientes/id/:id', controllerClientes.getApiClienteId);
 router.get('/api/clientes/ativos', controllerClientes.getApiClientesAtivos);
 router.get('/api/clientes/inativos', controllerClientes.getApiClientesInativos)
 

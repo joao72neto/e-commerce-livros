@@ -1,3 +1,6 @@
+import { pegarClientesAtivos } from "/javaScript/service/serviceClientes.js";
+import { pegarClientesInativos } from "/javaScript/service/serviceClientes.js";
+import { inativarClienteService } from "/javaScript/service/serviceClientes.js";
 
 //FILTRANDO CLIENTES
 let filtro_clientes = document.querySelector('.filtro_clientes');
@@ -73,7 +76,7 @@ document.querySelectorAll('.alt').forEach(botao => {
         
         //Obetendo o id
         let clienteWrapper = this.closest('.cliente-wrapper');
-        let clt_id = clienteWrapper.querySelector('.cliente-id').textContent;
+        let id = clienteWrapper.querySelector('.cliente-id').textContent;
 
         //Retirando o menu ao clicar de novo
         let submenuAtual = this.querySelector('.alt_submenu');
@@ -90,8 +93,8 @@ document.querySelectorAll('.alt').forEach(botao => {
 
         submenu.innerHTML = `
             <a href="/password">Alterar senha</a>
-            <a href="/address/${clt_id}">Alterar endereço</a>
-            <a href="/card/${clt_id}">Alterar pagamento</a>
+            <a href="/address/${id}">Alterar endereço</a>
+            <a href="/card/${id}">Alterar pagamento</a>
             <a href="/signup">Alterar tudo</a>
 
         `;
@@ -108,6 +111,7 @@ document.addEventListener('click', () => {
     document.querySelectorAll('.alt_submenu').forEach(menu => menu.remove());
 });
 
+
 //DESATIVANDO CLIENTES
 document.querySelectorAll('.inat').forEach(button => {
     button.addEventListener('click', async function(){
@@ -115,20 +119,16 @@ document.querySelectorAll('.inat').forEach(button => {
         let clienteWrapper = this.closest('.cliente-wrapper');
         let id = clienteWrapper.querySelector('.cliente-id').textContent;
 
-        try{
-            let res = await fetch(`/clientes/inativar/${id}`, {method: 'PATCH'});
-            if(res.status === 204){
-                location.reload();
-            }
-        }catch(err){
-            console.error(err);
-        }
+        const status = await inativarClienteService(id);
 
+        if(status === 204){
+            location.reload();
+        }
     });
 });
 
 
-
+//Função que cria um botão dinânimo para a tela de inativos
 function criarBotaoInativados() {
     if (!document.getElementById('btn-inativados')) {
         let botao = document.createElement('a');
@@ -146,18 +146,11 @@ function criarBotaoInativados() {
 }
 
 // Mostrar o botão automaticamente se já houver inativos
-try{
-    let res = await fetch('/api/clientes/inativos', {method: 'GET'});
-    let clientesInativos = await res.json();
+let clientesInativos = await pegarClientesInativos();
 
-    if (clientesInativos.length > 0) {
-        criarBotaoInativados();
-    }
-
-}catch(err){
-    console.error(err);
+if (clientesInativos.length > 0) {
+    criarBotaoInativados();
 }
-
 
 
 //TRANSAÇÕES
@@ -166,30 +159,24 @@ document.querySelectorAll('.tran').forEach(button => {
     button.addEventListener('click', function(){
 
         let clienteWrapper = this.closest('.cliente-wrapper');
-        let clt_id = clienteWrapper.querySelector('.cliente-id').textContent;
+        let id = clienteWrapper.querySelector('.cliente-id').textContent;
 
-        window.location.href = `/transacoes/${clt_id}`;
+        window.location.href = `/transacoes/${id}`;
     });
 });
 
-
 //CLIENTES ATIVOS
-try{
-    let res = await fetch('/api/clientes/ativos', {method: 'GET'});
-    let clientesInativos = await res.json();
 
-    if (clientesInativos.length === 0) {
-        let container = document.querySelector('.container-index');
-        container.innerHTML = '<h1 style="margin: 0">Nunhum Cliente Ativo</h1>';
-        container.style.cssText = `
-        
-            
-            box-shadow: 0px 0px 20px #0000005b;
-            padding: 40px;
-        
-        `;
-    }
+//Personalizando uma msg para quando não houver clientes ativos
+let clientesAtivos = await pegarClientesAtivos();
 
-}catch(err){
-    console.error(err);
+if (clientesAtivos.length === 0) {
+    let container = document.querySelector('.container-index');
+    container.innerHTML = '<h1 style="margin: 0">Nunhum Cliente Ativo</h1>';
+    container.style.cssText = `
+        
+        box-shadow: 0px 0px 20px #0000005b;
+        padding: 40px;
+    
+    `;
 }
