@@ -1,5 +1,6 @@
-const { buscarCartoesClienteId } = require("../model/modelCard");
+const { buscarCartoesClienteId, buscarCartaoId } = require("../model/modelCard");
 
+//Páginas
 module.exports.getCard = async (req, res) => {
     const cartoes = await buscarCartoesClienteId(req.params.id);
     res.render('card/card-main', {cartoes: cartoes});

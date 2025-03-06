@@ -1,6 +1,3 @@
-//Função que pega todos os clientes do banco
-import { geararPopupClientes } from "/javaScript/functions/popupClientes.js";
-
 
 //FILTRANDO CLIENTES
 let filtro_clientes = document.querySelector('.filtro_clientes');
@@ -170,12 +167,3 @@ document.querySelectorAll('.tran').forEach(button => {
         window.location.href = `/transacoes/${clt_id}`;
     });
 });
-
-
-// POP-UP
-const container = '.container-index';
-const clienteWrapper = '.cliente-wrapper .cliente';
-geararPopupClientes(clienteWrapper, container);
-
-
-

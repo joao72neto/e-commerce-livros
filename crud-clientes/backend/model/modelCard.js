@@ -11,6 +11,17 @@ async function buscarTodosCartoes() {
     }
 }
 
+//Função que pegar um cartão pelo seu id
+async function buscarCartaoId(id) {
+    try{
+        const [cartao] = await db.query(`select * from cartoes where car_id = ${id}`);
+        return cartao;
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+}
+
 //Função que pegar cartões de um determinado cliente
 async function buscarCartoesClienteId(id) {
     try{
@@ -24,4 +35,4 @@ async function buscarCartoesClienteId(id) {
 }
 
 //exportando as funções
-module.exports = {buscarCartoesClienteId, buscarTodosCartoes};
+module.exports = {buscarCartoesClienteId, buscarTodosCartoes, buscarCartaoId};
