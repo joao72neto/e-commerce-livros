@@ -6,17 +6,12 @@ module.exports.getAddress = async (req, res) => {
     res.render('address/address-main', {enderecos: enderecos});
 };
 
-module.exports.getAddressAlt = (req, res) => {
-    res.render('address/address-alt');
+module.exports.getAddressAlt = async (req, res) => {
+    const enderecos = await buscarEnderecosClienteId(req.params.id);
+    res.render('address/address-alt', {enderecos: enderecos});
 };
 
-module.exports.getAddressAdd = (req, res) => {
-    res.render('address/address-add');
+module.exports.getAddressAdd = async (req, res) => {
+    const enderecos = await buscarEnderecosClienteId(req.params.id);
+    res.render('address/address-add', {enderecos: enderecos});
 };
-
-
-// //Apis
-// module.exports.getApiEnderecosClienteId = async (req, res) =>{
-//     const enderecos = await buscarEnderecosClienteId(req.params.id);
-//     res.json(enderecos);
-// }

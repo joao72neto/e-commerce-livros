@@ -22,7 +22,7 @@
                         <p><strong>Número: </strong><%=endereco.end_numero%></p>
                     </div>
                     <div class="acoes-address">
-                        <a href="/address/alt">Alterar</a>
+                        <a href="/address/<%=endereco.end_clt_id%>/alt">Alterar</a>
                         <a href="">Excluir</a>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
             <% }); %>
             
             <div class="endereco-add">
-                <a href="/address/add">Adicionar novo endereço</a>
+                <a href="/address/<%=enderecos[0].end_clt_id%>/add">Adicionar novo endereço</a>
             </div>
         </div>
     </div>
