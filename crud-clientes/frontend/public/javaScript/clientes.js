@@ -116,14 +116,14 @@ document.querySelectorAll('.inat').forEach(button => {
         let id = clienteWrapper.querySelector('.cliente-id').textContent;
 
         try{
-            await fetch(`/clientes/inativar/${id}`, {method: 'PATCH'});
-            
+            let res = await fetch(`/clientes/inativar/${id}`, {method: 'PATCH'});
+            if(res.status === 204){
+                location.reload();
+            }
         }catch(err){
             console.error(err);
         }
 
-        location.reload();
-  
     });
 });
 
@@ -171,3 +171,25 @@ document.querySelectorAll('.tran').forEach(button => {
         window.location.href = `/transacoes/${clt_id}`;
     });
 });
+
+
+//CLIENTES ATIVOS
+try{
+    let res = await fetch('/api/clientes/ativos', {method: 'GET'});
+    let clientesInativos = await res.json();
+
+    if (clientesInativos.length === 0) {
+        let container = document.querySelector('.container-index');
+        container.innerHTML = '<h1 style="margin: 0">Nunhum Cliente Ativo</h1>';
+        container.style.cssText = `
+        
+            
+            box-shadow: 0px 0px 20px #0000005b;
+            padding: 40px;
+        
+        `;
+    }
+
+}catch(err){
+    console.error(err);
+}

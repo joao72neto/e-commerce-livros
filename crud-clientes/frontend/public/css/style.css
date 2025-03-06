@@ -211,7 +211,7 @@ h1{
     border-radius: 20px;
     box-shadow: 0px 0px 10px #0000005b;
 
-    min-width: 50%;
+    min-width: 20em;
 
     position:absolute;
     top: 50%;

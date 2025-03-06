@@ -8,11 +8,26 @@ module.exports.getClientes = async (req, res) => {
 
 //Alterando dados
 module.exports.patchInativarCliente = async (req, res) => {
-    await inativarCliente(req.params.id);
+
+    try{
+        await inativarCliente(req.params.id);
+        res.sendStatus(204);
+    }catch(err){
+        console.error(err);
+        res.sendStatus(500);
+    }
 };
 
 module.exports.patchAtivarCliente = async (req, res) => {
-    await ativarCliente(req.params.id);
+
+    try{
+        await ativarCliente(req.params.id);
+        res.sendStatus(204)
+    }catch(err){
+        console.err(err);
+        res.sendStatus(500);
+    }
+    
 };
 
 
