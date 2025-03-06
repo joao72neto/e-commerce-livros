@@ -98,6 +98,10 @@ a{
     }
 }
 
+.invisible {
+    display: none;
+}
+
 .voltar{
     position: fixed;
     top: 30px;
@@ -193,10 +197,6 @@ h1{
     &:hover{
         cursor: pointer;
     }
-}
-
-.cliente-wrapper .cliente .invisible{
-    display: none;
 }
 
 .cliente-wrapper .acoes{

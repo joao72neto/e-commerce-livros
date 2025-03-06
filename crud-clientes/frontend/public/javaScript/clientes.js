@@ -1,5 +1,5 @@
 //Função que pega todos os clientes do banco
-import { geararPopup } from "/javaScript/functions/popup.js";
+import { geararPopupClientes } from "/javaScript/functions/popupClientes.js";
 
 
 //FILTRANDO CLIENTES
@@ -167,17 +167,15 @@ document.querySelectorAll('.tran').forEach(button => {
         let clienteWrapper = this.closest('.cliente-wrapper');
         let clt_id = clienteWrapper.querySelector('.cliente-id').textContent;
 
-        //sessionStorage.setItem('clt_id', clt_id);
-
         window.location.href = `/transacoes/${clt_id}`;
     });
 });
 
 
 // POP-UP
-const clienteWrapper = '.cliente-wrapper .cliente';
 const container = '.container-index';
-geararPopup(clienteWrapper, container);
+const clienteWrapper = '.cliente-wrapper .cliente';
+geararPopupClientes(clienteWrapper, container);
 
 
 

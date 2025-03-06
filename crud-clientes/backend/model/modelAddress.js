@@ -11,6 +11,17 @@ async function buscarTodosEnderecos() {
     }
 }
 
+//Bsucando todos os endereços do banco de dados
+async function buscarEnderecoId(id) {
+    try{
+        const [endereco] = await db.query(`select * from enderecos where end_id = ${id}`);
+        return endereco;
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+}
+
 //Bsucando endereços por id de cliente
 async function buscarEnderecosClienteId(id) {
     try{
@@ -24,5 +35,5 @@ async function buscarEnderecosClienteId(id) {
 
 
 //Exportando as funções
-module.exports = {buscarTodosEnderecos, buscarEnderecosClienteId};
+module.exports = {buscarTodosEnderecos, buscarEnderecosClienteId, buscarEnderecoId};
 

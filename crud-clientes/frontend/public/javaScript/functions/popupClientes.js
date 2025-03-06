@@ -1,13 +1,13 @@
-import {pegarClientesId} from '/javaScript/service/serviceClientes.js';
+import { pegarClientesId } from '/javaScript/service/serviceClientes.js';
 
 
-export function geararPopup(cliente_wrapper, container){
+export function geararPopupClientes(cliente_wrapper, container){
     document.querySelectorAll(cliente_wrapper).forEach(wrapper => {
         wrapper.addEventListener('click', async function(){
     
             let containerIndex = document.querySelector(container);
             let popupExistente = document.querySelector('.popup');
-            let id = Number(this.querySelector('p:nth-child(1)').textContent);
+            let id = Number(this.querySelector('.cliente-id').textContent);
     
             if (popupExistente) {
                 

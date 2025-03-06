@@ -11,4 +11,5 @@ const bd = mysql.createPool({
     queueLimit: 0
 });
 
+//Exportando as configuralões do banco de dados
 module.exports = bd;

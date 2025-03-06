@@ -4,7 +4,6 @@ const controllerClientes = require('../controller/controllerClientes');
 
 //Rotas
 router.get('/', controllerClientes.getClientes);
-router.get('/api/clientes', controllerClientes.getApiClientes);
 router.get('/api/clientes/:id', controllerClientes.getApiClientesId);
 
 module.exports = router;

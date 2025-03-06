@@ -6,6 +6,6 @@ const controllerAddress = require('../controller/controllerAddress');
 router.get('/address/:id', controllerAddress.getAddress);
 router.get('/address/:id/add',controllerAddress.getAddressAdd);
 router.get('/address/:id/alt', controllerAddress.getAddressAlt);
-//router.get('/api/address/:id', controllerAddress.getApiEnderecosClienteId);
+router.get('/api/address/:id', controllerAddress.getApiEnderecoId);
 
 module.exports = router;
