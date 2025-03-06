@@ -1,3 +1,6 @@
-module.exports.getInativos = (req, res) => {
-    res.render('inativos');
+const { buscarClientesInativos } = require("../model/modelClientes");
+
+module.exports.getInativos = async (req, res) => {
+    const inativos = await buscarClientesInativos();
+    res.render('inativos', {inativos: inativos});
 };

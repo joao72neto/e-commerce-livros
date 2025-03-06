@@ -108,53 +108,47 @@ document.addEventListener('click', () => {
     document.querySelectorAll('.alt_submenu').forEach(menu => menu.remove());
 });
 
-// //DESATIVANDO CLIENTES
-// document.querySelectorAll('.inat').forEach(button => {
-//     button.addEventListener('click', function(){
+//DESATIVANDO CLIENTES
+document.querySelectorAll('.inat').forEach(button => {
+    button.addEventListener('click', async function(){
 
-//         let clienteWrapper = this.closest('.cliente-wrapper');
+        let clienteWrapper = this.closest('.cliente-wrapper');
+        let id = clienteWrapper.querySelector('.cliente-id').textContent;
 
-//         if(clienteWrapper){
-//             let nome = clienteWrapper.querySelector('p:nth-child(1)').textContent;
-//             let email = clienteWrapper.querySelector('p:nth-child(2)').textContent;
-//             let cliente = {nome:nome, email:email};
-
-//             clientesInativos.push(cliente);
-//             clientesAtivos = clientesAtivos.filter(c => c.email !== cliente.email);
-
-//             sessionStorage.setItem('clientesInativos', JSON.stringify(clientesInativos));
-//             sessionStorage.setItem('clientesAtivos', JSON.stringify(clientesAtivos));
+        try{
+            await fetch(`/clientes/inativar/${id}`, {method: 'PATCH'});
             
-//             //Removendo o cliente
-//             clienteWrapper.remove();
+        }catch(err){
+            console.error(err);
+        }
 
-//             //Criando um botão para a página de inativos
-//             criarBotaoInativados();
-//         }
+        location.reload();
   
-//     });
-// });
+    });
+});
 
-// function criarBotaoInativados() {
-//     if (!document.getElementById('btn-inativados')) {
-//         let botao = document.createElement('a');
-//         botao.id = 'btn-inativados';
-//         botao.href = '/inativos'; 
-//         botao.textContent = 'Ver Inativados';
-//         botao.style.cssText = `
-//             position: fixed;
-//             bottom: 20px;
-//             right: 20px;
-//         `;
 
-//         document.body.appendChild(botao);
-//     }
-// }
 
-// // Mostrar o botão automaticamente se já houver inativos
-// if (clientesInativos.length > 0) {
-//     criarBotaoInativados();
-// }
+function criarBotaoInativados() {
+    if (!document.getElementById('btn-inativados')) {
+        let botao = document.createElement('a');
+        botao.id = 'btn-inativados';
+        botao.href = '/inativos'; 
+        botao.textContent = 'Ver Inativados';
+        botao.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        `;
+
+        document.body.appendChild(botao);
+    }
+}
+
+// Mostrar o botão automaticamente se já houver inativos
+if (clientesInativos.length > 0) {
+    criarBotaoInativados();
+}
 
 //TRANSAÇÕES
 document.querySelectorAll('.tran').forEach(button => {
