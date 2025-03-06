@@ -1,4 +1,4 @@
-const {buscarClientesId, buscarClientesAtivos, buscarClientesInativos, inativarCliente} = require("../model/modelClientes");
+const {buscarClientesId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente} = require("../model/modelClientes");
 
 //Páginas
 module.exports.getClientes = async (req, res) => {
@@ -11,9 +11,9 @@ module.exports.patchInativarCliente = async (req, res) => {
     await inativarCliente(req.params.id);
 };
 
-// module.exports.getAtivarCliente = async (req, res) => {
-//     await ativarCliente(req.params.id);
-// };
+module.exports.patchAtivarCliente = async (req, res) => {
+    await ativarCliente(req.params.id);
+};
 
 
 //Apis para acessar os dados dos clientes

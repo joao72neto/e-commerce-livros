@@ -76,5 +76,6 @@ module.exports = {buscarTodosClientes,
                   buscarClientesId,
                   buscarClientesInativos,
                   buscarClientesAtivos, 
-                  inativarCliente};
+                  inativarCliente,
+                  ativarCliente};
 

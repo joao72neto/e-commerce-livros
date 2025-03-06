@@ -1,50 +1,19 @@
-//MOSTRANDO OS CLIENTES QUE ESTÃO INATIVADOS
-let container = document.querySelector('#clientes-inativos');
-container.innerHTML = '';
+//Reativando o cliente
+document.querySelectorAll('.btn-inat').forEach(button => {
+    button.addEventListener('click', async function(){
 
-let clientesInativos = JSON.parse(sessionStorage.getItem('clientesInativos')) || [];
+        const clienteWrapper = this.closest('.cliente-wrapper');
+        const id = clienteWrapper.querySelector('.cliente-inat-id').textContent;
 
-if(clientesInativos.length === 0){
-    container.innerHTML = '<p style="text-align: center;">Nenhum cliente foi inativado</p>';
-}else{
-    clientesInativos.forEach(cliente => {
-        let div = document.createElement('div');
-        div.classList.add('cliente-wrapper');
-        div.innerHTML = `
-            <div class="cliente">
-                <p>${cliente.nome}</p>
-                <p>${cliente.email}</p>
-            </div>
-            <button class="reativar" data-email="${cliente.email}">Reativar</button>
-        
-        `;
-
-        container.appendChild(div);
-    });
-}
-
-
-//REATIVANDO CLIENTES INATIVADOS
-document.querySelectorAll('.reativar').forEach(button => {
-    button.addEventListener('click', function(){
-
-        let index = this.getAttribute('data-email');
-        
-        if(index != null){
-
-            //Pegando o cliente a ser inativado
-            let clientesAtivos = JSON.parse(sessionStorage.getItem('clientesAtivos')) || [];
-
-            clientesAtivos.push(clientesInativos.filter(c => c.email === index)[0]);
-            clientesInativos = clientesInativos.filter(c => c.email !== index);
-            
-            
-            //Atualizando o sessionStorage
-            sessionStorage.setItem('clientesInativos', JSON.stringify(clientesInativos));
-            sessionStorage.setItem('clientesAtivos',JSON.stringify(clientesAtivos));
-
-            //Removendo o cliente
-            this.closest('.cliente-wrapper').remove();
+        //Ativando o cliente
+        try{
+            await fetch(`/clientes/ativar/${id}`, {method: 'PATCH'});
+        }catch(err){
+            console.error(err);
         }
+
+        location.reload();
+
+
     });
 });

@@ -146,9 +146,19 @@ function criarBotaoInativados() {
 }
 
 // Mostrar o botão automaticamente se já houver inativos
-if (clientesInativos.length > 0) {
-    criarBotaoInativados();
+try{
+    let res = await fetch('/api/clientes/inativos', {method: 'GET'});
+    let clientesInativos = await res.json();
+
+    if (clientesInativos.length > 0) {
+        criarBotaoInativados();
+    }
+
+}catch(err){
+    console.error(err);
 }
+
+
 
 //TRANSAÇÕES
 document.querySelectorAll('.tran').forEach(button => {

@@ -12,5 +12,6 @@ router.get('/api/clientes/inativos', controllerClientes.getApiClientesInativos)
 
 //Rotas para modificação dos dados
 router.patch('/clientes/inativar/:id', controllerClientes.patchInativarCliente);
+router.patch('/clientes/ativar/:id',controllerClientes.patchAtivarCliente);
 
 module.exports = router;
