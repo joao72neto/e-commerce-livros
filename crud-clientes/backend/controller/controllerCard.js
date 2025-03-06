@@ -1,4 +1,4 @@
-const { buscarCartoesClienteId, buscarCartaoId } = require("../model/modelCard");
+const { buscarCartoesClienteId } = require("../model/modelCard");
 
 //Páginas
 module.exports.getCard = async (req, res) => {
