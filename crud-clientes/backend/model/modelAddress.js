@@ -8,8 +8,23 @@ async function cadastrarAddress(dados) {
     //Consulta SQL
     sql = `INSERT INTO enderecos (end_clt_id, end_nome, end_tipoResidencia, end_tipoLogradouro, end_logradouro, end_numero, end_bairro, end_cep, end_cidade, end_estado, end_pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
+    //Pegando os valores a serem inseridos no banco
+    const valores = [
+        dados.end_clt_id,
+        dados.end_nome,
+        dados.end_tipoResidencia,
+        dados.end_tipoLogradouro,
+        dados.end_logradouro,
+        dados.end_numero,
+        dados.end_bairro,
+        dados.end_cep,
+        dados.end_cidade,
+        dados.end_estado,
+        dados.end_pais
+    ]
+
     try{
-        await db.query(sql, dados)
+        await db.query(sql, valores)
             .catch(err => `Erro ao cadastrar endereço ${err}`);
     }catch(err){
         console.error(`Erro: ${err}`);

@@ -8,15 +8,24 @@ async function cadastrarCliente(dados) {
     //Consulta SQL
     const sql = `INSERT INTO clientes (clt_nome, clt_genero, clt_dataNasc,  clt_cpf, clt_telefone, clt_email, clt_senha, clt_ranking, clt_status) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 1)`;
 
+    //Valores a serem inseridos no banco
+    const valores = [
+        dados.clt_nome,
+        dados.clt_genero,
+        dados.clt_dataNasc,
+        dados.clt_cpf,
+        dados.clt_telefone,
+        dados.clt_email,
+        dados.clt_senha
+    ]
 
     try{
-        await db.query(sql, dados)
+        await db.query(sql, valores)
             .catch(err => console.error(`Erro ao cadastrar cliente: ${err}`));
     }catch(err){
         console.error(`Erro: ${err}`);
         throw err;
     }
-
 }
 
 //UPDATE

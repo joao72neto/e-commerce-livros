@@ -8,6 +8,9 @@ const app = express();
 
 app.use(express.static('./frontend/public'));
 
+//Usando JSON no body
+app.use(express.json());
+
 //Configurando o motor de visualização
 app.set('view engine', 'ejs');
 

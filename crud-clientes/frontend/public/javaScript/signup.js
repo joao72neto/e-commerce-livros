@@ -49,14 +49,16 @@ document.querySelector('form').addEventListener('submit', async function (event)
 
     const signupDados = {cliente, address, card}
 
-    const status = await signupService(signupDados);
+    console.log(signupDados);
 
-    if(status === 200){
-        alert('DEU MUITO BOM!');
-        return;
-    }
+    // const status = await signupService(signupDados);
 
-    alert('deu muito ruim');
+    // if(status === 200){
+    //     alert('DEU MUITO BOM!');
+    //     return;
+    // }
+
+    // alert('deu muito ruim');
 
 })
 
