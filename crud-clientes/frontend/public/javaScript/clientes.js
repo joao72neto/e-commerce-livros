@@ -171,11 +171,10 @@ document.querySelectorAll('.tran').forEach(button => {
 let clientesAtivos = await buscarClientesAtivosService();
 
 if (clientesAtivos.length === 0) {
-    let container = document.querySelector('.container-index');
+    let container = document.querySelector('.msg-clientes');
     container.innerHTML = '<h1 style="margin: 0">Nunhum Cliente Ativo</h1>';
     container.style.cssText = `
         
-        box-shadow: 0px 0px 20px #0000005b;
         padding: 40px;
     
     `;
