@@ -1,5 +1,23 @@
 const db = require('../config/db');
 
+
+//INSERT
+
+//Inserindo um novo cartão no banco de dados
+async function cadastrarCartao(dados) {
+
+    //Consulta SQL
+    sql = `INSERT INTO cartoes (car_clt_id, car_nome, car_numero, car_bandeira, car_cvv, car_principal) VALUES (?, ?, ?, ?, ?, 1)`;
+
+    try{
+        await db.query(sql)
+            .catch(err => `Erro ao cadastrar cartão ${err}`);
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+}
+
 //Função que pega todos os cartões do banco
 async function buscarTodosCartoes() {
     try{

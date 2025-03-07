@@ -1,5 +1,22 @@
 const db = require('../config/db');
 
+//INSERT
+
+//Cadastrando um novo endereço no banco de dadso
+async function cadastrarAddress(dados) {
+
+    //Consulta SQL
+    sql = `INSERT INTO enderecos (end_clt_id, end_nome, end_tipoResidencia, end_tipoLogradouro, end_logradouro, end_numero, end_bairro, end_cep, end_cidade, end_estado, end_pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+    try{
+        await db.query(sql)
+            .catch(err => `Erro ao cadastrar endereço ${err}`);
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+}
+
 //Bsucando todos os endereços do banco de dados
 async function buscarTodosEnderecos() {
     try{

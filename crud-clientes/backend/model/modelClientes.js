@@ -1,5 +1,24 @@
 const db = require('../config/db');
 
+//INSERT
+
+//Função que insere um novo cliente no banco 
+async function cadastrarCliente(dados) {
+    
+    //Consulta SQL
+    const sql = `INSERT INTO clientes (clt_nome, clt_genero, clt_dataNasc,  clt_cpf, clt_telefone, clt_email, clt_senha, clt_ranking, clt_status) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 1)`;
+
+
+    try{
+        await db.query(sql)
+            .catch(err => console.error(`Erro ao cadastrar cliente: ${err}`));
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+
+}
+
 //UPDATE
 
 //Inativando um cliente específico
