@@ -10,7 +10,7 @@ async function cadastrarCartao(dados) {
     sql = `INSERT INTO cartoes (car_clt_id, car_nome, car_numero, car_bandeira, car_cvv, car_principal) VALUES (?, ?, ?, ?, ?, 1)`;
 
     try{
-        await db.query(sql)
+        await db.query(sql, dados)
             .catch(err => `Erro ao cadastrar cartão ${err}`);
     }catch(err){
         console.error(`Erro: ${err}`);

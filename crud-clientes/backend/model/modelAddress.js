@@ -9,7 +9,7 @@ async function cadastrarAddress(dados) {
     sql = `INSERT INTO enderecos (end_clt_id, end_nome, end_tipoResidencia, end_tipoLogradouro, end_logradouro, end_numero, end_bairro, end_cep, end_cidade, end_estado, end_pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     try{
-        await db.query(sql)
+        await db.query(sql, dados)
             .catch(err => `Erro ao cadastrar endereço ${err}`);
     }catch(err){
         console.error(`Erro: ${err}`);

@@ -10,7 +10,7 @@ async function cadastrarCliente(dados) {
 
 
     try{
-        await db.query(sql)
+        await db.query(sql, dados)
             .catch(err => console.error(`Erro ao cadastrar cliente: ${err}`));
     }catch(err){
         console.error(`Erro: ${err}`);
