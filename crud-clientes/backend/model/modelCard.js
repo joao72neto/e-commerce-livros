@@ -53,4 +53,4 @@ async function buscarCartoesClienteId(id) {
 }
 
 //exportando as funções
-module.exports = {buscarCartoesClienteId, buscarTodosCartoes, buscarCartaoId};
+module.exports = {buscarCartoesClienteId, buscarTodosCartoes, buscarCartaoId, cadastrarCartao};

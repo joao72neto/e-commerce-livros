@@ -4,7 +4,7 @@ const db = require('../config/db');
 
 //Função que insere um novo cliente no banco 
 async function cadastrarCliente(dados) {
-    
+
     //Consulta SQL
     const sql = `INSERT INTO clientes (clt_nome, clt_genero, clt_dataNasc,  clt_cpf, clt_telefone, clt_email, clt_senha, clt_ranking, clt_status) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 1)`;
 
@@ -94,5 +94,6 @@ module.exports = {buscarTodosClientes,
                   buscarClientesInativos,
                   buscarClientesAtivos, 
                   inativarCliente,
-                  ativarCliente};
+                  ativarCliente,
+                  cadastrarCliente};
 

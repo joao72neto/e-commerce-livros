@@ -1,10 +1,22 @@
-const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente} = require("../model/modelClientes");
+const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente, cadastrarCliente} = require("../model/modelClientes");
 
 //Páginas
 module.exports.getClientes = async (req, res) => {
     const clientes = await buscarClientesAtivos();
     res.render('clientes', {clientes: clientes});
 };
+
+//Inserindo dados
+module.exports.postCliente = async (req, res) => {
+    try{
+        await cadastrarCliente(req.body);
+        res.sendStatus(200);
+    }catch(err){
+        console.error(`Erro ${err}`);
+        res.sendStatus(500);
+    }
+};
+
 
 //Alterando dados
 module.exports.patchInativarCliente = async (req, res) => {

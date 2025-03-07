@@ -52,5 +52,5 @@ async function buscarEnderecosClienteId(id) {
 
 
 //Exportando as funções
-module.exports = {buscarTodosEnderecos, buscarEnderecosClienteId, buscarEnderecoId};
+module.exports = {buscarTodosEnderecos, buscarEnderecosClienteId, buscarEnderecoId, cadastrarAddress};
 
