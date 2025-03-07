@@ -1,5 +1,5 @@
 //Inserindo um cliente no banco de dados
-export async function cadastrarClienteService(cliente) {
+export async function signupService(cliente) {
     try{
 
         const res = await fetch('/signup', {

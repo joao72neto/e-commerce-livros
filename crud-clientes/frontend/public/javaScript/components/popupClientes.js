@@ -1,4 +1,4 @@
-import { pegarClienteId } from '/javaScript/service/serviceClientes.js';
+import { buscarClienteIdService } from '/javaScript/service/serviceClientes.js';
 
 //Pop que mostra todos os dados do cliente cadastrado
 document.querySelectorAll('.cliente-wrapper .cliente').forEach(cliente => {
@@ -16,7 +16,7 @@ document.querySelectorAll('.cliente-wrapper .cliente').forEach(cliente => {
             let popup = document.createElement('div');
             popup.classList.add('popup');
         
-            let cliente = await pegarClienteId(id);
+            let cliente = await buscarClienteIdService(id);
 
             //Mostrando todos os dados
             popup.innerHTML = `

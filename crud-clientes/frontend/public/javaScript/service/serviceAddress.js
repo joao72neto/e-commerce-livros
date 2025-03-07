@@ -1,5 +1,5 @@
 //Pegando enderecos por id
-export async function pegarEnderecoId(id) {
+export async function buscarEnderecoIdService(id) {
     try{
 
         const res = await fetch(`/api/address/${id}`);

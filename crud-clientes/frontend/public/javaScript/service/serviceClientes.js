@@ -30,7 +30,7 @@ export async function ativarClienteService(id) {
 //GET
 
 //Pegando clientes por id
-export async function pegarClienteId(id) {
+export async function buscarClienteIdService(id) {
     try{
 
         const res = await fetch(`/api/clientes/id/${id}`);
@@ -44,7 +44,7 @@ export async function pegarClienteId(id) {
 }
 
 //Pegando clientes ativos
-export async function pegarClientesAtivos() {
+export async function buscarClientesAtivosService() {
     try{
 
         const res = await fetch(`/api/clientes/ativos`);
@@ -58,7 +58,7 @@ export async function pegarClientesAtivos() {
 }
 
 //Pegando clientes inativos
-export async function pegarClientesInativos() {
+export async function buscarClientesInativosService() {
     try{
 
         const res = await fetch(`/api/clientes/inativos`);

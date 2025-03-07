@@ -1,9 +1,9 @@
 import { ativarClienteService } from "/javaScript/service/serviceClientes.js";
-import { pegarClientesInativos } from "/javaScript/service/serviceClientes.js";
+import { buscarClientesInativosService } from "/javaScript/service/serviceClientes.js";
 
 //Personalizando a msg de cliente inativos
 
-let clientesInativos = await pegarClientesInativos();
+let clientesInativos = await buscarClientesInativosService();
 
 if (clientesInativos.length === 0) {
     let titulo = document.querySelector('.title');

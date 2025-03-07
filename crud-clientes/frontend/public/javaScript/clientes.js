@@ -1,5 +1,5 @@
-import { pegarClientesAtivos } from "/javaScript/service/serviceClientes.js";
-import { pegarClientesInativos } from "/javaScript/service/serviceClientes.js";
+import { buscarClientesAtivosService } from "/javaScript/service/serviceClientes.js";
+import { buscarClientesInativosService } from "/javaScript/service/serviceClientes.js";
 import { inativarClienteService } from "/javaScript/service/serviceClientes.js";
 
 //FILTRANDO CLIENTES
@@ -146,7 +146,7 @@ function criarBotaoInativados() {
 }
 
 // Mostrar o botão automaticamente se já houver inativos
-let clientesInativos = await pegarClientesInativos();
+let clientesInativos = await buscarClientesInativosService();
 
 if (clientesInativos.length > 0) {
     criarBotaoInativados();
@@ -168,7 +168,7 @@ document.querySelectorAll('.tran').forEach(button => {
 //CLIENTES ATIVOS
 
 //Personalizando uma msg para quando não houver clientes ativos
-let clientesAtivos = await pegarClientesAtivos();
+let clientesAtivos = await buscarClientesAtivosService();
 
 if (clientesAtivos.length === 0) {
     let container = document.querySelector('.container-index');
