@@ -18,14 +18,9 @@ async function cadastrarCartao(dados) {
         dados.car_cvv
     ]
 
-
-    try{
-        await db.query(sql, valores)
-            .catch(err => `Erro ao cadastrar cartão ${err}`);
-    }catch(err){
-        console.error(`Erro: ${err}`);
-        throw err;
-    }
+    await db.query(sql, valores)
+        .catch(err => `Erro ao cadastrar cartão ${err}`);
+    
 }
 
 //Função que pega todos os cartões do banco

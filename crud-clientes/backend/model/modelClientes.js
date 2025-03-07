@@ -19,13 +19,15 @@ async function cadastrarCliente(dados) {
         dados.clt_senha
     ]
 
+
     try{
-        await db.query(sql, valores)
-            .catch(err => console.error(`Erro ao cadastrar cliente: ${err}`));
+        const [result] = await db.query(sql, valores);
+        return result.insertId;
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro ao cadastrar o cliente ${err}`);
         throw err;
-    }
+    } 
+    
 }
 
 //UPDATE

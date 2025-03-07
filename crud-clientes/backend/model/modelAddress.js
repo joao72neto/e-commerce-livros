@@ -23,13 +23,8 @@ async function cadastrarAddress(dados) {
         dados.end_pais
     ]
 
-    try{
-        await db.query(sql, valores)
-            .catch(err => `Erro ao cadastrar endereço ${err}`);
-    }catch(err){
-        console.error(`Erro: ${err}`);
-        throw err;
-    }
+    await db.query(sql, valores)
+        .catch(err => console.error(`Erro ao cadastrar o endereço: ${err}`));
 }
 
 //Bsucando todos os endereços do banco de dados

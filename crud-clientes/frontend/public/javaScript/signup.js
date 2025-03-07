@@ -47,9 +47,9 @@ document.querySelector('form').addEventListener('submit', async function (event)
         car_cvv: dados.codigo_seguranca
     }
 
-    const signupDados = {cliente, address, card}
+    // const signupDados = {cliente, address, card}
 
-    console.log(signupDados);
+    // console.log(signupDados);
 
     // const status = await signupService(signupDados);
 
