@@ -39,7 +39,8 @@ async function atualizarAddress(dados, id) {
     try{
         const [endereco] = await db.query(sql, valores);
         return endereco;
-    }catch{err}{
+        
+    }catch(err){
         console.error(`Erro: ${err}`);
         throw err;
     }

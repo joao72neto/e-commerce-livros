@@ -1,9 +1,16 @@
+import { atualizarAddressService } from "/javaScript/service/serviceAddress.js";
+
 //Enviando os dados para o backend
-document.querySelector('form').addEventListener('submit', function(event){
+document.querySelector('form').addEventListener('submit', async function(event){
     event.preventDefault();
 
     const formDados = new FormData(event.target);
     let dados = Object.fromEntries(formDados.entries());
+
+
+    //Pegando o id do cliente
+    const clt_id = window.location.pathname.split('/')[2];
+    const end_id = window.location.pathname.split('/').splice(-1)[0];
 
     const address = {
         end_bairro: dados.bairro,
@@ -17,7 +24,17 @@ document.querySelector('form').addEventListener('submit', function(event){
         end_tipoResidencia: dados.tipo_residencia
     }
 
-    console.log(address);
+    //console.log(address);
+
+    //Passando os dados para o back
+    let result = await atualizarAddressService(address, clt_id, end_id);
+    
+    if(result.status === 200){
+        alert('DEU BOM');
+        return;
+    }
+
+    alert('Deu ruim');
 
 });
 
