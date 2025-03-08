@@ -28,18 +28,20 @@ async function cadastrarAddress(dados) {
 }
 
 //UPDATE
-async function atualizarAddress(dados, id) {
+
+//Atualizando os endereços do banco de dados
+async function atualizarAddress(dados, end_id) {
     
     const campos = Object.keys(dados).map(key =>  `${key} = ?`).join(', ');
     let valores = Object.values(dados);
-    valores.push(id);
+    valores.push(end_id);
 
     sql = `update enderecos set ${campos} where end_id = ?`;
 
     try{
         const [endereco] = await db.query(sql, valores);
         return endereco;
-        
+
     }catch(err){
         console.error(`Erro: ${err}`);
         throw err;

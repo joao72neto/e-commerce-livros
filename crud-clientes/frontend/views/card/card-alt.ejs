@@ -15,18 +15,23 @@
             <form class="container-forms-card">
                 <div class="cartoes">
                     <label for="numero_cartao">Número do Cartão</label>
-                    <input type="text" name="numero_cartao" required>
+                    <input type="text" name="numero_cartao" value="<%=cartoes[0].car_numero%>" required>
+
                     <label for="nome_cartao">Nome Impresso no Cartão</label>
-                    <input type="text" name="nome_cartao" required>
+                    <input type="text" name="nome_cartao" value="<%=cartoes[0].car_nome%>" required>
+
                     <label for="bandeira_cartao">Bandeira do Cartão</label>
-                    <input type="text" name="bandeira_cartao" required>
+                    <input type="text" name="bandeira_cartao" value="<%=cartoes[0].car_bandeira%>" required>
+
                     <label for="codigo_seguranca">Código de Segurança</label>
-                    <input type="text" name="codigo_seguranca" required>
+                    <input type="text" name="codigo_seguranca" value="<%=cartoes[0].car_cvv%>" required>
                 </div>
                 
                 <button>Alterar</button>
             </form>
         </div>
     </div>
+
+    <script type="module" src="/javaScript/card/card.js"></script>
 </body>
 </html>

@@ -23,6 +23,28 @@ async function cadastrarCartao(dados) {
     
 }
 
+//UPDATE
+
+//Atualizando os dados dos cartões do banco
+async function atualizarCard(dados, car_id) {
+    
+    const campos = Object.keys(dados).map(key =>  `${key} = ?`).join(', ');
+    let valores = Object.values(dados);
+    valores.push(car_id);
+
+    sql = `update cartoes set ${campos} where car_id = ?`;
+
+    try{
+        const [cartao] = await db.query(sql, valores);
+        return cartao;
+        
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+
+}
+
 //SELECT 
 
 //Função que pega todos os cartões do banco
@@ -60,4 +82,4 @@ async function buscarCartoesClienteId(id) {
 }
 
 //exportando as funções
-module.exports = {buscarCartoesClienteId, buscarTodosCartoes, buscarCartaoId, cadastrarCartao};
+module.exports = {buscarCartoesClienteId, buscarTodosCartoes, buscarCartaoId, cadastrarCartao, atualizarCard};
