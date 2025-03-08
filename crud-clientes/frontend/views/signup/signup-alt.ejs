@@ -31,18 +31,20 @@
                     <div class="genero">
                         <span>Gênero</span>
                         <div>
-                            <input value="M" type="radio" id="gen01" name="gen" required> Masculino
+                            <input value="M" type="radio" id="gen01" name="gen" <%=cliente[0].clt_genero === 'M' ? 'checked' : ''%>  required> Masculino
                         </div>
                         <div>
-                            <input value="F" type="radio" id="gen02" name="gen" required> Feminino
+                            <input value="F" type="radio" id="gen02" name="gen" <%=cliente[0].clt_genero === 'F' ? 'checked' : ''%> required> Feminino
                         </div>
                         <div>
-                            <input value="O" type="radio" id="gen03" name="gen" required> Outro
+                            <input value="O" type="radio" id="gen03" name="gen" <%=cliente[0].clt_genero === 'O' ? 'checked' : ''%> required> Outro
                         </div>
                     </div>
+
+                    <% let dataFormatada = new Date(cliente[0].clt_dataNasc).toISOString().split('T')[0]; %>
                 
                     <label for="data">Data de Nascimento</label>
-                    <input type="date" id="data" name="data" value="<%=cliente[0].clt_dataNasc%>" required>
+                    <input type="date" id="data" name="data" value="<%=dataFormatada%>" required>
                 
                     <label for="senha">Senha</label>
                     <input type="password" id="senha" name="senha" placeholder="Digite sua senha" value="<%=cliente[0].clt_senha%>" required>
