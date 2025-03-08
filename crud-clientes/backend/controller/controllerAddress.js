@@ -17,6 +17,9 @@ module.exports.getAddressAdd = async (req, res) => {
 };
 
 
+//Alteração de dados
+
+
 //Apis para acessar os dados do banco
 module.exports.getApiEnderecoId = async(req, res) => {
     const endereco = await buscarEnderecoId(req.params.id);

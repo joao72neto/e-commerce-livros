@@ -1,3 +1,27 @@
+//Enviando os dados para o backend
+document.querySelector('form').addEventListener('submit', function(event){
+    event.preventDefault();
+
+    const formDados = new FormData(event.target);
+    let dados = Object.fromEntries(formDados.entries());
+
+    const address = {
+        end_bairro: dados.bairro,
+        end_cep: dados.cep,
+        end_cidade: dados.cidade,
+        end_estado: dados.estado,
+        end_logradouro: dados.logradouro,
+        end_numero: dados.numero,
+        end_pais: dados.pais,
+        end_tipoLogradouro: dados.tipo_logradouro,
+        end_tipoResidencia: dados.tipo_residencia
+    }
+
+    console.log(address);
+
+});
+
+
 //ADICIONANDO O FUNCIONAMENTO DA CHECKBOX
 document.querySelector('input[type="checkbox"]').addEventListener('click', function(){
     

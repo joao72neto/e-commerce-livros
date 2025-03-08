@@ -1,5 +1,7 @@
 const db = require('../config/db');
 
+//SELECT 
+
 //Buscando todas as transações do banco
 async function buscarTodasTransacoes() {
     try{

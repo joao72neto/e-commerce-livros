@@ -23,6 +23,8 @@ async function cadastrarCartao(dados) {
     
 }
 
+//SELECT 
+
 //Função que pega todos os cartões do banco
 async function buscarTodosCartoes() {
     try{

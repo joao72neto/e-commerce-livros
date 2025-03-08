@@ -27,6 +27,27 @@ async function cadastrarAddress(dados) {
         .catch(err => console.error(`Erro ao cadastrar o endereço: ${err}`));
 }
 
+//UPDATE
+async function atualizarAddress(dados, id) {
+    
+    const campos = Object.keys(dados).map(key =>  `${key} = ?`).join(', ');
+    let valores = Object.values(dados);
+    valores.push(id);
+
+    sql = `update enderecos set ${campos} where end_id = ?`;
+
+    try{
+        const [endereco] = await db.query(sql, valores);
+        return endereco;
+    }catch{err}{
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+
+}
+
+//SELECT
+
 //Bsucando todos os endereços do banco de dados
 async function buscarTodosEnderecos() {
     try{
@@ -62,5 +83,5 @@ async function buscarEnderecosClienteId(id) {
 
 
 //Exportando as funções
-module.exports = {buscarTodosEnderecos, buscarEnderecosClienteId, buscarEnderecoId, cadastrarAddress};
+module.exports = {buscarTodosEnderecos, buscarEnderecosClienteId, buscarEnderecoId, cadastrarAddress, atualizarAddress};
 
