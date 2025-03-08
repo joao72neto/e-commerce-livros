@@ -4,6 +4,10 @@ const controllerSignup = require('../controller/controllerSignup');
  
 //Rotas para páginas
 router.get('/signup', controllerSignup.getSignup);
+router.get('/signup/:clt_id', controllerSignup.getSignupAlt);
+
+//Atualizando dados
+router.put('/signup/:clt_id', controllerSignup.putSignupAlt)
 
 //Inserindo dados
 router.post('/signup', controllerSignup.postSignup);

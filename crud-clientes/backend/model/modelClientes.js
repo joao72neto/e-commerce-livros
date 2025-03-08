@@ -32,6 +32,26 @@ async function cadastrarCliente(dados) {
 
 //UPDATE
 
+//Atualizando os dados dos clientes no banco
+async function atualizarCliente(dados, clt_id) {
+    
+    const campos = Object.keys(dados).map(key =>  `${key} = ?`).join(', ');
+    let valores = Object.values(dados);
+    valores.push(clt_id);
+
+    sql = `update clientes set ${campos} where clt_id = ?`;
+
+    try{
+        const [cliente] = await db.query(sql, valores);
+        return cliente;
+        
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+
+}
+
 //Inativando um cliente específico
 async function inativarCliente(id) {
     try{
@@ -106,5 +126,6 @@ module.exports = {buscarTodosClientes,
                   buscarClientesAtivos, 
                   inativarCliente,
                   ativarCliente,
-                  cadastrarCliente};
+                  cadastrarCliente,
+                  atualizarCliente};
 
