@@ -62,7 +62,7 @@ async function buscarTodosEnderecos() {
     }
 }
 
-//Bsucando todos os endereços do banco de dados
+//Bsucando endereço por id
 async function buscarEnderecoId(id) {
     try{
         const [endereco] = await db.query(`select * from enderecos where end_id = ${id}`);

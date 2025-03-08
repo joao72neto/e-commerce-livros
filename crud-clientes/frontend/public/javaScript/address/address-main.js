@@ -1,4 +1,4 @@
-//Pegando o ID do endereco aoo clicar
+//Pegando o ID do endereco ao clicar
 document.querySelectorAll('.alt').forEach(button => {
     
     button.addEventListener('click', function(){

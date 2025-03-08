@@ -17,7 +17,6 @@ export async function atualizarAddressService(dados, clt_id, end_id) {
     }
 }
 
-
 //GET
 
 //Pegando enderecos por id

@@ -1,5 +1,4 @@
 //Tratando da recuperação de senha
-
 import { buscarClienteIdService } from "/javaScript/service/serviceClientes.js";
 import { alterarSenhaClienteService } from "/javaScript/service/serviceClientes.js";
 
@@ -8,12 +7,8 @@ document.querySelector('form').addEventListener('submit', async function(event){
 
     const senhaAtual = document.querySelector('.senha-atual').value;
 
-    //console.log(senhaAtual);
-
     //Pegando o ID do cliente
     const clt_id = window.location.pathname.split('/').splice(-1)[0];
-
-    console.log(clt_id);
 
     const cliente = await buscarClienteIdService(clt_id);
 

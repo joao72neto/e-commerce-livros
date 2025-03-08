@@ -25,7 +25,7 @@ async function cadastrarCartao(dados) {
 
 //UPDATE
 
-//Atualizando os dados dos cartões do banco
+//Atualizando os dados dos cartões no banco
 async function atualizarCard(dados, car_id) {
     
     const campos = Object.keys(dados).map(key =>  `${key} = ?`).join(', ');

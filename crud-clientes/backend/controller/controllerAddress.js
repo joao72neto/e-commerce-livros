@@ -1,4 +1,4 @@
-const { buscarEnderecosClienteId, buscarEnderecoId, cadastrarAddress, atualizarAddress } = require("../model/modelAddress");
+const { buscarEnderecosClienteId, buscarEnderecoId, atualizarAddress } = require("../model/modelAddress");
 
 //Paginas
 module.exports.getAddress = async (req, res) => {

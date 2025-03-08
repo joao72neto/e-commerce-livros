@@ -30,11 +30,11 @@ document.querySelector('form').addEventListener('submit', async function(event){
     let result = await atualizarAddressService(address, clt_id, end_id);
     
     if(result.status === 200){
-        alert('DEU BOM');
+        alert('Endereço foi atualizado com sucessor!');
         return;
     }
 
-    alert('Deu ruim');
+    alert('Não foi possível atualizar o endereço');
 
 });
 

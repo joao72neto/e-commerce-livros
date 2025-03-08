@@ -1,4 +1,4 @@
-const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente, cadastrarCliente} = require("../model/modelClientes");
+const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente } = require("../model/modelClientes");
 
 //Páginas
 module.exports.getClientes = async (req, res) => {
