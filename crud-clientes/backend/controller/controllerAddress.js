@@ -7,12 +7,12 @@ module.exports.getAddress = async (req, res) => {
 };
 
 module.exports.getAddressAlt = async (req, res) => {
-    const enderecos = await buscarEnderecosClienteId(req.params.id);
+    const enderecos = await buscarEnderecoId(req.params.id);
     res.render('address/address-alt', {enderecos: enderecos});
 };
 
 module.exports.getAddressAdd = async (req, res) => {
-    const enderecos = await buscarEnderecosClienteId(req.params.id);
+    const enderecos = await buscarEnderecoId(req.params.id);
     res.render('address/address-add', {enderecos: enderecos});
 };
 

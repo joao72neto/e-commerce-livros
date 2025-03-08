@@ -22,34 +22,34 @@
             <div class="endereco_cobranca">
                 <h3>Endereço de Cobrança</h3>
                 <label for="tipo_residencia">Tipo de Residência</label>
-                <input type="text" id="tipo_residencia" name="tipo_residencia" placeholder="Apartamento, Casa, etc." required>
+                <input type="text" id="tipo_residencia" name="tipo_residencia" placeholder="Apartamento, Casa, etc." value="<%=enderecos[0].end_nome%>" required>
             
                 <label for="tipo_logradouro">Tipo de Logradouro</label>
-                <input type="text" id="tipo_logradouro" name="tipo_logradouro" placeholder="Rua, Avenida, Travessa, etc." required>
+                <input type="text" id="tipo_logradouro" name="tipo_logradouro" placeholder="Rua, Avenida, Travessa, etc." value="<%=enderecos[0].end_tipoLogradouro%>" required>
             
                 <label for="logradouro">Logradouro</label>
-                <input type="text" id="logradouro" name="logradouro" placeholder="Nome da rua ou avenida" required>
+                <input type="text" id="logradouro" name="logradouro" placeholder="Nome da rua ou avenida" value="<%=enderecos[0].end_logradouro%>" required>
             
                 <label for="numero">Número</label>
-                <input type="text" id="numero" name="numero" placeholder="Número da residência" required>
+                <input type="text" id="numero" name="numero" placeholder="Número da residência" value="<%=enderecos[0].end_numero%>" required>
             
                 <label for="bairro">Bairro</label>
-                <input type="text" id="bairro" name="bairro" placeholder="Nome do bairro" required>
+                <input type="text" id="bairro" name="bairro" placeholder="Nome do bairro" value="<%=enderecos[0].end_bairro%>" required>
             
                 <label for="cep">CEP</label>
-                <input type="text" id="cep" name="cep" placeholder="XXXXX-XXX" required>
+                <input type="text" id="cep" name="cep" placeholder="XXXXX-XXX" value="<%=enderecos[0].end_cep%>" required>
             
                 <label for="cidade">Cidade</label>
-                <input type="text" id="cidade" name="cidade" placeholder="Nome da cidade" required>
+                <input type="text" id="cidade" name="cidade" placeholder="Nome da cidade" value="<%=enderecos[0].end_cidade%>" required>
             
                 <label for="estado">Estado</label>
-                <input type="text" id="estado" name="estado" placeholder="Estado (UF)" required>
+                <input type="text" id="estado" name="estado" placeholder="Estado (UF)" value="<%=enderecos[0].end_estado%>" required>
             
                 <label for="pais">País</label>
-                <input type="text" id="pais" name="pais" placeholder="Nome do país" required>
+                <input type="text" id="pais" name="pais" placeholder="Nome do país" value="<%=enderecos[0].end_pais%>" required>
             
                 <label for="observacoes">Observações</label>
-                <input type="text" id="observacoes" name="observacoes" placeholder="Informações adicionais (opcional)">
+                <input type="text" id="observacoes" name="observacoes" placeholder="Informações adicionais (opcional)" value="Bote qualquer coisa aqui">
             </div>
             
             
@@ -57,6 +57,6 @@
         </form>
     </div>
 
-    <script src="/javaScript/address.js"></script>
+    <script src="/javaScript/address/address.js"></script>
 </body>
 </html>
