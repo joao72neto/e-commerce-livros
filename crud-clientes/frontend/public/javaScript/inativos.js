@@ -2,7 +2,6 @@ import { ativarClienteService } from "/javaScript/service/serviceClientes.js";
 import { buscarClientesInativosService } from "/javaScript/service/serviceClientes.js";
 
 //Personalizando a msg de cliente inativos
-
 let clientesInativos = await buscarClientesInativosService();
 
 if (clientesInativos.length === 0) {

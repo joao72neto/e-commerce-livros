@@ -9,7 +9,7 @@ document.querySelector('form').addEventListener('submit', async function (event)
     const formDados = new FormData(event.target);
     let dados = Object.fromEntries(formDados.entries());
 
-    //Pegando o gênero do cliente
+    //Preparando os dados para passar para o back
     const cliente = {
         clt_nome: dados.nome,
         clt_genero: dados.gen,
@@ -46,11 +46,11 @@ document.querySelector('form').addEventListener('submit', async function (event)
     const status = await signupService(signupDados);
 
     if(status === 200){
-        alert('DEU MUITO BOM!');
+        alert('Cliente foi Cadastrado com Sucesso!');
         return;
     }
 
-    alert('deu muito ruim');
+    alert('Não foi posível cadastrar o cliente');
 
 })
 
