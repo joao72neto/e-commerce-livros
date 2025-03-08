@@ -10,7 +10,7 @@ module.exports.getClientes = async (req, res) => {
 module.exports.patchInativarCliente = async (req, res) => {
 
     try{
-        await inativarCliente(req.params.id);
+        await inativarCliente(req.params.clt_id);
         res.sendStatus(204);
     }catch(err){
         console.error(err);
@@ -21,7 +21,7 @@ module.exports.patchInativarCliente = async (req, res) => {
 module.exports.patchAtivarCliente = async (req, res) => {
 
     try{
-        await ativarCliente(req.params.id);
+        await ativarCliente(req.params.clt_id);
         res.sendStatus(204)
     }catch(err){
         console.err(err);
@@ -32,7 +32,7 @@ module.exports.patchAtivarCliente = async (req, res) => {
 
 //Apis para acessar os dados dos clientes
 module.exports.getApiClienteId = async (req, res) => {
-    const cliente = await buscarClienteId(req.params.id);
+    const cliente = await buscarClienteId(req.params.clt_id);
     res.json(cliente);
 };
 

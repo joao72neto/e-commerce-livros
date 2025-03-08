@@ -3,6 +3,6 @@ const router = express.Router();
 const controllerTransacoes = require('../controller/constrollerTransacoes');
 
 //Rotas para páginas
-router.get('/transacoes/:id', controllerTransacoes.getTransacoes);
+router.get('/transacoes/:clt_id', controllerTransacoes.getTransacoes);
 
 module.exports = router;
