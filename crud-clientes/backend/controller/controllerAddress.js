@@ -1,4 +1,4 @@
-const { buscarEnderecosClienteId, buscarEnderecoId, cadastrarAddress } = require("../model/modelAddress");
+const { buscarEnderecosClienteId, buscarEnderecoId, cadastrarAddress, atualizarAddress } = require("../model/modelAddress");
 
 //Paginas
 module.exports.getAddress = async (req, res) => {
@@ -18,7 +18,10 @@ module.exports.getAddressAdd = async (req, res) => {
 
 
 //Alteração de dados
-
+module.exports.putAddressAlt = async (req, res) => {
+    const endereco = await atualizarAddress(req.body, req.params.idAddress);
+    res.json(endereco);
+};
 
 //Apis para acessar os dados do banco
 module.exports.getApiEnderecoId = async(req, res) => {
