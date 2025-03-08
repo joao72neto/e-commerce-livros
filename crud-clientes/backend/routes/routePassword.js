@@ -3,6 +3,9 @@ const router = express.Router();
 const controllerPassword = require('../controller/controllerPassword');
 
 //Rotas para páginas
-router.get('/password', controllerPassword.getPassword);
+router.get('/password/:clt_id', controllerPassword.getPassword);
+
+//Alterando a senha
+router.patch('/password/:clt_id', controllerPassword.patchPassword);
 
 module.exports = router;

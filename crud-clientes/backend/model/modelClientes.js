@@ -52,6 +52,17 @@ async function atualizarCliente(dados, clt_id) {
 
 }
 
+//Alterar senha cliente de um cliente
+async function alterarSenhaCliente(senha, id) {
+    try{
+        await db.query(`update clientes set clt_senha = ${senha.clt_senha} where clt_id = ${id}`);
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+}
+
+
 //Inativando um cliente específico
 async function inativarCliente(id) {
     try{
@@ -127,5 +138,6 @@ module.exports = {buscarTodosClientes,
                   inativarCliente,
                   ativarCliente,
                   cadastrarCliente,
-                  atualizarCliente};
+                  atualizarCliente, 
+                  alterarSenhaCliente};
 

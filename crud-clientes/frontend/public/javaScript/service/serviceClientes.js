@@ -1,6 +1,23 @@
 
 //PATCH
 
+//Alterando a senha do cliente
+export async function alterarSenhaClienteService(senha, id) {
+    try{
+        let res = await fetch(`/password/${id}`, {
+            method: 'PATCH',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(senha)
+        });
+        
+        return res.status;
+
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        return 500;
+    }
+}
+
 //Inativando um cliente específico
 export async function inativarClienteService(id) {
     try{
