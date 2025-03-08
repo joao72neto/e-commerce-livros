@@ -1,4 +1,4 @@
-import { signupService } from "/javaScript/service/serviceSignup.js";
+import { signupAltService } from "/javaScript/service/serviceSignup.js";
 
 //PASSANDO OS DADOS PARA CADASTRO
 document.querySelector('form').addEventListener('submit', async function (event) {
@@ -8,6 +8,9 @@ document.querySelector('form').addEventListener('submit', async function (event)
     //Pegando dados do formulário
     const formDados = new FormData(event.target);
     let dados = Object.fromEntries(formDados.entries());
+
+    //Pegando o ID do cliente
+    const clt_id = window.location.pathname.split('/').splice(-1)[0];
 
     //Preparando os dados para passar para o back
     const cliente = {
@@ -21,6 +24,7 @@ document.querySelector('form').addEventListener('submit', async function (event)
     };
 
     const address = {
+        end_id: dados.end_id,
         end_nome: dados.logradouro,
         end_tipoResidencia: dados.tipo_residencia,
         end_tipoLogradouro: dados.tipo_logradouro,
@@ -35,6 +39,7 @@ document.querySelector('form').addEventListener('submit', async function (event)
     }
 
     const card = {
+        car_id: dados.car_id,
         car_nome: dados.nome_cartao,
         car_numero: dados.numero_cartao,
         car_bandeira: dados.bandeira_cartao,
@@ -43,16 +48,20 @@ document.querySelector('form').addEventListener('submit', async function (event)
 
     const signupDados = {cliente, address, card}
 
-    const status = await signupService(signupDados);
+    console.log(signupDados);
+
+    const status = await signupAltService(signupDados, clt_id);
 
     if(status === 200){
-        alert('Cliente foi Cadastrado com Sucesso!');
+        alert('Cliente foi atualizado com sucesso!');
         return;
     }
 
-    alert('Não foi posível cadastrar o cliente');
+    alert('Não foi posível atualizar o cliente');
 
-})
+});
+
+
 
 
 //ADICIONANDO O FUNCIONAMENTO DA CHECKBOX
@@ -118,5 +127,4 @@ document.querySelector('input[type="checkbox"]').addEventListener('click', funct
         }
     }
 });
-
 
