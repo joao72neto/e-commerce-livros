@@ -7,7 +7,7 @@ module.exports.getCard = async (req, res) => {
 };
 
 module.exports.getCardAdd = async (req, res) => {
-    const cartoes = await buscarCartaoId(req.params.car_id);
+    const cartoes = await buscarCartoesClienteId(req.params.clt_id);
     res.render('card/card-add', {cartoes: cartoes});
 };
 
