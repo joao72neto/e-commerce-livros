@@ -12,7 +12,7 @@ module.exports.getAddressAlt = async (req, res) => {
 };
 
 module.exports.getAddressAdd = async (req, res) => {
-    const enderecos = await buscarEnderecoId(req.params.end_id);
+    const enderecos = await buscarEnderecosClienteId(req.params.clt_id);
     res.render('address/address-add', {enderecos: enderecos});
 };
 
@@ -26,6 +26,7 @@ module.exports.putAddressAlt = async (req, res) => {
 //Inserção de dados
 module.exports.postAddressAdd = async (req, res) => {
     try{
+
         await cadastrarAddress(req.body);
         res.sendStatus(200);
     }catch(err){

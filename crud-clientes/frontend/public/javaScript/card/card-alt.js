@@ -23,10 +23,10 @@ document.querySelector('form').addEventListener('submit', async function(event){
     let result = await atualizarCardService(card, clt_id, car_id);
     
     if(result.status === 200){
-        alert('Cartão foi cadastrado com sucesso!');
+        alert('Cartão foi atualizado com sucesso!');
         return;
     }
 
-    alert('Não foi possível cadastrar o cartão');
+    alert('Não foi possível atualizar o cartão');
 
 });

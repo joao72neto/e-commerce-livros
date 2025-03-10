@@ -1,3 +1,21 @@
+//POST
+export async function cadastrarAddressService(dados, clt_id) {
+    try{
+        const result = await fetch(`/address/${clt_id}/add`, {
+           method: 'POST',
+           headers: {'Content-Type':'application/json'},
+           body: JSON.stringify(dados) 
+        });
+
+        return result;
+
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        throw err;
+    }
+}
+
+
 //PUT
 
 //Atualizando os endereço no banco de dados
