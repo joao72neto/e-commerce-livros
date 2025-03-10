@@ -108,6 +108,11 @@ a{
     left: 10px;
 }
 
+.button{
+    padding: 20px;
+    text-align: center;
+}
+
 
 /*CRUD Settings - index*/
 .flex-container{
@@ -144,43 +149,35 @@ h1{
 
 .filtro img{
     width: 30px;
+    margin-bottom: 10px;
 }
 
 .filtro_clientes{
     
-    display: flex;
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
     justify-content: center;
+    max-width: 500px;
+    margin: 15px auto;
     gap: 30px;
-    padding: 10px;
-}
-
-.filtro_clientes select{
-
-    height: 40px;
-    padding: 8px;
-    border-radius: 10px;
-
-    &:hover{
-        cursor: pointer;
-    }
-
-    &:focus{
-        outline: none;
-    }
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px #0000005b;
 }
 
 .filtro_clientes input{
-   
-    width: 60%;
+    justify-self: center;
+    
+    width: 90%;
 
     &:focus{
         outline: none;
     }
 }
 
-.button{
-    padding: 20px;
-    text-align: center;
+.filtro_clientes button{
+    grid-column: span 2;
+    justify-self: center;
 }
 
 .cliente-wrapper{

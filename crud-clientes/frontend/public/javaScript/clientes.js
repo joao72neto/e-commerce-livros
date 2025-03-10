@@ -2,70 +2,20 @@ import { buscarClientesAtivosService } from "/javaScript/service/serviceClientes
 import { buscarClientesInativosService } from "/javaScript/service/serviceClientes.js";
 import { inativarClienteService } from "/javaScript/service/serviceClientes.js";
 
-//FILTRANDO CLIENTES
-let filtro_clientes = document.querySelector('.filtro_clientes');
-let filtro = ` <select name="nomes" id="nomes">
-                    <option value="nome">Nome</option>
-                    <option value="joaldo">Joel</option>
-                    <option value="jose">Renato</option>
-                    <option value="joel">João Neto</option>
-                    <option value="joel">Lucas</option>
-                </select>
 
-                <select name="paises" id="paises">
-                    <option value="pais">País</option>
-                    <option value="brasil">Brasil</option>
-                    <option value="espanha">Espanha</option>
-                    <option value="eua">EUA</option>
-                </select>
-
-                <select name="estados" id="estados">
-                    <option value="estado">Estado</option>
-                    <option value="sp">São Paulo</option>
-                    <option value="mg">Minas Gerais</option>
-                    <option value="mt">Mato Grosso</option>
-                </select>
-
-                <select name="cidades" id="cidades">
-                    <option value="cidade">Cidade</option>
-                    <option value="guararema">Guararema</option>
-                    <option value="poa">Poá</option>
-                    <option value="mogi">Mogi</option>
-                </select>`;
-
-let input = `<input class="busca_clientes" type="text" placeholder="Busque clientes...">`
-
-//Filtro
+//FILTRO DE CLIENTES
 document.querySelector('#flt').addEventListener('click', () => {
-    
-    
-    if(filtro_clientes.innerHTML.trim() === '' || 
-       filtro_clientes.innerHTML === input){
 
-        filtro_clientes.style.padding = '30px';
-        document.querySelector('.filtro_clientes').innerHTML = filtro;
+    const filtro = document.querySelector('.filtro_clientes');
 
-        
-    }else{
-        filtro_clientes.innerHTML = '';
-        filtro_clientes.style.padding = '10px';
+    //Alterando a visibilidade do filtro
+    if(filtro.style.display === 'none' || filtro.style.display === ''){
+        filtro.style.display = 'grid';
+        return;
     }
-});
 
-//Input
-document.querySelector('#bsc').addEventListener('click',() => {
+    filtro.style.display = 'none';
 
-    if(filtro_clientes.innerHTML.trim() === '' ||
-       filtro_clientes.innerHTML === filtro){
-
-        filtro_clientes.style.padding = '30px';
-        filtro_clientes.innerHTML = input;
-
-        
-    }else{
-        filtro_clientes.innerHTML = '';
-        filtro_clientes.style.padding = '10px';
-    }
 });
 
 //ALTERALÇÃO DE USUÁRIO
