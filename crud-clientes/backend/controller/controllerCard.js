@@ -16,6 +16,7 @@ module.exports.getCardAlt = async (req, res) => {
     res.render('card/card-alt', {cartoes: cartoes});
 };
 
+
 //Atualizando os dados dos cartões
 module.exports.putCardAlt = async (req, res) => {
     const cartao = await atualizarCard(req.body, req.params.car_id);
