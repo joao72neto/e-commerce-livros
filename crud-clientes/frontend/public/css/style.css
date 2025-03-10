@@ -325,7 +325,7 @@ h1{
 }
 
 .container-forms .endereco_cobranca{
-    grid-row: 4 / 7;
+    grid-row: 3 / 7;
     grid-column: span 2;
     
 }
@@ -375,7 +375,6 @@ h1{
     grid-template-columns: repeat(3, 1fr);
     max-width: 650px;
     margin: 0 auto;
-    justify-content: center;
     grid-gap: 10px
 }
 
@@ -400,10 +399,15 @@ h1{
     box-shadow: 0px 0px 10px #0000005b;
 }
 
-.container-address .endereco-wrapper .endereco{
+.endereco-wrapper .endereco{
+
     &:hover{
         cursor: pointer;
     }
+}
+
+.endereco p, .endereco h2{
+    margin: 5px 0;
 }
 
 .endereco-wrapper .acoes-address{
@@ -424,7 +428,7 @@ h1{
     border-radius: 20px;
 }
 
-.container-address h2{
+.container-address .title{
     text-align: center;
     margin-bottom: 20px;
 }
@@ -481,11 +485,11 @@ h1{
     border-radius: 20px;
     width: 100%;
     box-shadow: 0px 0px 10px #0000005b;
-    padding: 30px 60px 60px 60px;
+    padding: 30px 50px 40px 50px;
 }
 
 
-.container-card-main h2{
+.container-card-main .title{
     text-align: center;
     margin-bottom: 20px;
 }
@@ -512,8 +516,12 @@ h1{
     width: 100%;
 }
 
-.container-card-main .card-wrapper .acoes-card{
+.card-wrapper .acoes-card{
     align-self: center;
+}
+
+.card-main p, .card h2{
+    margin: 5px 0;
 }
 
 .container-card-main .card-add{
