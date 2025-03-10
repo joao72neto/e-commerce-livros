@@ -13,6 +13,33 @@
         <div class="container-address">
             <h2 class="title">Endereços</h2>
 
+            <div class="seletores">
+                <div>
+                    <label for="rsd">Residencial</label>
+                    <select name="residencial" id="rsd">
+                        <% enderecos.forEach(endereco => { %>
+                            <option value="<%=endereco.end_logradouro%>"><%=endereco.end_logradouro%></option>
+                        <% }); %>
+                    </select>
+                </div>
+                <div>
+                    <label for="etr">Entrega</label>
+                    <select name="entrega" id="etr">
+                        <% enderecos.forEach(endereco => { %>
+                            <option value="<%=endereco.end_logradouro%>"><%=endereco.end_logradouro%></option>
+                        <% }); %>
+                    </select>
+                </div>
+                <div>
+                    <label for="cbr">Cobrança</label>
+                    <select name="cobranca" id="cbr">
+                        <% enderecos.forEach(endereco => { %>
+                            <option value="<%=endereco.end_logradouro%>"><%=endereco.end_logradouro%></option>
+                        <% }); %>
+                    </select>
+                </div>
+            </div>
+
             <% enderecos.forEach(endereco => { %>
 
                 <div class="endereco-wrapper">

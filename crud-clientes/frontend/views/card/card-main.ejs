@@ -13,10 +13,13 @@
         <div class="container-card-main">
             <h2>Catões</h2>
             <div class="preferencia-cartao">
-                <span>Preferencia: </span>
+                <label>Preferencia</label>
                 <select name="preferencia" id="preferencia">
-                    <option value="visa-3020">Visa-3020</option>
-                    <option value="mastercard-8020">Matercard-8020</option>
+                    <% cartoes.forEach(carttao => { %>
+
+                        <option value=""><%=`${carttao.car_bandeira}-${carttao.car_numero.slice(-4)}`%></option>
+
+                    <% }); %>
                 </select>
             </div>
 
