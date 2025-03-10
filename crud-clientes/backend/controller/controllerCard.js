@@ -1,4 +1,4 @@
-const { atualizarCard, buscarCartaoId, buscarCartoesClienteId } = require("../model/modelCard");
+const { atualizarCard, buscarCartaoId, buscarCartoesClienteId, cadastrarCartao } = require("../model/modelCard");
 
 //Páginas
 module.exports.getCard = async (req, res) => {
@@ -14,6 +14,18 @@ module.exports.getCardAdd = async (req, res) => {
 module.exports.getCardAlt = async (req, res) => {
     const cartoes = await buscarCartaoId(req.params.car_id);
     res.render('card/card-alt', {cartoes: cartoes});
+};
+
+//Inserção de dados
+module.exports.postCardAdd = async (req, res) => {
+    try{
+        await cadastrarCartao(req.body)
+        res.sendStatus(200);
+        
+    }catch(err){
+        console.error(`Erro: ${err}`);
+        res.sendStatus(500);
+    }
 };
 
 
