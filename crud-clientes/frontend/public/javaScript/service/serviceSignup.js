@@ -1,3 +1,5 @@
+//PUT
+
 //Atualizando dados de um cliente do banco de dados
 export async function signupAltService(cliente, clt_id) {
     try{
@@ -16,6 +18,7 @@ export async function signupAltService(cliente, clt_id) {
     }
 }
 
+//POST
 
 //Inserindo um cliente no banco de dados
 export async function signupService(cliente) {

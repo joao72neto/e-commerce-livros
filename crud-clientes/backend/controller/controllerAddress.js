@@ -26,9 +26,9 @@ module.exports.putAddressAlt = async (req, res) => {
 //Inserção de dados
 module.exports.postAddressAdd = async (req, res) => {
     try{
-
         await cadastrarAddress(req.body);
         res.sendStatus(200);
+        
     }catch(err){
         console.err(`Erro: ${err}`);
         res.sendStatus(500);

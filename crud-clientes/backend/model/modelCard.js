@@ -1,6 +1,5 @@
 const db = require('../config/db');
 
-
 //INSERT
 
 //Inserindo um novo cartão no banco de dados

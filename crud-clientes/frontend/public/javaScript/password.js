@@ -17,28 +17,34 @@ document.querySelector('form').addEventListener('submit', async function(event){
         const senhaNova = document.querySelector('.senha-nova').value;
         const senhaRep = document.querySelector('.senha-rep').value;
 
-        if((senhaNova === senhaRep) && (senhaNova !== '' && senhaRep !== '')){
+        if(senhaNova.trim() !== '' && senhaRep.trim() !== ''){
+            if((senhaNova === senhaRep)){
 
-            //Alterando a senha do banco
-            const status = await alterarSenhaClienteService({
-                clt_senha: senhaNova
-            }, clt_id);
-
-            if(status === 204){
-                alert('Senha alterada com sucesso!');
+                //Alterando a senha do banco
+                const status = await alterarSenhaClienteService({
+                    clt_senha: senhaNova
+                }, clt_id);
+    
+                if(status === 204){
+                    alert('Senha alterada com sucesso!');
+                    return;
+                }
+    
+                alert('Não foi possível alterar a senha');
                 return;
             }
 
-            alert('Não foi possível alterar a senha');
+            alert('Repetição da senha diferente da senha nova');
             return;
+
         }
         
-        alert('Senhas são diferentes ou os campos estão vazios');
+        alert('Campos estão vazios');
         return;
         
     }
 
-    alert('Senha não bate com a atual');
+    alert('Senha não bate com a atual cadastrada no banco');
     
 });
 

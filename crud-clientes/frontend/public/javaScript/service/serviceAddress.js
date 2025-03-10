@@ -1,4 +1,6 @@
 //POST
+
+//Cadastro de novos endereço no banco
 export async function cadastrarAddressService(dados, clt_id) {
     try{
         const result = await fetch(`/address/${clt_id}/add`, {
