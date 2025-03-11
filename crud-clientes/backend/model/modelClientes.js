@@ -55,7 +55,7 @@ async function atualizarCliente(dados, clt_id) {
 //Alterar senha cliente de um cliente
 async function alterarSenhaCliente(senha, id) {
     try{
-        await db.query(`update clientes set clt_senha = ${senha.clt_senha} where clt_id = ${id}`);
+        await db.query(`update clientes set clt_senha = ? where clt_id = ?`, [senha.clt_senha, id]);
     }catch(err){
         console.error(`Erro: ${err}`);
         throw err;
@@ -66,7 +66,7 @@ async function alterarSenhaCliente(senha, id) {
 //Inativando um cliente específico
 async function inativarCliente(id) {
     try{
-        await db.query(`update clientes set clt_status = 0 where clt_id = ${id}`);
+        await db.query(`update clientes set clt_status = 0 where clt_id = ?`, id);
     }catch(err){
         console.error(`Erro: ${err}`);
         throw err;
@@ -76,7 +76,7 @@ async function inativarCliente(id) {
 //Ativando um cliente específico
 async function ativarCliente(id) {
     try{
-        await db.query(`update clientes set clt_status = 1 where clt_id = ${id}`);
+        await db.query(`update clientes set clt_status = 1 where clt_id = ?`, id);
     }catch(err){
         console.error(`Erro: ${err}`);
         throw err;
@@ -121,7 +121,7 @@ async function buscarTodosClientes() {
 //Bsucando clientes por id
 async function buscarClienteId(id) {
     try{
-        const [cliente] = await db.query(`select * from clientes where clt_id = ${id}`);
+        const [cliente] = await db.query(`select * from clientes where clt_id = ?`, id);
         return cliente;
     }catch(err){
         console.error(`Erro: ${err}`);
