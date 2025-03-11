@@ -13,7 +13,7 @@ export async function signupAltService(cliente, clt_id) {
         return res.status;
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no signupAltService - serviceSignup: ${err}`);
         throw err;
     }
 }
@@ -33,7 +33,7 @@ export async function signupService(cliente) {
         return res.status;
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no signupService - serviceSignup: ${err}`);
         throw err;
     }
 }

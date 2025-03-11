@@ -18,7 +18,7 @@ async function cadastrarCartao(dados) {
     ]
 
     await db.query(sql, valores)
-        .catch(err => `Erro ao cadastrar cartão ${err}`);
+        .catch(err => `Erro no cadastrarCartao - modelCard: ${err}`);
     
 }
 
@@ -38,7 +38,7 @@ async function atualizarCard(dados, car_id) {
         return cartao;
         
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no atualizarCard - modelCard: ${err}`);
         throw err;
     }
 
@@ -52,7 +52,7 @@ async function buscarTodosCartoes() {
         const [cartoes] = await db.query('select * from cartoes');
         return cartoes;
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarTodosCartoes - modelCard: ${err}`);
         throw err;
     }
 }
@@ -63,7 +63,7 @@ async function buscarCartaoId(id) {
         const [cartao] = await db.query(`select * from cartoes where car_id = ?`, id);
         return cartao;
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarCartaoId - modelCard: ${err}`);
         throw err;
     }
 }
@@ -75,7 +75,7 @@ async function buscarCartoesClienteId(id) {
         return cartoes;
         
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarCartoesClienteId - modelCard: ${err}`);
         throw err;
     }
 }

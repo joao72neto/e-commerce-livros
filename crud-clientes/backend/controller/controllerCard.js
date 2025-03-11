@@ -23,7 +23,7 @@ module.exports.postCardAdd = async (req, res) => {
         res.sendStatus(200);
         
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no postCardAdd - controllerCard: ${err}`);
         res.sendStatus(500);
     }
 };

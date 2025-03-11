@@ -12,7 +12,7 @@ export async function cadastrarCardService(dados, clt_id) {
         return result;
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no cadastrarCardService - serviceCard: ${err}`);
         throw err;
     }
 }
@@ -32,7 +32,7 @@ export async function atualizarCardService(dados, clt_id, car_id) {
         return result;
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no atualizarCardService - serviceCard: ${err}`);
         throw err;
     }
 }

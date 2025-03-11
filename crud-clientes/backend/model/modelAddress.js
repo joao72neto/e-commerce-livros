@@ -24,7 +24,7 @@ async function cadastrarAddress(dados) {
     ]
 
     await db.query(sql, valores)
-        .catch(err => console.error(`Erro ao cadastrar o endereço: ${err}`));
+        .catch(err => console.error(`Erro no cadastrarAddress - modelAddress: ${err}`));
 }
 
 //UPDATE
@@ -43,7 +43,7 @@ async function atualizarAddress(dados, end_id) {
         return endereco;
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no atualizarAddress - modelAddress: ${err}`);
         throw err;
     }
 
@@ -57,7 +57,7 @@ async function buscarTodosEnderecos() {
         const [enderecos] = await db.query('select * from enderecos');
         return enderecos;
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarTodosEnderecos - modelAddress: ${err}`);
         throw err;
     }
 }
@@ -68,7 +68,7 @@ async function buscarEnderecoId(id) {
         const [endereco] = await db.query(`select * from enderecos where end_id = ?`, id);
         return endereco;
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarEnderecoId - modelAddress: ${err}`);
         throw err;
     }
 }
@@ -79,7 +79,7 @@ async function buscarEnderecosClienteId(id) {
         const [enderecos] = await db.query(`select * from enderecos where end_clt_id = ?`, id);
         return enderecos;
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarEnderecosClienteId - modelAddress: ${err}`);
         throw err;
     }
 }

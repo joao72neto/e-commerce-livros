@@ -29,7 +29,7 @@ module.exports.putSignupAlt = async (req, res) => {
         
         res.sendStatus(200);
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no putSignupAlt - controllerSignup: ${err}`);
         res.sendStatus(500);
     }
 
@@ -50,7 +50,7 @@ module.exports.postSignup = async (req, res) => {
         
         res.sendStatus(200);
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no postSignup - controllerSignup: ${err}`);
         res.sendStatus(500);
 
     }

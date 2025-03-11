@@ -11,7 +11,7 @@ module.exports.patchPassword =  async (req, res) => {
         await alterarSenhaCliente(req.body, req.params.clt_id);
         res.sendStatus(204);
     }catch(err){
-        console.error(err);
+        console.error(`Erro no patchPassword - controllerPassword ${err}`);
         res.sendStatus(500);
     }
 };

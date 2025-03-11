@@ -30,7 +30,7 @@ module.exports.postAddressAdd = async (req, res) => {
         res.sendStatus(200);
         
     }catch(err){
-        console.err(`Erro: ${err}`);
+        console.err(`Erro no postAddressAdd - controllerAddress: ${err}`);
         res.sendStatus(500);
     }
 };

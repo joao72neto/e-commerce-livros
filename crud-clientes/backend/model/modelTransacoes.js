@@ -9,7 +9,7 @@ async function buscarTodasTransacoes() {
         return transacoes;
         
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarTodasTransacoes - modelTransacoes: ${err}`);
         throw err;
     }
 }
@@ -21,7 +21,7 @@ async function buscarTransacoesClienteId(id) {
         return transacoes;
         
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarTransacoesClienteId - modelTransacoes: ${err}`);
         throw err;
     }
 }

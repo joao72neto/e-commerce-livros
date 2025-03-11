@@ -27,6 +27,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
     
                 if(status === 204){
                     alert('Senha alterada com sucesso!');
+                    window.location.reload();
                     return;
                 }
     

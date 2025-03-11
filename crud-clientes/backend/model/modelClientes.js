@@ -24,7 +24,7 @@ async function cadastrarCliente(dados) {
         const [result] = await db.query(sql, valores);
         return result.insertId;
     }catch(err){
-        console.error(`Erro ao cadastrar o cliente ${err}`);
+        console.error(`Erro no cadastrarCliente - modelClientes: ${err}`);
         throw err;
     } 
     
@@ -46,7 +46,7 @@ async function atualizarCliente(dados, clt_id) {
         return cliente;
         
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no atualizarCliente - modelClientes: ${err}`);
         throw err;
     }
 
@@ -57,7 +57,7 @@ async function alterarSenhaCliente(senha, id) {
     try{
         await db.query(`update clientes set clt_senha = ? where clt_id = ?`, [senha.clt_senha, id]);
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no alterarSenhaCliente - modelClientes: ${err}`);
         throw err;
     }
 }
@@ -68,7 +68,7 @@ async function inativarCliente(id) {
     try{
         await db.query(`update clientes set clt_status = 0 where clt_id = ?`, id);
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no inativarCliente - modelClientes: ${err}`);
         throw err;
     }
 }
@@ -78,7 +78,7 @@ async function ativarCliente(id) {
     try{
         await db.query(`update clientes set clt_status = 1 where clt_id = ?`, id);
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no ativarCliente - modelClientes: ${err}`);
         throw err;
     }
 }
@@ -91,7 +91,7 @@ async function buscarClientesAtivos() {
         const [clientes] = await db.query('select * from clientes where clt_status = 1');
         return clientes;
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarClientesAtivos - modelClientes: ${err}`);
         throw err;
     }
 }
@@ -102,7 +102,7 @@ async function buscarClientesInativos() {
         const [clientes] = await db.query('select * from clientes where clt_status = 0');
         return clientes;
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarClientesInativos - modelClientes: ${err}`);
         throw err;
     }
 }
@@ -113,7 +113,7 @@ async function buscarTodosClientes() {
         const [clientes] = await db.query('select * from clientes');
         return clientes;
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarTodosClientes - modelClientes: ${err}`);
         throw err;
     }
 }
@@ -124,7 +124,7 @@ async function buscarClienteId(id) {
         const [cliente] = await db.query(`select * from clientes where clt_id = ?`, id);
         return cliente;
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarClienteId - modelClientes: ${err}`);
         throw err;
     }
 }

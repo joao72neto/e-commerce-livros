@@ -13,7 +13,7 @@ module.exports.patchInativarCliente = async (req, res) => {
         await inativarCliente(req.params.clt_id);
         res.sendStatus(204);
     }catch(err){
-        console.error(err);
+        console.error(`Erro no inativarCliente - controllerCliente: ${err}`);
         res.sendStatus(500);
     }
 };
@@ -24,7 +24,7 @@ module.exports.patchAtivarCliente = async (req, res) => {
         await ativarCliente(req.params.clt_id);
         res.sendStatus(204)
     }catch(err){
-        console.err(err);
+        console.err(`Erro no patchAtivarCliente - controllerCliente: ${err}`);
         res.sendStatus(500);
     }
     

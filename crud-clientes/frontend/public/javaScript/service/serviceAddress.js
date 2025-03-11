@@ -12,7 +12,7 @@ export async function cadastrarAddressService(dados, clt_id) {
         return result;
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no cadastrarAddressService - serviceAddress: ${err}`);
         throw err;
     }
 }
@@ -32,7 +32,7 @@ export async function atualizarAddressService(dados, clt_id, end_id) {
         return result;
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no atualizarAddressService - serviceAddress: ${err}`);
         throw err;
     }
 }
@@ -48,7 +48,7 @@ export async function buscarEnderecoIdService(id) {
         return endereco[0];
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarEnderecoIdService - serviceAddress: ${err}`);
         throw err;
     }
 }

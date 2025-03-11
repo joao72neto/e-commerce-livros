@@ -12,7 +12,7 @@ export async function alterarSenhaClienteService(senha, id) {
         return res.status;
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no alterarSenhaClienteService - serviceClientes: ${err}`);
         return 500;
     }
 }
@@ -24,7 +24,7 @@ export async function inativarClienteService(id) {
         return res.status;
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no inativarClienteService - serviceClientes: ${err}`);
         return 500;
     }
     
@@ -37,7 +37,7 @@ export async function ativarClienteService(id) {
         return res.status;
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no ativarClienteService - serviceClientes: ${err}`);
         return 500;
     }
     
@@ -54,7 +54,7 @@ export async function buscarClienteIdService(id) {
         return cliente[0];
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarClienteIdService - serviceClientes: ${err}`);
         throw err;
     }
 }
@@ -68,7 +68,7 @@ export async function buscarClientesAtivosService() {
         return clientes;
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarClientesAtivosService - serviceClientes: ${err}`);
         throw err;
     }
 }
@@ -82,7 +82,7 @@ export async function buscarClientesInativosService() {
         return clientes;
 
     }catch(err){
-        console.error(`Erro: ${err}`);
+        console.error(`Erro no buscarClientesInativosService - serviceClientes: ${err}`);
         throw err;
     }
 }
