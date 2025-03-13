@@ -3,8 +3,8 @@ const { buscarClientesInativos } = require("../../../backend/model/modelClientes
 
 jest.mock("../../../backend/model/modelClientes")
 
-//Páginas
-test('Retornar os clientes inativos e renderizar a página corretamente', async () => {
+
+test('Deve testar a exibição dos clientes inativos', async () => {
 
     //Criando um mock dos dados de um cliente inativo
     const mockClientes = 

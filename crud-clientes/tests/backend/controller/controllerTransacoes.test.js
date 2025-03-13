@@ -5,7 +5,7 @@ const { buscarTransacoesClienteId } = require('../../../backend/model/modelTrans
 jest.mock('../../../backend/model/modelTransacoes');
 
 //Páginas
-test('Retornar as transacoes do cliente e renderizar a página corretamente', async () => {
+test('Deve testar a exibição das transações dos clientes', async () => {
     const mockTransacoes = [
         {
             trs_id: 1, 
