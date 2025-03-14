@@ -16,7 +16,7 @@ module.exports.getSignupAlt = async (req, res) =>{
         cliente: cliente,
         enderecos: enderecos,
         cartoes: cartoes
-    })
+    });
 };
 
 //Atualizando os dados do banco

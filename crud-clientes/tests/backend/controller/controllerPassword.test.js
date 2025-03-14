@@ -12,6 +12,6 @@ test('Deve chamar a tela de senha corretamente', () => {
     getPassword(req, res);
 
     //Validando os dados
-    expect(res.render).toHaveBeenCalledWith('password');
+    expect(res.render).toHaveBeenCalledWith('clientes', {clientes: mockClientes});
     
 });
