@@ -31,7 +31,7 @@ test('Deve testar a exibição dos clientes inativos', async () => {
             "clt_email": "maria.silva@example.com",
             "clt_senha": "password123",
             "clt_ranking": 5,
-            "clt_status": 1
+            "clt_status": 0
         }
     ]
     
