@@ -1,5 +1,10 @@
 import { signupService } from "/javaScript/service/serviceSignup.js";
 
+
+//VALIDANDO OS DADOS DO FORMULÁRIO
+
+document.querySelector('')
+
 //PASSANDO OS DADOS PARA CADASTRO
 document.querySelector('form').addEventListener('submit', async function (event) {
     
@@ -53,4 +58,5 @@ document.querySelector('form').addEventListener('submit', async function (event)
     alert('Não foi posível cadastrar o cliente');
 
 });
+
 
