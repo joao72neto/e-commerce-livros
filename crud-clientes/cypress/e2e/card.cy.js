@@ -1,6 +1,6 @@
 describe('Teste de Cadastro de Cartão', () => {
     beforeEach(() => {
-      cy.visit('/'); // Ajuste a URL conforme necessário
+      cy.visit('/'); 
     });
   
     it('Deve preencher e submeter o formulário de adição de cartão', () => {
@@ -9,7 +9,7 @@ describe('Teste de Cadastro de Cartão', () => {
       cy.get('.alt_submenu a[href^="/card"]').click();
       cy.get('.card-add').click()
   
-      // Preenchendo os campos do formulário
+      // Preenchendo os campos do formulário 
       cy.get('input[name="numero_cartao"]').type('1234123412341234');
       cy.get('input[name="nome_cartao"]').type('JOAO SILVA');
       cy.get('input[name="bandeira_cartao"]').type('Visa');
@@ -18,15 +18,15 @@ describe('Teste de Cadastro de Cartão', () => {
       // Clicando no botão de adicionar
       cy.get('button').click();
   
-      // Retornando para a tela anterior
+      // Voltando para a página inicial
       cy.get('.voltar').click();
       cy.get('.voltar').click();
     });
-  });
+});
 
-  describe('Teste de Alteração de Cartão', () => {
+describe('Teste de Alteração de Cartão', () => {
     beforeEach(() => {
-      cy.visit('/'); // Ajuste a URL conforme necessário
+      cy.visit('/'); 
     });
   
     it('Deve preencher e submeter o formulário de alteração de cartão', () => {
@@ -48,5 +48,5 @@ describe('Teste de Cadastro de Cartão', () => {
       cy.get('.voltar').click();
       cy.get('.voltar').click();
     });
-  });
+});
   

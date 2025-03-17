@@ -1,40 +1,46 @@
 describe('Teste de Cadastro de Endereço', () => {
     beforeEach(() => {
-      cy.visit('/'); // Ajuste a URL conforme necessário
+      cy.visit('/'); 
     });
   
     it('Deve preencher e submeter o formulário de adição de endereço', () => {
-  
-      cy.get('.acoes .alt').first().click();
-      cy.get('.alt_submenu a[href^="/address"]').click();
-      cy.get('.endereco-add .add').first().click();
-  
-      cy.get('#tipo_residencia').type('Apartamento');
-      cy.get('#tipo_logradouro').type('Rua');
-      cy.get('#logradouro').type('Avenida Paulista');
-      cy.get('#numero').type('1000');
-      cy.get('#bairro').type('Bela Vista');
-      cy.get('#cep').type('01311000');
-      cy.get('#cidade').type('São Paulo');
-      cy.get('#estado').type('SP');
-      cy.get('#pais').type('Brasil');
-      cy.get('#observacoes').type('Endereço principal para cobrança');
-  
-      cy.get('button').click();
-      cy.get('.voltar').click();
-      cy.get('.voltar').click();
-   
+        
+        // Indo até a página de cadastro de endereço
+        cy.get('.acoes .alt').first().click();
+        cy.get('.alt_submenu a[href^="/address"]').click();
+        cy.get('.endereco-add .add').first().click();
+
+        // Preenchendo os dados
+        cy.get('#tipo_residencia').type('Apartamento');
+        cy.get('#tipo_logradouro').type('Rua');
+        cy.get('#logradouro').type('Avenida Paulista');
+        cy.get('#numero').type('1000');
+        cy.get('#bairro').type('Bela Vista');
+        cy.get('#cep').type('01311000');
+        cy.get('#cidade').type('São Paulo');
+        cy.get('#estado').type('SP');
+        cy.get('#pais').type('Brasil');
+        cy.get('#observacoes').type('Endereço principal para cobrança');
+
+        // Cadastrando
+        cy.get('button').click();
+
+        // Voltando para a página principal
+        cy.get('.voltar').click();
+        cy.get('.voltar').click();
+
   
     });
-  });
+});
 
-  describe('Teste de alteração de endereço', () => {
+describe('Teste de alteração de endereço', () => {
     beforeEach(() => {
-        cy.visit('/'); // Ajuste conforme a URL da sua aplicação
+        cy.visit('/'); 
     });
   
     it('Deve preencher e alterar um endereço existente', () => {
   
+        // Indo até a página de alteralção de endereço
         cy.get('.acoes .alt').first().click();
         cy.get('.alt_submenu a[href^="/address"]').click();
         cy.get('.acoes-address .alt').first().click();
@@ -54,8 +60,9 @@ describe('Teste de Cadastro de Endereço', () => {
         // Clicando no botão Alterar
         cy.contains('button', 'Alterar').click();
   
+        //Voltando para a página inicial
         cy.get('.voltar').click();
         cy.get('.voltar').click();
   
     });
-  });
+});

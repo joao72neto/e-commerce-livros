@@ -6,8 +6,10 @@ describe('Teste de Cadastro de Dados dos Clientes', () => {
   
     it('Preenche e envia o formulário de cadastro', () => {
     
+        // Indo para a página de cadastro de cliente
         cy.get('a[href="/signup"]').click();
   
+        // Preenchendo os dados do cliente
         cy.get('#nome').type('João da Silva');
         cy.get('#email').type('joao@email.com');
         cy.get('#telefone').type('5511999999999');
@@ -17,6 +19,7 @@ describe('Teste de Cadastro de Dados dos Clientes', () => {
         cy.get('#senha').type('novaSenha123');
         cy.get('#confirma_senha').type('novaSenha123');
   
+        // Preenchendo os dados do endereço do cliente
         cy.get('#tipo_residencia').type('Apartamento');
         cy.get('#tipo_logradouro').type('Rua');
         cy.get('#logradouro').type('Av. Paulista');
@@ -28,27 +31,33 @@ describe('Teste de Cadastro de Dados dos Clientes', () => {
         cy.get('#pais').type('Brasil');
         cy.get('#observacoes').type('Cliente VIP');
   
+        // Preenchendo os dados do catão do cliente
         cy.get('[name="numero_cartao"]').type('4111111111111111');
         cy.get('[name="nome_cartao"]').type('João da Silva');
         cy.get('[name="bandeira_cartao"]').type('Visa');
         cy.get('[name="codigo_seguranca"]').type('123');
   
+        // Confirmando 
         cy.get('button[type="submit"]').click();
+
+        // Voltando para a página inicial
         cy.get('.voltar').click();
   
     });
-  });
+});
 
-  describe('Teste de Alteração de Dados do Cliente', () => {
+describe('Teste de Alteração de Dados do Cliente', () => {
     beforeEach(() => {
-        cy.visit('/'); // Altere para a URL correta
+        cy.visit('/'); 
     });
   
     it('Deve preencher e submeter o formulário de alteração', () => {
   
+        // Indo para a página de alteração de cliente
         cy.get('.acoes .alt').first().click();
         cy.get('.alt_submenu a[href^="/signup"]').click();
-  
+
+        // Modificando os dados do cliente
         cy.get('#nome').clear().type('Novo Nome');
         cy.get('#email').clear().type('novoemail@example.com');
         cy.get('#telefone').clear().type('5511999999999');
@@ -58,6 +67,7 @@ describe('Teste de Cadastro de Dados dos Clientes', () => {
         cy.get('#senha').clear().type('novaSenha123');
         cy.get('#confirma_senha').clear().type('novaSenha123');
         
+        // Modificando o endereço do cliente
         cy.get('#tipo_residencia').clear().type('Apartamento');
         cy.get('#tipo_logradouro').clear().type('Rua');
         cy.get('#logradouro').clear().type('Nova Rua');
@@ -69,28 +79,39 @@ describe('Teste de Cadastro de Dados dos Clientes', () => {
         cy.get('#pais').clear().type('Brasil');
         cy.get('#observacoes').clear().type('Cliente VIP');
         
+        // Modificando o cartão do cliente
         cy.get('input[name="numero_cartao"]').clear().type('4111111111111111');
         cy.get('input[name="nome_cartao"]').clear().type('Novo Nome');
         cy.get('input[name="bandeira_cartao"]').clear().type('Visa');
         cy.get('input[name="codigo_seguranca"]').clear().type('123');
         
+        // Confirmando as alterações
         cy.get('button[type="submit"]').click();
+
+        // Voltando para a página principal
         cy.get('.voltar').click();
         
     });
-  });
+});
 
-  describe('Teste de Inativação e Reativação de Usuário', () => {
+describe('Teste de Inativação e Reativação de Usuário', () => {
     beforeEach(() => {
-      cy.visit('/'); // Ajuste a URL conforme necessário
+      cy.visit('/'); 
     });
   
     it('Deve inativar e reativar um usuário corretamente', () => {
   
-      cy.get('.acoes .inat').first().click();
-      cy.get('#btn-inativados').should('exist').click();
-      cy.get('.btn-inat').click();
-      cy.get('.voltar').click();
+        // Inativando um cliente
+        cy.get('.acoes .inat').first().click();
+
+        // Indo para a página de inativos
+        cy.get('#btn-inativados').should('exist').click();
+
+        // Reativando o cliente
+        cy.get('.btn-inat').click();
+
+        // Voltando para a página inicial
+        cy.get('.voltar').click();
   
     });
-  });
+});
