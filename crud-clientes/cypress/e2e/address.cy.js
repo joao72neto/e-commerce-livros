@@ -66,3 +66,23 @@ describe('Teste de alteração de endereço', () => {
   
     });
 });
+
+describe('Teste de Exibição de Popup', () => {
+    beforeEach(() => {
+      cy.visit('/'); 
+    });
+  
+    it('Deve mostrar o popup do cliente corretamente', () => {
+        
+        //Indo para a págine de endereços
+        cy.get('.acoes .alt').first().click();
+        cy.get('.alt_submenu a[href^="/address"]').click();
+        
+        //Clicando no primeiro endereço
+        cy.get('.endereco').first().click();
+
+        //Fechando o popup caso ele seja exibido
+        cy.get('.popup button').should('exist').click();
+
+    });
+});

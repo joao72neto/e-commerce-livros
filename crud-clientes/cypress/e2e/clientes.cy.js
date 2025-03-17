@@ -129,6 +129,5 @@ describe('Teste de Exibição de Popup', () => {
         //Fechando o popup caso ele seja exibido
         cy.get('.popup button').should('exist').click();
 
-
     });
 });
