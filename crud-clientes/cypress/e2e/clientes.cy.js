@@ -115,3 +115,20 @@ describe('Teste de Inativação e Reativação de Usuário', () => {
   
     });
 });
+
+describe('Teste de Exibição de Popup', () => {
+    beforeEach(() => {
+      cy.visit('/'); 
+    });
+  
+    it('Deve mostrar o popup do cliente corretamente', () => {
+        
+        //Clicando no primeiro cliente
+        cy.get('.cliente').first().click();
+
+        //Fechando o popup caso ele seja exibido
+        cy.get('.popup button').should('exist').click();
+
+
+    });
+});
