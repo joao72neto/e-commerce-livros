@@ -1,31 +1,40 @@
 describe('Teste de Recuperação de Senha', () => {
     beforeEach(() => {
-  
-      cy.visit('/'); 
-  
+        cy.visit('/'); 
     });
   
+      
     it('Deve permitir a recuperação de senha', () => {
-  
-        // Indo para a página de recuperação de senha
-        cy.get('.acoes .alt').first().click();
-        cy.get('.alt_submenu a[href^="/password"]').click();
 
-        // Preenche os campos do formulário
-        cy.get('.senha-atual').type('novaSenha123');  // Senha atual
-        cy.get('.senha-nova').type('novaSenha123');   // Nova senha
-        cy.get('.senha-rep').type('novaSenha123');    // Repete a nova senha
+        // Obtendo o id do cliente
+        cy.get('.cliente-id').first().invoke('text').then((clienteId) => {
+            
+            // Pegando os dados do cliente com base no id
+            cy.request(`/api/clientes/id/${clienteId}`).then((response) => {
+                const cliente = response.body[0];
 
-        // Submete o formulário
-        cy.get('form').submit();
+                // Indo para a página de recuperação de senha
+                cy.get('.acoes .alt').first().click();
+                cy.get('.alt_submenu a[href^="/password"]').click();
 
-        // Verifica se a senha foi alterada com sucesso
-        cy.on('window:alert', (alertText) => {
-            expect(alertText).to.contains('Senha alterada com sucesso!');
+                // Preenche os campos do formulário
+                cy.get('.senha-atual').type(cliente.clt_senha); 
+                cy.get('.senha-nova').type('novaSenha123');   
+                cy.get('.senha-rep').type('novaSenha123');    
+    
+                // Submete o formulário
+                cy.get('form').submit();
+    
+                // Verifica se a senha foi alterada com sucesso
+                cy.on('window:alert', (alertText) => {
+                    expect(alertText).to.contains('Senha alterada com sucesso!');
+                });
+    
+                // Confirmando se a página foi recarregada
+                cy.reload();
+
+            });
         });
-
-        // Confirma se a página foi recarregada após a alteração da senha
-        cy.reload();
     });
   
     it('Deve exibir alerta de erro se a senha atual estiver incorreta', () => {
@@ -50,42 +59,61 @@ describe('Teste de Recuperação de Senha', () => {
   
     it('Deve exibir alerta de erro se as senhas não coincidirem', () => {
   
-        //Indo para a página de recuperação de senha
-        cy.get('.acoes .alt').first().click();
-        cy.get('.alt_submenu a[href^="/password"]').click();
 
-        // Preenche com a senha atual correta, mas senhas novas diferentes
-        cy.get('.senha-atual').type('novaSenha123');  
-        cy.get('.senha-nova').type('novaSenha123');    
-        cy.get('.senha-rep').type('senhaDiferente123'); 
+        // Obtendo o id do cliente
+        cy.get('.cliente-id').first().invoke('text').then((clienteId) => {
+                
+            // Pegando os dados do cliente com base no id
+            cy.request(`/api/clientes/id/${clienteId}`).then((response) => {
+                const cliente = response.body[0];
 
-        // Submete o formulário
-        cy.get('form').submit();
+                //Indo para a página de recuperação de senha
+                cy.get('.acoes .alt').first().click();
+                cy.get('.alt_submenu a[href^="/password"]').click();
 
-        // Verifica se o alerta de erro aparece
-        cy.on('window:alert', (alertText) => {
-            expect(alertText).to.contains('Repetição da senha diferente da senha nova');
-        });
+                // Preenche com a senha atual correta, mas senhas novas diferentes
+                cy.get('.senha-atual').type(cliente.clt_senha);  
+                cy.get('.senha-nova').type('novaSenha123');    
+                cy.get('.senha-rep').type('senhaDiferente123'); 
+
+                // Submete o formulário
+                cy.get('form').submit();
+
+                // Verifica se o alerta de erro aparece
+                cy.on('window:alert', (alertText) => {
+                    expect(alertText).to.contains('Repetição da senha diferente da senha nova');
+                });
+            });
+        }); 
     });
   
     it('Deve exibir alerta de erro se campos estiverem vazios', () => {
   
-        //Indo para a página de recuperação de senha
-        cy.get('.acoes .alt').first().click();
-        cy.get('.alt_submenu a[href^="/password"]').click();
+        // Obtendo o id do cliente
+        cy.get('.cliente-id').first().invoke('text').then((clienteId) => {
+                
+            // Pegando os dados do cliente com base no id
+            cy.request(`/api/clientes/id/${clienteId}`).then((response) => {
+                const cliente = response.body[0];
 
-        // Deixa campos vazios
-        cy.get('.senha-atual').type('novaSenha123'); 
-        cy.get('.senha-nova').clear();
-        cy.get('.senha-rep').clear();
+                //Indo para a página de recuperação de senha
+                cy.get('.acoes .alt').first().click();
+                cy.get('.alt_submenu a[href^="/password"]').click();
 
-        // Submete o formulário
-        cy.get('form').submit();
+                // Deixa campos vazios
+                cy.get('.senha-atual').type(cliente.clt_senha); 
+                cy.get('.senha-nova').clear();
+                cy.get('.senha-rep').clear();
 
-        // Verifica se o alerta de erro aparece
-        cy.on('window:alert', (alertText) => {
-            expect(alertText).to.contains('Campos estão vazios');
-        });
+                // Submete o formulário
+                cy.get('form').submit();
+
+                // Verifica se o alerta de erro aparece
+                cy.on('window:alert', (alertText) => {
+                    expect(alertText).to.contains('Campos estão vazios');
+                });
+            });
+        });   
     });
 });
   
