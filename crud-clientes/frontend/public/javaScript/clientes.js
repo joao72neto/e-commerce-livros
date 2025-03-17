@@ -79,7 +79,7 @@ document.querySelectorAll('.inat').forEach(button => {
 
 
 //Função que cria um botão dinânimo para a tela de inativos
-function criarBotaoInativados() {
+export function criarBotaoInativados() {
     if (!document.getElementById('btn-inativados')) {
         let botao = document.createElement('a');
         botao.id = 'btn-inativados';

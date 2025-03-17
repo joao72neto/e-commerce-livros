@@ -13,7 +13,7 @@ module.exports.getCardAdd = async (req, res) => {
 
 module.exports.getCardAlt = async (req, res) => {
     const cartoes = await buscarCartaoId(req.params.car_id);
-    res.render('card/card-alt', {cartao: cartoes});
+    res.render('card/card-alt', {cartoes: cartoes});
 };
 
 //Inserção de dados
