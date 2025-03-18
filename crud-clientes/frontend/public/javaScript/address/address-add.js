@@ -31,7 +31,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
     let result = await cadastrarAddressService(address, clt_id);
     
     if(result.status === 200){
-        alert('Endereço foi cadastrado com sucessor!');
+        alert('Endereço foi cadastrado com sucesso!');
         return;
     }
 

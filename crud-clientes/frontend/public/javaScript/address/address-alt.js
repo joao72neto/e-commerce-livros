@@ -28,7 +28,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
     let result = await atualizarAddressService(address, clt_id, end_id);
     
     if(result.status === 200){
-        alert('Endereço foi atualizado com sucessor!');
+        alert('Endereço foi atualizado com sucesso!');
         return;
     }
 

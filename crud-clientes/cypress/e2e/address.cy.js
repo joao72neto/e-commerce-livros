@@ -25,6 +25,11 @@ describe('Teste de Cadastro de Endereço', () => {
         // Cadastrando
         cy.get('button').click();
 
+        //Verificando se a msg de cadastro está sendo exibida corretamente
+        cy.on('window:alert', (alertText) => {
+            expect(alertText).to.contains('Endereço foi cadastrado com sucesso!');
+        });
+
         // Voltando para a página principal
         cy.get('.voltar').click();
         cy.get('.voltar').click();
@@ -59,6 +64,11 @@ describe('Teste de alteração de endereço', () => {
   
         // Clicando no botão Alterar
         cy.contains('button', 'Alterar').click();
+
+        //Verificando se a msg de alteração de dados está sendo exibida corretamente
+        cy.on('window:alert', (alertText) => {
+            expect(alertText).to.contains('Endereço foi atualizado com sucesso!');
+        });
   
         //Voltando para a página inicial
         cy.get('.voltar').click();
