@@ -93,6 +93,11 @@ describe('Teste de Alteração de Dados do Cliente', () => {
         // Confirmando as alterações
         cy.get('button[type="submit"]').click();
 
+        //Verificando se a msg de atualização de dados está sendo exibida corretamente
+        cy.on('window:alert', (alertText) => {
+            expect(alertText).to.contains('Cliente foi atualizado com sucesso!');
+        });
+
         // Voltando para a página principal
         cy.get('.voltar').click();
         
