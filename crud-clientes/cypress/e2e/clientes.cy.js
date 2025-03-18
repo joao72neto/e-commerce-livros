@@ -11,7 +11,7 @@ describe('Teste de Cadastro de Dados dos Clientes', () => {
   
         // Preenchendo os dados do cliente
         cy.get('#nome').type('João da Silva');
-        cy.get('#email').type('joao@email.com');
+        cy.get('#email').type('joao.teste@email.com');
         cy.get('#telefone').type('5511999999999');
         cy.get('#cpf').type('12345678900');
         cy.get('#gen01').check(); 
@@ -25,7 +25,7 @@ describe('Teste de Cadastro de Dados dos Clientes', () => {
         cy.get('#logradouro').type('Av. Paulista');
         cy.get('#numero').type('123');
         cy.get('#bairro').type('Centro');
-        cy.get('#cep').type('01000000');
+        cy.get('#cep').type('01000-000');
         cy.get('#cidade').type('São Paulo');
         cy.get('#estado').type('SP');
         cy.get('#pais').type('Brasil');
@@ -39,6 +39,11 @@ describe('Teste de Cadastro de Dados dos Clientes', () => {
   
         // Confirmando 
         cy.get('button[type="submit"]').click();
+
+        //Verificando se a msg de cadastro está sendo exibida corretamente
+        cy.on('window:alert', (alertText) => {
+            expect(alertText).to.contains('Cliente foi Cadastrado com Sucesso!');
+        });
 
         // Voltando para a página inicial
         cy.get('.voltar').click();
