@@ -14,33 +14,48 @@ document.querySelector('form').addEventListener('submit', async function(event){
 
     if(cliente.clt_senha == senhaAtual){
 
-        const senhaNova = document.querySelector('.senha-nova').value;
-        const senhaRep = document.querySelector('.senha-rep').value;
+        //Validando a senha
+        const senha = this.querySelector('.senha-nova').value;
+        const senhaRep = this.querySelector('.senha-rep').value
 
-        if(senhaNova.trim() !== '' && senhaRep.trim() !== ''){
-            if((senhaNova === senhaRep)){
+        const requisitos = [
+            { regex: /[a-z]/, mensagem: "A senha deve conter pelo menos uma letra minúscula." },
+            { regex: /[A-Z]/, mensagem: "A senha deve conter pelo menos uma letra maiúscula." },
+            { regex: /[\W_]/, mensagem: "A senha deve conter pelo menos um caractere especial." },
+            { regex: /.{8,}/, mensagem: "A senha deve ter pelo menos 8 caracteres." }
+        ];
 
-                //Alterando a senha do banco
-                const status = await alterarSenhaClienteService({
-                    clt_senha: senhaNova
-                }, clt_id);
-    
-                if(status === 204){
-                    alert('Senha alterada com sucesso!');
-                    window.location.reload();
-                    return;
-                }
-    
-                alert('Não foi possível alterar a senha');
-                return;
-            }
+        const erros = requisitos
+            .filter(req => !req.regex.test(senha))
+            .map(req => req.mensagem);
 
-            alert('Repetição da senha diferente da senha nova');
+        if(senhaRep === '' && senha === ''){
+            alert('Preencha os campos vazios');
             return;
-
         }
-        
-        alert('Campos estão vazios');
+
+        if(senhaRep !== senha){
+            alert('A senha não bate com a sua repetiçao');
+            return;
+        }
+
+        if(erros.length > 0){
+            alert(erros.join('\n'));
+            return;
+        }
+
+        // Alterando a senha do banco
+        const status = await alterarSenhaClienteService({
+            clt_senha: senha
+        }, clt_id);
+
+        if(status === 204){
+            alert('Senha alterada com sucesso!');
+            window.location.reload();
+            return;
+        }
+
+        alert('Não foi possível alterar a senha');
         return;
         
     }
