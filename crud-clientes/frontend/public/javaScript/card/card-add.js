@@ -1,7 +1,14 @@
 import { cadastrarCardService } from "/javaScript/service/serviceCard.js";
+import { validarCard } from "/javaScript/card/card-validacoes.js";
 
 //Enviando os dados para o backend
 document.querySelector('form').addEventListener('submit', async function(event){
+    
+    //Validando os dados do cartão
+    if(!validarCard(event)){
+        return;
+    }
+
     event.preventDefault();
 
     //Pegando os dados do forms
