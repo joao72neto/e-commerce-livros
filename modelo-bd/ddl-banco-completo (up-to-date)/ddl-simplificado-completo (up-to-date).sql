@@ -18,14 +18,17 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`clientes` (
   `clt_nome` VARCHAR(45) NOT NULL,
   `clt_genero` CHAR(1) NOT NULL,
   `clt_dataNasc` DATE NOT NULL,
-  `clt_cpf` CHAR(11) NOT NULL,
-  `clt_telefone` CHAR(13) NOT NULL,
+  `clt_cpf` VARCHAR(14) NOT NULL,
+  `clt_telefone` VARCHAR(20) NOT NULL,
   `clt_email` VARCHAR(45) NOT NULL,
-  `clt_senha` VARCHAR(45) NOT NULL,
+  `clt_senha` VARCHAR(255) NOT NULL,
   `clt_ranking` SMALLINT UNSIGNED NOT NULL,
   `clt_status` TINYINT(1) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`clt_id`)
-) ENGINE = InnoDB;
+  PRIMARY KEY (`clt_id`),
+  UNIQUE (`clt_email`),
+  UNIQUE (`clt_cpf`)
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`enderecos`
@@ -39,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`enderecos` (
   `end_logradouro` VARCHAR(45) NOT NULL,
   `end_numero` SMALLINT UNSIGNED NOT NULL,
   `end_bairro` VARCHAR(45) NOT NULL,
-  `end_cep` CHAR(8) NOT NULL,
+  `end_cep` VARCHAR(20) NOT NULL,
   `end_cidade` VARCHAR(45) NOT NULL,
   `end_estado` VARCHAR(45) NOT NULL,
   `end_pais` VARCHAR(45) NOT NULL,
@@ -49,7 +52,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`enderecos` (
     REFERENCES `e_commerce_books`.`clientes` (`clt_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`grupo_precificacao`
@@ -59,7 +63,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`grupo_precificacao` (
   `gpp_nome` VARCHAR(45) NOT NULL,
   `gpp_margemLucro` DECIMAL(5,2) NOT NULL,
   PRIMARY KEY (`gpp_id`)
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`autores`
@@ -68,7 +73,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`autores` (
   `aut_id` INT NOT NULL AUTO_INCREMENT,
   `aut_nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`aut_id`)
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`editora`
@@ -77,7 +83,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`editora` (
   `edt_id` INT NOT NULL AUTO_INCREMENT,
   `edt_nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`edt_id`)
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`livros`
@@ -115,7 +122,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`livros` (
     REFERENCES `e_commerce_books`.`editora` (`edt_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`categoria`
@@ -124,7 +132,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`categoria` (
   `cat_id` INT NOT NULL AUTO_INCREMENT,
   `cat_nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`cat_id`)
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`cartoes`
@@ -143,7 +152,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`cartoes` (
     REFERENCES `e_commerce_books`.`clientes` (`clt_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`fornecedor`
@@ -152,7 +162,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`fornecedor` (
   `for_id` INT NOT NULL AUTO_INCREMENT,
   `for_nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`for_id`)
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`estoque`
@@ -175,7 +186,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`estoque` (
     REFERENCES `e_commerce_books`.`livros` (`lvr_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`vendas`
@@ -199,7 +211,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`vendas` (
     REFERENCES `e_commerce_books`.`livros` (`lvr_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`carrinho`
@@ -222,7 +235,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`carrinho` (
     REFERENCES `e_commerce_books`.`livros` (`lvr_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`cupons`
@@ -240,7 +254,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`cupons` (
     REFERENCES `e_commerce_books`.`clientes` (`clt_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`trocas`
@@ -262,7 +277,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`trocas` (
     REFERENCES `e_commerce_books`.`livros` (`lvr_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`pagamento`
@@ -278,7 +294,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`pagamento` (
     REFERENCES `e_commerce_books`.`vendas` (`vnd_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`transacoes`
@@ -296,7 +313,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`transacoes` (
     REFERENCES `e_commerce_books`.`clientes` (`clt_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`historico_vendas`
@@ -313,7 +331,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`historico_vendas` (
     REFERENCES `e_commerce_books`.`livros` (`lvr_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`log`
@@ -330,7 +349,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`log` (
     REFERENCES `e_commerce_books`.`clientes` (`clt_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `e_commerce_books`.`livros_categorias`
@@ -350,7 +370,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`livros_categorias` (
     REFERENCES `e_commerce_books`.`categoria` (`cat_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-) ENGINE = InnoDB;
+)
+ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
