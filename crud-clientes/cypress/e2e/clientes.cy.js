@@ -16,8 +16,8 @@ describe('Teste de Cadastro de Dados dos Clientes', () => {
         cy.get('#cpf').type('12345678900');
         cy.get('#gen01').check(); 
         cy.get('#data').type('1990-05-15');
-        cy.get('#senha').type('novaSenha123');
-        cy.get('#confirma_senha').type('novaSenha123');
+        cy.get('#senha').type('novaSenha123@');
+        cy.get('#confirma_senha').type('novaSenha123@');
   
         // Preenchendo os dados do endereço do cliente
         cy.get('#tipo_residencia').type('Apartamento');
@@ -69,8 +69,8 @@ describe('Teste de Alteração de Dados do Cliente', () => {
         cy.get('#cpf').clear().type('09846758465');
         cy.get('#gen01').check();
         cy.get('#data').clear().type('1990-01-01');
-        cy.get('#senha').clear().type('novaSenha123');
-        cy.get('#confirma_senha').clear().type('novaSenha123');
+        cy.get('#senha').clear().type('novaSenha123@');
+        cy.get('#confirma_senha').clear().type('novaSenha123@');
         
         // Modificando o endereço do cliente
         cy.get('#tipo_residencia').clear().type('Apartamento');

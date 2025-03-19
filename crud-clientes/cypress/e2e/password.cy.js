@@ -19,8 +19,8 @@ describe('Teste de Recuperação de Senha', () => {
 
                 // Preenche os campos do formulário
                 cy.get('.senha-atual').type(cliente.clt_senha); 
-                cy.get('.senha-nova').type('novaSenha123');   
-                cy.get('.senha-rep').type('novaSenha123');    
+                cy.get('.senha-nova').type('novaSenha123@');   
+                cy.get('.senha-rep').type('novaSenha123@');    
     
                 // Submete o formulário
                 cy.get('form').submit();
@@ -44,9 +44,9 @@ describe('Teste de Recuperação de Senha', () => {
         cy.get('.alt_submenu a[href^="/password"]').click();
 
         // Preenche os campos do formulário com senha atual incorreta
-        cy.get('.senha-atual').type('senhaErrada123');  
-        cy.get('.senha-nova').type('novaSenha123');     
-        cy.get('.senha-rep').type('novaSenha123');      
+        cy.get('.senha-atual').type('senhaErrada123@');  
+        cy.get('.senha-nova').type('novaSenha123@');     
+        cy.get('.senha-rep').type('novaSenha123@');      
 
         // Submete o formulário
         cy.get('form').submit();
@@ -73,8 +73,8 @@ describe('Teste de Recuperação de Senha', () => {
 
                 // Preenche com a senha atual correta, mas senhas novas diferentes
                 cy.get('.senha-atual').type(cliente.clt_senha);  
-                cy.get('.senha-nova').type('novaSenha123');    
-                cy.get('.senha-rep').type('senhaDiferente123'); 
+                cy.get('.senha-nova').type('novaSenha123@');    
+                cy.get('.senha-rep').type('senhaDiferente123@'); 
 
                 // Submete o formulário
                 cy.get('form').submit();

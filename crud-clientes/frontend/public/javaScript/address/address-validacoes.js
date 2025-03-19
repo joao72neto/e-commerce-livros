@@ -24,7 +24,7 @@ export function validarAddress(event){
     let ok = true;
 
     //Pattern que aceita apenas letras e espaços
-    const textoApenas = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+    const textoApenas = /^[A-Za-zÀ-ÖØ-öø-ÿ\s.]+$/;
 
 
     //Validando o tipo de residência
