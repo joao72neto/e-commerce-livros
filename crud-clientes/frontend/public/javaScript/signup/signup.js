@@ -53,26 +53,56 @@ async function submit(event){
     
 }
 
-//VALIDANDO OS DADOS DO FORMULÁRIO
+//MASCARAS
+
+//Telefone
+const telefone = document.querySelector('#telefone');
+
+if (telefone) {
+    Inputmask("+99 (99) 99999-9999").mask(telefone);
+}
+
+//CPF
+const cpf = document.querySelector('#cpf');
+
+if (cpf) {
+    Inputmask("999.999.999-99").mask(cpf);
+}
+
+//CEP
+const cep = document.querySelector('#cep');
+
+if(cep){
+    Inputmask("99999-999").mask(cep);
+}
+
+
+//VALIDAÇÕES
 document.querySelector('form').addEventListener('submit', function(event) {
     
     event.preventDefault();
-    
-    let isValid = true; 
     const form = event.target;
 
-    // Validando o cep (formato brasileiro)
+    //Validando telefone (+XX (XX) XXXXX-XXXX)
+    const telefone = form.querySelector('#telefone').value;
+    const telPattern = /^\+\d{2}\s\d{2}\s\d{5}-\d{4}$/;
+    if(!telPattern.test(telefone)){
+        alert('Telefone deve esta no formato +XX (XX) XXXXX-XXXX');
+        return;
+    }
+
+
+    // Validando o cep (XXXXX-XXX)
     const cep = form.querySelector('#cep').value;
     const cepPattern = /^\d{5}-\d{3}$/; 
     if (!cepPattern.test(cep)) {
         alert('O CEP deve estar no formato XXXXX-XXX');
-        isValid = false;
+        return;
     }
 
-    //Impedindo o envio do formulário caso haja erro
-    if (isValid) {
-        submit(event);
-    }
+    //Submentendo caso todas as validações tenham passado
+    submit(event);
+  
 });
 
 
