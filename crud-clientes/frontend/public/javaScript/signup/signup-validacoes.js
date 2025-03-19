@@ -37,6 +37,18 @@ export function validarSignup(event){
     const form = event.target;
     let ok = true;
 
+    //Pattern que aceita apenas letras e espaços
+    const textoApenas = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+
+
+    //Validando o nome do usuário
+    const nome = form.querySelector('#nome').value;
+    if(!textoApenas.test(nome)){
+        alert('O campo "Nome" não pode conter valores numéricos');
+        ok = false;
+        return ok;
+    }
+
     //Validando telefone (+XX (XX) XXXXX-XXXX)
     const telefone = form.querySelector('#telefone').value;
     const telPattern = /^\+\d{2}\s\(\d{2}\)\s\d{5}-\d{4}$/;
@@ -84,11 +96,51 @@ export function validarSignup(event){
     }
 
 
+    //Validando o tipo de residência
+    const tipoResidencia = form.querySelector('#tipo_residencia').value;
+    if(!textoApenas.test(tipoResidencia)){
+        alert('O campo "Tipo de Residência" não pode conter valores numéricos');
+        ok = false;
+        return ok;
+    }
+
+    //Validando o tipo de logradouro
+    const tipoLogradouro = form.querySelector('#tipo_logradouro').value;
+    if(!textoApenas.test(tipoLogradouro)){
+        alert('O campo "Tipo de Logradouro" não pode conter valores numéricos');
+        ok = false;
+        return ok;
+    }
+
+    //Validando o logradouro
+    const logradouro = form.querySelector('#logradouro').value;
+    if(!textoApenas.test(logradouro)){
+        alert('O campo "Logradouro" não pode conter valores numéricos');
+        ok = false;
+        return ok;
+    }
+
+    //Validando o bairro
+    const bairro = form.querySelector('#bairro').value;
+    if(!textoApenas.test(bairro)){
+        alert('O campo "Bairro" não pode conter valores numéricos');
+        ok = false;
+        return ok;
+    }
+
     // Validando o cep (XXXXX-XXX)
     const cep = form.querySelector('#cep').value;
     const cepPattern = /^\d{5}-\d{3}$/; 
     if (!cepPattern.test(cep)) {
         alert('O CEP deve estar no formato XXXXX-XXX');
+        ok = false;
+        return ok;
+    }
+
+    //Validando a cidade
+    const cidade = form.querySelector('#cidade').value;
+    if(!textoApenas.test(cidade)){
+        alert('O campo "Cidade" não pode conter valores numéricos');
         ok = false;
         return ok;
     }
@@ -108,10 +160,17 @@ export function validarSignup(event){
         return ok;
     }
 
+    //Validando o País
+    const pais = form.querySelector('#pais').value;
+    if(!textoApenas.test(pais)){
+        alert('O campo "País" não pode conter valores numéricos');
+        ok = false;
+        return ok;
+    }
+
 
     //Validação do número do cartão
     const cardNumber = form.querySelector('#numero_cartao').value;
-
     const cardPattern = /^\d{13,19}$/;
 
     if (!cardPattern.test(cardNumber)) {
@@ -120,9 +179,25 @@ export function validarSignup(event){
         return ok;     
     }
 
+    //Validando o nome impresso no cartão
+    const nomeCartao = form.querySelector('#nome_cartao').value;
+    if(!textoApenas.test(nomeCartao)){
+        alert('O campo "Nome Impresso no Cartão" não pode conter valores numéricos');
+        ok = false;
+        return ok;
+    }
+
+    //Validando a baneira do cartão
+    const bandeira = form.querySelector('#bandeira_cartao').value;
+    if(!textoApenas.test(bandeira)){
+        alert('O campo "Bandeira do Cartão" não pode conter valores numéricos');
+        ok = false;
+        return ok;
+    }
+
+
     //Validação do CVV
     const cvv = form.querySelector('#codigo_seguranca').value;
-
     const cvvPattern = /^\d{3,4}$/;
 
     if (!cvvPattern.test(cvv)) {
