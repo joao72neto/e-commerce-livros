@@ -79,7 +79,7 @@
                     <label for="cidade">Cidade</label>
                     <input type="text" id="cidade" name="cidade" placeholder="Digite sua cidade" value="<%=enderecos[0].end_cidade%>" required>
                 
-                    <label for="estado">Estado</label>
+                    <label for="estado">Estado (Sigla)</label>
                     <input type="text" id="estado" name="estado" placeholder="Digite seu estado" value="<%=enderecos[0].end_estado%>" required>
                 
                     <label for="pais">País</label>
@@ -95,16 +95,16 @@
                     <input class="invisible" type="number" name="car_id" value="<%=cartoes[0].car_id%>">
 
                     <label for="numero_cartao">Número do Cartão</label>
-                    <input type="text" name="numero_cartao" placeholder="Digite o número do cartão" value="<%=cartoes[0].car_numero%>" required>
+                    <input type="text" id="numero_cartao" name="numero_cartao" placeholder="Digite o número do cartão" value="<%=cartoes[0].car_numero%>" required>
                 
                     <label for="nome_cartao">Nome Impresso no Cartão</label>
-                    <input type="text" name="nome_cartao" placeholder="Digite o nome impresso no cartão" value="<%=cartoes[0].car_nome%>" required>
+                    <input type="text" id="nome_cartao" name="nome_cartao" placeholder="Digite o nome impresso no cartão" value="<%=cartoes[0].car_nome%>" required>
                 
                     <label for="bandeira_cartao">Bandeira do Cartão</label>
-                    <input type="text" name="bandeira_cartao" placeholder="Visa, Mastercard, etc." value="<%=cartoes[0].car_bandeira%>" required>
+                    <input type="text" id="bandeira_cartao" name="bandeira_cartao" placeholder="Visa, Mastercard, etc." value="<%=cartoes[0].car_bandeira%>" required>
                 
                     <label for="codigo_seguranca">Código de Segurança</label>
-                    <input type="text" name="codigo_seguranca" placeholder="CVV (3 ou 4 dígitos)" value="<%=cartoes[0].car_cvv%>" required>
+                    <input type="text" id="codigo_seguranca" name="codigo_seguranca" placeholder="CVV (3 ou 4 dígitos)" value="<%=cartoes[0].car_cvv%>" required>
                 </div>
                 
                 <button type="submit">Confirmar</button>
@@ -112,6 +112,8 @@
         </form>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.8/dist/inputmask.min.js"></script>
     <script type="module" src="/javaScript/signup/signup-alt.js"></script>
+    <script type="module" src="/javaScript/signup/signup-validacoes.js"></script>
 </body>
 </html>

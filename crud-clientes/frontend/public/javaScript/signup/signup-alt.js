@@ -1,8 +1,19 @@
+import { validarSignup } from "/javaScript/signup/signup-validacoes.js";
 import { signupAltService } from "/javaScript/service/serviceSignup.js";
+import { mascarasSignup } from "/javaScript/signup/signup-validacoes.js";
+
+
+//Mascaras para o cadastro de cliente
+mascarasSignup();
 
 //PASSANDO OS DADOS PARA CADASTRO
 document.querySelector('form').addEventListener('submit', async function (event) {
     
+    //Validando os dados antes de mandá-los para o back
+    if(!validarSignup(event)){
+        return;
+    }
+
     event.preventDefault();
    
     //Pegando dados do formulário
@@ -47,8 +58,6 @@ document.querySelector('form').addEventListener('submit', async function (event)
     }
 
     const signupDados = {cliente, address, card}
-
-    console.log(signupDados);
 
     const status = await signupAltService(signupDados, clt_id);
 
