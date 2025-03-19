@@ -82,7 +82,6 @@ if(cep){
     Inputmask("AA").mask(estado);
 }
 
-
 //VALIDAÇÕES
 document.querySelector('form').addEventListener('submit', function(event) {
     
@@ -149,9 +148,29 @@ document.querySelector('form').addEventListener('submit', function(event) {
     
     const estado = form.querySelector('#estado').value.toUpperCase(); 
     
-    // Verifica se são apenas duas letras e se é um estado válido
     if (!/^[A-Za-z]{2}$/.test(estado) || !arrayEstados.includes(estado)) {
         alert('Estado inválido! Use o formato correto (ex: SP, RJ, MG).');
+        return;
+    }
+
+
+    //Validação do número do cartão
+    const cardNumber = form.querySelector('#numero_cartao').value;
+
+    const cardPattern = /^\d{13,19}$/;
+
+    if (!cardPattern.test(cardNumber)) {
+        alert('Número de cartão inválido! Verifique se contém apenas números e tem entre 13 e 19 dígitos.');
+        return;        
+    }
+
+    //Validação do CVV
+    const cvv = form.querySelector('#codigo_seguranca').value;
+
+    const cvvPattern = /^\d{3,4}$/;
+
+    if (!cvvPattern.test(cvv)) {
+        alert('CVV inválido! Deve conter 3 ou 4 números.');
         return;
     }
 
