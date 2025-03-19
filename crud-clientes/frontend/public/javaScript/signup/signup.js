@@ -76,6 +76,12 @@ if(cep){
     Inputmask("99999-999").mask(cep);
 }
 
+//Estado
+const estado = document.querySelector('#estado');
+if(cep){
+    Inputmask("AA").mask(estado);
+}
+
 
 //VALIDAÇÕES
 document.querySelector('form').addEventListener('submit', function(event) {
@@ -131,6 +137,21 @@ document.querySelector('form').addEventListener('submit', function(event) {
     const cepPattern = /^\d{5}-\d{3}$/; 
     if (!cepPattern.test(cep)) {
         alert('O CEP deve estar no formato XXXXX-XXX');
+        return;
+    }
+
+    //Validando estado
+    const arrayEstados = [
+        "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
+        "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
+        "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+    ];
+    
+    const estado = form.querySelector('#estado').value.toUpperCase(); 
+    
+    // Verifica se são apenas duas letras e se é um estado válido
+    if (!/^[A-Za-z]{2}$/.test(estado) || !arrayEstados.includes(estado)) {
+        alert('Estado inválido! Use o formato correto (ex: SP, RJ, MG).');
         return;
     }
 
