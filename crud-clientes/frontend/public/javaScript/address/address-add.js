@@ -1,7 +1,18 @@
+import { validarAddress } from "/javaScript/address/address-validacoes.js";
+import { mascarasAddress } from "/javaScript/address/address-validacoes.js";
 import { cadastrarAddressService } from "/javaScript/service/serviceAddress.js";
+
+//Mascaras para o endereço
+mascarasAddress();
 
 //Enviando os dados para o backend
 document.querySelector('form').addEventListener('submit', async function(event){
+    
+    //Validando os dados do endereço
+    if(!validarAddress(event)){
+        return;
+    }
+    
     event.preventDefault();
 
     //Pegando os dados do forms
