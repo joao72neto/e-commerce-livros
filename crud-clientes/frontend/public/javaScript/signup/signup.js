@@ -85,13 +85,47 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
     //Validando telefone (+XX (XX) XXXXX-XXXX)
     const telefone = form.querySelector('#telefone').value;
-    const telPattern = /^\+\d{2}\s\d{2}\s\d{5}-\d{4}$/;
+    const telPattern = /^\+\d{2}\s\(\d{2}\)\s\d{5}-\d{4}$/;
     if(!telPattern.test(telefone)){
         alert('Telefone deve esta no formato +XX (XX) XXXXX-XXXX');
         return;
     }
 
 
+    //Vaalidando o CPF
+    const cpf = form.querySelector('#cpf').value;
+    const cpfPattern = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+    if(!cpfPattern.test(cpf)){
+        alert('O CPF deve estar no formato XXX.XXX.XXX-XX');
+        return;
+    }
+
+    //Validando a senha
+    const senha = form.querySelector('#senha').value;
+    const senhaRep = form.querySelector('#confirma_senha').value
+
+    const requisitos = [
+        { regex: /[a-z]/, mensagem: "A senha deve conter pelo menos uma letra minúscula." },
+        { regex: /[A-Z]/, mensagem: "A senha deve conter pelo menos uma letra maiúscula." },
+        { regex: /[\W_]/, mensagem: "A senha deve conter pelo menos um caractere especial." },
+        { regex: /.{8,}/, mensagem: "A senha deve ter pelo menos 8 caracteres." }
+    ];
+
+    const erros = requisitos
+        .filter(req => !req.regex.test(senha))
+        .map(req => req.mensagem);
+    
+    if(senhaRep !== senha){
+        alert('A senha não bate com a sua repetiçao');
+        return;
+    }
+
+    if(erros.length > 0){
+        alert(erros.join('\n'));
+        return;
+    }
+
+    
     // Validando o cep (XXXXX-XXX)
     const cep = form.querySelector('#cep').value;
     const cepPattern = /^\d{5}-\d{3}$/; 
