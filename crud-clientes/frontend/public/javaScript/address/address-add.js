@@ -1,5 +1,5 @@
-import { validarAddress } from "/javaScript/address/address-validacoes.js";
-import { mascarasAddress } from "/javaScript/address/address-validacoes.js";
+import { validarAddress } from "/javaScript/validacoes/validacoesAddress.js";
+import { mascarasAddress } from "/javaScript/validacoes/validacoesAddress.js";
 import { cadastrarAddressService } from "/javaScript/service/serviceAddress.js";
 
 //Mascaras para o endereço
@@ -43,6 +43,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
     
     if(result.status === 200){
         alert('Endereço foi cadastrado com sucesso!');
+        window.location.href = `/address/${clt_id}`;
         return;
     }
 

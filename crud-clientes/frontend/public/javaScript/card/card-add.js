@@ -1,5 +1,5 @@
 import { cadastrarCardService } from "/javaScript/service/serviceCard.js";
-import { validarCard } from "/javaScript/card/card-validacoes.js";
+import { validarCard } from "/javaScript/validacoes/validacoesCard.js";
 
 //Enviando os dados para o backend
 document.querySelector('form').addEventListener('submit', async function(event){
@@ -32,6 +32,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
     
     if(result.status === 200){
         alert('Cartão foi cadastrado com sucesso!');
+        window.location.href = `/card/${clt_id}`;
         return;
     }
 
