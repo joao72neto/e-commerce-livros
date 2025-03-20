@@ -1,6 +1,6 @@
-import { validarSignup } from "/javaScript/signup/signup-validacoes.js";
+import { validarSignup } from "/javaScript/validacoes/validacoesSignup.js";
 import { signupAltService } from "/javaScript/service/serviceSignup.js";
-import { mascarasSignup } from "/javaScript/signup/signup-validacoes.js";
+import { mascarasSignup } from "/javaScript/validacoes/validacoesSignup.js";
 
 
 //Mascaras para o cadastro de cliente
@@ -63,6 +63,7 @@ document.querySelector('form').addEventListener('submit', async function (event)
 
     if(status === 200){
         alert('Cliente foi atualizado com sucesso!');
+        window.location.href = '/';
         return;
     }
 

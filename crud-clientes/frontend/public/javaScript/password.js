@@ -35,7 +35,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
         }
 
         if(senhaRep !== senha){
-            alert('A senha não bate com a sua repetiçao');
+            alert('A senha não bate com a sua repetição');
             return;
         }
 

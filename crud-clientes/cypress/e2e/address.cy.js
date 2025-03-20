@@ -29,12 +29,6 @@ describe('Teste de Cadastro de Endereço', () => {
         cy.on('window:alert', (alertText) => {
             expect(alertText).to.contains('Endereço foi cadastrado com sucesso!');
         });
-
-        // Voltando para a página principal
-        cy.get('.voltar').click();
-        cy.get('.voltar').click();
-
-  
     });
 });
 
@@ -69,11 +63,6 @@ describe('Teste de alteração de endereço', () => {
         cy.on('window:alert', (alertText) => {
             expect(alertText).to.contains('Endereço foi atualizado com sucesso!');
         });
-  
-        //Voltando para a página inicial
-        cy.get('.voltar').click();
-        cy.get('.voltar').click();
-  
     });
 });
 

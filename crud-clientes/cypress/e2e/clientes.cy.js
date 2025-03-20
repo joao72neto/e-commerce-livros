@@ -44,10 +44,6 @@ describe('Teste de Cadastro de Dados dos Clientes', () => {
         cy.on('window:alert', (alertText) => {
             expect(alertText).to.contains('Cliente foi Cadastrado com Sucesso!');
         });
-
-        // Voltando para a página inicial
-        cy.get('.voltar').click();
-  
     });
 });
 
@@ -96,11 +92,7 @@ describe('Teste de Alteração de Dados do Cliente', () => {
         //Verificando se a msg de atualização de dados está sendo exibida corretamente
         cy.on('window:alert', (alertText) => {
             expect(alertText).to.contains('Cliente foi atualizado com sucesso!');
-        });
-
-        // Voltando para a página principal
-        cy.get('.voltar').click();
-        
+        }); 
     });
 });
 
@@ -119,10 +111,6 @@ describe('Teste de Inativação e Reativação de Usuário', () => {
 
         // Reativando o cliente
         cy.get('.btn-inat').click();
-
-        // Voltando para a página inicial
-        cy.get('.voltar').click();
-  
     });
 });
 
