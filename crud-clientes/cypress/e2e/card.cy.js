@@ -22,10 +22,7 @@ describe('Teste de Cadastro de Cartão', () => {
       cy.on('window:alert', (alertText) => {
         expect(alertText).to.contains('Cartão foi cadastrado com sucesso!');
       });
-  
-      // Voltando para a página inicial
-      cy.get('.voltar').click();
-      cy.get('.voltar').click();
+
     });
 });
 
@@ -53,10 +50,7 @@ describe('Teste de Alteração de Cartão', () => {
       cy.on('window:alert', (alertText) => {
         expect(alertText).to.contains('Cartão foi atualizado com sucesso!');
       });
-  
-      // Retornando para a tela anterior
-      cy.get('.voltar').click();
-      cy.get('.voltar').click();
+ 
     });
 });
   
