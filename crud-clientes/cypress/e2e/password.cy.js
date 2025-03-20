@@ -81,7 +81,7 @@ describe('Teste de Recuperação de Senha', () => {
 
                 // Verifica se o alerta de erro aparece
                 cy.on('window:alert', (alertText) => {
-                    expect(alertText).to.contains('Repetição da senha diferente da senha nova');
+                    expect(alertText).to.contains('A senha não bate com a sua repetição');
                 });
             });
         }); 
@@ -110,7 +110,7 @@ describe('Teste de Recuperação de Senha', () => {
 
                 // Verifica se o alerta de erro aparece
                 cy.on('window:alert', (alertText) => {
-                    expect(alertText).to.contains('Campos estão vazios');
+                    expect(alertText).to.contains('Preencha os campos vazios');
                 });
             });
         });   
