@@ -47,8 +47,6 @@ Abaixo estão listadas todas as tecnologias que serão utilizadas para realizar 
   - IDE (Opcional)
     - [Workbench](https://www.mysql.com/products/workbench/)
 
-<h3>Etapas</h3>
-
 
 ## Configuração do Banco
 
