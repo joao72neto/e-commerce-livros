@@ -58,20 +58,20 @@ git clone https://github.com/joao72neto/e-commerce-livros.git
 ```
 
 #### 2. Criação do banco
-Entre no diretório abaixo, procure pelo ddl-completo do banco e o execute no seu SGBD
+Entre no diretório abaixo, procure pelo ddl-completo do banco e o execute no seu SGBD:
 ```bash
 cd e-commerce-livros/modelo-bd/
 ```
 
 #### 3. Conexão com o Banco
-Entre no diretório abaixo
+Entre no diretório abaixo:
 
 ```bash
 cd e-commerce-livros/crud-clientes/backend/config/
 
 ```
 
-Abra o arquivo ```db.js``` e coloque o nome do seu usuário e senha
+Abra o arquivo ```db.js``` e coloque o nome do seu usuário e senha:
 
 ```javaScript
 const mysql = require('mysql2/promise');
