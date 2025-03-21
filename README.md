@@ -16,7 +16,7 @@
  
 </p>
 
-<h2 id="crud">Layout CRUD do Clientes</h2>
+<h2 id="crud">Layout CRUD de Clientes</h2>
 
 <div align="center">
     <img src="https://github.com/user-attachments/assets/2a457ace-c8ed-42b7-b307-b11dd7519564">
