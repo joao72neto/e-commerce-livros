@@ -39,37 +39,82 @@ Abaixo estão listadas todas as tecnologias que serão utilizadas para realizar 
 
 - [Node.js](https://nodejs.org/pt)
 - Navegador (O crud foi feito inteiramente no [Google Chrome](https://www.google.pt/intl/pt-PT/chrome/?brand=FHFK&ds_kid=43700076570751463&gad_source=1&gclid=CjwKCAjwnPS-BhBxEiwAZjMF0qoMYAhnW_TjZMxq-DQQjfiJw79PMomQhhoNvzEn79KgchseT9NmbxoCSQ0QAvD_BwE&gclsrc=aw.ds))
+- MySQL
+  - Servers (Qualquer um dos 3)
+    - [USBWebServer](https://usbwebserver.yura.mk.ua/)
+    - [WampServer](https://www.wampserver.com/en/)
+    - [Xampp](https://www.apachefriends.org/pt_br/index.html)
+  - IDE (Opcional)
+    - [Workbench](https://www.mysql.com/products/workbench/)
 
 <h3>Etapas</h3>
 
-### 1. Clone o repositório
+
+## Configuração do Banco
+
+#### 1. Clone o repositório
 Abra o terminal e execute o seguinte comando para baixar o projeto:
 
 ```bash
 git clone https://github.com/joao72neto/e-commerce-livros.git
 ```
 
-#### 2. Acesse o diretório do CRUD de clientes
+#### 2. Criação do banco
+Entre no diretório abaixo, procure pelo ddl-completo do banco e o execute no seu SGBD
+```bash
+cd e-commerce-livros/modelo-bd/
+```
+
+#### 3. Conexão com o Banco
+Entre no diretório abaixo
+
+```bash
+cd e-commerce-livros/crud-clientes/backend/config/
+
+```
+
+Abra o arquivo ```db.js``` e coloque o nome do seu usuário e senha
+
+```javaScript
+const mysql = require('mysql2/promise');
+
+//Configurando a conexão
+const bd = mysql.createPool({
+    host: 'localhost',
+    user: '<SEU USUÁRIO>',
+    password: '<SUA SENHA>',
+    database: 'e_commerce_books',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
+
+//Exportando as configurações do banco de dados
+module.exports = bd;
+```
+## Executando o CRUD
+
+#### 1. Acesse o diretório do CRUD de clientes
 Após a clonagem, entre na pasta correta:
 
 ```bash
 cd e-commerce-livros/crud-clientes/
 ```
 
-#### 3. Instale as dependências
+#### 2. Instale as dependências
 Agora, instale todas as bibliotecas necessárias:
 
 ```bash
 npm install
 ```
 
-#### 4. Inicie o servidor
+#### 3. Inicie o servidor
 Execute o seguinte comando para rodar o CRUD na porta 3000:
 
 ```bash
 node app.js
 ```
-#### 5. Acesse a aplicação no navegador
+#### 4. Acesse a aplicação no navegador
 Copie e cole a URL abaixo na barra de endereços do seu navegador:
 
 ```bash
