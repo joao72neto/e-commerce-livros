@@ -1,6 +1,6 @@
 describe('Teste para carregar as transações dos usuários', () => {
   beforeEach(() => {
-    cy.visit('/');
+    cy.visit('/clientes');
   });
   
   it('Deve mostrar as transações dos usuários corretamente', () => {

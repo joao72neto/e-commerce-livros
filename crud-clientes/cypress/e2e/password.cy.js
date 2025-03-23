@@ -1,6 +1,6 @@
 describe('Teste de Recuperação de Senha', () => {
     beforeEach(() => {
-        cy.visit('/'); 
+        cy.visit('/clientes'); 
     });
   
       
@@ -15,7 +15,7 @@ describe('Teste de Recuperação de Senha', () => {
 
                 // Indo para a página de recuperação de senha
                 cy.get('.acoes .alt').first().click();
-                cy.get('.alt_submenu a[href^="/password"]').click();
+                cy.get('.alt_submenu a[href^="/clientes/password"]').click();
 
                 // Preenche os campos do formulário
                 cy.get('.senha-atual').type(cliente.clt_senha); 
@@ -41,7 +41,7 @@ describe('Teste de Recuperação de Senha', () => {
   
         // Indo para a página de recuperação de senha
         cy.get('.acoes .alt').first().click();
-        cy.get('.alt_submenu a[href^="/password"]').click();
+        cy.get('.alt_submenu a[href^="/clientes/password"]').click();
 
         // Preenche os campos do formulário com senha atual incorreta
         cy.get('.senha-atual').type('senhaErrada123@');  
@@ -69,7 +69,7 @@ describe('Teste de Recuperação de Senha', () => {
 
                 //Indo para a página de recuperação de senha
                 cy.get('.acoes .alt').first().click();
-                cy.get('.alt_submenu a[href^="/password"]').click();
+                cy.get('.alt_submenu a[href^="/clientes/password"]').click();
 
                 // Preenche com a senha atual correta, mas senhas novas diferentes
                 cy.get('.senha-atual').type(cliente.clt_senha);  
@@ -98,7 +98,7 @@ describe('Teste de Recuperação de Senha', () => {
 
                 //Indo para a página de recuperação de senha
                 cy.get('.acoes .alt').first().click();
-                cy.get('.alt_submenu a[href^="/password"]').click();
+                cy.get('.alt_submenu a[href^="/clientes/password"]').click();
 
                 // Deixa campos vazios
                 cy.get('.senha-atual').type(cliente.clt_senha); 

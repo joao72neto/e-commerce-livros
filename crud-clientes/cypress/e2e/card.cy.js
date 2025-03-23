@@ -1,12 +1,12 @@
 describe('Teste de Cadastro de Cartão', () => {
     beforeEach(() => {
-      cy.visit('/'); 
+      cy.visit('/clientes'); 
     });
   
     it('Deve preencher e submeter o formulário de adição de cartão', () => {
       // Acessando a tela de adição de cartão
       cy.get('.acoes .alt').first().click();
-      cy.get('.alt_submenu a[href^="/card"]').click();
+      cy.get('.alt_submenu a[href^="/clientes/card"]').click();
       cy.get('.card-add').click()
   
       // Preenchendo os campos do formulário 
@@ -28,13 +28,13 @@ describe('Teste de Cadastro de Cartão', () => {
 
 describe('Teste de Alteração de Cartão', () => {
     beforeEach(() => {
-      cy.visit('/'); 
+      cy.visit('/clientes'); 
     });
   
     it('Deve preencher e submeter o formulário de alteração de cartão', () => {
       // Acessando a tela de alteração de cartão
       cy.get('.acoes .alt').first().click();
-      cy.get('.alt_submenu a[href^="/card"]').click();
+      cy.get('.alt_submenu a[href^="/clientes/card"]').click();
       cy.get('.acoes-card .alt').first().click(); // Botão para editar o cartão
   
       // Limpando e preenchendo novos dados no formulário

@@ -12,7 +12,7 @@ module.exports.getSignupAlt = async (req, res) =>{
     const enderecos = await buscarEnderecosClienteId(req.params.clt_id);
     const cartoes = await buscarCartoesClienteId(req.params.clt_id);
 
-    res.render('signup/signup-alt', {
+    res.render('clientes/signup/signup-alt', {
         cliente: cliente,
         enderecos: enderecos,
         cartoes: cartoes

@@ -1,4 +1,4 @@
-import { buscarEnderecoIdService } from '/javaScript/service/serviceAddress.js';
+import { buscarEnderecoIdService } from '/javaScript/service/clientes/serviceAddress.js';
 
 //Gerando um popup para os endereços
 document.querySelectorAll('.endereco-wrapper .endereco').forEach(endereco => {

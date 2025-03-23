@@ -3,7 +3,7 @@ const router = express.Router();
 const controllerClientes = require('../../controller/clientes/controllerClientes');
 
 //Rotas para páginas
-router.get('/', controllerClientes.getClientes);
+router.get('/clientes', controllerClientes.getClientes);
 
 //Rotas para apis
 router.get('/api/clientes/id/:clt_id', controllerClientes.getApiClienteId);

@@ -1,13 +1,13 @@
 describe('Teste de Cadastro de Endereço', () => {
     beforeEach(() => {
-      cy.visit('/'); 
+      cy.visit('/clientes'); 
     });
   
     it('Deve preencher e submeter o formulário de adição de endereço', () => {
         
         // Indo até a página de cadastro de endereço
         cy.get('.acoes .alt').first().click();
-        cy.get('.alt_submenu a[href^="/address"]').click();
+        cy.get('.alt_submenu a[href^="/clientes/address"]').click();
         cy.get('.endereco-add .add').first().click();
 
         // Preenchendo os dados
@@ -34,14 +34,14 @@ describe('Teste de Cadastro de Endereço', () => {
 
 describe('Teste de alteração de endereço', () => {
     beforeEach(() => {
-        cy.visit('/'); 
+        cy.visit('/clientes'); 
     });
   
     it('Deve preencher e alterar um endereço existente', () => {
   
         // Indo até a página de alteralção de endereço
         cy.get('.acoes .alt').first().click();
-        cy.get('.alt_submenu a[href^="/address"]').click();
+        cy.get('.alt_submenu a[href^="/clientes/address"]').click();
         cy.get('.acoes-address .alt').first().click();
   
         // Preenchendo os campos do formulário com novos valores
@@ -68,14 +68,14 @@ describe('Teste de alteração de endereço', () => {
 
 describe('Teste de Exibição de Popup', () => {
     beforeEach(() => {
-      cy.visit('/'); 
+      cy.visit('/clientes'); 
     });
   
     it('Deve mostrar o popup do cliente corretamente', () => {
         
         //Indo para a págine de endereços
         cy.get('.acoes .alt').first().click();
-        cy.get('.alt_submenu a[href^="/address"]').click();
+        cy.get('.alt_submenu a[href^="/clientes/address"]').click();
         
         //Clicando no primeiro endereço
         cy.get('.endereco').first().click();

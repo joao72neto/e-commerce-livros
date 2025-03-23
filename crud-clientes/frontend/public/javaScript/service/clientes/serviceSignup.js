@@ -4,7 +4,7 @@
 export async function signupAltService(cliente, clt_id) {
     try{
 
-        const res = await fetch(`/signup/${clt_id}`, {
+        const res = await fetch(`/clientes/signup/${clt_id}`, {
             method: 'PUT',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(cliente)
@@ -24,7 +24,7 @@ export async function signupAltService(cliente, clt_id) {
 export async function signupService(cliente) {
     try{
 
-        const res = await fetch('/signup', {
+        const res = await fetch('/clientes/signup', {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(cliente)

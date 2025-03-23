@@ -3,13 +3,13 @@ const router = express.Router();
 const controllerSignup = require('../../controller/clientes/controllerSignup');
  
 //Rotas para páginas
-router.get('/signup', controllerSignup.getSignup);
-router.get('/signup/:clt_id', controllerSignup.getSignupAlt);
+router.get('/clientes/signup', controllerSignup.getSignup);
+router.get('/clientes/signup/:clt_id', controllerSignup.getSignupAlt);
 
 //Atualizando dados
-router.put('/signup/:clt_id', controllerSignup.putSignupAlt)
+router.put('/clientes/signup/:clt_id', controllerSignup.putSignupAlt)
 
 //Inserindo dados
-router.post('/signup', controllerSignup.postSignup);
+router.post('/clientes/signup', controllerSignup.postSignup);
 
 module.exports = router;

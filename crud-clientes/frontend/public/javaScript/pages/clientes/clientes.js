@@ -42,10 +42,10 @@ document.querySelectorAll('.alt').forEach(botao => {
         submenu.classList.add('alt_submenu');
 
         submenu.innerHTML = `
-            <a href="/password/${id}">Alterar senha</a>
-            <a href="/address/${id}">Alterar endereço</a>
-            <a href="/card/${id}">Alterar pagamento</a>
-            <a href="/signup/${id}">Alterar tudo</a>
+            <a href="/clientes/password/${id}">Alterar senha</a>
+            <a href="/clientes/address/${id}">Alterar endereço</a>
+            <a href="/clientes/card/${id}">Alterar pagamento</a>
+            <a href="/clientes/signup/${id}">Alterar tudo</a>
 
         `;
 
@@ -83,7 +83,7 @@ export function criarBotaoInativados() {
     if (!document.getElementById('btn-inativados')) {
         let botao = document.createElement('a');
         botao.id = 'btn-inativados';
-        botao.href = '/inativos'; 
+        botao.href = '/clientes/inativos'; 
         botao.textContent = 'Ver Inativados';
         botao.style.cssText = `
             position: fixed;
@@ -111,7 +111,7 @@ document.querySelectorAll('.tran').forEach(button => {
         let clienteWrapper = this.closest('.cliente-wrapper');
         let id = clienteWrapper.querySelector('.cliente-id').textContent;
 
-        window.location.href = `/transacoes/${id}`;
+        window.location.href = `/clientes/transacoes/${id}`;
     });
 });
 

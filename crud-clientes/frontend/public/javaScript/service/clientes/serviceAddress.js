@@ -3,7 +3,7 @@
 //Cadastro de novos endereço no banco
 export async function cadastrarAddressService(dados, clt_id) {
     try{
-        const result = await fetch(`/address/${clt_id}/add`, {
+        const result = await fetch(`/clientes/address/${clt_id}/add`, {
            method: 'POST',
            headers: {'Content-Type':'application/json'},
            body: JSON.stringify(dados) 
@@ -23,7 +23,7 @@ export async function cadastrarAddressService(dados, clt_id) {
 //Atualizando os endereço no banco de dados
 export async function atualizarAddressService(dados, clt_id, end_id) {
     try{
-        const result = await fetch(`/address/${clt_id}/alt/${end_id}`, {
+        const result = await fetch(`/clientes/address/${clt_id}/alt/${end_id}`, {
            method: 'PUT',
            headers: {'Content-Type':'application/json'},
            body: JSON.stringify(dados) 

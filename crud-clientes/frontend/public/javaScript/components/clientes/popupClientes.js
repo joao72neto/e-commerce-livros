@@ -1,4 +1,4 @@
-import { buscarClienteIdService } from '/javaScript/service/serviceClientes.js';
+import { buscarClienteIdService } from '/javaScript/service/clientes/serviceClientes.js';
 
 //Pop que mostra todos os dados do cliente cadastrado
 document.querySelectorAll('.cliente-wrapper .cliente').forEach(cliente => {

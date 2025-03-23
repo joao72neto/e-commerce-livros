@@ -1,13 +1,13 @@
 describe('Teste de Cadastro de Dados dos Clientes', () => {
 
     beforeEach(() => {
-      cy.visit('/'); 
+      cy.visit('/clientes'); 
     });
   
     it('Preenche e envia o formulário de cadastro', () => {
     
         // Indo para a página de cadastro de cliente
-        cy.get('a[href="/signup"]').click();
+        cy.get('a[href="/clientes/signup"]').click();
   
         // Preenchendo os dados do cliente
         cy.get('#nome').type('João da Silva');
@@ -49,14 +49,14 @@ describe('Teste de Cadastro de Dados dos Clientes', () => {
 
 describe('Teste de Alteração de Dados do Cliente', () => {
     beforeEach(() => {
-        cy.visit('/'); 
+        cy.visit('/clientes'); 
     });
   
     it('Deve preencher e submeter o formulário de alteração', () => {
   
         // Indo para a página de alteração de cliente
         cy.get('.acoes .alt').first().click();
-        cy.get('.alt_submenu a[href^="/signup"]').click();
+        cy.get('.alt_submenu a[href^="/clientes/signup"]').click();
 
         // Modificando os dados do cliente
         cy.get('#nome').clear().type('Novo Nome');
@@ -98,7 +98,7 @@ describe('Teste de Alteração de Dados do Cliente', () => {
 
 describe('Teste de Inativação e Reativação de Usuário', () => {
     beforeEach(() => {
-      cy.visit('/'); 
+      cy.visit('/clientes'); 
     });
   
     it('Deve inativar e reativar um usuário corretamente', () => {
@@ -116,7 +116,7 @@ describe('Teste de Inativação e Reativação de Usuário', () => {
 
 describe('Teste de Exibição de Popup', () => {
     beforeEach(() => {
-      cy.visit('/'); 
+      cy.visit('/clientes'); 
     });
   
     it('Deve mostrar o popup do cliente corretamente', () => {

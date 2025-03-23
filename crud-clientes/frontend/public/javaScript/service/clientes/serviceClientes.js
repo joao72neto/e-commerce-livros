@@ -3,7 +3,7 @@
 //Alterando a senha do cliente
 export async function alterarSenhaClienteService(senha, id) {
     try{
-        let res = await fetch(`/password/${id}`, {
+        let res = await fetch(`/clientes/password/${id}`, {
             method: 'PATCH',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(senha)
