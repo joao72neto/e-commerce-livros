@@ -7,13 +7,11 @@
 </head>
 <body>
 
-    <div></div>
-
     <header>
         <span for="">E-commerce</span>
         <input type="text" placeholder="busca">
         <span for="">Notificações</span>
-        <span for="">Carrino</span>
+        <span for=""><a href="/carrinho">Carrinho</a></span>
         <button>Menu Lateral</button>
 
         <nav>
@@ -21,38 +19,38 @@
             <ul>
                 <label for="">Cliente</label>
                 <ul>
-                    <li><a href="">Perfil / Cadastro</a></li>
+                    <li><a href="/perfil">Perfil</a></li>
+                    <li><a href="/cadastro">Cadastro</a></li>
                     <li><a href="/pedidos">Meus Pedidos</a></li>
                 </ul>
                 <label for="">ADM</label>
                 <ul>
                     <li><a href="/clientes">Gerenciar Clientes</a></li>
                     <li><a href="">Gerenciar Livros</a></li>
-                    <li><a href="">Gerenciar Pedidos</a></li>
-                    <li><a href="">Histórico de Vendas</a></li>
-                    <li><a href="">Logs</a></li>
+                    <li><a href="/pedidos/gerenciar">Gerenciar Pedidos</a></li>
+                    <li><a href="/vendas/historico">Histórico de Vendas</a></li>
+                    <li><a href="/logs">Logs</a></li>
                 </ul>
             </ul>
         </nav>
           
     </header>
 
-    <h1>Esta é a página principal</h1>
-
-    <div>
-        <p>Isso é o banner</p>
-    </div>
-
-    <div>
-        <p><a href="#">Livro 01</a></p>
-        <p><a href="#">Livro 02</a></p>
-        <p><a href="#">Livro 03</a></p>
-    </div>
+    <main>
+        <h1>Esta é a página principal</h1>
+        <div>
+            <p>Isso é o banner</p>
+        </div>
+        <div>
+            <p><a href="/produto">Livro 01</a></p>
+            <p><a href="#">Livro 02</a></p>
+            <p><a href="#">Livro 03</a></p>
+        </div>
+    </main>
 
     <footer>
         <p>Melhor Footer</p>
     </footer>
 
-    
 </body>
 </html>

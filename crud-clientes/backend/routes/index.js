@@ -2,10 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 
-//Pegando a rota principal
+//Pegando a rotas gerais
 const routeIndex = require('./routeIndex');
+const routePerfil = require('./routePerfil');
+const routeCadastro = require('./routeCadastro');
+
 
 router.use('/', routeIndex);
+router.use('/', routePerfil);
+router.use('/', routeCadastro);
 
 //Pegando todas as rotas dos clientes
 const routeClientes = require('./clientes/routeClientes');
