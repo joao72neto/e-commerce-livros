@@ -17,6 +17,16 @@ header{
     padding: 10px;
 }
 
+footer{
+    display: flex;
+    background-color: var(--preto);
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+}
+
 html, body{
     height: 100%;
 }

@@ -2,6 +2,7 @@
 //Mostrando o menu lateral
 document.querySelector('#btn-sidebar').addEventListener('click', function(){
     const sidebar = document.querySelector('.sidebar');
+    const header = document.querySelector('header');
 
     const html = `
     
@@ -23,11 +24,15 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
     `;
 
     if(sidebar.innerHTML.trim() === ''){
+        header.style.position = 'fixed';
+        header.style.width = '100%'
+        sidebar.style.top = '55px';
         sidebar.style.padding = '20px';
         sidebar.innerHTML = html;
         return;
     }
 
+    header.style.position = '';
     sidebar.style.padding = '0';
     sidebar.innerHTML = '';
 });
