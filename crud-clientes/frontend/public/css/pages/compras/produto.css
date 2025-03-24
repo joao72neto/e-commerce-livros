@@ -1,0 +1,45 @@
+main{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+    max-width: 800px;
+    margin: 50px auto;
+
+}
+
+a{
+    display: block;
+    margin: 20px 0;
+    text-align: center;
+}
+
+
+.imagem{
+    height: 500px;
+    width: 400px;
+    background-color: gray;
+    border-radius: 20px;
+}
+
+.preco{
+    margin-bottom: 50px;
+}
+
+.qtd{
+    text-align: center;
+}
+
+.diminuir, .aumentar{
+    width: 40px;
+    height: 40px;
+}
+
+#contador{
+    margin: 0 5px;
+}
+
+
+.title-desc{
+    margin: 20px 0;
+}

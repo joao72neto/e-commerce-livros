@@ -3,31 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/pages/compras/produto.css">
     <title>Produto</title>
 </head>
 <body>
 
-    <div class="voltar"><a href="/">Voltar</a></div>
-
     <header>
-        <h2>Produto</h2>
-    </header>
-    <main>
-        <div>
-            <p>imagem incrível aqui</p>
+        <div class="busca-header">
+            <div class="voltar"><a href="/">Voltar</a></div>
         </div>
         <div>
+            <h2>Produto</h2>
+        </div>
+    </header> 
+
+    <main>
+        <div class="imagem"></div>
+        <div>
             <h2>Lord of the Rings</h2>
-            <p><strong>R$100,00</strong>
+            <p class="preco"><strong>R$100,00</strong>
             </p>
-            <label for="">Qtd:</label>
-            <input type="number">
-            <a href="/pagamento">Comprar</a>
-            <a href="/carrinho">Adicionar ao Carrinho</a>
+            <div class="qtd">
+                <button class="diminuir">-</button>
+                <span id="contador">0</span>
+                <button class="aumentar">+</button>
+            </div>
+            <div class="opcoes">
+                <a href="/pagamento">Comprar</a>
+                <a href="/carrinho">Adicionar ao Carrinho</a>
+            </div>
         </div>
         <div>
             
-            <label for="">Descirção Insana Aqui</label>
+            <h2 class="title-desc">Descrição do Produto</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia nobis assumenda, dolor, doloremque autem temporibus deserunt adipisci explicabo perferendis sint velit voluptatem? Illum consequatur maiores officiis illo accusamus, eos fugit? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur architecto repudiandae eligendi incidunt nam explicabo illo voluptatem veniam unde perferendis omnis consectetur perspiciatis voluptatibus, inventore ratione distinctio ab. Libero, ipsam?</p>
 
         </div>
@@ -35,5 +44,7 @@
     <footer>
         <p>Melhor Footer de Todos</p>
     </footer>
+
+    <script type="module" src="/javaScript/pages/compras/produto.js"></script>
 </body>
 </html>
