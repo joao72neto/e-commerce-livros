@@ -1,7 +1,7 @@
 import { buscarClienteIdService } from '/javaScript/service/clientes/serviceClientes.js';
 
 //Pop que mostra todos os dados do cliente cadastrado
-document.querySelectorAll('.cliente-wrapper .cliente').forEach(cliente => {
+document.querySelectorAll('.wrapper .cliente').forEach(cliente => {
     cliente.addEventListener('click', async function(){
 
         let containerIndex = document.querySelector('.container-index');

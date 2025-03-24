@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/pages/clientes/clientes.css">
+    <link rel="stylesheet" href="/css/components/popup.css">
     <title>CRUD</title>
 </head>
 <body>
@@ -34,7 +36,7 @@
 
             <%
                 clientes.forEach(cliente => { %>
-                    <div class="cliente-wrapper">
+                    <div class="wrapper">
                         <div class="cliente">
                             <p class="invisible cliente-id"><%=cliente.clt_id%></p>
                             <p><%=cliente.clt_nome%></p>

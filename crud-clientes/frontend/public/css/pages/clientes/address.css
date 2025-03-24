@@ -1,0 +1,119 @@
+/*Importando as cores do site*/
+@import url('../colors.css');
+
+/*Address main settings*/
+.container-address-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+}
+
+.container-address{
+    background-color: var(--branco);
+    width: 800px;
+}
+
+.container-address .title{
+    margin: 20px 0 30px 0;
+}
+
+
+
+.container-address .seletores{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 650px;
+    margin: 0 auto;
+    grid-gap: 10px
+}
+
+.container-address .seletores label{
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.container-address .seletores div{
+    justify-self: center;
+}
+
+
+.container-address .endereco-wrapper{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #0000005b;
+}
+
+.endereco-wrapper .endereco{
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.endereco p, .endereco h2{
+    margin: 5px 0;
+}
+
+.endereco-wrapper .acoes-address{
+    align-self: center;
+}
+
+.container-address .endereco-add{
+    padding: 15px;
+    text-align: center;
+}
+
+/*Address settings*/
+.container-address{
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 25px;
+    box-shadow: 0px 0px 20px #0000005b;
+    border-radius: 20px;
+}
+
+.container-address .title{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container-forms-address{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 25px;
+}
+
+.container-forms-address input{
+    margin: 10px 0px;
+    width: 100%;
+}
+
+
+.container-forms-address .checkbox{
+    grid-column: span 4;
+    text-align: center;
+}
+
+.container-forms-address .endereco_cobranca{
+    grid-row: 2;
+    grid-column: span 4;
+    justify-self: center;
+    width: 65%;
+}
+
+.container-forms-address .endereco_entrega{
+    grid-row: 2;
+    grid-column: span 2;
+}
+
+.container-forms-address button{
+    grid-row: 3;
+    grid-column: span 4;
+    justify-self: center;
+}

@@ -1,0 +1,108 @@
+/*Importando as cores do site*/
+@import url('../colors.css');
+
+/*CRUD Settings - index*/
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+}
+
+.container-index{
+    position: relative;
+    background-color: var(--branco);
+    flex-basis: 800px;
+    margin: 20px auto 0 auto;
+    padding: 20px;
+    max-width: 800px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px #0000005b;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 20px; 
+    font-size: 1.8em;
+}
+
+.filtro{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.filtro img{
+    width: 30px;
+    margin-bottom: 10px;
+}
+
+.filtro_clientes{
+    
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    max-width: 500px;
+    margin: 15px auto;
+    gap: 30px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px #0000005b;
+}
+
+.filtro_clientes input{
+    justify-self: center;
+    
+    width: 90%;
+
+    &:focus{
+        outline: none;
+    }
+}
+
+.filtro_clientes button{
+    grid-column: span 2;
+    justify-self: center;
+}
+
+.cliente{
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.acoes{
+    position: relative;
+    align-self: center;
+}
+
+/*Submenu*/
+.alt_submenu{
+    border: 1px solid var(--preto);
+    border-radius: 10px;
+    position: absolute;
+    top: 40px;
+    background-color: var(--branco);
+    z-index: 2;
+
+}
+
+.alt_submenu a{
+    display: block;
+    background-color: var(--branco);
+    border: none;
+    color: black;
+    padding: 20px;
+
+    &:hover{
+        background-color: var(--amarelo-claro);
+    }
+}
+
+
+
+
+
+

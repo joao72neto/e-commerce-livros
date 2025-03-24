@@ -25,7 +25,7 @@ document.querySelectorAll('.alt').forEach(botao => {
         event.stopPropagation();
         
         //Obetendo o id
-        let clienteWrapper = this.closest('.cliente-wrapper');
+        let clienteWrapper = this.closest('.wrapper');
         let id = clienteWrapper.querySelector('.cliente-id').textContent;
 
         //Retirando o menu ao clicar de novo
@@ -66,7 +66,7 @@ document.addEventListener('click', () => {
 document.querySelectorAll('.inat').forEach(button => {
     button.addEventListener('click', async function(){
 
-        let clienteWrapper = this.closest('.cliente-wrapper');
+        let clienteWrapper = this.closest('.wrapper');
         let id = clienteWrapper.querySelector('.cliente-id').textContent;
 
         const status = await inativarClienteService(id);
@@ -108,7 +108,7 @@ document.querySelectorAll('.tran').forEach(button => {
 
     button.addEventListener('click', function(){
 
-        let clienteWrapper = this.closest('.cliente-wrapper');
+        let clienteWrapper = this.closest('.wrapper');
         let id = clienteWrapper.querySelector('.cliente-id').textContent;
 
         window.location.href = `/clientes/transacoes/${id}`;

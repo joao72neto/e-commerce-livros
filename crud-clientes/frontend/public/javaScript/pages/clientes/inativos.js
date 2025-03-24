@@ -8,7 +8,8 @@ if (clientesInativos.length === 0) {
     let titulo = document.querySelector('.title');
     titulo.textContent = 'Nunhum Cliente Inativo';
     titulo.style.cssText = `
-    
+
+        font-size: 1.8em;
         box-shadow: 0px 0px 20px #0000005b;
         padding: 40px;
         border-radius: 20px;
@@ -20,7 +21,7 @@ if (clientesInativos.length === 0) {
 document.querySelectorAll('.btn-inat').forEach(button => {
     button.addEventListener('click', async function(){
 
-        const clienteWrapper = this.closest('.cliente-wrapper');
+        const clienteWrapper = this.closest('.wrapper');
         const id = clienteWrapper.querySelector('.cliente-inat-id').textContent;
 
         let status = await ativarClienteService(id);
