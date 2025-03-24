@@ -16,7 +16,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
     let dados = Object.fromEntries(formDados.entries());
 
     //Pegando o id do cliente e do cartão
-    const clt_id = window.location.pathname.split('/')[2];
+    const clt_id = window.location.pathname.split('/')[3];
 
     const card = {
         car_clt_id: clt_id,
@@ -32,7 +32,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
     
     if(result.status === 200){
         alert('Cartão foi cadastrado com sucesso!');
-        window.location.href = `/card/${clt_id}`;
+        window.location.href = `/clientes/card/${clt_id}`;
         return;
     }
 

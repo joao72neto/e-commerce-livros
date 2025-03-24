@@ -16,7 +16,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
     let dados = Object.fromEntries(formDados.entries());
 
     //Pegando o id do cliente e do cartão
-    const clt_id = window.location.pathname.split('/')[2];
+    const clt_id = window.location.pathname.split('/')[3];
     const car_id = window.location.pathname.split('/').splice(-1)[0];
 
     const card = {
@@ -32,7 +32,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
     
     if(result.status === 200){
         alert('Cartão foi atualizado com sucesso!');
-        window.location.href = `/card/${clt_id}`;
+        window.location.href = `/clientes/card/${clt_id}`;
         return;
     }
 

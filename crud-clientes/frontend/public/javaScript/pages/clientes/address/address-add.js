@@ -21,7 +21,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
 
 
     //Pegando o id do cliente
-    const clt_id = window.location.pathname.split('/')[2];
+    const clt_id = window.location.pathname.split('/')[3];
 
 
     const address = {
@@ -43,7 +43,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
     
     if(result.status === 200){
         alert('Endereço foi cadastrado com sucesso!');
-        window.location.href = `/address/${clt_id}`;
+        window.location.href = `/clientes/address/${clt_id}`;
         return;
     }
 
