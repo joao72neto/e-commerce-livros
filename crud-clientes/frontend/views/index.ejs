@@ -3,38 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/pages/index.css">
     <title>e-commerce-livros</title>
 </head>
 <body>
 
     <header>
-        <span for="">E-commerce</span>
-        <input type="text" placeholder="busca">
-        <span for="">Notificações</span>
-        <span for=""><a href="/carrinho">Carrinho</a></span>
-        <button>Menu Lateral</button>
+        <div class="busca-header">
+            <span id="title-index">E-commerce</span>
+            <input id="busca-index" type="text" placeholder="busca">
+        </div>
+        <div class="acoes">
+            <span id="notificacao-index"><a href="">Notificações</a></span>
+            <span id="carrinho-index"><a href="/carrinho">Carrinho</a></span>
+            <button id="btn-sidebar" >☰</button>
+        </div>
+    </header> 
 
-        <nav>
-            <p>Isso é o menu lateral</p>
-            <ul>
-                <label for="">Cliente</label>
-                <ul>
-                    <li><a href="/perfil">Perfil</a></li>
-                    <li><a href="/cadastro">Cadastro</a></li>
-                    <li><a href="/pedidos">Meus Pedidos</a></li>
-                </ul>
-                <label for="">ADM</label>
-                <ul>
-                    <li><a href="/clientes">Gerenciar Clientes</a></li>
-                    <li><a href="">Gerenciar Livros</a></li>
-                    <li><a href="/pedidos/gerenciar">Gerenciar Pedidos</a></li>
-                    <li><a href="/vendas/historico">Histórico de Vendas</a></li>
-                    <li><a href="/logs">Logs</a></li>
-                </ul>
-            </ul>
-        </nav>
-          
-    </header>
+    <nav class="sidebar">
+        
+    </nav>
 
     <main>
         <h1>Esta é a página principal</h1>
@@ -51,6 +40,8 @@
     <footer>
         <p>Melhor Footer</p>
     </footer>
+
+    <script type="module" src="/javaScript/pages/index.js"></script>
 
 </body>
 </html>

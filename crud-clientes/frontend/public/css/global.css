@@ -8,6 +8,15 @@
     box-sizing: border-box;
 }
 
+header{
+    display: flex;
+    background-color: var(--preto);
+    color: var(--branco);
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
 html, body{
     height: 100%;
 }
@@ -93,6 +102,11 @@ a{
         border: 1px solid var(--preto);
     }
 }
+
+ul{
+    list-style: none;
+}
+
 
 .invisible {
     display: none;

@@ -1,0 +1,44 @@
+/*Importando as cores do site*/
+@import url('../colors.css');
+
+
+.busca-header{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#title-index{
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+#busca-index{
+    flex-grow: 2;
+    
+}
+
+#btn-sidebar{
+    font-size: 1.3em;
+}
+
+/*Menu Lateral*/
+.sidebar{
+    position: fixed;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    color: var(--branco);
+    background-color: var(--preto);
+}
+
+.sidebar h2{
+    margin: 10px 0px;
+}
+
+.sidebar a{
+    display: block;
+}
+
+
