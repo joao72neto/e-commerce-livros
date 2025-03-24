@@ -1,0 +1,75 @@
+/*Importando cores*/
+@import url('../colors.css');
+
+header h2{
+    margin-right: 50px;
+}
+
+body{
+    background-color: var(--cinza);
+}
+
+main{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2{
+    text-align: center;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+
+.box{
+    background-color: var(--branco);
+    padding: 20px;
+    flex-basis: 800px;
+    box-shadow: 0px 0px 20px #0000005b;
+    border-radius: 20px;
+}
+
+
+.flex-usuario{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    padding: 50px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-usuario .imagem-perfil{
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+    border-radius: 100%;
+    background-color: gray;
+}
+
+.flex-usuario p{
+    margin: 20px 0;
+}
+
+.usuario .botao{
+    width: 100%;
+    text-align: center;
+}
+
+.usuario .botao button{
+    width: 150px;
+}
+
+.enderecos{
+
+}
+
+.cartoes{
+    
+}   
