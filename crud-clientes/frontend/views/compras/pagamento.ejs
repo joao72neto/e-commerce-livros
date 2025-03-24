@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/pages/compras/pagamento.css">
     <title>Pagamento</title>
 </head>
 <body>
-
-    <div class="voltar"><a href="/">Cancelar</a></div>
 
     <header>
         <div class="busca-header">
@@ -22,33 +22,62 @@
     <main>
         <h2>Itens</h2>
         <section class="items">
-            <p>Imagem do Pedido</p>
-            <p><strong>Item 01: R$100,00</strong></p>
-            <label for="">Qtd: </label>
-            <input type="number">
-            <button>Remover</button>
+
+            <div class="wrapper">
+                <div class="imagem"></div>
+                <div>
+                    <p><h2>Lord of The Rings</h2></p>
+                    <p><strong>R$200,00</strong></p>
+                </div>
+                <div>
+                    <span id="contador"><strong>Qtd:</strong> 2</span>
+                </div>
+            </div>
+
         </section>
 
         <section class="informacoes">
             <div class="enderecos">
+
                 <h2>Escolha um Endereço: </h2>
-                <select name="" id="">
-                    <option value="">Etrada</option>
-                    <option value="">Rua</option>
-                    <option value="">Av</option>
-                </select>
-                <button>Adicionar novo endereço</button>
+
+                <div class="container">
+                    <div class="wrapper">
+                        <div>
+                            <h2>Estrada Antiga Imperial</h2>
+                            <p>Vila São Paulo</p>
+                            <p><strong>Número: </strong>123</p>
+                        </div>
+                        <div class="acoes">
+                            <a href="">Selecionar</a>
+                        </div>
+                    </div>
+                    <div class="add">
+                        <a href="">Adicionar Novo Endereço</a>
+                    </div>
+                </div>
             </div>
             <div>
                 <h2>Escolha um Método de Pagamento: </h2>
 
                 <h3>Cartão</h3>
-                <select name="" id="">
-                    <option value="">Visa-1231</option>
-                    <option value="">Mastercard-2314</option>
-                    <option value="">Ohh-1212</option>
-                </select>
-                <button>Adicionar novo cartão</button>
+
+                <div class="container">
+                    <div class="wrapper">
+                        <div>
+                            <h2>Mastercard</h2>
+                            <p>João Neto</p>
+                            <p><strong>Final: </strong>4362</p>
+                        </div>
+                        <div class="acoes">
+                            <a href="">Selecionar</a>
+                        </div>
+                    </div>
+
+                    <div class="add">
+                        <a href="">Adicionar Novo Endereço</a>
+                    </div>
+                </div>
 
                 <h3>Cupom:</h3>
                 <select name="" id="">
@@ -58,14 +87,16 @@
                 </select>
             </div>
 
-            <div>
+            <div class="resumo">
                 <p>Frete: R$12,00</p>
                 <p>Total: R$112,00</p>
             </div>
 
         </section>
 
-        <button>Finalizar Compra</button>
+        <div class="finalizar-compra">
+            <a href="/pedidos">Finalizar a Compra</a>
+        </div>
     </main>
 
     <footer>
