@@ -18,6 +18,10 @@ header{
     height: 65px;
 }
 
+header h2{
+    margin-right: 50px;
+}
+
 footer{
     display: flex;
     background-color: var(--preto);
@@ -121,6 +125,10 @@ ul{
 
 .invisible {
     display: none;
+}
+
+.title{
+    text-align: center;
 }
 
 .voltar{

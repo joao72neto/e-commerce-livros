@@ -1,0 +1,45 @@
+
+h2{
+    margin: 10px 0;
+}
+
+.title{
+    margin: 30px;
+}
+
+main{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.imagem{
+    height: 100px;
+    width: 100px;
+    background-color: gray;
+    border-radius: 20px;
+}
+
+.wrapper{
+    align-items: center;
+}
+
+/*Botões*/
+.diminuir, .aumentar{
+    width: 40px;
+    height: 40px;
+}
+
+#contador{
+    margin: 0 5px;
+}
+
+.total{
+    margin: 50px 0;
+    text-align: center;
+}
+
+.pagamento{
+    margin: 50px 0;
+    width: 100%;
+    text-align: center;
+}
