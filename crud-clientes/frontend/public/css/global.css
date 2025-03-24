@@ -15,6 +15,7 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    height: 65px;
 }
 
 footer{
@@ -123,8 +124,7 @@ ul{
 }
 
 .voltar{
-    position: fixed;
-    top: 30px;
+    top: 100px;
     left: 10px;
 }
 
