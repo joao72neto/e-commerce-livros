@@ -1,0 +1,16 @@
+/*Importando cores*/
+@import url('../../colors.css');
+
+body{
+    background-color: var(--cinza);
+}
+
+.title{
+    margin: 20px 0;
+}
+
+main{
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 104.2vh;
+}
