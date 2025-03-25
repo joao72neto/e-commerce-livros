@@ -23,3 +23,11 @@ document.querySelectorAll('.diminuir').forEach(button => {
 });
 
 
+//Redirecionando para a página do livro
+document.querySelectorAll('.imagem').forEach(function(button){
+    button.addEventListener('click', function(){
+        window.location.href = '/produto';
+    });
+});
+
+

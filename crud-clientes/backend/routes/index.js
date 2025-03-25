@@ -50,10 +50,12 @@ router.use('/', routeBooks);
 const routeGerenciarPedidos = require('../routes/analise/routeGerenciarPedidos');
 const routeHistoricoVendas = require('../routes/analise/routeHistoricoVendas');
 const routeLogs = require('../routes/analise/routeLogs');
+const routeEstoque = require('../routes/analise/routeEstoque');
 
 router.use('/', routeGerenciarPedidos);
 router.use('/', routeHistoricoVendas);
 router.use('/', routeLogs);
+router.use('/', routeEstoque);
 
 //Expotando as rotas pra o app
 module.exports = router;

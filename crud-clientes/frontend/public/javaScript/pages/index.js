@@ -17,6 +17,7 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
             <li><a href="/clientes">Gerenciar Clientes</a></li>
             <li><a href="/pedidos/gerenciar">Gerenciar Pedidos</a></li>
             <li><a href="/vendas/historico">Histórico de Vendas</a></li>
+            <li><a href="/estoque">Controle de Estoque</a></li>
             <li><a href="/logs">Logs</a></li>
         </ul>
      

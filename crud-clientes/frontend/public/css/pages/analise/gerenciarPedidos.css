@@ -34,7 +34,8 @@ main{
     justify-self: center;
 }
 
-.pedidos{
+
+.pedidos, .troca{
     padding: 20px;
 }
 

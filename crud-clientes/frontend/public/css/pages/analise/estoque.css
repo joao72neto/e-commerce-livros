@@ -1,0 +1,9 @@
+main{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.btn-entrada{
+    padding: 30px;
+    text-align: center;
+}
