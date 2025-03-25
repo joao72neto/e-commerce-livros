@@ -10,10 +10,15 @@ main{
     margin: 0 auto;
 }
 
-.imagem{
-    height: 100px;
+.imagem img{
     width: 100px;
     background-color: gray;
+    border-radius: 20px;
+}
+
+strong{
+    padding: 20px;
+    background-color: var(--cinza);
     border-radius: 20px;
 }
 

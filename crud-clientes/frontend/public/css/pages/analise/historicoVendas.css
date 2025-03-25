@@ -51,8 +51,6 @@ span{
 
 .box .flex-prod{
     display: flex;
-    flex-wrap: wra;
-
 }
 
 .btn-filtro{
@@ -60,9 +58,8 @@ span{
     text-align: center;
 }
 
-.grafico{
+.grafico img{
     width: 100%;
-    height: 600px;
     margin: 20px auto;
     background-color: gray;
     border-radius: 20px;

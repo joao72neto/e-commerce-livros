@@ -19,6 +19,10 @@
     
 }
 
+#carrinho-index img{
+    width: 30px;
+}
+
 #btn-sidebar{
     font-size: 1.3em;
 }
@@ -39,7 +43,7 @@
     display: block;
     background-color: var(--preto);
     border: none;
-    color: var(--braco);
+    color: var(--branco);
     padding: 20px;
 
     &:hover{
@@ -69,9 +73,13 @@
 
 /*Banner*/
 .banner {
+    background-image: url('/images/index/banner.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    
     width: 100%;
     height: 300px;
-    background-color: gray;
 }
 
 /*livros*/
@@ -95,7 +103,7 @@
     }
 }
 
-.book .imagem{
+.book .imagem img{
     height: 300px;
     background-color: rgba(128, 128, 128, 0.493);
     border-radius: 20px;

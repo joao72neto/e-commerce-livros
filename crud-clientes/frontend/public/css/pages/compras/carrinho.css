@@ -17,8 +17,7 @@ main{
     margin: 0 auto;
 }
 
-.imagem{
-    height: 100px;
+.imagem img{
     width: 100px;
     background-color: gray;
     border-radius: 20px;

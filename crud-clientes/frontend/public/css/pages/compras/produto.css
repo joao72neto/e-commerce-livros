@@ -15,9 +15,8 @@ a{
 }
 
 
-.imagem{
+.imagem img{
     height: 500px;
-    width: 400px;
     background-color: gray;
     border-radius: 20px;
 }

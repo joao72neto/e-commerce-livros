@@ -45,12 +45,11 @@ h2{
     align-items: center;
 }
 
-.flex-usuario .imagem-perfil{
-    width: 200px;
+.flex-usuario .imagem-perfil img{
+    width: 200px; 
     height: 200px;
     margin-right: 20px;
-    border-radius: 100%;
-    background-color: gray;
+    background-color: var(--branco);
 }
 
 .flex-usuario p{
