@@ -9,12 +9,18 @@
     <title>CRUD</title>
 </head>
 <body>
-    <div class="voltar"><a href="/">Voltar</a></div>
+    <header>
+        <div class="busca-header">
+            <div class="voltar"><a href="/">Voltar</a></div>
+        </div>
+        <div>
+            <h2>Gerenciamente de Clientes</h2>
+        </div>
+    </header> 
 
     <div class="flex-container">
         <div class="container-index">
             <div class="msg-clientes">
-                <h1 class="titulo-cliente">CRUD de Clientes</h1>
                 
                 <div class="filtro">
                     <span id="flt"><img src="images/filtro.png" alt="filtro"></span>
@@ -53,6 +59,11 @@
             %>
         </div>
     </div>
+
+    <footer>
+        <p>E-commerce de Livros - João Salvador Neto</p>
+    </footer>
+
 
     <script type="module" src="/javaScript/pages/clientes/clientes.js"></script>
     <script type="module" src="/javaScript/components/clientes/popupClientes.js"></script>

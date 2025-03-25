@@ -23,7 +23,8 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
     `;
 
     if(sidebar.innerHTML.trim() === ''){
-        header.style.position = 'fixed';
+        header.style.position = 'sticky';
+        header.style.top = '0';
         header.style.width = '100%'
         sidebar.style.top = '55px';
         sidebar.style.padding = '20px';
