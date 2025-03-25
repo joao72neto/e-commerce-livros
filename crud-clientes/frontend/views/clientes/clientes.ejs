@@ -9,60 +9,60 @@
     <title>CRUD</title>
 </head>
 <body>
-    <header>
-        <div class="busca-header">
-            <div class="voltar"><a href="/">Voltar</a></div>
-        </div>
-        <div>
-            <h2>Gerenciamente de Clientes</h2>
-        </div>
-    </header> 
-
-    <div class="flex-container">
-        <div class="container-index">
-            <div class="msg-clientes">
-                
-                <div class="filtro">
-                    <span id="flt"><img src="images/filtro.png" alt="filtro"></span>
-                </div>
-                <div class="filtro_clientes">
-                    <input type="text" placeholder="Nome">
-                    <input type="email" placeholder="E-mail">
-                    <input type="text" placeholder="Telefone">
-                    <input type="text" placeholder="CPF ">
-                    <input type="date" placeholder="Data de Nascimento">
-                    <input type="text" placeholder="Gênero">
-                    <button>Filtrar</button>
-                </div>
+    <div class="main-container">
+        <header>
+            <div class="busca-header">
+                <div class="voltar"><a href="/">Voltar</a></div>
             </div>
-
-            <div class="button">
-                <a href="/clientes/signup">Cadastrar Cliente</a>
+            <div>
+                <h2>Gerenciamente de Clientes</h2>
             </div>
-
-            <%
-                clientes.forEach(cliente => { %>
-                    <div class="wrapper">
-                        <div class="cliente">
-                            <p class="invisible cliente-id"><%=cliente.clt_id%></p>
-                            <p><%=cliente.clt_nome%></p>
-                            <p><%=cliente.clt_email%></p>
-                        </div>
-                        <div class="acoes">
-                            <a class="alt" href="#">Alterar</a>
-                            <a class="inat" href="#">Inativar</a>
-                            <a class="tran" href="#">Transações</a>
-                        </div>
+        </header>
+        <div class="flex-container">
+            <div class="container-index">
+                <div class="msg-clientes">
+        
+                    <div class="filtro">
+                        <span id="flt"><img src="images/filtro.png" alt="filtro"></span>
                     </div>
-                    <%
-                });
-            %>
+                    <div class="filtro_clientes">
+                        <input type="text" placeholder="Nome">
+                        <input type="email" placeholder="E-mail">
+                        <input type="text" placeholder="Telefone">
+                        <input type="text" placeholder="CPF ">
+                        <input type="date" placeholder="Data de Nascimento">
+                        <input type="text" placeholder="Gênero">
+                        <button>Filtrar</button>
+                    </div>
+                </div>
+                <div class="button">
+                    <a href="/clientes/signup">Cadastrar Cliente</a>
+                </div>
+                <%
+                    clientes.forEach(cliente => { %>
+                        <div class="wrapper">
+                            <div class="cliente">
+                                <p class="invisible cliente-id"><%=cliente.clt_id%></p>
+                                <p><%=cliente.clt_nome%></p>
+                                <p><%=cliente.clt_email%></p>
+                            </div>
+                            <div class="acoes">
+                                <a class="alt" href="#">Alterar</a>
+                                <a class="inat" href="#">Inativar</a>
+                                <a class="tran" href="#">Transações</a>
+                            </div>
+                        </div>
+                        <%
+                    });
+                %>
+            </div>
         </div>
+        <div class="space"></div>
+        <footer>
+            <p>E-commerce de Livros - João Salvador Neto</p>
+        </footer>
     </div>
-
-    <footer>
-        <p>E-commerce de Livros - João Salvador Neto</p>
-    </footer>
+    
 
 
     <script type="module" src="/javaScript/pages/clientes/clientes.js"></script>

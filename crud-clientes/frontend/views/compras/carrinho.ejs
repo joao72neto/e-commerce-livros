@@ -9,56 +9,57 @@
 </head>
 <body>
 
-    <header>
-        <div class="busca-header">
-            <div class="voltar"><a href="/">Voltar</a></div>
-        </div>
-        <div>
-            <h2>Carrinho de João</h2>
-        </div>
-    </header> 
-
-
-    <main>
-        <h2 class="title">Itens Adionados: </h2>
-
-        <div class="wrapper">
-            <div class="imagem"></div>
-            <div>
-                <p><h2>Lord of The Rings</h2></p>
-                <p><strong>R$100,00</strong></p>
+    <div class="main-container">
+        <header>
+            <div class="busca-header">
+                <div class="voltar"><a href="/">Voltar</a></div>
             </div>
             <div>
-                <button class="diminuir">-</button>
-                <span id="contador">0</span>
-                <button class="aumentar">+</button>
+                <h2>Carrinho de João</h2>
             </div>
-            <div class="acoes">
-                <button>Remover</button>
+        </header>
+        <main>
+            <h2 class="title">Itens Adionados: </h2>
+            <div class="wrapper">
+                <div class="imagem"></div>
+                <div>
+                    <p><h2>Lord of The Rings</h2></p>
+                    <p><strong>R$100,00</strong></p>
+                </div>
+                <div>
+                    <button class="diminuir">-</button>
+                    <span id="contador">0</span>
+                    <button class="aumentar">+</button>
+                </div>
+                <div class="acoes">
+                    <button>Remover</button>
+                </div>
             </div>
-        </div>
-        <div class="wrapper">
-            <div class="imagem"></div>
-            <div>
-                <p><h2>Game of Thrones</h2></p>
-                <p><strong>R$120,00</strong></p>
+            <div class="wrapper">
+                <div class="imagem"></div>
+                <div>
+                    <p><h2>Game of Thrones</h2></p>
+                    <p><strong>R$120,00</strong></p>
+                </div>
+                <div>
+                    <button class="diminuir">-</button>
+                    <span id="contador">0</span>
+                    <button class="aumentar">+</button>
+                </div>
+                <div class="acoes">
+                    <button>Remover</button>
+                </div>
             </div>
-            <div>
-                <button class="diminuir">-</button>
-                <span id="contador">0</span>
-                <button class="aumentar">+</button>
+            <h2 class="total">Total de R$300,00</h2>
+            <div class="pagamento">
+                <a href="/pagamento">Ir para Pagamento</a>
             </div>
-            <div class="acoes">
-                <button>Remover</button>
-            </div>
-        </div>
-
-        <h2 class="total">Total de R$300,00</h2>
-
-        <div class="pagamento">
-            <a href="/pagamento">Ir para Pagamento</a>
-        </div>
-    </main>
+        </main>
+        <div class="space"></div>
+        <footer>
+            <p>E-commerce de Livros - João Salvador Neto</p>
+        </footer>
+    </div>
 
 
     <script type="module" src="/javaScript/pages/compras/carrinho.js"></script>

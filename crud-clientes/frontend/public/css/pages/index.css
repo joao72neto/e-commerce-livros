@@ -32,7 +32,6 @@
     grid-template-columns: 1fr;
     color: var(--branco);
     background-color: var(--preto);
-    border-radius: 0 0 20px 20px;
 }
 
 .sidebar h2{
@@ -93,7 +92,6 @@
 .compra a {
     width: 100px;
 }
-
 
 
 
