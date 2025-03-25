@@ -23,6 +23,31 @@
     font-size: 1.3em;
 }
 
+/*Notificações*/
+.notificacao{
+    border: 3px solid var(--branco);
+    border-radius: 10px;
+    position: absolute;
+    top: 50px;
+    right: 200px;
+    left: -100px;
+    background-color: var(--preto);
+    z-index: 2;
+}
+
+.notificacao a{
+    display: block;
+    background-color: var(--preto);
+    border: none;
+    color: var(--braco);
+    padding: 20px;
+
+    &:hover{
+        background-color: var(--amarelo-claro);
+        color: var(--preto);
+    }
+}
+
 /*Menu Lateral*/
 
 .sidebar{
