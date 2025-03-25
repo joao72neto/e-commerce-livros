@@ -15,7 +15,6 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
         <h2 for="">ADM</h2>
         <ul>
             <li><a href="/clientes">Gerenciar Clientes</a></li>
-            <li><a href="">Gerenciar Livros</a></li>
             <li><a href="/pedidos/gerenciar">Gerenciar Pedidos</a></li>
             <li><a href="/vendas/historico">Histórico de Vendas</a></li>
             <li><a href="/logs">Logs</a></li>

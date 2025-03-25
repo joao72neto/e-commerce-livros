@@ -3,61 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/pages/analise/gerenciarPedidos.css">
     <title>Gerenciamento de Pedidos</title>
 </head>
 <body>
-
-    <div class="voltar"><a href="/">Voltar</a></div>
     
     <header>
-        <h1>Gerenciamento de Pedidos</h1>
-    </header>
+        <div class="busca-header">
+            <div class="voltar"><a href="/">Voltar</a></div>
+        </div>
+        <div>
+            <h2>Gerenciamento de Pedidos</h2>
+        </div>
+    </header> 
 
     <main>
-        <div>
-            <p>Imagem do produto</p>
-            <p><strong>Comprador: </strong>João Neto</p>
 
-            <div>
-                <select name="" id="">
-                    <option value="">Aprovador</option>
-                    <option value="">Reprovado</option>
-                </select>
+        <h2 class="title">Buscar por Clientes</h2>
 
-                <select name="" id="">
-                    <option value="">Em Transito</option>
-                    <option value="">Entregue</option>
-                </select>
-
-                <select name="" id="">
-                    <option value="">Sem Troca</option>
-                    <option value="">Troca Aprovada</option>
-                    <option value="">Troca Reprovada</option>
-                </select>
-            </div>
+        <div class="filtro_clientes">
+            <input type="text" placeholder="Nome">
+            <input type="email" placeholder="E-mail">
+            <input type="text" placeholder="Telefone">
+            <input type="text" placeholder="CPF ">
+            <input type="date" placeholder="Data de Nascimento">
+            <input type="text" placeholder="Gênero">
+            <button>Filtrar</button>
         </div>
 
-        <div>
-            <p>Imagem do produto</p>
-            <p><strong>Comprador: </strong>João Neto</p>
-
-            <div>
-                <select name="" id="">
-                    <option value="">Aprovador</option>
-                    <option value="">Reprovado</option>
-                </select>
-
-                <select name="" id="">
-                    <option value="">Em Transito</option>
-                    <option value="">Entregue</option>
-                </select>
-
-                <select name="" id="">
-                    <option value="">Sem Troca</option>
-                    <option value="">Troca Aprovada</option>
-                    <option value="">Troca Reprovada</option>
-                </select>
+        <div class="pedidos">
+            <h2>João Salvador Neto - 486.904.748-97</h2>
+            <div class="wrapper">
+                <div class="imagem"></div>
+                <div>
+                    <h2>Lord of The Rings</h2>
+                    <p>20-12-2020</p>
+                    <p><strong>Comprador: </strong>João Neto</p>
+                </div>
+                <div>
+                    <select name="" id="">
+                        <option value="">Aprovador</option>
+                        <option value="">Reprovado</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">Em Transito</option>
+                        <option value="">Entregue</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">Sem Troca</option>
+                        <option value="">Troca Aprovada</option>
+                        <option value="">Troca Reprovada</option>
+                    </select>
+                </div>
             </div>
+            <div class="wrapper">
+                <div class="imagem"></div>
+                <div>
+                    <h2>Game of Thrones</h2>
+                    <p>20-10-2020</p>
+                    <p><strong>Comprador: </strong>João Neto</p>
+                </div>
+                <div>
+                    <select name="" id="">
+                        <option value="">Aprovador</option>
+                        <option value="">Reprovado</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">Em Transito</option>
+                        <option value="">Entregue</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">Sem Troca</option>
+                        <option value="">Troca Aprovada</option>
+                        <option value="">Troca Reprovada</option>
+                    </select>
+                </div>
         </div>
     </main>
 
