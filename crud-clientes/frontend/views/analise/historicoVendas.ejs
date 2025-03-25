@@ -3,40 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/pages/analise/historicoVendas.css">
     <title>Histórico de Vendas</title>
 </head>
 <body>
 
-    <div class="voltar"><a href="/">Voltar</a></div>
-
     <header>
-        <h1>Histórico de Vendas</h1>
-    </header>
+        <div class="busca-header">
+            <div class="voltar"><a href="/">Voltar</a></div>
+        </div>
+        <div>
+            <h2>Histórico de Vendas</h2>
+        </div>
+    </header> 
 
     <main>
-        <div>
-            <h2>Produtos</h2>
-            <input type="radio">Lord of the Rings
-            <input type="radio">Não sei
-            <input type="radio">IT
-            <input type="radio">Game of Thrones
+        <div class="filtros">
+            <div class="box">
+                <h2>Produtos</h2>
+                <p><input type="checkbox"><span>Lord of The Rings</span></p>
+                <p><input type="checkbox"><span>Não sei</span></p>
+                <p><input type="checkbox"><span>IT</span></p>
+                <p><input type="checkbox"><span>Game of Thrones</span></p>
+            </div>
+
+            <div class="box">
+                <p>Início: </p>
+                <p><input type="date"></p>
+                <p>Fim: </p>
+                <p><input type="date"></p>
+            </div>
+            <div class="box">
+                <h2>Categorias</h2>
+                <p><input type="checkbox"><span>Ação</span></p>
+                <p><input type="checkbox"><span>Ficção</span></p>
+                <p><input type="checkbox"><span>Comédia</span></p>
+                <p><input type="checkbox"><span>Drama</span></p>
+            </div>
         </div>
 
-        <div>
-            <h2>Categorias</h2>
-            <input type="radio">Ação
-            <input type="radio">Ficção
-            <input type="radio">Comédia
-            <input type="radio">Drama
+        <div class="btn-filtro">
+            <a href="">Filtrar</a>
         </div>
 
-        <button>Filtrar</button>
+        <h2 class="title">Gráfico de Linhas</h2>
 
-        <div>
-            <p>Um gŕafico muito incrível vai aparecer aqui</p>
+        <div class="grafico">
+            
         </div>
+    
     </main>
-
+    
     <footer>
         <p>Melhor footer de todos</p>
     </footer>

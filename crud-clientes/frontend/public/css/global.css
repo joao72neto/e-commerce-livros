@@ -63,10 +63,10 @@ input{
     border: 1px solid black;
 }
 
-input[type="checkbox"]{
+/* input[type="checkbox"]{
     height: 35px;
     border-radius: 10px;
-}
+} */
 
 button{
     padding: 10px;
