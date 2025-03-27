@@ -1,4 +1,4 @@
-const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente } = require("../../model/clientes/modelClientes");
+const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente, deletarCliente } = require("../../model/clientes/modelClientes");
 
 //Páginas
 module.exports.getClientes = async (req, res) => {
@@ -24,7 +24,19 @@ module.exports.patchAtivarCliente = async (req, res) => {
         await ativarCliente(req.params.clt_id);
         res.sendStatus(204)
     }catch(err){
-        console.err(`Erro no patchAtivarCliente - controllerCliente: ${err}`);
+        console.error(`Erro no patchAtivarCliente - controllerCliente: ${err}`);
+        res.sendStatus(500);
+    }
+    
+};
+
+//Deletando clientes
+module.exports.deleteCliente = async(req, res) => {
+    try{
+        await deletarCliente(req.params.clt_id);
+        res.sendStatus(204);
+    }catch(err){
+        console.error(`Erro no deleteCliente - controllerClientes: ${err}`);
         res.sendStatus(500);
     }
     

@@ -1,5 +1,19 @@
 const db = require('../../config/db');
 
+
+//DELETE
+
+//Função que deleta clientes do banco de dados
+async function deletarCliente(id) {
+    const sql = `DELETE FROM clientes WHERE clt_id = ?`;
+
+    try{
+        await db.query(sql, id);
+    }catch(err){
+        console.error(`Erro no deletarCliente - modelClientes ${err}`);
+    }
+}
+
 //INSERT
 
 //Função que insere um novo cliente no banco 
@@ -139,5 +153,6 @@ module.exports = {buscarTodosClientes,
                   ativarCliente,
                   cadastrarCliente,
                   atualizarCliente, 
-                  alterarSenhaCliente};
+                  alterarSenhaCliente, 
+                  deletarCliente};
 
