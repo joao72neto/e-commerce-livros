@@ -1,4 +1,4 @@
-const { buscarEnderecosClienteId, buscarEnderecoId, atualizarAddress, cadastrarAddress } = require("../../model/clientes/modelAddress");
+const { buscarEnderecosClienteId, buscarEnderecoId, atualizarAddress, cadastrarAddress, deletarAddressId, deletarAddressClienteId } = require("../../model/clientes/modelAddress");
 
 //Paginas
 module.exports.getAddress = async (req, res) => {
@@ -34,6 +34,28 @@ module.exports.postAddressAdd = async (req, res) => {
         res.sendStatus(500);
     }
 };
+
+//Deletando dados
+module.exports.deleteAddressId = async(req, res) => {
+    try{
+        await deletarAddressId(req.params.end_id);
+        res.sendStatus(204);
+    }catch(err){
+        console.error(`Erro no deleteAddressId - controllerAddress: ${err}`);
+        res.sendStatus(500);
+    }
+};
+
+module.exports.deleteAddressClienteId = async(req, res) => {
+    try{
+        await deletarAddressClienteId(req.params.clt_id);
+        res.sendStatus(204);
+    }catch(err){
+        console.error(`Erro no deleteAddressClienteId - controllerAddress: ${err}`);
+        res.sendStatus(500);
+    }
+};
+
 
 //Apis para acessar os dados do banco
 module.exports.getApiEnderecoId = async(req, res) => {

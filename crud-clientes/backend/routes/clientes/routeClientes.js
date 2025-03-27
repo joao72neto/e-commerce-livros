@@ -15,6 +15,6 @@ router.patch('/clientes/inativar/:clt_id', controllerClientes.patchInativarClien
 router.patch('/clientes/ativar/:clt_id', controllerClientes.patchAtivarCliente);
 
 //Rotas para deletar dados
-router.delete('/clientes/delete/:clt_id', controllerClientes.deleteCliente);
+router.delete('/clientes/delete/:clt_id', controllerClientes.deleteClienteId);
 
 module.exports = router;

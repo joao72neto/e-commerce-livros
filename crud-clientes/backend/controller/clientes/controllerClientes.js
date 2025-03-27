@@ -1,4 +1,6 @@
-const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente, deletarCliente } = require("../../model/clientes/modelClientes");
+const { deletarAddressClienteId } = require("../../model/clientes/modelAddress");
+const { deletarCardsClienteId } = require("../../model/clientes/modelCard");
+const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente, deletarClienteId} = require("../../model/clientes/modelClientes");
 
 //Páginas
 module.exports.getClientes = async (req, res) => {
@@ -30,13 +32,17 @@ module.exports.patchAtivarCliente = async (req, res) => {
     
 };
 
-//Deletando clientes
-module.exports.deleteCliente = async(req, res) => {
+//Deletando dados
+module.exports.deleteClienteId = async(req, res) => {
     try{
-        await deletarCliente(req.params.clt_id);
+
+        await deletarAddressClienteId(req.params.clt_id);
+        await deletarCardsClienteId(req.params.clt_id);
+        await deletarClienteId(req.params.clt_id);
+
         res.sendStatus(204);
     }catch(err){
-        console.error(`Erro no deleteCliente - controllerClientes: ${err}`);
+        console.error(`Erro no deleteClienteId - controllerClientes: ${err}`);
         res.sendStatus(500);
     }
     

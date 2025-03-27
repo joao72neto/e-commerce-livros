@@ -1,5 +1,29 @@
 const db = require('../../config/db');
 
+//DELETE
+
+//Função que deleta todos os dados de uma tabela
+async function deletarCardsClienteId(clt_id) {
+    const sql = `DELETE FROM cartoes WHERE car_clt_id = ?`;
+
+    try{
+        await db.query(sql, clt_id);
+    }catch(err){
+        console.error(`Erro no deletarCardsClienteId- modelCards ${err}`);
+    }
+}
+
+//Função que deleta clientes do banco de dados
+async function deletarCardId(id) {
+    const sql = `DELETE FROM cartoes WHERE car_id = ?`;
+
+    try{
+        await db.query(sql, id);
+    }catch(err){
+        console.error(`Erro no deletarCardId - modelCards ${err}`);
+    }
+}
+
 //INSERT
 
 //Inserindo um novo cartão no banco de dados
@@ -81,4 +105,4 @@ async function buscarCartoesClienteId(id) {
 }
 
 //exportando as funções
-module.exports = {buscarCartoesClienteId, buscarTodosCartoes, buscarCartaoId, cadastrarCartao, atualizarCard};
+module.exports = {buscarCartoesClienteId, buscarTodosCartoes, buscarCartaoId, cadastrarCartao, atualizarCard, deletarCardId, deletarCardsClienteId};

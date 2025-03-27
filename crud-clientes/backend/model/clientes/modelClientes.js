@@ -1,16 +1,15 @@
 const db = require('../../config/db');
 
-
 //DELETE
 
 //Função que deleta clientes do banco de dados
-async function deletarCliente(id) {
+async function deletarClienteId(id) {
     const sql = `DELETE FROM clientes WHERE clt_id = ?`;
 
     try{
         await db.query(sql, id);
     }catch(err){
-        console.error(`Erro no deletarCliente - modelClientes ${err}`);
+        console.error(`Erro no deletarClienteId - modelClientes ${err}`);
     }
 }
 
@@ -154,5 +153,5 @@ module.exports = {buscarTodosClientes,
                   cadastrarCliente,
                   atualizarCliente, 
                   alterarSenhaCliente, 
-                  deletarCliente};
+                  deletarClienteId};
 

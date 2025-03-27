@@ -16,4 +16,8 @@ router.post('/clientes/address/:clt_id/add', controllerAddress.postAddressAdd);
 //Rotas para apis
 router.get('/api/address/:end_id', controllerAddress.getApiEnderecoId);
 
+//Deletando dados
+router.delete('/clientes/delete/address/:clt_id/:end_id', controllerAddress.deleteAddressId);
+router.delete('/clientes/delete/address/:clt_id', controllerAddress.deleteAddressClienteId);
+
 module.exports = router;

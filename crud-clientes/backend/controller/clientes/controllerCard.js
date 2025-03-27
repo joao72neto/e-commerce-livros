@@ -1,4 +1,4 @@
-const { atualizarCard, buscarCartaoId, buscarCartoesClienteId, cadastrarCartao } = require("../../model/clientes/modelCard");
+const { atualizarCard, buscarCartaoId, buscarCartoesClienteId, cadastrarCartao, deletarCardId, deletarCardsClienteId } = require("../../model/clientes/modelCard");
 
 //Páginas
 module.exports.getCard = async (req, res) => {
@@ -28,6 +28,26 @@ module.exports.postCardAdd = async (req, res) => {
     }
 };
 
+//Deletando dados
+module.exports.deleteCardId = async(req, res) => {
+    try{
+        await deletarCardId(req.params.car_id);
+        res.sendStatus(204);
+    }catch(err){
+        console.error(`Erro no deleteCardId - controllerCard: ${err}`);
+        res.sendStatus(500);
+    }
+};
+
+module.exports.deleteCardsClienteId = async(req, res) => {
+    try{
+        await deletarCardsClienteId(req.params.clt_id);
+        res.sendStatus(204);
+    }catch(err){
+        console.error(`Erro no deleteCardsClienteId - controllerCard: ${err}`);
+        res.sendStatus(500);
+    }
+};
 
 //Atualizando os dados dos cartões
 module.exports.putCardAlt = async (req, res) => {

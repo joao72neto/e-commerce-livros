@@ -1,5 +1,29 @@
 const db = require('../../config/db');
 
+//DELETE
+
+//Função que deleta todos os dados de uma tabela
+async function deletarAddressClienteId(clt_id) {
+    const sql = `DELETE FROM enderecos WHERE end_clt_id = ?`;
+
+    try{
+        await db.query(sql, clt_id);
+    }catch(err){
+        console.error(`Erro no deletarAddressClienteId- modelAddress ${err}`);
+    }
+}
+
+//Função que deleta clientes do banco de dados
+async function deletarAddressId(id) {
+    const sql = `DELETE FROM enderecos WHERE end_id = ?`;
+
+    try{
+        await db.query(sql, id);
+    }catch(err){
+        console.error(`Erro no deletarAddressId- modelAddress ${err}`);
+    }
+}
+
 //INSERT
 
 //Cadastrando um novo endereço no banco de dadso
@@ -86,5 +110,5 @@ async function buscarEnderecosClienteId(id) {
 
 
 //Exportando as funções
-module.exports = {buscarTodosEnderecos, buscarEnderecosClienteId, buscarEnderecoId, cadastrarAddress, atualizarAddress};
+module.exports = {buscarTodosEnderecos, buscarEnderecosClienteId, buscarEnderecoId, cadastrarAddress, atualizarAddress, deletarAddressClienteId, deletarAddressId};
 
