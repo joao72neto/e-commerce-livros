@@ -1,3 +1,20 @@
+//DELETE
+
+//Deletando um cartão por ID do banco de dados
+export async function deletarCardIdService(clt_id, car_id) {
+    try{
+        const result = await fetch(`/card/delete/${clt_id}/${car_id}`, {
+           method: 'DELETE'
+        });
+
+        return result;
+
+    }catch(err){
+        console.error(`Erro no deletarCardIdService - serviceCard: ${err}`);
+        throw err;
+    }
+}
+
 //POST
 
 //Cadastrando um cartão no banco de dados

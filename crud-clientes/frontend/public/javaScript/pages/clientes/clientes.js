@@ -123,5 +123,10 @@ let clientesAtivos = await buscarClientesAtivosService();
 if (clientesAtivos.length === 0) {
     let container = document.querySelector('.msg-clientes');
     container.innerHTML = '<h1 style="margin: 0">Nenhum Cliente Ativo</h1>';
-    container.style.padding = '40px';
+    container.style.cssText = `
+        background-color: var(--cinza);
+        padding: 30px;
+        margin: 20px 0;
+        border-radius: 20px
+    `;
 }

@@ -1,3 +1,20 @@
+//DELETE
+
+//Deletando um endereço por ID do banco de dados
+export async function deletarAddressIdService(clt_id, end_id) {
+    try{
+        const result = await fetch(`/address/delete/${clt_id}/${end_id}`, {
+           method: 'DELETE'
+        });
+
+        return result;
+
+    }catch(err){
+        console.error(`Erro no deletarAddressIdService - serviceAddress: ${err}`);
+        throw err;
+    }
+}
+
 //POST
 
 //Cadastro de novos endereço no banco

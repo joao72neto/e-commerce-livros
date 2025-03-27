@@ -12,3 +12,6 @@ document.querySelectorAll('.alt').forEach(button => {
         window.location.href = path;
     });
 });
+
+
+//Deletando um cartão

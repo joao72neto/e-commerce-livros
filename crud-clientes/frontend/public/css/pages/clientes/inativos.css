@@ -1,18 +1,30 @@
 /*Importando as cores do site*/
-@import url('../colors.css');
+@import url('../../colors.css');
 
 /*Inativos*/
 .title{
     text-align: center;
+    background-color: var(--cinza);
+    padding: 20px;
 }
 
 .container-inat {
     display: flex;
+    max-width: 800px;
+    margin: 0 auto;
     min-height: 100vh;
     justify-content: center;
     align-items: center;
 }
 
+.wrapper{
+    padding: 30px;
+}
+
+.acoes a:hover{
+    cursor: pointer;
+}
+
 .inativos{
-    width: 500px;  
+    width: 100%;  
 }

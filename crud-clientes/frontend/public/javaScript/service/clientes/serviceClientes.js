@@ -1,3 +1,20 @@
+//DELETE
+
+//Deletando um cliente por ID do banco de dados
+export async function deletarClienteIdService(clt_id) {
+    try{
+        const res = await fetch(`/clientes/delete/${clt_id}`, {
+           method: 'DELETE'
+        });
+
+        return res.status;
+
+    }catch(err){
+        console.error(`Erro no deletarClienteIdService - serviceClientes: ${err}`);
+        throw err;
+    }
+}
+
 //PATCH
 
 //Alterando a senha do cliente
