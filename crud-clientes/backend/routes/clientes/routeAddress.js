@@ -17,7 +17,6 @@ router.post('/clientes/address/:clt_id/add', controllerAddress.postAddressAdd);
 router.get('/api/address/:end_id', controllerAddress.getApiEnderecoId);
 
 //Deletando dados
-router.delete('/clientes/delete/address/:clt_id/:end_id', controllerAddress.deleteAddressId);
-router.delete('/clientes/delete/address/:clt_id', controllerAddress.deleteAddressClienteId);
+router.delete('/address/delete/:clt_id/:end_id', controllerAddress.deleteAddressId);
 
 module.exports = router;

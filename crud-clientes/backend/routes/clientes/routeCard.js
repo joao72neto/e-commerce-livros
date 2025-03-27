@@ -14,7 +14,6 @@ router.put('/clientes/card/:clt_id/alt/:car_id', controllerCard.putCardAlt);
 router.post('/clientes/card/:clt_id/add', controllerCard.postCardAdd);
 
 //Deletando dados
-router.delete('/clientes/delete/card/:clt_id/:car_id', controllerCard.deleteCardId);
-router.delete('/clientes/delete/card/:clt_id', controllerCard.deleteCardsClienteId);
+router.delete('/card/delete/:clt_id/:car_id', controllerCard.deleteCardId);
 
 module.exports = router;

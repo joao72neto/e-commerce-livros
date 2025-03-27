@@ -28,23 +28,20 @@ module.exports.postCardAdd = async (req, res) => {
     }
 };
 
+
 //Deletando dados
-module.exports.deleteCardId = async(req, res) => {
-    try{
+module.exports.deleteCardId = async (req, res) => {
+    try {
+        const cartoes = await buscarCartoesClienteId(req.params.clt_id);
+
+        if (cartoes.length <= 1) {
+            return res.status(400).json({ message: "O cliente deve ter pelo menos um cartão cadastrado." });
+        }
+
         await deletarCardId(req.params.car_id);
         res.sendStatus(204);
-    }catch(err){
+    } catch (err) {
         console.error(`Erro no deleteCardId - controllerCard: ${err}`);
-        res.sendStatus(500);
-    }
-};
-
-module.exports.deleteCardsClienteId = async(req, res) => {
-    try{
-        await deletarCardsClienteId(req.params.clt_id);
-        res.sendStatus(204);
-    }catch(err){
-        console.error(`Erro no deleteCardsClienteId - controllerCard: ${err}`);
         res.sendStatus(500);
     }
 };

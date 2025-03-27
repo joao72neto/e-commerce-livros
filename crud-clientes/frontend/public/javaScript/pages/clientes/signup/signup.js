@@ -58,7 +58,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
 
     if(status === 200){
         alert('Cliente foi Cadastrado com Sucesso!');
-        window.location.href = '/';
+        window.location.href = '/clientes';
         return;
     }
 

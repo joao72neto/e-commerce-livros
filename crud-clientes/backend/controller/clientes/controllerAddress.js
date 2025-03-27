@@ -36,22 +36,18 @@ module.exports.postAddressAdd = async (req, res) => {
 };
 
 //Deletando dados
-module.exports.deleteAddressId = async(req, res) => {
-    try{
+module.exports.deleteAddressId = async (req, res) => {
+    try {
+        const enderecos = await buscarEnderecosClienteId(req.params.clt_id);
+
+        if (enderecos.length <= 1) {
+            return res.status(400).json({ message: "O cliente deve ter pelo menos um endereço cadastrado." });
+        }
+
         await deletarAddressId(req.params.end_id);
         res.sendStatus(204);
-    }catch(err){
+    } catch (err) {
         console.error(`Erro no deleteAddressId - controllerAddress: ${err}`);
-        res.sendStatus(500);
-    }
-};
-
-module.exports.deleteAddressClienteId = async(req, res) => {
-    try{
-        await deletarAddressClienteId(req.params.clt_id);
-        res.sendStatus(204);
-    }catch(err){
-        console.error(`Erro no deleteAddressClienteId - controllerAddress: ${err}`);
         res.sendStatus(500);
     }
 };
