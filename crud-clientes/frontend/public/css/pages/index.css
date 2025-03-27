@@ -16,11 +16,6 @@
 
 #busca-index{
     flex-grow: 2;
-    
-}
-
-#carrinho-index img{
-    width: 30px;
 }
 
 #btn-sidebar{
@@ -53,7 +48,6 @@
 }
 
 /*Menu Lateral*/
-
 .sidebar{
     position: absolute;
     width: 100%;
@@ -84,8 +78,9 @@
 
 /*livros*/
 .books{
-    margin: 50px;
     display: flex;
+    max-width: 1300px;
+    margin: 50px auto;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;

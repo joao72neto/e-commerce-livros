@@ -87,7 +87,7 @@ export function criarBotaoInativados() {
         botao.textContent = 'Ver Inativados';
         botao.style.cssText = `
             position: fixed;
-            bottom: 20px;
+            bottom: 70px;
             right: 20px;
         `;
 

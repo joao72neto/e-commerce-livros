@@ -8,29 +8,37 @@
     <title>Alterando Cartão</title>
 </head>
 <body>
-    <div class="voltar"><a href="/clientes/card/<%=cartoes[0].car_clt_id%>">Voltar</a></div>
-    <div class="container-card">
-        <div class="card">
-            <h2>Alteração de Cartão</h2>
+    
+    <div class="main-container">
+
+        <%- include('../../components/header', {
+            titulo: 'Alteração de Cartão',
+            path: '/clientes/card/' + cartoes[0].car_clt_id
+        })%>
+
+        <div class="container-card">
+            <div class="card">
+                <h2>Alteração de Cartão</h2>
         
-            <form class="container-forms-card">
-                <div class="cartoes">
-                    <label for="numero_cartao">Número do Cartão</label>
-                    <input type="text" id="numero_cartao" name="numero_cartao" value="<%=cartoes[0].car_numero%>" required>
-
-                    <label for="nome_cartao">Nome Impresso no Cartão</label>
-                    <input type="text" id="nome_cartao" name="nome_cartao" value="<%=cartoes[0].car_nome%>" required>
-
-                    <label for="bandeira_cartao">Bandeira do Cartão</label>
-                    <input type="text" id="bandeira_cartao" name="bandeira_cartao" value="<%=cartoes[0].car_bandeira%>" required>
-
-                    <label for="codigo_seguranca">Código de Segurança</label>
-                    <input type="text" id="codigo_seguranca" name="codigo_seguranca" value="<%=cartoes[0].car_cvv%>" required>
-                </div>
-                
-                <button>Alterar</button>
-            </form>
+                <form class="container-forms-card">
+                    <div class="cartoes">
+                        <label for="numero_cartao">Número do Cartão</label>
+                        <input type="text" id="numero_cartao" name="numero_cartao" value="<%=cartoes[0].car_numero%>" required>
+                        <label for="nome_cartao">Nome Impresso no Cartão</label>
+                        <input type="text" id="nome_cartao" name="nome_cartao" value="<%=cartoes[0].car_nome%>" required>
+                        <label for="bandeira_cartao">Bandeira do Cartão</label>
+                        <input type="text" id="bandeira_cartao" name="bandeira_cartao" value="<%=cartoes[0].car_bandeira%>" required>
+                        <label for="codigo_seguranca">Código de Segurança</label>
+                        <input type="text" id="codigo_seguranca" name="codigo_seguranca" value="<%=cartoes[0].car_cvv%>" required>
+                    </div>
+        
+                    <button>Alterar</button>
+                </form>
+            </div>
         </div>
+
+        <%- include('../../components/footer')%>
+
     </div>
 
     <script type="module" src="/javaScript/pages/clientes/card/card-alt.js"></script>

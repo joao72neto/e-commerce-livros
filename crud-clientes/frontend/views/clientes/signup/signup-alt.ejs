@@ -8,109 +8,113 @@
     <title>Cadastro de Clientes</title>
 </head>
 <body>
-    <div class="voltar"><a href="/clientes">Voltar</a></div>
-
-    <div class="container-signup">
     
-        <h2>Alterando dados de <%=cliente[0].clt_nome%></h2>
-        <form method="POST">
-            <div class="container-forms">
-                <div class="cliente">
-                    <h3>Informações Pessoais</h3>
-                    <label for="nome">Nome Completo</label>
-                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" value="<%=cliente[0].clt_nome%>" required>
-                
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" value="<%=cliente[0].clt_email%>" required>
-                
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" id="telefone" name="telefone" placeholder="+XX (XX) XXXXX-XXXX" value="<%=cliente[0].clt_telefone%>" required>
-                
-                    <label for="cpf">CPF</label>
-                    <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" value="<%=cliente[0].clt_cpf%>" required>
-                
-                    <div class="genero">
-                        <span>Gênero</span>
-                        <div>
-                            <input value="M" type="radio" id="gen01" name="gen" <%=cliente[0].clt_genero === 'M' ? 'checked' : ''%>  required> Masculino
+    <div class="main-container">
+
+        <%- include('../../components/header', {
+            titulo: 'Alterando dados de ' + cliente[0].clt_nome,
+            path: '/clientes'
+        })%>
+
+        <div class="container-signup">
+        
+            <form method="POST">
+                <div class="container-forms">
+                    <div class="cliente">
+                        <h3>Informações Pessoais</h3>
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" value="<%=cliente[0].clt_nome%>" required>
+        
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" value="<%=cliente[0].clt_email%>" required>
+        
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="+XX (XX) XXXXX-XXXX" value="<%=cliente[0].clt_telefone%>" required>
+        
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" value="<%=cliente[0].clt_cpf%>" required>
+        
+                        <div class="genero">
+                            <span>Gênero</span>
+                            <div>
+                                <input value="M" type="radio" id="gen01" name="gen" <%=cliente[0].clt_genero === 'M' ? 'checked' : ''%>  required> Masculino
+                            </div>
+                            <div>
+                                <input value="F" type="radio" id="gen02" name="gen" <%=cliente[0].clt_genero === 'F' ? 'checked' : ''%> required> Feminino
+                            </div>
+                            <div>
+                                <input value="O" type="radio" id="gen03" name="gen" <%=cliente[0].clt_genero === 'O' ? 'checked' : ''%> required> Outro
+                            </div>
                         </div>
-                        <div>
-                            <input value="F" type="radio" id="gen02" name="gen" <%=cliente[0].clt_genero === 'F' ? 'checked' : ''%> required> Feminino
-                        </div>
-                        <div>
-                            <input value="O" type="radio" id="gen03" name="gen" <%=cliente[0].clt_genero === 'O' ? 'checked' : ''%> required> Outro
-                        </div>
+                        <% let dataFormatada = new Date(cliente[0].clt_dataNasc).toISOString().split('T')[0]; %>
+        
+                        <label for="data">Data de Nascimento</label>
+                        <input type="date" id="data" name="data" value="<%=dataFormatada%>" required>
+        
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" value="<%=cliente[0].clt_senha%>" required>
+        
+                        <label for="confirma_senha">Confirme a Senha</label>
+                        <input type="password" id="confirma_senha" name="confirma_senha" placeholder="Confirme sua senha" value="<%=cliente[0].clt_senha%>" required>
                     </div>
-
-                    <% let dataFormatada = new Date(cliente[0].clt_dataNasc).toISOString().split('T')[0]; %>
-                
-                    <label for="data">Data de Nascimento</label>
-                    <input type="date" id="data" name="data" value="<%=dataFormatada%>" required>
-                
-                    <label for="senha">Senha</label>
-                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" value="<%=cliente[0].clt_senha%>" required>
-                
-                    <label for="confirma_senha">Confirme a Senha</label>
-                    <input type="password" id="confirma_senha" name="confirma_senha" placeholder="Confirme sua senha" value="<%=cliente[0].clt_senha%>" required>
+        
+                    <div class="endereco_cobranca">
+                        <h3>Endereço de Cobrança</h3>
+                        <input class="invisible" type="number" name="end_id" value="<%=enderecos[0].end_id%>">
+                        <label for="tipo_residencia">Tipo de Residência</label>
+                        <input type="text" id="tipo_residencia" name="tipo_residencia" placeholder="Apartamento, casa, etc." value="<%=enderecos[0].end_tipoResidencia%>" required>
+        
+                        <label for="tipo_logradouro">Tipo de Logradouro</label>
+                        <input type="text" id="tipo_logradouro" name="tipo_logradouro" placeholder="Rua, avenida, etc." value="<%=enderecos[0].end_tipoLogradouro%>" required>
+        
+                        <label for="logradouro">Logradouro</label>
+                        <input type="text" id="logradouro" name="logradouro" placeholder="Nome da rua ou avenida" value="<%=enderecos[0].end_logradouro%>" required>
+        
+                        <label for="numero">Número</label>
+                        <input type="text" id="numero" name="numero" placeholder="Número da residência" value="<%=enderecos[0].end_numero%>" required>
+        
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro" placeholder="Digite seu bairro" value="<%=enderecos[0].end_bairro%>" required>
+        
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" name="cep" placeholder="Digite seu CEP" value="<%=enderecos[0].end_cep%>" required>
+        
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" name="cidade" placeholder="Digite sua cidade" value="<%=enderecos[0].end_cidade%>" required>
+        
+                        <label for="estado">Estado (Sigla)</label>
+                        <input type="text" id="estado" name="estado" placeholder="Digite seu estado" value="<%=enderecos[0].end_estado%>" required>
+        
+                        <label for="pais">País</label>
+                        <input type="text" id="pais" name="pais" placeholder="Digite seu país" value="<%=enderecos[0].end_pais%>" required>
+        
+                        <label for="observacoes">Observações</label>
+                        <input type="text" id="observacoes" name="observacoes" placeholder="Informações adicionais (opcional)" value="Coloque qualquer coisa aqui">
+                    </div>
+        
+                    <div class="cartoes">
+                        <h3>Cadastro de Cartão de Crédito</h3>
+                        <input class="invisible" type="number" name="car_id" value="<%=cartoes[0].car_id%>">
+                        <label for="numero_cartao">Número do Cartão</label>
+                        <input type="text" id="numero_cartao" name="numero_cartao" placeholder="Digite o número do cartão" value="<%=cartoes[0].car_numero%>" required>
+        
+                        <label for="nome_cartao">Nome Impresso no Cartão</label>
+                        <input type="text" id="nome_cartao" name="nome_cartao" placeholder="Digite o nome impresso no cartão" value="<%=cartoes[0].car_nome%>" required>
+        
+                        <label for="bandeira_cartao">Bandeira do Cartão</label>
+                        <input type="text" id="bandeira_cartao" name="bandeira_cartao" placeholder="Visa, Mastercard, etc." value="<%=cartoes[0].car_bandeira%>" required>
+        
+                        <label for="codigo_seguranca">Código de Segurança</label>
+                        <input type="text" id="codigo_seguranca" name="codigo_seguranca" placeholder="CVV (3 ou 4 dígitos)" value="<%=cartoes[0].car_cvv%>" required>
+                    </div>
+        
+                    <button type="submit">Confirmar</button>
                 </div>
-                
-                <div class="endereco_cobranca">
-                    <h3>Endereço de Cobrança</h3>
+            </form>
+        </div>
 
-                    <input class="invisible" type="number" name="end_id" value="<%=enderecos[0].end_id%>">
+        <%- include('../../components/footer')%>
 
-                    <label for="tipo_residencia">Tipo de Residência</label>
-                    <input type="text" id="tipo_residencia" name="tipo_residencia" placeholder="Apartamento, casa, etc." value="<%=enderecos[0].end_tipoResidencia%>" required>
-                
-                    <label for="tipo_logradouro">Tipo de Logradouro</label>
-                    <input type="text" id="tipo_logradouro" name="tipo_logradouro" placeholder="Rua, avenida, etc." value="<%=enderecos[0].end_tipoLogradouro%>" required>
-                
-                    <label for="logradouro">Logradouro</label>
-                    <input type="text" id="logradouro" name="logradouro" placeholder="Nome da rua ou avenida" value="<%=enderecos[0].end_logradouro%>" required>
-                
-                    <label for="numero">Número</label>
-                    <input type="text" id="numero" name="numero" placeholder="Número da residência" value="<%=enderecos[0].end_numero%>" required>
-                
-                    <label for="bairro">Bairro</label>
-                    <input type="text" id="bairro" name="bairro" placeholder="Digite seu bairro" value="<%=enderecos[0].end_bairro%>" required>
-                
-                    <label for="cep">CEP</label>
-                    <input type="text" id="cep" name="cep" placeholder="Digite seu CEP" value="<%=enderecos[0].end_cep%>" required>
-                
-                    <label for="cidade">Cidade</label>
-                    <input type="text" id="cidade" name="cidade" placeholder="Digite sua cidade" value="<%=enderecos[0].end_cidade%>" required>
-                
-                    <label for="estado">Estado (Sigla)</label>
-                    <input type="text" id="estado" name="estado" placeholder="Digite seu estado" value="<%=enderecos[0].end_estado%>" required>
-                
-                    <label for="pais">País</label>
-                    <input type="text" id="pais" name="pais" placeholder="Digite seu país" value="<%=enderecos[0].end_pais%>" required>
-                
-                    <label for="observacoes">Observações</label>
-                    <input type="text" id="observacoes" name="observacoes" placeholder="Informações adicionais (opcional)" value="Coloque qualquer coisa aqui">
-                </div>
-                
-                <div class="cartoes">
-                    <h3>Cadastro de Cartão de Crédito</h3>
-
-                    <input class="invisible" type="number" name="car_id" value="<%=cartoes[0].car_id%>">
-
-                    <label for="numero_cartao">Número do Cartão</label>
-                    <input type="text" id="numero_cartao" name="numero_cartao" placeholder="Digite o número do cartão" value="<%=cartoes[0].car_numero%>" required>
-                
-                    <label for="nome_cartao">Nome Impresso no Cartão</label>
-                    <input type="text" id="nome_cartao" name="nome_cartao" placeholder="Digite o nome impresso no cartão" value="<%=cartoes[0].car_nome%>" required>
-                
-                    <label for="bandeira_cartao">Bandeira do Cartão</label>
-                    <input type="text" id="bandeira_cartao" name="bandeira_cartao" placeholder="Visa, Mastercard, etc." value="<%=cartoes[0].car_bandeira%>" required>
-                
-                    <label for="codigo_seguranca">Código de Segurança</label>
-                    <input type="text" id="codigo_seguranca" name="codigo_seguranca" placeholder="CVV (3 ou 4 dígitos)" value="<%=cartoes[0].car_cvv%>" required>
-                </div>
-                
-                <button type="submit">Confirmar</button>
-            </div>
-        </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.8/dist/inputmask.min.js"></script>

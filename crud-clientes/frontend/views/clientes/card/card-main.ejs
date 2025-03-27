@@ -8,44 +8,48 @@
     <title>Cartões Cadastrados</title>
 </head>
 <body>
-    <div class="voltar"><a href="/clientes">Voltar</a></div>
 
-    <div class="container-card-flex">
-        <div class="container-card-main">
-            <h2 class="title">Cartões</h2>
-            
-            <div class="preferencia-cartao">
-                <label>Preferencia</label>
-                <select name="preferencia" id="preferencia">
-                    <% cartoes.forEach(carttao => { %>
+    <div class="main-container">
 
-                        <option value=""><%=`${carttao.car_bandeira}-${carttao.car_numero.slice(-4)}`%></option>
+        <%- include('../../components/header', {
+            titulo: 'Gerenciamento de Cartões',
+            path: '/clientes'
+        })%>
 
-                    <% }); %>
-                </select>
-            </div>
-
-            <% cartoes.forEach(carttao => { %>
-
-                <div class="card-wrapper">
-                    <div class="card-main">
-                        <p class="invisible card-id"><%=carttao.car_id%></p>
-                        <h2><%=carttao.car_bandeira%></h2>
-                        <p><%=carttao.car_nome%></p>
-                        <p><strong>Final: </strong><%=carttao.car_numero.slice(-4)%></p>
-                    </div>
-                    <div class="acoes-card">
-                        <a class="alt" href="#">Alterar</a>
-                        <a href="">excluir</a>
-                    </div>
+        <div class="container-card-flex">
+            <div class="container-card-main">
+                <h2 class="title">Cartões</h2>
+        
+                <div class="preferencia-cartao">
+                    <label>Preferencia</label>
+                    <select name="preferencia" id="preferencia">
+                        <% cartoes.forEach(carttao => { %>
+                            <option value=""><%=`${carttao.car_bandeira}-${carttao.car_numero.slice(-4)}`%></option>
+                        <% }); %>
+                    </select>
                 </div>
-
-            <% }); %>
-
-            <div class="card-add">
-                <a href="/clientes/card/<%=cartoes[0].car_clt_id%>/add">Adicionar novo cartão</a>
+                <% cartoes.forEach(carttao => { %>
+                    <div class="card-wrapper">
+                        <div class="card-main">
+                            <p class="invisible card-id"><%=carttao.car_id%></p>
+                            <h2><%=carttao.car_bandeira%></h2>
+                            <p><%=carttao.car_nome%></p>
+                            <p><strong>Final: </strong><%=carttao.car_numero.slice(-4)%></p>
+                        </div>
+                        <div class="acoes-card">
+                            <a class="alt" href="#">Alterar</a>
+                            <a href="">excluir</a>
+                        </div>
+                    </div>
+                <% }); %>
+                <div class="card-add">
+                    <a href="/clientes/card/<%=cartoes[0].car_clt_id%>/add">Adicionar novo cartão</a>
+                </div>
             </div>
         </div>
+
+        <%- include('../../components/footer')%>
+
     </div>
 
     <script type="module" src="/javaScript/pages/clientes/card/card-main.js"></script>
