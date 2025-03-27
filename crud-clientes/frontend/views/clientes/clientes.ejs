@@ -10,14 +10,9 @@
 </head>
 <body>
     <div class="main-container">
-        <header>
-            <div class="busca-header">
-                <div class="voltar"><a href="/">Voltar</a></div>
-            </div>
-            <div>
-                <h2>Gerenciamente de Clientes</h2>
-            </div>
-        </header>
+       
+        <%- include('../components/header', {titulo: 'Gerenciamento de Clientes'})%>
+
         <div class="flex-container">
             <div class="container-index">
                 <div class="msg-clientes">
@@ -57,10 +52,9 @@
                 %>
             </div>
         </div>
-        <div class="space"></div>
-        <footer>
-            <p>E-commerce de Livros - João Salvador Neto</p>
-        </footer>
+
+        <%- include('../components/footer')%>
+
     </div>
     
 

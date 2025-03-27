@@ -10,14 +10,9 @@
 <body>
 
     <div class="main-container">
-        <header>
-            <div class="busca-header">
-                <div class="voltar"><a href="/">Voltar</a></div>
-            </div>
-            <div>
-                <h2>Produto</h2>
-            </div>
-        </header>
+        
+        <%- include('../components/header', {titulo: 'Produto'})%>
+
         <main>
             <div class="imagem">
                 <img src="/images/livros/aneis.jpg" alt="">
@@ -42,10 +37,9 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia nobis assumenda, dolor, doloremque autem temporibus deserunt adipisci explicabo perferendis sint velit voluptatem? Illum consequatur maiores officiis illo accusamus, eos fugit? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur architecto repudiandae eligendi incidunt nam explicabo illo voluptatem veniam unde perferendis omnis consectetur perspiciatis voluptatibus, inventore ratione distinctio ab. Libero, ipsam?</p>
             </div>
         </main>
-        <div class="space"></div>
-        <footer>
-            <p>E-commerce de Livros - João Salvador Neto</p>
-        </footer>
+
+        <%- include('../components/footer')%>
+
     </div>
 
 

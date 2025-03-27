@@ -10,18 +10,8 @@
 <body>
 
     <div class="main-container">
-        <header>
-            <div class="busca-header">
-                <h2 id="title-index">E-commerce</h2>
-                <input id="busca-index" type="text" placeholder="busca">
-            </div>
-            <div class="acoes">
-                <span id="notificacao-index"><a href="#">Notificações</a></span>
-                <span id="carrinho-index"><a href="/carrinho">Carrinho</a></span>
-                <button id="btn-sidebar" >☰</button>
-            </div>
-            <nav class="sidebar"></nav>
-        </header>
+
+        <%- include('components/headerIndex') %>
         
         <main>
             <div class="banner"></div>
@@ -64,9 +54,7 @@
 
         <div class="space"></div>
 
-        <footer>
-            <p>E-commerce de Livros - João Salvador Neto</p>
-        </footer>
+        <%- include('components/footer') %>
     </div>
 
     <script type="module" src="/javaScript/pages/index.js"></script>

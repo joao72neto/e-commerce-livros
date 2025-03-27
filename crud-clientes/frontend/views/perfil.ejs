@@ -10,14 +10,9 @@
  <body>
     
     <div class="main-container">
-        <header>
-            <div class="busca-header">
-                <div class="voltar"><a href="/">Voltar</a></div>
-            </div>
-            <div>
-                <h2>Perfil de João</h2>
-            </div>
-        </header>
+        
+        <%- include('components/header', {titulo: 'Perfil de João'})%>
+
         <main>
             <div class="flex-container">
         
@@ -82,10 +77,9 @@
                 </div>
             </div>
         </main>
-        <div class="space"></div>
-        <footer>
-            <p>E-commerce de Livros - João Salvador Neto</p>
-        </footer>
+        
+        <%- include('components/footer')%>
+        
     </div>
 
 

@@ -10,14 +10,9 @@
 <body>
 
     <div class="main-container">
-        <header>
-            <div class="busca-header">
-                <div class="voltar"><a href="/">Voltar</a></div>
-            </div>
-            <div>
-                <h2>Histórico de Vendas</h2>
-            </div>
-        </header>
+       
+        <%- include('../components/header', {titulo: 'Histórico de Vendas'})%>
+
         <main>
             <div class="filtros">
                 <div class="box">
@@ -51,11 +46,8 @@
         
         </main>
         
-        <div class="space"></div>
+        <%- include('../components/footer')%>
 
-        <footer>
-            <p>E-commerce de Livros - João Salvador Neto</p>
-        </footer>
     </div>
 
 </body>

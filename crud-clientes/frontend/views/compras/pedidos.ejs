@@ -10,14 +10,9 @@
 <body>
 
     <div class="main-container">
-        <header>
-            <div class="busca-header">
-                <div class="voltar"><a href="/">Voltar</a></div>
-            </div>
-            <div>
-                <h2>Pedidos de João</h2>
-            </div>
-        </header>
+        
+        <%- include('../components/header', {titulo: 'Pedidos de João'})%>
+
         <h2 class="title">Todos os Pedidos</h2>
         <main>
             <div class="wrapper">
@@ -51,10 +46,9 @@
                 </div>
             </div>
         </main>
-        <div class="space"></div>
-        <footer>
-            <p>E-commerce de Livros - João Salvador Neto</p>
-        </footer>
+
+        <%- include('../components/footer')%>
+
     </div>
 </body>
 </html>
