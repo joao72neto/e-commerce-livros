@@ -1,3 +1,5 @@
+import { deletarCardIdService } from "/javaScript/service/clientes/serviceCard.js"
+
 //Pegando o ID do cartao ao clicar
 document.querySelectorAll('.alt').forEach(button => {
     
@@ -14,4 +16,28 @@ document.querySelectorAll('.alt').forEach(button => {
 });
 
 
-//Deletando um cartão
+//deletando um endereço
+document.querySelectorAll('.delete').forEach(button => {
+    
+    button.addEventListener('click', async function(){
+
+
+        let resposta = confirm('Deseja realmente deletar o cartão?');
+
+        if(!resposta){
+            return;
+        }
+
+        const enderecoWrapper = this.closest('.card-wrapper');
+        const car_id = enderecoWrapper.querySelector('.card-id').textContent;
+        const clt_id = window.location.pathname.split('/').splice(-1)[0];
+
+
+        const status = await deletarCardIdService(clt_id, car_id);
+
+        if(status === 204){
+            location.reload();
+        }
+
+    });
+});
