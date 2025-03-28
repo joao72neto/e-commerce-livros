@@ -28,7 +28,7 @@ module.exports.validarCard = [
         const erros = validationResult(req);
         
         if(!erros.isEmpty()){
-            res.status(404).json({erros: erros.array()});
+            res.status(400).json({erros: erros.array()});
             return;
         }
 

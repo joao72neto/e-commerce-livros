@@ -24,6 +24,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
     const end_id = window.location.pathname.split('/').splice(-1)[0];
 
     const address = {
+        end_nome: dados.logradouro,
         end_bairro: dados.bairro,
         end_cep: dados.cep,
         end_cidade: dados.cidade,
