@@ -14,7 +14,8 @@ export function validarPassword(event){
         { regex: /[a-z]/, mensagem: "A senha deve conter pelo menos uma letra minúscula." },
         { regex: /[A-Z]/, mensagem: "A senha deve conter pelo menos uma letra maiúscula." },
         { regex: /[\W_]/, mensagem: "A senha deve conter pelo menos um caractere especial." },
-        { regex: /.{8,}/, mensagem: "A senha deve ter pelo menos 8 caracteres." }
+        { regex: /.{8,}/, mensagem: "A senha deve ter pelo menos 8 caracteres." },
+        { regex: /[0-9]/, mensagem: "A senha deve ter pelo menos 1 número." }
     ];
 
     const erros = requisitos
