@@ -27,7 +27,7 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
         header.style.position = 'sticky';
         header.style.top = '0';
         header.style.width = '100%'
-        sidebar.style.top = '55px';
+        sidebar.style.top = '65px';
         sidebar.style.padding = '20px';
         sidebar.innerHTML = html;
         return;

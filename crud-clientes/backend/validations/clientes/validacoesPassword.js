@@ -1,6 +1,5 @@
 const {body, validationResult} = require('express-validator');
 
-
 //Validando a senha enviada pelo usuário
 module.exports.validarPassword = [
 
@@ -10,6 +9,7 @@ module.exports.validarPassword = [
         .matches(/[A-Z]/).withMessage('A senha deve conter pelo menos uma letra maiúscula')
         .matches(/[\W_]/).withMessage('A senha deve conter pelo menos um caractere especial')
         .matches(/[0-9]/).withMessage('A senha deve conter pelo menos um número'),
+
 
     //Retornando os erros 
     (req, res, next) => {

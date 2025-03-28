@@ -1,11 +1,12 @@
 const {body, validationResult} = require('express-validator');
 
+const textoApenas = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
 
 //Validando os dados inseridos para o cartão
 module.exports.validarCard = [
 
     body('car_nome')
-        .matches(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/)
+        .matches(textoApenas)
         .withMessage('O campo (car_nome) não pode conter valores numéricos'),
     
     body('car_numero')
@@ -15,7 +16,7 @@ module.exports.validarCard = [
         .withMessage('O campo (car_numero) precisa ter de 13 a 19 dígitos'),
 
     body('car_bandeira')
-        .matches(/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/)
+        .matches(textoApenas)
         .withMessage('O campo(car_bandeira) não pode conter valores numéricos'),
 
     body('car_cvv')
