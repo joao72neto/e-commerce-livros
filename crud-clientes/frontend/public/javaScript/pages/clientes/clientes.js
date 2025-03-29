@@ -130,3 +130,8 @@ if (clientesAtivos.length === 0) {
         border-radius: 20px
     `;
 }
+
+//Adicionando funcionamendo do filtro
+document.querySelector('#btn-filtro').addEventListener('click', () => {
+    
+});

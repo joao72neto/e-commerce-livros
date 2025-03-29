@@ -1,3 +1,23 @@
+//FILTRO
+
+//Filtrando os clientes do banco de dados
+export async function filtrarClientesService(dados) {
+    try{
+        const res = await fetch(`/clientes/filtrar`, {
+           method: 'POST',
+           headers: {'Content-Type':'application/json'},
+           body: JSON.stringify(dados)
+        });
+
+        return res;
+
+    }catch(err){
+        console.error(`Erro no filtrarClientesService - serviceClientes: ${err}`);
+        throw err;
+    }
+}
+
+
 //DELETE
 
 //Deletando um cliente por ID do banco de dados

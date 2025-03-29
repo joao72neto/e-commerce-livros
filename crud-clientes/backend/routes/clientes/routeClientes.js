@@ -14,9 +14,6 @@ router.get('/api/clientes/inativos', controllerClientes.getApiClientesInativos);
 router.patch('/clientes/inativar/:clt_id', controllerClientes.patchInativarCliente);
 router.patch('/clientes/ativar/:clt_id', controllerClientes.patchAtivarCliente);
 
-//Rota para filtro de clientes
-router.post('/clientes/filtrar',controllerClientes.postFiltrarClientes);
-
 //Rotas para deletar dados
 router.delete('/clientes/delete/:clt_id', controllerClientes.deleteClienteId);
 

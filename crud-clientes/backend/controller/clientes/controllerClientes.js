@@ -5,7 +5,7 @@ const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCl
 
 //Páginas
 module.exports.getClientes = async (req, res) => {
-    const clientes = await buscarClientesAtivos();
+    const clientes = await filtrarCliente(req.query);
     res.render('clientes/clientes', {clientes: clientes});
 };
 
@@ -31,12 +31,6 @@ module.exports.patchAtivarCliente = async (req, res) => {
         res.sendStatus(500);
     }
     
-};
-
-//Filtrando clientes
-module.exports.postFiltrarClientes = async (req, res) => {
-    const clientes = await filtrarCliente(req.body);
-    res.json(clientes);
 };
 
 
