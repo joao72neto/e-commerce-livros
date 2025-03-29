@@ -125,12 +125,12 @@ module.exports.filtrarCliente = async (dados) => {
     }
 
     if(dados.clt_email){
-        sql += ' AND clt_email = LIKE';
+        sql += ' AND clt_email LIKE ?';
         valores.push(`%${dados.clt_email}%`);
     }
 
     if(dados.clt_telefone){
-        sql += ' AND clt_telefone LIKE';
+        sql += ' AND clt_telefone LIKE ?';
         valores.push(`%${dados.clt_telefone}%`);
     }
     

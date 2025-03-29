@@ -3,7 +3,21 @@ import { buscarClientesInativosService } from "/javaScript/service/clientes/serv
 import { inativarClienteService } from "/javaScript/service/clientes/serviceClientes.js";
 
 
-//FILTRO DE CLIENTES
+//FILTRO
+
+// Mantendo o filtro aberto
+window.addEventListener('load', () => {
+    if (window.location.search.includes('?')) {
+
+        document.querySelector('.filtro_clientes').style.display = 'grid';
+
+    } else {
+        document.querySelector('.filtro_clientes').style.display = 'none';
+    }
+});
+
+
+//Abrindo e fechandoo filtro 
 document.querySelector('#flt').addEventListener('click', () => {
 
     const filtro = document.querySelector('.filtro_clientes');
@@ -17,6 +31,37 @@ document.querySelector('#flt').addEventListener('click', () => {
     filtro.style.display = 'none';
 
 });
+
+//Adicionando funcionamendo do filtro
+document.querySelector('#btn-filtro').addEventListener('click', (event) => {
+
+    event.preventDefault();
+
+    //Obetndo os dados
+    const nome = document.getElementById("nome").value;
+    const genero = document.getElementById("genero").value;
+    const email = document.getElementById("email").value;
+    const cpf = document.getElementById("cpf").value;
+    const dataNasc = document.getElementById("dataNasc").value;
+    const telefone = document.getElementById("telefone").value;
+
+
+    //Montando a url
+    let url = '/clientes?';
+    if (nome) url += `clt_nome=${encodeURIComponent(nome)}&`;
+    if (genero) url += `clt_genero=${encodeURIComponent(genero)}&`;
+    if (email) url += `clt_email=${encodeURIComponent(email)}&`;
+    if (cpf) url += `clt_cpf=${encodeURIComponent(cpf)}&`;
+    if (dataNasc) url += `clt_dataNasc=${encodeURIComponent(dataNasc)}&`;
+    if (telefone) url += `clt_telefone=${encodeURIComponent(telefone)}&`;
+
+    url = url.slice(0, -1);
+
+    //Filtrando os dados
+    window.location.href = url;
+
+});
+
 
 //ALTERALÇÃO DE USUÁRIO
 document.querySelectorAll('.alt').forEach(botao => {
@@ -131,7 +176,4 @@ if (clientesAtivos.length === 0) {
     `;
 }
 
-//Adicionando funcionamendo do filtro
-document.querySelector('#btn-filtro').addEventListener('click', () => {
-    
-});
+
