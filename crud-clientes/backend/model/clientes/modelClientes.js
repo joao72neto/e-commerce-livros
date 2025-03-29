@@ -77,7 +77,7 @@ module.exports.alterarSenhaCliente = async (senha, id) => {
 
     //Criptografando a senha
     const saltos = 10; 
-    senha.clt_senha = bcrypt.hash(senha.clt_senha, saltos);
+    senha.clt_senha = await bcrypt.hash(senha.clt_senha, saltos);
 
     try{
         await db.query(`update clientes set clt_senha = ? where clt_id = ?`, [senha.clt_senha, id]);

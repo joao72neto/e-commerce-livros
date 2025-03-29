@@ -14,6 +14,12 @@ export function mascarasFiltro(){
     if (cpf) {
         Inputmask("999.999.999-99").mask(cpf);
     }
+
+    //Gênero
+    const genero = document.querySelector('#genero');
+    if(genero){
+        Inputmask("A").mask(genero);
+    }
 }
 
 

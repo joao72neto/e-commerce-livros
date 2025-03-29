@@ -1,4 +1,5 @@
 //Tratando da recuperação de senha
+import { compararSenhaService } from "/javaScript/service/clientes/servicePassword.js";
 import { buscarClienteIdService } from "/javaScript/service/clientes/serviceClientes.js";
 import { alterarSenhaClienteService } from "/javaScript/service/clientes/serviceClientes.js";
 
@@ -10,9 +11,9 @@ document.querySelector('form').addEventListener('submit', async function(event){
     //Pegando o ID do cliente
     const clt_id = window.location.pathname.split('/').splice(-1)[0];
 
-    const cliente = await buscarClienteIdService(clt_id);
+    const res = await compararSenhaService(clt_id, senhaAtual);
 
-    if(await window.crypto.compare(senhaAtual, cliente.clt_senha)){
+    if(res.status === 200){
 
         //Validando a senha
         const senha = this.querySelector('.senha-nova').value;
