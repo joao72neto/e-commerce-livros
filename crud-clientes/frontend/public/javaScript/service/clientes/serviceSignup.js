@@ -10,7 +10,12 @@ export async function signupAltService(cliente, clt_id) {
             body: JSON.stringify(cliente)
         });
 
-        return res.status;
+        if(!res.ok){
+            const erros = await res.json();
+            return {status: res.status, erros: erros};
+        }
+
+        return {status: res.status};
 
     }catch(err){
         console.error(`Erro no signupAltService - serviceSignup: ${err}`);
@@ -30,7 +35,14 @@ export async function signupService(cliente) {
             body: JSON.stringify(cliente)
         });
 
-        return res.status;
+
+        if(!res.ok){
+            const erros = await res.json();
+            return {status: res.status, erros: erros};
+        }
+
+        return {status: res.status};
+
 
     }catch(err){
         console.error(`Erro no signupService - serviceSignup: ${err}`);

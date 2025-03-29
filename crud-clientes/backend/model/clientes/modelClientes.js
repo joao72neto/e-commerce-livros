@@ -3,7 +3,7 @@ const db = require('../../config/db');
 //DELETE
 
 //Função que deleta clientes do banco de dados
-async function deletarClienteId(id) {
+module.exports.deletarClienteId = async (id) => {
     const sql = `DELETE FROM clientes WHERE clt_id = ?`;
 
     try{
@@ -16,7 +16,7 @@ async function deletarClienteId(id) {
 //INSERT
 
 //Função que insere um novo cliente no banco 
-async function cadastrarCliente(dados) {
+module.exports.cadastrarCliente = async (dados) => {
 
     //Consulta SQL
     const sql = `INSERT INTO clientes (clt_nome, clt_genero, clt_dataNasc,  clt_cpf, clt_telefone, clt_email, clt_senha, clt_ranking, clt_status) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 1)`;
@@ -46,7 +46,7 @@ async function cadastrarCliente(dados) {
 //UPDATE
 
 //Atualizando os dados dos clientes no banco
-async function atualizarCliente(dados, clt_id) {
+module.exports.atualizarCliente = async (dados, clt_id) => {
     
     const campos = Object.keys(dados).map(key =>  `${key} = ?`).join(', ');
     let valores = Object.values(dados);
@@ -66,7 +66,7 @@ async function atualizarCliente(dados, clt_id) {
 }
 
 //Alterar senha cliente de um cliente
-async function alterarSenhaCliente(senha, id) {
+module.exports.alterarSenhaCliente = async (senha, id) => {
     try{
         await db.query(`update clientes set clt_senha = ? where clt_id = ?`, [senha.clt_senha, id]);
     }catch(err){
@@ -77,7 +77,7 @@ async function alterarSenhaCliente(senha, id) {
 
 
 //Inativando um cliente específico
-async function inativarCliente(id) {
+module.exports.inativarCliente = async (id) => {
     try{
         await db.query(`update clientes set clt_status = 0 where clt_id = ?`, id);
     }catch(err){
@@ -87,7 +87,7 @@ async function inativarCliente(id) {
 }
 
 //Ativando um cliente específico
-async function ativarCliente(id) {
+module.exports.ativarCliente = async (id) => {
     try{
         await db.query(`update clientes set clt_status = 1 where clt_id = ?`, id);
     }catch(err){
@@ -98,8 +98,55 @@ async function ativarCliente(id) {
 
 //SELECT
 
+//Filtro do Usuário
+module.exports.filtrarCliente = async (dados) => {
+    
+    let sql = 'SELECT * FROM clientes WHERE 1=1';
+    let valores = []
+
+    if(dados.clt_nome){
+        sql += ' AND clt_nome LIKE ?';
+        valores.push(`%${dados.clt_nome}%`);
+    }
+
+    if(dados.clt_cpf){
+        sql += ' AND clt_cpf = ?'
+        valores.push(dados.clt_cpf);
+    }
+
+    if(dados.clt_dataNasc){
+        sql += ' AND clt_dataNasc = ?';
+        valores.push(dados.clt_dataNasc);
+    }
+
+    if(dados.clt_genero){
+        sql += ' AND clt_genero = ?'
+        valores.push(dados.clt_genero);
+    }
+
+    if(dados.clt_email){
+        sql += ' AND clt_email = LIKE';
+        valores.push(`%${dados.clt_email}%`);
+    }
+
+    if(dados.clt_telefone){
+        sql += ' AND clt_telefone LIKE';
+        valores.push(`%${dados.clt_telefone}%`);
+    }
+    
+    try{
+        const [clientes] = await db.query(sql, valores);
+        return clientes;
+
+    }catch(err){
+        console.error(`Erro no filtrarCliente - modelClientes: ${err}`);
+        throw err;
+    }
+}
+
+
 //Buscando clientes ativos
-async function buscarClientesAtivos() {
+module.exports.buscarClientesAtivos = async () => {
     try{
         const [clientes] = await db.query('select * from clientes where clt_status = 1');
         return clientes;
@@ -110,7 +157,7 @@ async function buscarClientesAtivos() {
 }
 
 //Buscando clientes inativos
-async function buscarClientesInativos() {
+module.exports.buscarClientesInativos = async () => {
     try{
         const [clientes] = await db.query('select * from clientes where clt_status = 0');
         return clientes;
@@ -121,7 +168,7 @@ async function buscarClientesInativos() {
 }
 
 //Bsucando todos os clientes do banco de dados
-async function buscarTodosClientes() {
+module.exports.buscarTodosClientes = async () => {
     try{
         const [clientes] = await db.query('select * from clientes');
         return clientes;
@@ -132,7 +179,7 @@ async function buscarTodosClientes() {
 }
 
 //Bsucando clientes por id
-async function buscarClienteId(id) {
+module.exports.buscarClienteId = async (id) => {
     try{
         const [cliente] = await db.query(`select * from clientes where clt_id = ?`, id);
         return cliente;
@@ -142,16 +189,4 @@ async function buscarClienteId(id) {
     }
 }
 
-
-//Exportando as funções de busca
-module.exports = {buscarTodosClientes, 
-                  buscarClienteId,
-                  buscarClientesInativos,
-                  buscarClientesAtivos, 
-                  inativarCliente,
-                  ativarCliente,
-                  cadastrarCliente,
-                  atualizarCliente, 
-                  alterarSenhaCliente, 
-                  deletarClienteId};
 

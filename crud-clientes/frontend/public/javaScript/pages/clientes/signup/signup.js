@@ -54,17 +54,15 @@ document.querySelector('form').addEventListener('submit', async function(event){
 
     const signupDados = {cliente, address, card};
 
-    console.log(signupDados);
+    const res = await signupService(signupDados);
 
-    const status = await signupService(signupDados);
-
-    if(status === 200){
+    if(res.status === 200){
         alert('Cliente foi Cadastrado com Sucesso!');
         window.location.href = '/clientes';
         return;
     }
 
-    alert('Não foi posível cadastrar o cliente');
-
+    alert(res.erros.erros[0].msg);
+   
 });
 

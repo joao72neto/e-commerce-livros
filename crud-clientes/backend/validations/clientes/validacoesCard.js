@@ -1,6 +1,6 @@
 const {body, validationResult} = require('express-validator');
 
-const textoApenas = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+const textoApenas = /^[A-Za-zÀ-ÖØ-öø-ÿ\s.]+$/;
 
 //Validando os dados inseridos para o cartão
 module.exports.validarCard = [
@@ -30,6 +30,7 @@ module.exports.validarCard = [
         
         if(!erros.isEmpty()){
             res.status(400).json({erros: erros.array()});
+            console.log(erros.array());
             return;
         }
 

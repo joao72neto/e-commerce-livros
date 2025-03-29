@@ -33,11 +33,15 @@ document.querySelectorAll('.delete').forEach(button => {
         const clt_id = window.location.pathname.split('/').splice(-1)[0];
 
 
-        const status = await deletarCardIdService(clt_id, car_id);
+        const res = await deletarCardIdService(clt_id, car_id);
 
-        if(status === 204){
+        console.log(res);
+
+        if(res.status === 204){
             location.reload();
         }
+
+        alert(res.erros.erros[0].msg);
 
     });
 });

@@ -35,7 +35,8 @@ module.exports.deleteCardId = async (req, res) => {
         const cartoes = await buscarCartoesClienteId(req.params.clt_id);
 
         if (cartoes.length <= 1) {
-            return res.status(400).json({ message: "O cliente deve ter pelo menos um cartão cadastrado." });
+            res.status(400).json({ msg: "O cliente deve ter pelo menos um cartão cadastrado." });
+            return;
         }
 
         await deletarCardId(req.params.car_id);

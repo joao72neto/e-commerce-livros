@@ -23,7 +23,7 @@ document.querySelectorAll('.wrapper .cliente').forEach(cliente => {
                 <div class="button-popup">
                     <button>X</button>
                 </div>
-                <h2>Dados de ${cliente.clt_nome}</h2>
+                <h2>Dados de ${cliente.clt_nome.split(' ')[0]}</h2>
                 <p><strong>Nome Completo: </strong>${cliente.clt_nome}<p/>
                 <p><strong>E-mail: </strong>${cliente.clt_email}<p/>
                 <p><strong>Telefone: </strong>${cliente.clt_telefone}<p/>

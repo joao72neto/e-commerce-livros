@@ -17,6 +17,7 @@ module.exports.validarPassword = [
 
         if(!erros.isEmpty()){
             res.status(400).json({erros: erros.array()});
+            console.log(erros.array());
             return;
         }
 

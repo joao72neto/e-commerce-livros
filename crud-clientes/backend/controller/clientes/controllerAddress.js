@@ -41,7 +41,7 @@ module.exports.deleteAddressId = async (req, res) => {
         const enderecos = await buscarEnderecosClienteId(req.params.clt_id);
 
         if (enderecos.length <= 1) {
-            return res.status(400).json({ message: "O cliente deve ter pelo menos um endereço cadastrado." });
+            return res.status(400).json({ msg: "O cliente deve ter pelo menos um endereço cadastrado." });
         }
 
         await deletarAddressId(req.params.end_id);

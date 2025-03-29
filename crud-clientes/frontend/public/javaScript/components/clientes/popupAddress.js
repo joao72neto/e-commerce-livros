@@ -24,7 +24,7 @@ document.querySelectorAll('.endereco-wrapper .endereco').forEach(endereco => {
                 <div class="button-popup">
                     <button>X</button>
                 </div>
-                <h2>Dados de ${endereco.end_logradouro}</h2>
+                <h2>${endereco.end_logradouro}</h2>
                 <p><strong>Nome: </strong>${endereco.end_nome}<p/>
                 <p><strong>Tipo de Residência: </strong>${endereco.end_tipoResidencia}<p/>
                 <p><strong>Tipo de Logradouro: </strong>${endereco.end_tipoLogradouro}<p/>

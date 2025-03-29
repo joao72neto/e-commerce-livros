@@ -8,7 +8,7 @@ export function validarCard(event){
     let ok = true;
 
     //Pattern que aceita apenas letras e espaços
-    const textoApenas = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+    const textoApenas = /^[A-Za-zÀ-ÖØ-öø-ÿ\s.]+$/;
 
 
     //Validação do número do cartão

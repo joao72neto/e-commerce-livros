@@ -1,6 +1,6 @@
 const {body, validationResult} = require('express-validator');
 
-const textoApenas = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+const textoApenas = /^[A-Za-zÀ-ÖØ-öø-ÿ\s.]+$/;
 const generos = ['M', 'F', 'O'];
 const arrayEstados = [
     "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
@@ -132,6 +132,7 @@ module.exports.validarSignup = [
 
         if(!erros.isEmpty()){
             res.status(400).json({erros: erros.array()});
+            console.log(erros.array());
             return;
         }
 

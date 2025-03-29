@@ -7,7 +7,11 @@ export async function deletarCardIdService(clt_id, car_id) {
            method: 'DELETE'
         });
 
-        return result;
+        if(!result.ok){
+            return {status: result.status, erros: result.erros};
+        }
+
+        return {status: result.status};
 
     }catch(err){
         console.error(`Erro no deletarCardIdService - serviceCard: ${err}`);
@@ -33,7 +37,6 @@ export async function cadastrarCardService(dados, clt_id) {
         throw err;
     }
 }
-
 
 //PUT
 

@@ -1,6 +1,7 @@
 const { deletarAddressClienteId } = require("../../model/clientes/modelAddress");
 const { deletarCardsClienteId } = require("../../model/clientes/modelCard");
-const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente, deletarClienteId} = require("../../model/clientes/modelClientes");
+const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente, deletarClienteId, filtrarCliente} = require("../../model/clientes/modelClientes");
+
 
 //Páginas
 module.exports.getClientes = async (req, res) => {
@@ -32,6 +33,13 @@ module.exports.patchAtivarCliente = async (req, res) => {
     
 };
 
+//Filtrando clientes
+module.exports.postFiltrarClientes = async (req, res) => {
+    const clientes = await filtrarCliente(req.body);
+    res.json(clientes);
+};
+
+
 //Deletando dados
 module.exports.deleteClienteId = async(req, res) => {
     try{
@@ -48,6 +56,7 @@ module.exports.deleteClienteId = async(req, res) => {
     
 };
 
+
 //Apis para acessar os dados dos clientes
 module.exports.getApiClienteId = async (req, res) => {
     const cliente = await buscarClienteId(req.params.clt_id);
@@ -63,4 +72,3 @@ module.exports.getApiClientesInativos = async (req, res) => {
     const clientes = await buscarClientesInativos();
     res.json(clientes);
 };
-

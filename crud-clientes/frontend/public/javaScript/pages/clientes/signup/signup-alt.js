@@ -59,15 +59,15 @@ document.querySelector('form').addEventListener('submit', async function (event)
 
     const signupDados = {cliente, address, card}
 
-    const status = await signupAltService(signupDados, clt_id);
+    const res = await signupAltService(signupDados, clt_id);
 
-    if(status === 200){
+    if(res.status === 200){
         alert('Cliente foi atualizado com sucesso!');
         window.location.href = '/clientes';
         return;
     }
 
-    alert('Não foi posível atualizar o cliente');
+    alert(res.erros.erros[0].msg);
 
 });
 

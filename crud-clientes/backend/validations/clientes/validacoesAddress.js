@@ -1,7 +1,7 @@
 const {body, validationResult} = require('express-validator');
 
 //Validações para cadastro e atualização de endereços
-const textoApenas = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/;
+const textoApenas = /^[A-Za-zÀ-ÖØ-öø-ÿ\s.]+$/;
 
 const arrayEstados = [
     "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
@@ -64,6 +64,7 @@ module.exports.validarAddress = [
         
         if(!erros.isEmpty()){
             res.status(400).json({erros: erros.array()});
+            console.log(erros.array());
             return;
         }
 
