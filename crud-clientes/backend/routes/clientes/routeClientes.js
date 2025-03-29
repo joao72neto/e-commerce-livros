@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const controllerClientes = require('../../controller/clientes/controllerClientes');
+const { validarFiltro } = require('../../validations/clientes/validacoesFiltro');
 
 //Rotas para páginas
-router.get('/clientes', controllerClientes.getClientes);
+router.get('/clientes', 
+    validarFiltro,
+    controllerClientes.getClientes);
 
 //Rotas para apis
 router.get('/api/clientes/id/:clt_id', controllerClientes.getApiClienteId);
