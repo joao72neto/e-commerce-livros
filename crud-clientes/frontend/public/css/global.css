@@ -84,6 +84,23 @@ button{
     }
 }
 
+a{
+    text-decoration: none;
+    color: var(--branco);
+    background-color: var(--preto);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--preto);
+
+    &:hover{
+        background-color: var(--amarelo-claro);
+        color: var(--preto);
+        transition: 0.2s;
+        border: 1px solid var(--preto);
+        cursor: pointer;
+    }
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -102,21 +119,7 @@ th {
     color: var(--branco);
 }
 
-a{
-    text-decoration: none;
-    color: var(--branco);
-    background-color: var(--preto);
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid var(--preto);
 
-    &:hover{
-        background-color: var(--amarelo-claro);
-        color: var(--preto);
-        transition: 0.2s;
-        border: 1px solid var(--preto);
-    }
-}
 
 ul{
     list-style: none;

@@ -1,11 +1,11 @@
 const { deletarAddressClienteId } = require("../../model/clientes/modelAddress");
 const { deletarCardsClienteId } = require("../../model/clientes/modelCard");
-const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente, deletarClienteId, filtrarCliente} = require("../../model/clientes/modelClientes");
+const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente, deletarClienteId, filtrarClientesAtivos} = require("../../model/clientes/modelClientes");
 
 
 //Páginas
 module.exports.getClientes = async (req, res) => {
-    const clientes = await filtrarCliente(req.query);
+    const clientes = await filtrarClientesAtivos(req.query);
     res.render('clientes/clientes', {clientes: clientes});
 };
 

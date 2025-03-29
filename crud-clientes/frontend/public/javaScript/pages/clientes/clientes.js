@@ -77,6 +77,7 @@ document.querySelectorAll('.alt').forEach(botao => {
     botao.addEventListener('click', function (event) {
 
         event.stopPropagation();
+      
         
         //Obetendo o id
         let clienteWrapper = this.closest('.wrapper');

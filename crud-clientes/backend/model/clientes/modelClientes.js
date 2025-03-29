@@ -99,9 +99,9 @@ module.exports.ativarCliente = async (id) => {
 //SELECT
 
 //Filtro do Usuário
-module.exports.filtrarCliente = async (dados) => {
+module.exports.filtrarClientesAtivos = async (dados) => {
     
-    let sql = 'SELECT * FROM clientes WHERE 1=1';
+    let sql = 'SELECT * FROM clientes WHERE clt_status = 1';
     let valores = []
 
     if(dados.clt_nome){

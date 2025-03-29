@@ -76,6 +76,11 @@ h1{
     align-self: center;
 }
 
+.acoes button{
+    padding: 10px;
+    text-align: center;
+}
+
 /*Submenu*/
 .alt_submenu{
     border: 1px solid var(--preto);

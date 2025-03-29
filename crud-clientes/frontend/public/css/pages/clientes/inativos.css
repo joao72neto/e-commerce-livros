@@ -4,21 +4,23 @@
 /*Inativos*/
 .title{
     text-align: center;
+    margin: 0 20px;
     background-color: var(--cinza);
     padding: 20px;
+    border-radius: 20px;
 }
 
 .container-inat {
     display: flex;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
     min-height: 100vh;
     justify-content: center;
     align-items: center;
 }
 
 .wrapper{
-    padding: 30px;
+    padding: 20px;
 }
 
 .acoes a:hover{

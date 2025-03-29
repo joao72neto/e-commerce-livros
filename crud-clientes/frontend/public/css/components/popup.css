@@ -10,12 +10,12 @@
 
     min-width: 400px;
 
-    position:absolute;
+    position:fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--branco);
-    z-index: 2;
+    z-index: 1;
 }
 
 .popup .button-popup{
