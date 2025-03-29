@@ -9,4 +9,7 @@ router.get('/clientes/password/:clt_id', controllerPassword.getPassword);
 //Alterando a senha
 router.patch('/clientes/password/:clt_id',validarPassword, controllerPassword.patchPassword);
 
+//Comparação de senha
+router.post('/password/comparar/:clt_id', controllerPassword.postCompararSenha);
+
 module.exports = router;

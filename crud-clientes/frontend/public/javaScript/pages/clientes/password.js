@@ -12,7 +12,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
 
     const cliente = await buscarClienteIdService(clt_id);
 
-    if(cliente.clt_senha == senhaAtual){
+    if(await window.crypto.compare(senhaAtual, cliente.clt_senha)){
 
         //Validando a senha
         const senha = this.querySelector('.senha-nova').value;

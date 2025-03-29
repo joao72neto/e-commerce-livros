@@ -1,4 +1,5 @@
 const db = require('../../config/db');
+const bcrypt = require('bcrypt');
 
 //DELETE
 
@@ -20,6 +21,12 @@ module.exports.cadastrarCliente = async (dados) => {
 
     //Consulta SQL
     const sql = `INSERT INTO clientes (clt_nome, clt_genero, clt_dataNasc,  clt_cpf, clt_telefone, clt_email, clt_senha, clt_ranking, clt_status) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 1)`;
+
+
+    //Criptografanso a senha
+    const saltos = 10;
+
+    dados.clt_senha = await bcrypt.hash(dados.clt_senha, saltos);
 
     //Valores a serem inseridos no banco
     const valores = [
@@ -67,6 +74,11 @@ module.exports.atualizarCliente = async (dados, clt_id) => {
 
 //Alterar senha cliente de um cliente
 module.exports.alterarSenhaCliente = async (senha, id) => {
+
+    //Criptografando a senha
+    const saltos = 10; 
+    senha.clt_senha = bcrypt.hash(senha.clt_senha, saltos);
+
     try{
         await db.query(`update clientes set clt_senha = ? where clt_id = ?`, [senha.clt_senha, id]);
     }catch(err){
