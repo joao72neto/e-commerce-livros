@@ -1,7 +1,9 @@
 import { buscarClientesAtivosService } from "/javaScript/service/clientes/serviceClientes.js";
 import { buscarClientesInativosService } from "/javaScript/service/clientes/serviceClientes.js";
 import { inativarClienteService } from "/javaScript/service/clientes/serviceClientes.js";
+import { mascarasFiltro, validarFiltro } from "/javaScript/validations/clientes/validacoesFiltro.js";
 
+mascarasFiltro();
 
 //FILTRO
 
@@ -37,6 +39,9 @@ document.querySelector('#btn-filtro').addEventListener('click', (event) => {
 
     event.preventDefault();
 
+    //Selecionando o formulário do filtro
+    const form = document.querySelector('.filtro_clientes');
+
     //Obetndo os dados
     const nome = document.getElementById("nome").value;
     const genero = document.getElementById("genero").value;
@@ -56,6 +61,10 @@ document.querySelector('#btn-filtro').addEventListener('click', (event) => {
     if (telefone) url += `clt_telefone=${encodeURIComponent(telefone)}&`;
 
     url = url.slice(0, -1);
+
+    if(!validarFiltro(event, form)){
+        return;
+    }
 
     //Filtrando os dados
     window.location.href = url;
