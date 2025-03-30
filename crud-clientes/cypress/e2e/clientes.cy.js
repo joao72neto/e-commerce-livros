@@ -4,7 +4,7 @@ describe('Testes Relacionados a Operações com Clientes', () => {
       cy.visit('/clientes'); 
     });
   
-    it('Deve Preenche e envia o formulário de cadastro', () => {
+    it('Deve Preenche e envia o formulário de cadastro de clientes', () => {
     
         // Indo para a página de cadastro de cliente
         cy.get('a[href^="/clientes/signup"]').click();
