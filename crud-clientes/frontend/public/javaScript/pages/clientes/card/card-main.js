@@ -19,8 +19,9 @@ document.querySelectorAll('.alt').forEach(button => {
 //deletando um endereço
 document.querySelectorAll('.delete').forEach(button => {
     
-    button.addEventListener('click', async function(){
+    button.addEventListener('click', async function(event){
 
+        event.preventDefault();
 
         let resposta = confirm('Deseja realmente deletar o cartão?');
 
@@ -32,16 +33,13 @@ document.querySelectorAll('.delete').forEach(button => {
         const car_id = enderecoWrapper.querySelector('.card-id').textContent;
         const clt_id = window.location.pathname.split('/').splice(-1)[0];
 
-
         const res = await deletarCardIdService(clt_id, car_id);
-
-        console.log(res);
 
         if(res.status === 204){
             location.reload();
         }
 
-        alert(res.erros.erros[0].msg);
+        alert(res.msg.msg);
 
     });
 });

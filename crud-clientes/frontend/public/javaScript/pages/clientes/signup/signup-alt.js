@@ -1,16 +1,16 @@
-import { validarSignup } from "/javaScript/validations/clientes/validacoesSignup.js";
+import { validarSignupAlt } from "/javaScript/validations/clientes/signup/validacoesSignupAlt.js";
 import { signupAltService } from "/javaScript/service/clientes/serviceSignup.js";
-import { mascarasSignup } from "/javaScript/validations/clientes/validacoesSignup.js";
+import { mascarasSignupAlt } from "/javaScript/validations/clientes/signup/validacoesSignupAlt.js";
 
 
 //Mascaras para o cadastro de cliente
-mascarasSignup();
+mascarasSignupAlt();
 
 //PASSANDO OS DADOS PARA CADASTRO
 document.querySelector('form').addEventListener('submit', async function (event) {
     
     //Validando os dados antes de mandá-los para o back
-    if(!validarSignup(event)){
+    if(!validarSignupAlt(event)){
         return;
     }
 
@@ -30,8 +30,7 @@ document.querySelector('form').addEventListener('submit', async function (event)
         clt_dataNasc: dados.data, 
         clt_cpf: dados.cpf, 
         clt_telefone: dados.telefone,
-        clt_email: dados.email,
-        clt_senha: dados.senha     
+        clt_email: dados.email   
     };
 
     const address = {

@@ -18,8 +18,9 @@ document.querySelectorAll('.alt').forEach(button => {
 //deletando um endereço
 document.querySelectorAll('.delete').forEach(button => {
     
-    button.addEventListener('click', async function(){
+    button.addEventListener('click', async function(event){
 
+        event.preventDefault();
 
         let resposta = confirm('Deseja realmente deletar o endereço?');
 
@@ -32,11 +33,13 @@ document.querySelectorAll('.delete').forEach(button => {
         const clt_id = window.location.pathname.split('/').splice(-1)[0];
 
 
-        const status = await deletarAddressIdService(clt_id, end_id);
+        const res = await deletarAddressIdService(clt_id, end_id);
 
-        if(status === 204){
+        if(res.status === 204){
             location.reload();
         }
+
+        alert(res.msg.msg);
 
     });
 });

@@ -7,7 +7,11 @@ export async function deletarAddressIdService(clt_id, end_id) {
            method: 'DELETE'
         });
 
-        return result;
+        if(result.status === 400){
+            return {status: result.status, msg: await result.json()};
+        }
+
+        return {status: result.status};
 
     }catch(err){
         console.error(`Erro no deletarAddressIdService - serviceAddress: ${err}`);

@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const controllerSignup = require('../../controller/clientes/controllerSignup');
-const { validarSignup }  = require('../../validations/clientes/validacoesSignup')
+const { validarSignup }  = require('../../validations/clientes/signup/validacoesSignup');
+const { validarSignupAlt } = require('../../validations/clientes/signup/validacoesSignupAlt')
+
  
 //Rotas para páginas
 router.get('/clientes/signup', controllerSignup.getSignup);
@@ -9,7 +11,7 @@ router.get('/clientes/signup/:clt_id', controllerSignup.getSignupAlt);
 
 //Atualizando dados
 router.put('/clientes/signup/:clt_id', 
-    validarSignup, 
+    validarSignupAlt, 
     controllerSignup.putSignupAlt
 );
 

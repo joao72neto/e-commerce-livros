@@ -1,6 +1,6 @@
-import { validarSignup } from "/javaScript/validations/clientes/validacoesSignup.js";
+import { validarSignup } from "/javaScript/validations/clientes/signup/validacoesSignup.js";
 import { signupService } from "/javaScript/service/clientes/serviceSignup.js";
-import { mascarasSignup } from "/javaScript/validations/clientes/validacoesSignup.js";
+import { mascarasSignup } from "/javaScript/validations/clientes/signup/validacoesSignup.js";
 
 
 //Mascaras para o cadastro de cliente

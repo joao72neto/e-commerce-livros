@@ -7,8 +7,8 @@ export async function deletarCardIdService(clt_id, car_id) {
            method: 'DELETE'
         });
 
-        if(!result.ok){
-            return {status: result.status, erros: result.erros};
+        if(result.status === 400){
+            return {status: result.status, msg: await result.json()};
         }
 
         return {status: result.status};
