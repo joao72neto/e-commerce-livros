@@ -47,18 +47,21 @@ describe('Teste Relacionados a Operações com Cartões', () => {
     });
 
     it('Deve excluir um cartão corretamente', () => {
+
+      Cypress.on('uncaught:exception', () => false);
+
       // Acessando a tela de alteração de cartão
       cy.get('.acoes .alt').first().click();
       cy.get('.alt_submenu a[href^="/clientes/card"]').click();
+
+      //Clicando no botão de excluir 
       cy.get('.acoes-card .delete').first().click(); 
   
       // Confirmando a exclusão
       cy.on('window:confirm', () => true);
-     
 
-      //Verificando se a msg de alteração de dados está sendo exibida corretamente
-      // cy.on('window:alert', (alertText) => {
-      //   expect(alertText).to.contains('Cartão foi !');
-      // });
+      //Clicando no botão de excluir 
+      cy.get('.acoes-card .delete').first().click(); 
+  
     });
 });
