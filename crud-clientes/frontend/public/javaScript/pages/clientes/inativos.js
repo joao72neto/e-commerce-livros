@@ -8,7 +8,7 @@ let clientesInativos = await buscarClientesInativosService();
 
 if (clientesInativos.length === 0) {
     let titulo = document.querySelector('.title');
-    titulo.textContent = 'Nunhum Cliente Inativo';
+    titulo.textContent = 'Nenhum Cliente Inativo';
     titulo.style.cssText = `
 
         background-color: white;

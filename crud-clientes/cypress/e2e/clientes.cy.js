@@ -132,6 +132,22 @@ describe('Testes Relacionados a Operações com Clientes', () => {
           
         });
     });
+
+    it('Deve excluir um cliente corretamente', () => {
+  
+        // Inativando um cliente
+        cy.get('.acoes .inat').first().click();
+        cy.get('#btn-inativados').should('exist').click();
+
+        // Excluindo o cliente
+        cy.get('.btn-delete').click();
+        cy.on('window:confirm', () => true);
+  
+        //Confirmando a exclusão
+        cy.get('h1').should('have.text', 'Nenhum Cliente Inativo');
+        cy.get('.voltar').click();
+        cy.get('h1').should('have.text', 'Nenhum Cliente Ativo');
+    });
 });
 
   
