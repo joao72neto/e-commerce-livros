@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`livros` (
   `lvr_gpp_id` INT NOT NULL,
   `lvr_edt_id` INT NOT NULL,
   `lvr_aut_id` INT NOT NULL,
-  `lvr_ano` YEAR NOT NULL,
+  `lvr_ano` SMALLINT NOT NULL,
   `lvr_titulo` VARCHAR(45) NOT NULL,
   `lvr_edicao` SMALLINT UNSIGNED NOT NULL,
   `lvr_isbn` VARCHAR(17) NOT NULL,
