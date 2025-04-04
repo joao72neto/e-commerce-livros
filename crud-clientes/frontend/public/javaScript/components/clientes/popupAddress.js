@@ -34,20 +34,19 @@ document.querySelectorAll('.endereco-wrapper .endereco').forEach(endereco => {
         container.appendChild(popup);
 
         // Evento para fechar o popup ao clicar no botão "X"
-        document.querySelector('button').addEventListener('click', () => {
+        document.querySelector('.button-popup').addEventListener('click', () => {
             popup.remove();
         });
     });
 });
 
 //Removendo o submenu ao clicar fora da tela
-document.addEventListener('click', () => {
+document.addEventListener('click', (event) => {
     const popup = document.querySelector('.popup');
-    if(popup){
+    
+    if (popup && !popup.contains(event.target)) {
         popup.remove();
     }
 });
-
-
 
 
