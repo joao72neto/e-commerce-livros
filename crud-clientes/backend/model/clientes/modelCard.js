@@ -3,7 +3,7 @@ const db = require('../../config/db');
 //DELETE
 
 //Função que deleta todos os dados de uma tabela
-async function deletarCardsClienteId(clt_id) {
+module.exports.deletarCardsClienteId = async (clt_id) => {
     const sql = `DELETE FROM cartoes WHERE car_clt_id = ?`;
 
     try{
@@ -14,7 +14,7 @@ async function deletarCardsClienteId(clt_id) {
 }
 
 //Função que deleta clientes do banco de dados
-async function deletarCardId(id) {
+module.exports.deletarCardId = async (id) => {
     const sql = `DELETE FROM cartoes WHERE car_id = ?`;
 
     try{
@@ -27,7 +27,7 @@ async function deletarCardId(id) {
 //INSERT
 
 //Inserindo um novo cartão no banco de dados
-async function cadastrarCartao(dados) {
+module.exports.cadastrarCartao = async (dados) => {
 
     //Consulta SQL
     sql = `INSERT INTO cartoes (car_clt_id, car_nome, car_numero, car_bandeira, car_cvv, car_principal) VALUES (?, ?, ?, ?, ?, 1)`;
@@ -49,7 +49,7 @@ async function cadastrarCartao(dados) {
 //UPDATE
 
 //Atualizando os dados dos cartões no banco
-async function atualizarCard(dados, car_id) {
+module.exports.atualizarCard = async (dados, car_id) => {
     
     const campos = Object.keys(dados).map(key =>  `${key} = ?`).join(', ');
     let valores = Object.values(dados);
@@ -71,7 +71,7 @@ async function atualizarCard(dados, car_id) {
 //SELECT 
 
 //Função que pega todos os cartões do banco
-async function buscarTodosCartoes() {
+module.exports.buscarTodosCartoes = async () => {
     try{
         const [cartoes] = await db.query('select * from cartoes');
         return cartoes;
@@ -82,7 +82,7 @@ async function buscarTodosCartoes() {
 }
 
 //Função que pegar um cartão pelo seu id
-async function buscarCartaoId(id) {
+module.exports.buscarCartaoId = async (id) =>{
     try{
         const [cartao] = await db.query(`select * from cartoes where car_id = ?`, id);
         return cartao;
@@ -93,7 +93,7 @@ async function buscarCartaoId(id) {
 }
 
 //Função que pegar cartões de um determinado cliente
-async function buscarCartoesClienteId(id) {
+module.exports.buscarCartoesClienteId = async (id) => {
     try{
         const [cartoes] = await db.query(`select * from cartoes where car_clt_id = ?`, id);
         return cartoes;
@@ -103,6 +103,3 @@ async function buscarCartoesClienteId(id) {
         throw err;
     }
 }
-
-//exportando as funções
-module.exports = {buscarCartoesClienteId, buscarTodosCartoes, buscarCartaoId, cadastrarCartao, atualizarCard, deletarCardId, deletarCardsClienteId};

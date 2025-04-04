@@ -3,7 +3,7 @@ const db = require('../../config/db');
 //SELECT 
 
 //Buscando todas as transações do banco
-async function buscarTodasTransacoes() {
+module.exports.buscarTodasTransacoes = async () => {
     try{
         const [transacoes] = await db.query('select * from transacoes');
         return transacoes;
@@ -15,7 +15,7 @@ async function buscarTodasTransacoes() {
 }
 
 //Buscando transações por id de clientes
-async function buscarTransacoesClienteId(id) {
+module.exports.buscarTransacoesClienteId = async (id) => {
     try{
         const [transacoes] = await db.query(`select * from transacoes where trs_clt_id = ?`, id);
         return transacoes;
@@ -25,5 +25,3 @@ async function buscarTransacoesClienteId(id) {
         throw err;
     }
 }
-
-module.exports = {buscarTodasTransacoes,buscarTransacoesClienteId};

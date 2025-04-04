@@ -3,7 +3,7 @@ const db = require('../../config/db');
 //DELETE
 
 //Função que deleta todos os dados de uma tabela
-async function deletarAddressClienteId(clt_id) {
+module.exports.deletarAddressClienteId = async (clt_id) => {
     const sql = `DELETE FROM enderecos WHERE end_clt_id = ?`;
 
     try{
@@ -14,7 +14,7 @@ async function deletarAddressClienteId(clt_id) {
 }
 
 //Função que deleta clientes do banco de dados
-async function deletarAddressId(id) {
+module.exports.deletarAddressId = async (id) => {
     const sql = `DELETE FROM enderecos WHERE end_id = ?`;
 
     try{
@@ -27,7 +27,7 @@ async function deletarAddressId(id) {
 //INSERT
 
 //Cadastrando um novo endereço no banco de dadso
-async function cadastrarAddress(dados) {
+module.exports.cadastrarAddress = async (dados) => {
 
     //Consulta SQL
     sql = `INSERT INTO enderecos (end_clt_id, end_nome, end_tipoResidencia, end_tipoLogradouro, end_logradouro, end_numero, end_bairro, end_cep, end_cidade, end_estado, end_pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -54,7 +54,7 @@ async function cadastrarAddress(dados) {
 //UPDATE
 
 //Atualizando os endereços do banco de dados
-async function atualizarAddress(dados, end_id) {
+module.exports.atualizarAddress = async (dados, end_id) => {
     
     const campos = Object.keys(dados).map(key =>  `${key} = ?`).join(', ');
     let valores = Object.values(dados);
@@ -76,7 +76,7 @@ async function atualizarAddress(dados, end_id) {
 //SELECT
 
 //Bsucando todos os endereços do banco de dados
-async function buscarTodosEnderecos() {
+module.exports.buscarTodosEnderecos = async () => {
     try{
         const [enderecos] = await db.query('select * from enderecos');
         return enderecos;
@@ -87,7 +87,7 @@ async function buscarTodosEnderecos() {
 }
 
 //Bsucando endereço por id
-async function buscarEnderecoId(id) {
+module.exports.buscarEnderecoId = async (id) => {
     try{
         const [endereco] = await db.query(`select * from enderecos where end_id = ?`, id);
         return endereco;
@@ -98,7 +98,7 @@ async function buscarEnderecoId(id) {
 }
 
 //Bsucando endereços por id de cliente
-async function buscarEnderecosClienteId(id) {
+module.exports.buscarEnderecosClienteId = async (id) => {
     try{
         const [enderecos] = await db.query(`select * from enderecos where end_clt_id = ?`, id);
         return enderecos;
@@ -107,8 +107,4 @@ async function buscarEnderecosClienteId(id) {
         throw err;
     }
 }
-
-
-//Exportando as funções
-module.exports = {buscarTodosEnderecos, buscarEnderecosClienteId, buscarEnderecoId, cadastrarAddress, atualizarAddress, deletarAddressClienteId, deletarAddressId};
 
