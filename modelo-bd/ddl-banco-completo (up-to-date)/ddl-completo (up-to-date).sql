@@ -111,6 +111,7 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`livros` (
   `lvr_peso` DECIMAL(5,2) NOT NULL,
   `lvr_profundidade` DECIMAL(5,2) NOT NULL,
   `lvr_status` TINYINT(1) NOT NULL DEFAULT 1,
+  `lvr_capa` VARCHAR(255) NULL,
   PRIMARY KEY (`lvr_id`),
   INDEX `fk_lvr_gpp_idx` (`lvr_gpp_id` ASC) VISIBLE,
   INDEX `fk_lvr_aut_idx` (`lvr_aut_id` ASC) VISIBLE,
