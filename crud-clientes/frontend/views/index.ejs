@@ -16,39 +16,20 @@
         <main>
             <div class="banner"></div>
             <div class="books">
-                <div class="book">
-                    <div class="imagem">
-                        <img src="/images/capas/sociedade_anel.jpg" alt="">
+
+
+                <% livros.forEach(livro => { %>
+
+                    <div class="book">
+                        <div class="imagem">
+                            <img src="<%=livro.lvr_capa%>" alt="">
+                        </div>
+                        <p><%=livro.lvr_titulo%></p>
+                        <p>R$100,00</p>
+                        <div class="compra"><a href="/produto">Comprar</a></div>
                     </div>
-                    <p>Lord of The Rings</p>
-                    <p>R$100,00</p>
-                    <div class="compra"><a href="/produto">Comprar</a></div>
-                </div>
-                <div class="book">
-                    <div class="imagem">
-                        <img src="/images/capas/1984.jpg" alt="">
-                    </div>
-                    <p>Game of Thrones</p>
-                    <p>R$100,00</p>
-                    <div class="compra"><a href="#">Comprar</a></div>
-                </div>
-                <div class="book">
-                    <div class="imagem">
-                        <img src="/images/capas/bras_cubas.jpg" alt="">
-                    </div>
-                    <p>IT</p>
-                    <p>R$100,00</p>
-                    <div class="compra"><a href="#">Comprar</a></div>
-                </div>
-                <div class="book">
-                    <div class="imagem">
-                        <img src="/images//livros/codigoLimpo.jpg" alt="">
-                    </div>
-                    <p>Código Limpo</p>
-                    <p>R$100,00</p>
-                    <div class="compra"><a href="#">Comprar</a></div>
-                </div>
-            </div>
+
+                <% }); %>
         </main>
 
         <div class="space"></div>
