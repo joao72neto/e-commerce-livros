@@ -72,3 +72,10 @@ document.querySelector('#notificacao-index').addEventListener('click', function(
 document.addEventListener('click', function(){
     document.querySelector('.notificacao').remove();
 });
+
+//Redirecionando para a página de produtos
+document.querySelectorAll('.imagem').forEach(image => {
+    image.addEventListener('click', function(){
+        window.location.href = '/produto';
+    });
+});
