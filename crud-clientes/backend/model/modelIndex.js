@@ -1,4 +1,4 @@
-const db = require('../../config/db');
+const db = require('../config/db');
 
 //Buscando todos os livros do banco de dados
 module.exports.buscarTodosLivro = async () => {
