@@ -20,7 +20,9 @@ module.exports.deletarClienteId = async (id) => {
 module.exports.cadastrarCliente = async (dados) => {
 
     //Consulta SQL
-    const sql = `INSERT INTO clientes (clt_nome, clt_genero, clt_dataNasc,  clt_cpf, clt_telefone, clt_email, clt_senha, clt_ranking, clt_status) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 1)`;
+    const logado = dados.clt_logado ? dados.clt_logado : 0;
+
+    const sql = `INSERT INTO clientes (clt_nome, clt_genero, clt_dataNasc,  clt_cpf, clt_telefone, clt_email, clt_senha, clt_ranking, clt_status, clt_logado) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 1, ?)`;
 
 
     //Criptografanso a senha
@@ -36,7 +38,8 @@ module.exports.cadastrarCliente = async (dados) => {
         dados.clt_cpf,
         dados.clt_telefone,
         dados.clt_email,
-        dados.clt_senha
+        dados.clt_senha,
+        logado
     ]
 
 
@@ -51,8 +54,6 @@ module.exports.cadastrarCliente = async (dados) => {
 }
 
 //UPDATE
-
-
 
 //Atualizando os dados dos clientes no banco
 module.exports.atualizarCliente = async (dados, clt_id) => {
