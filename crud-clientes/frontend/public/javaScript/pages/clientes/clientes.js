@@ -72,6 +72,9 @@ document.querySelector('#btn-filtro').addEventListener('click', (event) => {
 });
 
 
+//Logando usuário
+
+
 //ALTERALÇÃO DE USUÁRIO
 document.querySelectorAll('.alt').forEach(botao => {
     botao.addEventListener('click', function (event) {

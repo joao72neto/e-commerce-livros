@@ -63,6 +63,21 @@ export async function ativarClienteService(id) {
 
 //GET
 
+//Buscando o cliente logado
+export async function buscarClienteLogadoService() {
+    try{
+
+        const res = await fetch(`/api/clientes/logado`);
+        const cliente = await res.json();
+        return cliente;
+
+    }catch(err){
+        console.error(`Erro no buscarClienteLogadoService - serviceClientes: ${err}`);
+        throw err;
+    }
+}
+
+
 //Pegando clientes por id
 export async function buscarClienteIdService(id) {
     try{

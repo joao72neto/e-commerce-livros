@@ -52,6 +52,8 @@ module.exports.cadastrarCliente = async (dados) => {
 
 //UPDATE
 
+
+
 //Atualizando os dados dos clientes no banco
 module.exports.atualizarCliente = async (dados, clt_id) => {
     
@@ -87,6 +89,37 @@ module.exports.alterarSenhaCliente = async (senha, id) => {
     }
 }
 
+//Alterando o status de login de um cliente para logado
+module.exports.logarClienteId = async (id) => {
+
+    const clienteLogado = await this.buscarClienteLogado();
+
+    if(clienteLogado.length > 0){
+        console.error('Já há um cliente logado no sistema');
+        return clienteLogado;
+    }
+
+    try{
+        await db.query(`update clientes set clt_logado = 1 where clt_id = ?`, id);
+        return []
+    }catch(err){
+        console.error(`Erro no logarClienteId - modelClientes: ${err}`);
+        throw err;
+    }
+};
+
+//Alterando o status de login de um cliente para logado
+module.exports.deslogarCliente = async () => {
+
+    const clienteLogado = await this.buscarClienteLogado();
+
+    try{
+        await db.query(`update clientes set clt_logado = 0 where clt_id = ?`, clienteLogado[0].clt_id);
+    }catch(err){
+        console.error(`Erro no deslogarCliente - modelClientes: ${err}`);
+        throw err;
+    }
+};
 
 //Inativando um cliente específico
 module.exports.inativarCliente = async (id) => {
@@ -109,6 +142,18 @@ module.exports.ativarCliente = async (id) => {
 }
 
 //SELECT
+
+//Bucar cliente logado
+module.exports.buscarClienteLogado = async () => {
+    try{
+        const [cliente] = await db.query('select * from clientes where clt_logado = 1');
+        return cliente;
+        
+    }catch(err){
+        console.error(`Erro no buscarClienteLogado - modelIndex: ${err}`);
+        throw err;
+    }
+}
 
 //Filtro do Usuário
 module.exports.filtrarClientesAtivos = async (dados) => {
