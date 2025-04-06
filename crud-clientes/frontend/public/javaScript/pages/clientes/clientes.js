@@ -2,6 +2,12 @@ import { buscarClientesAtivosService } from "/javaScript/service/clientes/servic
 import { buscarClientesInativosService } from "/javaScript/service/clientes/serviceClientes.js";
 import { inativarClienteService } from "/javaScript/service/clientes/serviceClientes.js";
 import { mascarasFiltro, validarFiltro } from "/javaScript/validations/clientes/validacoesFiltro.js";
+import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
+import { logarClienteIdService } from "/javaScript/service/clientes/serviceClientes.js";
+import { deslogarClienteService } from "/javaScript/service/clientes/serviceClientes.js";
+
+
+
 
 mascarasFiltro();
 
@@ -72,7 +78,61 @@ document.querySelector('#btn-filtro').addEventListener('click', (event) => {
 });
 
 
-//Logando usuário
+//LOGANDO O USUAŔIO
+
+// Estilizando o botão
+window.addEventListener('DOMContentLoaded', async () => {
+    const clienteLogado = await buscarClienteLogadoService();
+
+    if (clienteLogado.length > 0) {
+        const clt_idLogado = clienteLogado[0].clt_id.toString();
+
+        document.querySelectorAll('.login').forEach(button => {
+            const wrapper = button.closest('.wrapper');
+            const clt_id = wrapper.querySelector('.cliente-id').textContent;
+
+            if (clt_id === clt_idLogado) {
+                button.textContent = 'Logado';
+                button.classList.add('logado');
+                return;
+            } 
+            
+            button.textContent = 'Logar';
+            button.classList.remove('logado');
+
+        });
+    }
+});
+
+//Logando e delogando ao clicar no botão
+document.querySelectorAll('.login').forEach(button => {
+    button.addEventListener('click', async function(event){
+
+        event.preventDefault();
+
+        //Verificando se há algum cliente já logado
+        const clienteLogado = await buscarClienteLogadoService();
+
+        if(clienteLogado.length > 0){
+            await deslogarClienteService();
+            this.textContent = 'Logar'; 
+            this.classList.remove('logado');
+            return;
+        }
+
+        //Pegando o id do cliente
+        const wrapper = this.closest('.wrapper');
+        const clt_id = wrapper.querySelector('.cliente-id').textContent;
+
+        //Logando 
+        await logarClienteIdService(clt_id);
+
+        this.textContent = 'Logado';
+        this.classList.add('logado');
+
+    });
+});
+
 
 
 //ALTERALÇÃO DE USUÁRIO

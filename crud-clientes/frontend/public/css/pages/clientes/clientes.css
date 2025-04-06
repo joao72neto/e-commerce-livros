@@ -1,6 +1,18 @@
 /*Importando as cores do site*/
 @import url('../../colors.css');
 
+
+/*Classes JavScript*/
+.logado{
+    background-color: green;  
+
+    &:hover{
+        background-color: rgb(2, 156, 2);
+        color: white;
+    }
+}
+
+
 /*CRUD Settings - index*/
 .flex-container{
     display: flex;

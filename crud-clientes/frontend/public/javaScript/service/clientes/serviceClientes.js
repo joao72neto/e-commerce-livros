@@ -18,6 +18,36 @@ export async function deletarClienteIdService(clt_id) {
 
 //PATCH
 
+//Logando um cliente 
+export async function logarClienteIdService(id) {
+    try{
+        let res = await fetch(`/logar/${id}`, {
+            method: 'PATCH'
+        });
+        
+        return res.status;
+
+    }catch(err){
+        console.error(`Erro no logarClienteIdService - serviceClientes: ${err}`);
+        return 500;
+    }
+}
+
+//Deslogando um cliente
+export async function deslogarClienteService() {
+    try{
+        let res = await fetch(`/deslogar`, {
+            method: 'PATCH'
+        });
+        
+        return res.status;
+
+    }catch(err){
+        console.error(`Erro no logarClienteIdService - serviceClientes: ${err}`);
+        return 500;
+    }
+}
+
 //Alterando a senha do cliente
 export async function alterarSenhaClienteService(senha, id) {
     try{
