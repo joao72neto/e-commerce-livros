@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`clientes` (
   `clt_senha` VARCHAR(255) NOT NULL,
   `clt_ranking` SMALLINT UNSIGNED NOT NULL,
   `clt_status` TINYINT(1) NOT NULL DEFAULT 1,
+  `clt_logado` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`clt_id`),
   UNIQUE INDEX `clt_email_uk` (`clt_email` ASC) VISIBLE,
   UNIQUE INDEX `clt_cpf_uk` (`clt_cpf` ASC) VISIBLE)

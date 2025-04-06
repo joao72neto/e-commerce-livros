@@ -11,3 +11,15 @@ module.exports.buscarTodosLivro = async () => {
         throw err;
     }
 }
+
+//Bucar cliente logado
+module.exports.buscarClienteLogado = async () => {
+    try{
+        const cliente = await db.query('select * from clientes where clt_logado = 1');
+        return cliente;
+        
+    }catch(err){
+        console.error(`Erro no buscarClienteLogado - modelIndex: ${err}`);
+        throw err;
+    }
+}

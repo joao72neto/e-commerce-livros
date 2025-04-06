@@ -9,7 +9,6 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
         <h2 for="">Cliente</h2>
         <ul>
             <li><a href="/perfil">Perfil</a></li>
-            <li><a href="/cadastro">Cadastro</a></li>
             <li><a href="/pedidos">Meus Pedidos</a></li>
         </ul>
         <h2 for="">ADM</h2>
@@ -45,7 +44,7 @@ document.querySelector('#notificacao-index').addEventListener('click', function(
         
 
     //Retirando o menu ao clicar de novo
-    let notificacao = this.querySelector('.notificacao');
+    let notificacao = this.querySelector('.notificacaoa');
 
     if(notificacao){
         notificacao.remove();
