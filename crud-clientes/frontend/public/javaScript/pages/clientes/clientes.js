@@ -78,58 +78,63 @@ document.querySelector('#btn-filtro').addEventListener('click', (event) => {
 });
 
 
-//LOGANDO O USUAŔIO
+//LOGANDO E DESLOGANDO CLIENTES
 
-// Estilizando o botão
+// Estilizando o botão ao carregar a página
 window.addEventListener('DOMContentLoaded', async () => {
     const clienteLogado = await buscarClienteLogadoService();
 
-    if (clienteLogado.length > 0) {
-        const clt_idLogado = clienteLogado[0].clt_id.toString();
+    document.querySelectorAll('.login').forEach(button => {
+        const wrapper = button.closest('.wrapper');
+        const clt_id = wrapper.querySelector('.cliente-id').textContent;
 
-        document.querySelectorAll('.login').forEach(button => {
-            const wrapper = button.closest('.wrapper');
-            const clt_id = wrapper.querySelector('.cliente-id').textContent;
+        if (clienteLogado.length > 0 && clt_id === clienteLogado[0].clt_id.toString()) {
+            button.textContent = 'Logado';
+            button.classList.add('logado');
+            return;
+        } 
 
-            if (clt_id === clt_idLogado) {
-                button.textContent = 'Logado';
-                button.classList.add('logado');
-                return;
-            } 
-            
-            button.textContent = 'Logar';
-            button.classList.remove('logado');
-
-        });
-    }
+        button.textContent = 'Logar';
+        button.classList.remove('logado');
+        
+    });
 });
 
-//Logando e delogando ao clicar no botão
+// Logando e deslogando ao clicar no botão
 document.querySelectorAll('.login').forEach(button => {
-    button.addEventListener('click', async function(event){
-
+    button.addEventListener('click', async function(event) {
         event.preventDefault();
 
-        //Verificando se há algum cliente já logado
         const clienteLogado = await buscarClienteLogadoService();
 
-        if(clienteLogado.length > 0){
-            await deslogarClienteService();
-            this.textContent = 'Logar'; 
-            this.classList.remove('logado');
-            return;
-        }
+        // Remove o estilo de todos os botões antes de qualquer coisa
+        document.querySelectorAll('.login').forEach(btn => {
+            btn.textContent = 'Logar';
+            btn.classList.remove('logado');
+        });
 
-        //Pegando o id do cliente
         const wrapper = this.closest('.wrapper');
         const clt_id = wrapper.querySelector('.cliente-id').textContent;
 
-        //Logando 
+        // Se já tem cliente logado: desloga e para aqui
+        if (clienteLogado.length > 0) {
+
+            const clt_idLogado = clienteLogado[0].clt_id.toString();
+
+            if(clt_idLogado === clt_id){
+                await deslogarClienteService();
+                return;
+            }
+
+            await deslogarClienteService();
+
+        }
+
+        // Fazendo login com o cliente
         await logarClienteIdService(clt_id);
 
         this.textContent = 'Logado';
         this.classList.add('logado');
-
     });
 });
 
