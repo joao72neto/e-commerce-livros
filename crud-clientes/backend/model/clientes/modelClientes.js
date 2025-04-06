@@ -143,7 +143,7 @@ module.exports.ativarCliente = async (id) => {
 
 //SELECT
 
-//Bucar cliente logado
+//Buscar cliente logado
 module.exports.buscarClienteLogado = async () => {
     try{
         const [cliente] = await db.query('select * from clientes where clt_logado = 1');
