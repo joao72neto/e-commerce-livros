@@ -16,7 +16,7 @@ document.querySelectorAll('.alt').forEach(button => {
 });
 
 
-//deletando um endereço
+//deletando um cartão
 document.querySelectorAll('.delete').forEach(button => {
     
     button.addEventListener('click', async function(event){

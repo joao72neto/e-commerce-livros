@@ -49,13 +49,15 @@
 
                         <div class="wrapper">
                             <div class="card-main">
+                                <p class="invisible card-id"><%=cartao.car_id%></p>
+                                <p class="invisible cliente-id"><%=cliente.clt_id%></p>
                                 <h2><%=cartao.car_bandeira%></h2>
                                 <p><%=cartao.car_nome%></p>
                                 <p><strong>Final: </strong><%=cartao.car_numero.slice(-4)%></p>
                             </div>
                             <div class="acoes">
                                 <a class="alt" href="/clientes/card/<%=cliente.clt_id%>/alt/<%=cartao.car_id%>?retorno=perfil">Alterar</a>
-                                <a href="">Excluir</a>
+                                <a href="" class="delete-card">Excluir</a>
                             </div>
                         </div>
 
@@ -79,7 +81,7 @@
                             </div>
                             <div class="acoes">
                                 <a class="alt" href="#">Alterar</a>
-                                <a href="">Excluir</a>
+                                <a href="" class="delete-address" >Excluir</a>
                             </div>
                         </div>
 
@@ -96,6 +98,7 @@
         
     </div>
 
+    <script type="module" src="/javaScript/pages/perfil.js"></script>
 
  </body>
  </html>
