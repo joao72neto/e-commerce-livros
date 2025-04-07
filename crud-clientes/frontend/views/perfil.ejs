@@ -44,45 +44,47 @@
                 <div class="cartoes box">
 
                     <h2 class="title">Cartões Cadastrados</h2>
-                    <div class="wrapper">
-                        <div class="card-main">
-                            <h2>Visa</h2>
-                            <p>João Neto</p>
-                            <p><strong>Final: </strong>1234</p>
+
+                    <% cartoes.forEach(cartao => { %>
+
+                        <div class="wrapper">
+                            <div class="card-main">
+                                <h2><%=cartao.car_bandeira%></h2>
+                                <p><%=cartao.car_nome%></p>
+                                <p><strong>Final: </strong><%=cartao.car_numero.slice(-4)%></p>
+                            </div>
+                            <div class="acoes">
+                                <a class="alt" href="#">Alterar</a>
+                                <a href="">Excluir</a>
+                            </div>
                         </div>
-                        <div class="acoes">
-                            <a class="alt" href="#">Alterar</a>
-                            <a href="">Excluir</a>
-                        </div>
-                    </div>
-                    <div class="wrapper">
-                        <div>
-                            <h2>Mastercard</h2>
-                            <p>João Neto</p>
-                            <p><strong>Final: </strong>4362</p>
-                        </div>
-                        <div class="acoes">
-                            <a class="alt" href="#">Alterar</a>
-                            <a href="">Excluir</a>
-                        </div>
-                    </div>
+
+                    <% }); %>
+
                     <div class="center add">
-                        <a href="">Adicioanr Novo Cartão</a>
+                        <a href="">Adicionar Novo Cartão</a>
                     </div>
                 </div>
                 <div class="enderecos box">
-                    <h2 class="title">Endereços Cadastrados: </h2>
-                    <div class="wrapper">
-                        <div>
-                            <h2>Estrada Antiga Imperial</h2>
-                            <p>Vila São Paulo</p>
-                            <p><strong>Número: </strong>123</p>
+                    <h2 class="title">Endereços Cadastrados</h2>
+
+
+                    <% enderecos.forEach(endereco => { %>
+
+                        <div class="wrapper">
+                            <div>
+                                <h2><%=endereco.end_nome%></h2>
+                                <p><%=endereco.end_bairro%></p>
+                                <p><strong>Número: </strong><%=endereco.end_numero%></p>
+                            </div>
+                            <div class="acoes">
+                                <a class="alt" href="#">Alterar</a>
+                                <a href="">Excluir</a>
+                            </div>
                         </div>
-                        <div class="acoes">
-                            <a class="alt" href="#">Alterar</a>
-                            <a href="">Excluir</a>
-                        </div>
-                    </div>
+
+                    <% }); %>
+
                     <div class="center add">
                         <a href="">Adiconar Novo Endereço</a>
                     </div>
