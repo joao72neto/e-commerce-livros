@@ -11,11 +11,13 @@ module.exports.getSignupAlt = async (req, res) =>{
     const cliente = await buscarClienteId(req.params.clt_id);
     const enderecos = await buscarEnderecosClienteId(req.params.clt_id);
     const cartoes = await buscarCartoesClienteId(req.params.clt_id);
+    const retorno = req.query.retorno;
 
     res.render('clientes/signup/signup-alt', {
         cliente: cliente,
         enderecos: enderecos,
-        cartoes: cartoes
+        cartoes: cartoes,
+        retorno: retorno
     });
 };
 

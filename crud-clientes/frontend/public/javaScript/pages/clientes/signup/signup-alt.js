@@ -62,7 +62,11 @@ document.querySelector('form').addEventListener('submit', async function (event)
 
     if(res.status === 200){
         alert('Cliente foi atualizado com sucesso!');
-        window.location.href = '/clientes';
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const retorno = urlParams.get('retorno'); 
+
+        window.location.href = `/${retorno}`;
         return;
     }
 

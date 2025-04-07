@@ -168,7 +168,7 @@ document.querySelectorAll('.alt').forEach(botao => {
             <a href="/clientes/password/${id}">Alterar senha</a>
             <a href="/clientes/address/${id}">Alterar endereço</a>
             <a href="/clientes/card/${id}">Alterar pagamento</a>
-            <a href="/clientes/signup/${id}">Alterar Cliente</a>
+            <a href="/clientes/signup/${id}?retorno=clientes">Alterar Cliente</a>
 
         `;
 
