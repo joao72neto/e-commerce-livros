@@ -68,7 +68,11 @@ document.querySelector('#notificacao-index').addEventListener('click', function(
 
 //Removendo notificação ao clicar fora da tela
 document.addEventListener('click', function(){
-    document.querySelector('.notificacao').remove();
+    const notificacao = document.querySelector('.notificacao');
+
+    if(notificacao){
+        notificacao.remove();
+    }
 });
 
 //Redirecionando para a página de produtos
