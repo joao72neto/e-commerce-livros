@@ -13,7 +13,7 @@
 
         <%- include('../../components/header', {
             titulo: 'Alteração de Cartão',
-            path: '/clientes/card/' + cartoes[0].car_clt_id
+            path: retorno ? `/${retorno}` : `/clientes/card/${cartoes[0].car_clt_id}` 
         })%>
 
         <div class="container-card">

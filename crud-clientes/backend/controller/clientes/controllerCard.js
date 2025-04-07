@@ -8,12 +8,20 @@ module.exports.getCard = async (req, res) => {
 
 module.exports.getCardAdd = async (req, res) => {
     const cartoes = await buscarCartoesClienteId(req.params.clt_id);
-    res.render('clientes/card/card-add', {cartoes: cartoes});
+    const retorno = req.query.retorno;
+    res.render('clientes/card/card-add', {
+        cartoes: cartoes,
+        retorno: retorno
+    });
 };
 
 module.exports.getCardAlt = async (req, res) => {
     const cartoes = await buscarCartaoId(req.params.car_id);
-    res.render('clientes/card/card-alt', {cartoes: cartoes});
+    const retorno = req.query.retorno;
+    res.render('clientes/card/card-alt', {
+        cartoes: cartoes,
+        retorno: retorno
+    });
 };
 
 //Inserção de dados
