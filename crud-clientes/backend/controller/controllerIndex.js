@@ -4,12 +4,12 @@ const { buscarTodosLivro } = require('../model/modelIndex');
 //Página
 module.exports.getIndex = async (req, res) => {
     const livros = await buscarTodosLivro();
-    const clienteLogado = await buscarClienteLogado();
+    const cliente = await buscarClienteLogado();
 
-    if(clienteLogado.length > 0){
+    if(cliente.length > 0){
         res.render('index/indexLogado', {
             livros: livros, 
-            cliente: clienteLogado
+            cliente: cliente
         });
         return;
     }

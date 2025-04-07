@@ -14,8 +14,8 @@ main{
     margin: 0 auto;
 }
 
-h2{
-    text-align: center;
+p{
+    margin: 5px 0;
 }
 
 .flex-container{
@@ -63,4 +63,8 @@ h2{
 
 .usuario .botao button{
     width: 150px;
+}
+
+.add{
+    padding: 20px;
 }

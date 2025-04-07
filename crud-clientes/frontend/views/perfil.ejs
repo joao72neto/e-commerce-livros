@@ -19,17 +19,19 @@
         <main>
             <div class="flex-container">
         
+                <% cliente.clt_dataNasc = new Date(cliente.clt_dataNasc).toLocaleDateString('pt-BR'); %>
+
                 <div class="usuario box">
-                    <h2>Dados de João</h2>
+                    <h2 class="title">Dados de <%=cliente.clt_nome.split(' ')[0]%></h2>
                     <div class="flex-usuario">
                         <div class="dados">
-                            <p><strong>Nome Completo: </strong>João Salvador Neto<p/>
-                            <p><strong>E-mail: </strong>joao.salvador@gmail.com<p/>
-                            <p><strong>Telefone: </strong>+55 11 92424-3532<p/>
-                            <p><strong>CPF: </strong>123.532.643-23<p/>
-                            <p><strong>Gênero: </strong>M<p/>
-                            <p><strong>Data Nascimento: </strong>12-01-2020<p/>
-                            <p><strong>Ranking: </strong>90<p/>
+                            <p><strong>Nome Completo: </strong><%=cliente.clt_nome%><p/>
+                            <p><strong>E-mail: </strong><%=cliente.clt_email%><p/>
+                            <p><strong>Telefone: </strong><%=cliente.clt_telefone%><p/>
+                            <p><strong>CPF: </strong><%=cliente.clt_cpf%><p/>
+                            <p><strong>Gênero: </strong><%=cliente.clt_genero%><p/>
+                            <p><strong>Data Nascimento: </strong><%=cliente.clt_dataNasc%><p/>
+                            <p><strong>Ranking: </strong><%=cliente.clt_ranking%><p/>
                         </div>
                         <div class="imagem-perfil">
                             <img src="/images/perfil/perfil.png" alt="">
@@ -40,7 +42,8 @@
                     </div>
                 </div>
                 <div class="cartoes box">
-                    <h2>Cartões Cadastrados</h2>
+
+                    <h2 class="title">Cartões Cadastrados</h2>
                     <div class="wrapper">
                         <div class="card-main">
                             <h2>Visa</h2>
@@ -49,7 +52,7 @@
                         </div>
                         <div class="acoes">
                             <a class="alt" href="#">Alterar</a>
-                            <a href="">Adicionar</a>
+                            <a href="">Excluir</a>
                         </div>
                     </div>
                     <div class="wrapper">
@@ -60,12 +63,15 @@
                         </div>
                         <div class="acoes">
                             <a class="alt" href="#">Alterar</a>
-                            <a href="">Adicionar</a>
+                            <a href="">Excluir</a>
                         </div>
+                    </div>
+                    <div class="center add">
+                        <a href="">Adicioanr Novo Cartão</a>
                     </div>
                 </div>
                 <div class="enderecos box">
-                    <h2>Endereços Cadastrados: </h2>
+                    <h2 class="title">Endereços Cadastrados: </h2>
                     <div class="wrapper">
                         <div>
                             <h2>Estrada Antiga Imperial</h2>
@@ -76,6 +82,9 @@
                             <a class="alt" href="#">Alterar</a>
                             <a href="">Excluir</a>
                         </div>
+                    </div>
+                    <div class="center add">
+                        <a href="">Adiconar Novo Endereço</a>
                     </div>
                 </div>
             </div>
