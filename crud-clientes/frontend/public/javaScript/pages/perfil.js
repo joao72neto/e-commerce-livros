@@ -1,4 +1,6 @@
-import { deletarCardIdService } from "/javaScript/service/clientes/serviceCard.js"
+import { deletarCardIdService } from "/javaScript/service/clientes/serviceCard.js";
+
+import { deletarAddressIdService } from "/javaScript/service/clientes/serviceAddress.js"
 
 //deletando um cartão
 document.querySelectorAll('.delete-card').forEach(button => {
@@ -29,31 +31,31 @@ document.querySelectorAll('.delete-card').forEach(button => {
 });
 
 
-// //deletando um endereço
-// document.querySelectorAll('.delete').forEach(button => {
+//deletando um endereço
+document.querySelectorAll('.delete-address').forEach(button => {
     
-//     button.addEventListener('click', async function(event){
+    button.addEventListener('click', async function(event){
 
-//         event.preventDefault();
+        event.preventDefault();
 
-//         let resposta = confirm('Deseja realmente deletar o endereço?');
+        let resposta = confirm('Deseja realmente deletar o endereço?');
 
-//         if(!resposta){
-//             return;
-//         }
+        if(!resposta){
+            return;
+        }
 
-//         const enderecoWrapper = this.closest('.endereco-wrapper');
-//         const end_id = enderecoWrapper.querySelector('.address-id').textContent;
-//         const clt_id = window.location.pathname.split('/').splice(-1)[0];
+        const enderecoWrapper = this.closest('.wrapper');
+        const end_id = enderecoWrapper.querySelector('.address-id').textContent;
+        const clt_id = enderecoWrapper.querySelector('.cliente-id').textContent;
 
 
-//         const res = await deletarAddressIdService(clt_id, end_id);
+        const res = await deletarAddressIdService(clt_id, end_id);
 
-//         if(res.status === 204){
-//             location.reload();
-//         }
+        if(res.status === 204){
+            location.reload();
+        }
 
-//         alert(res.msg.msg);
+        alert(res.msg.msg);
 
-//     });
-// });
+    });
+});
