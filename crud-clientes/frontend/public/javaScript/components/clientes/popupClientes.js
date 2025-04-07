@@ -13,6 +13,9 @@ document.querySelectorAll('.wrapper .cliente').forEach(function(cliente){
     
         let cliente = await buscarClienteIdService(id);
 
+        //Formatando a data de Nscimento do Cliente
+        cliente.clt_dataNasc = new Date(cliente.clt_dataNasc).toLocaleDateString('pt-BR');
+
         //Mostrando todos os dados
         popup.innerHTML = `
             <div class="button-popup">
