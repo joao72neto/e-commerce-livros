@@ -20,6 +20,13 @@ document.querySelector('form').addEventListener('submit', async function(event){
     const formDados = new FormData(event.target);
     let dados = Object.fromEntries(formDados.entries());
 
+    //Pegando parâmetros da url
+    const urlParams = new URLSearchParams(window.location.search);
+    const retorno = urlParams.get('retorno');
+
+    //Verificando se o cliente deve ser logado ou não
+    const logado = !retorno ? 1 : 0;
+
     //Preparando os dados para passar para o back
     const cliente = {
         clt_nome: dados.nome,
@@ -28,7 +35,8 @@ document.querySelector('form').addEventListener('submit', async function(event){
         clt_cpf: dados.cpf, 
         clt_telefone: dados.telefone,
         clt_email: dados.email,
-        clt_senha: dados.senha     
+        clt_senha: dados.senha,
+        clt_logado: logado
     };
 
     const address = {
@@ -58,7 +66,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
 
     if(res.status === 200){
         alert('Cliente foi Cadastrado com Sucesso!');
-        window.location.href = '/clientes';
+        window.location.href = `/${retorno}`;
         return;
     }
 

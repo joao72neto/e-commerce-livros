@@ -4,7 +4,10 @@ const { cadastrarCliente, buscarClienteId, atualizarCliente } = require("../../m
 
 //Páginas
 module.exports.getSignup = (req, res) => {
-    res.render('clientes/signup/signup');
+    const retorno = req.query.retorno;
+    res.render('clientes/signup/signup', {
+        retorno: retorno
+    });
 };
 
 module.exports.getSignupAlt = async (req, res) =>{

@@ -8,7 +8,7 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
     
         <h2 for="">Cliente</h2>
         <ul>
-            <li><a href="/cadastro">Cadastro</a></li>
+            <li><a href="/clientes/signup?retorno=">Cadastro</a></li>
         </ul>
         <h2 for="">ADM</h2>
         <ul>
