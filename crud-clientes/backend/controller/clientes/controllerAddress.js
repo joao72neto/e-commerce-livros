@@ -7,8 +7,12 @@ module.exports.getAddress = async (req, res) => {
 };
 
 module.exports.getAddressAlt = async (req, res) => {
+    const retorno = req.query.retorno;
     const enderecos = await buscarEnderecoId(req.params.end_id);
-    res.render('clientes/address/address-alt', {enderecos: enderecos});
+    res.render('clientes/address/address-alt', {
+        enderecos: enderecos,
+        retorno: retorno
+    });
 };
 
 module.exports.getAddressAdd = async (req, res) => {

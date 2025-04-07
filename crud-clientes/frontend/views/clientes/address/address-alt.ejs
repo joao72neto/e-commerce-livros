@@ -13,7 +13,7 @@
 
         <%- include('../../components/header', {
             titulo: 'Alteração de Endereço',
-            path: '/clientes/address/' + enderecos[0].end_clt_id
+            path: retorno ? `/${retorno}` : `/clientes/address/${enderecos[0].end_clt_id}`
         })%>
 
         <div class="container-address">
