@@ -43,7 +43,12 @@ document.querySelector('form').addEventListener('submit', async function(event){
     
     if(result.status === 200){
         alert('Endereço foi cadastrado com sucesso!');
-        window.location.href = `/clientes/address/${clt_id}`;
+
+        //Redirecionando o usuaŕio
+        const urlParams = new URLSearchParams(window.location.search);
+        const retorno = urlParams.get('retorno');
+
+        window.location.href = retorno ? `/${retorno}` : `/clientes/address/${clt_id}`;
         return;
     }
 
