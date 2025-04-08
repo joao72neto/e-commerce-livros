@@ -1,17 +1,12 @@
 main{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
     align-items: center;
+    justify-items: center;
     gap: 30px;
     max-width: 800px;
     margin: 50px auto;
 
-}
-
-a{
-    display: block;
-    margin: 20px 0;
-    text-align: center;
 }
 
 
@@ -21,24 +16,55 @@ a{
     border-radius: 20px;
 }
 
-.preco{
-    margin-bottom: 50px;
-}
-
-.qtd{
+.compra{
+    padding: 20px ;
     text-align: center;
 }
 
-.diminuir, .aumentar{
+.compra .title{
+    font-size: 1.6em;
+}
+
+.compra .preco{
+    margin: 20px 0 50px 0;
+    font-size: 1.2em;
+    color: green;
+}
+
+.compra .qtd{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.compra .diminuir, .compra .aumentar{
     width: 40px;
     height: 40px;
 }
 
-#contador{
+.compra #contador{
     margin: 0 5px;
 }
 
+.compra .opcoes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
 
-.title-desc{
+.compra .opcoes a{
+    width: 200px;
+    display: block;
+    text-align: center;
+}
+
+.sinopse{
+    padding: 30px;
+    grid-column: span 2;
+    justify-self: left;
+}
+
+.sinopse .title-desc{
     margin: 20px 0;
 }
