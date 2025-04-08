@@ -22,44 +22,31 @@
                 <a href="">Adicionar Itens ao Carrinho</a>
             </div>
 
-            <h2 class="title">Itens Adionados: </h2>
+            <h2 class="title">Itens Adicionados: </h2>
 
-            <div class="wrapper">
-                <div class="imagem">
-                    <img src="/images/livros/aneis.jpg" alt="">
+            <% carrinho.forEach(item => { %>
+
+                <div class="wrapper">
+                    <div class="imagem">
+                        <img src="<%=item.lvr_capa%>" alt="">
+                    </div>
+                    <div>
+                        <p><h2><%=item.lvr_titulo%></h2></p>
+                        <p><strong>R$<%=String(item.lvr_preco).replace('.', ',')%></strong></p>
+                    </div>
+                    <div>
+                        <button class="diminuir">-</button>
+                        <span id="contador">0</span>
+                        <button class="aumentar">+</button>
+                    </div>
+                    <div class="acoes">
+                        <button>Remover</button>
+                        <button>Alterar</button>
+                    </div>
                 </div>
-                <div>
-                    <p><h2>Lord of The Rings</h2></p>
-                    <p><strong>R$100,00</strong></p>
-                </div>
-                <div>
-                    <button class="diminuir">-</button>
-                    <span id="contador">0</span>
-                    <button class="aumentar">+</button>
-                </div>
-                <div class="acoes">
-                    <button>Remover</button>
-                    <button>Alterar</button>
-                </div>
-            </div>
-            <div class="wrapper">
-                <div class="imagem">
-                    <img src="/images/livros/got.jpg" alt="">
-                </div>
-                <div>
-                    <p><h2>Game of Thrones</h2></p>
-                    <p><strong>R$120,00</strong></p>
-                </div>
-                <div>
-                    <button class="diminuir">-</button>
-                    <span id="contador">0</span>
-                    <button class="aumentar">+</button>
-                </div>
-                <div class="acoes">
-                    <button>Remover</button>
-                    <button>Alterar</button>
-                </div>
-            </div>
+
+            <% }); %>
+
             <h2 class="total">Total de R$220,00</h2>
             <div class="pagamento">
                 <a href="/pagamento">Ir para Pagamento</a>

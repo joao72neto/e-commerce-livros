@@ -9,9 +9,7 @@ module.exports.buscarCarrinhoClienteId = async (clt_id) => {
         const sql = `
         
             SELECT 
-                l.lvr_nome,
-                l.lvr_preco,
-                c.crr_qtd
+                *
             FROM 
                 carrinho c
             JOIN 
