@@ -57,11 +57,8 @@ module.exports.adicionarCarrinho = async (dados) => {
     //Adicionando os dados no banco
     try{
         await db.query(sql, valores);
-        res.status(201).json({msg: 'Item adicionado ao carrinho'})
     }catch(err){
-        
         console.error(`Erro no adicionarCarrinho - modelCarrinho: ${err}`);
-        res.status(500).json({msg: 'Erro ao adicionar item ao carrinho'});
         throw err;
     }
 }
