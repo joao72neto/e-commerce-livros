@@ -18,10 +18,10 @@
 
         <main>
             <div class="imagem">
-                <img src="/images/livros/aneis.jpg" alt="">
+                <img src="<%=livro.lvr_capa%>" alt="">
             </div>
             <div>
-                <h2>Lord of the Rings</h2>
+                <h2><%=livro.lvr_titulo%></h2>
                 <p class="preco"><strong>R$100,00</strong>
                 </p>
                 <div class="qtd">
@@ -37,7 +37,7 @@
             <div>
         
                 <h2 class="title-desc">Descrição do Produto</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia nobis assumenda, dolor, doloremque autem temporibus deserunt adipisci explicabo perferendis sint velit voluptatem? Illum consequatur maiores officiis illo accusamus, eos fugit? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur architecto repudiandae eligendi incidunt nam explicabo illo voluptatem veniam unde perferendis omnis consectetur perspiciatis voluptatibus, inventore ratione distinctio ab. Libero, ipsam?</p>
+                <p><%=livro.lvr_sinopse%></p>
             </div>
         </main>
 
