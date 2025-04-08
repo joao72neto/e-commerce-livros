@@ -31,6 +31,7 @@
                         <img src="<%=item.lvr_capa%>" alt="">
                     </div>
                     <div>
+                        <p class="invisible book-id"><%=item.lvr_id%></p>
                         <p><h2><%=item.lvr_titulo%></h2></p>
                         <p><strong>R$<%=String(item.lvr_preco).replace('.', ',')%></strong></p>
                     </div>
@@ -40,7 +41,7 @@
                         <button class="aumentar">+</button>
                     </div>
                     <div class="acoes">
-                        <button>Remover</button>
+                        <button class="delete" >Remover</button>
                         <button>Alterar</button>
                     </div>
                 </div>

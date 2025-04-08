@@ -22,3 +22,22 @@ export async function adicionarCarrinhoService(dados) {
         throw err;
     }
 }
+
+//Removendo do carrinho
+export async function removerCarrinhoIdService(lvr_id) {
+    try{
+        const result = await fetch(`/carrinho/delete/${lvr_id}`, {
+           method: 'DELETE'
+        });
+
+        if(!result.ok){
+            return {status: result.status, msg: await result.json()};
+        }
+
+        return {status: result.status};
+
+    }catch(err){
+        console.error(`Erro no removerCarrinhoIdService - serviceCarrinho: ${err}`);
+        throw err;
+    }
+}
