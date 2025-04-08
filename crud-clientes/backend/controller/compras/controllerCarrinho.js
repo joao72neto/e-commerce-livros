@@ -1,18 +1,16 @@
 const { buscarCarrinhoClienteId } = require('../../model/compras/modelCarrinho');
 const { adicionarCarrinho } = require('../../model/compras/modelCarrinho');
 const { removerCarrinhoId } = require('../../model/compras/modelCarrinho');
-
+const { buscarClienteLogado } = require('../../model/clientes/modelClientes')
 
 //Página
-module.exports.getCarrinho = (req, res) => {
-    res.render('compras/carrinho');
-};
+module.exports.getCarrinho = async (req, res) => {
+    const cliente = await buscarClienteLogado();
+    const carrinho = await buscarCarrinhoClienteId(cliente[0].clt_id);
 
-
-//Buscando dados
-module.exports.getApiCarrinhoClienteId = async (req, res) => {
-    const carrinho = buscarCarrinhoClienteId(req.params.clt_id);
-    res.json(carrinho);
+    res.render('compras/carrinho', {
+        carrinho: carrinho
+    });
 };
 
 //Inserindo dados

@@ -5,7 +5,22 @@ const db = require('../../config/db');
 //Trazendo todos os itens do carrinho
 module.exports.buscarCarrinhoClienteId = async (clt_id) => {
     try{
-        const [carrinho] = await db.query('select * from carrinho where crr_clt_id = ?', clt_id);
+
+        const sql = `
+        
+            SELECT 
+                l.lvr_nome,
+                l.lvr_preco,
+                c.crr_qtd
+            FROM 
+                carrinho c
+            JOIN 
+                livros l ON l.lvr_id = c.crr_lvr_id
+            WHERE 
+                c.crr_clt_id = ?;
+        `;
+
+        const [carrinho] = await db.query(sql, clt_id);
         return carrinho;
         
     }catch(err){
@@ -19,7 +34,7 @@ module.exports.buscarCarrinhoClienteId = async (clt_id) => {
 //Removendo itens do carrinho
 module.exports.removerCarrinhoId = async (lvr_id) => {
     try{
-        const [livros] = await db.query('delete from carrinho where lvr_id = ?', lvr_id);
+        const [livros] = await db.query('delete from carrinho where crr_lvr_id = ?', lvr_id);
         return livros;
         
     }catch(err){
@@ -43,16 +58,16 @@ module.exports.adicionarCarrinho = async (dados) => {
             crr_adicao,
             crr_status
         ) VALUES (
-            ?, ?, ?, CURDATE(), 'adicionado'
+            ?, ?, ?, NOW(), 'adicionado'
         )
     `;
 
     //Tratando os valores para inserir no banco
-    const valores = {
-        crr_clt_id: dados.clt_id,
-        crr_lvr_id: dados.lvr_id,
-        crr_qtd: dados.crr_qtd
-    }
+    const valores = [
+        dados.clt_id,
+        dados.lvr_id,
+        dados.crr_qtd
+    ]
 
     //Adicionando os dados no banco
     try{
