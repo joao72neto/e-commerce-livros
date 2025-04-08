@@ -78,6 +78,11 @@ document.addEventListener('click', function(){
 //Redirecionando para a página de produtos
 document.querySelectorAll('.imagem').forEach(image => {
     image.addEventListener('click', function(){
-        window.location.href = '/produto';
+
+        //Obetendo o id do livro
+        const book = this.closest('.book');
+        const lvr_id = book.querySelector('.book-id').textContent;
+        
+        window.location.href = `/produto/${lvr_id}`;
     });
 });
