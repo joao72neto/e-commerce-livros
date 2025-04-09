@@ -1,5 +1,5 @@
 const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
-const { buscarEnderecoClienteId } = require('../../model/clientes/modelAddress');
+const { buscarEnderecosClienteId } = require('../../model/clientes/modelAddress');
 const { buscarCartoesClienteId } = require('../../model/clientes/modelCard');
 const { buscarCarrinhoClienteId } = require('../../model/compras/modelCarrinho');
 
@@ -7,7 +7,7 @@ const { buscarCarrinhoClienteId } = require('../../model/compras/modelCarrinho')
 module.exports.getPagamento = async (req, res) => {
     //Obtendo dados necessários
     const cliente = await buscarClienteLogado();
-    const enderecos = await buscarEnderecoClienteId(cliente[0].clt_id);
+    const enderecos = await buscarEnderecosClienteId(cliente[0].clt_id);
     const cartoes = await buscarCartoesClienteId(cliente[0].clt_id);
     
     //Pegando os carrinho do cliente
