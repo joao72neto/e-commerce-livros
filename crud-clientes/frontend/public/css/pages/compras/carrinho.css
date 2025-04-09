@@ -1,8 +1,11 @@
+main{
+    max-width: 1000px;
+    margin: 0 auto;
+}
 
 h2{
     margin: 10px 0;
 }
-
 
 .btn-add{
     text-align: center;
@@ -12,12 +15,17 @@ h2{
     margin: 30px;
 }
 
-main{
-    max-width: 800px;
-    margin: 0 auto;
+.wrapper{
+    display: flex;
+    align-items: center;
 }
 
-.imagem img{
+
+.wrapper .imagem{
+    padding: 0 20px;
+}
+
+.wrapper .imagem img{
     width: 100px;
     background-color: gray;
     border-radius: 20px;
@@ -27,8 +35,13 @@ main{
     }
 }
 
-.wrapper{
-    align-items: center;
+.wrapper .livro-title{
+    width: 400px;
+}
+
+.wrapper .qtd{
+    width: 200px;
+    text-align: center;
 }
 
 /*Botões*/
@@ -37,9 +50,15 @@ main{
     height: 40px;
 }
 
-#contador{
+.wrapper #contador{
     margin: 0 5px;
 }
+
+.wrapper .acoes{
+    width: 400px;
+    text-align: center;
+}
+
 
 .total{
     margin: 50px 0;

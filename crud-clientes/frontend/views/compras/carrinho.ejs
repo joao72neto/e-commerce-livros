@@ -30,12 +30,12 @@
                     <div class="imagem">
                         <img src="<%=item.lvr_capa%>" alt="">
                     </div>
-                    <div>
+                    <div class="livro-title">
                         <p class="invisible book-id"><%=item.lvr_id%></p>
                         <p><h2><%=item.lvr_titulo%></h2></p>
                         <p><strong>R$<%=String(item.lvr_preco).replace('.', ',')%></strong></p>
                     </div>
-                    <div>
+                    <div class="qtd">
                         <button class="diminuir">-</button>
                         <span id="contador">0</span>
                         <button class="aumentar">+</button>
