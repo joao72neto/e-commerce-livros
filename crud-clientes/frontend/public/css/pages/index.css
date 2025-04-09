@@ -79,7 +79,7 @@
 /*livros*/
 .books{
     display: flex;
-    max-width: 1300px;
+    max-width: 1500px;
     margin: 50px auto;
     justify-content: space-evenly;
     flex-wrap: wrap;
