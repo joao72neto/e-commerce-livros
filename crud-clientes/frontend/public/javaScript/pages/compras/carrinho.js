@@ -27,7 +27,13 @@ document.querySelectorAll('.diminuir').forEach(button => {
 //Redirecionando para a página do livro
 document.querySelectorAll('.imagem').forEach(function(button){
     button.addEventListener('click', function(){
-        window.location.href = '/produto';
+
+        //Obtendo o id do livro
+        const wrapper = this.closest('.wrapper');
+        const lvr_id = wrapper.querySelector('.book-id').textContent;
+
+
+        window.location.href = `/produto/${lvr_id}`;
     });
 });
 
