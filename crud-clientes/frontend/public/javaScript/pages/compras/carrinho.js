@@ -17,7 +17,7 @@ document.querySelectorAll('.diminuir').forEach(button => {
         const wrapper = this.closest('.wrapper');
         const contador = wrapper.querySelector('#contador');
 
-        if(Number(contador.textContent) > 0){
+        if(Number(contador.textContent) > 1){
             contador.textContent = Number(contador.textContent) - 1;
         }
     });

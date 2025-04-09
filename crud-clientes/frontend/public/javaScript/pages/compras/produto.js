@@ -12,16 +12,13 @@ document.querySelector('.aumentar').addEventListener('click', function(){
 document.querySelector('.diminuir').addEventListener('click', function(){
 
     const contador = document.querySelector('#contador');
-    if(Number(contador.textContent) > 0){
+    if(Number(contador.textContent) > 1){
         contador.textContent = Number(contador.textContent) - 1;
     }
 });
 
-
 //Adicionando item ao carrinho
-document.querySelector('.carrinho').addEventListener('click', async (event) => {
-
-    event.preventDefault();
+async function addCarrinho(){
 
     //Preparando os dados
     const cliente = await buscarClienteLogadoService();
@@ -31,7 +28,7 @@ document.querySelector('.carrinho').addEventListener('click', async (event) => {
     const carrinho = {
         clt_id: cliente[0].clt_id,
         lvr_id: Number(lvr_id),
-        qtd: Number(qtd)
+        crr_qtd: Number(qtd)
     }
 
     //Adicionando no carrinho
@@ -43,8 +40,19 @@ document.querySelector('.carrinho').addEventListener('click', async (event) => {
     }
 
     alert('Não foi possível adicionar o item no carrinho');
-    
+}
+
+//Botões que adicionam o livro ao carrinho
+document.querySelector('.carrinho').addEventListener('click', async (event) => {
+    event.preventDefault();
+    await addCarrinho();
 });
+
+
+document.querySelector('.comprar').addEventListener('click', async (event) => {
+    event.preventDefault();
+    await addCarrinho();
+}); 
 
 
 
