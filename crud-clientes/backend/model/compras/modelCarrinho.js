@@ -53,6 +53,41 @@ module.exports.adicionarCarrinho = async (dados) => {
             crr_clt_id,
             crr_lvr_id,
             crr_qtd,
+            crr_total,
+            crr_adicao,
+            crr_status
+        ) VALUES (
+            ?, ?, ?, ?, NOW(), 'adicionado'
+        )
+    `;
+
+    //Tratando os valores para inserir no banco
+    const valores = [
+        dados.clt_id,
+        dados.lvr_id,
+        dados.crr_qtd,
+        dados.crr_total
+    ]
+
+    //Adicionando os dados no banco
+    try{
+        await db.query(sql, valores);
+    }catch(err){
+        console.error(`Erro no adicionarCarrinho - modelCarrinho: ${err}`);
+        throw err;
+    }
+}
+
+
+//Função para atualizar o preço e a qtd do item do carrinho
+module.exports.updateQtdPrecoCarrinho = async (dados) => {
+
+    const sql = `
+        
+        INSERT INTO carrinho (
+            crr_clt_id,
+            crr_lvr_id,
+            crr_qtd,
             crr_adicao,
             crr_status
         ) VALUES (
@@ -75,5 +110,3 @@ module.exports.adicionarCarrinho = async (dados) => {
         throw err;
     }
 }
-
-
