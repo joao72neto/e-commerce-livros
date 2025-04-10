@@ -2,7 +2,6 @@ import { buscarClienteLogadoService } from "/javaScript/service/clientes/service
 import { adicionarCarrinhoService, buscarCarrinhoClienteIdService } from "/javaScript/service/compras/serviceCarrinho.js";
 
 
-
 //Aumentado a quatidado do item
 document.querySelector('.aumentar').addEventListener('click', function(){
         
@@ -22,7 +21,7 @@ document.querySelector('.diminuir').addEventListener('click', function(){
 
 
 //Adicionando item ao carrinho
-async function addCarrinho(){
+async function addCarrinho(path){
 
 
     //Pegando o preço do livro
@@ -44,7 +43,7 @@ async function addCarrinho(){
     const res = await adicionarCarrinhoService(carrinho);
     
     if(res.status === 201){
-        window.location.href = `/carrinho`;
+        window.location.href = `${path}`;
         return;
     }
 
@@ -59,8 +58,6 @@ document.addEventListener('DOMContentLoaded', async function(){
 
     carrinho = carrinho.filter(livro => livro.lvr_id === Number(lvr_id));
 
-    console.log(carrinho);
-
     if(carrinho.length > 0){
         this.querySelector('.carrinho').textContent = 'No Carrinho';
     }
@@ -74,14 +71,24 @@ document.querySelector('.carrinho').addEventListener('click', async function (ev
         return;
     }
     
-    await addCarrinho();
+    await addCarrinho('/carrinho');
 });
 
 
 //Comprando o livro
 document.querySelector('.comprar').addEventListener('click', async (event) => {
     event.preventDefault();
-    await addCarrinho();
+
+    //Obtendo dados
+    const noCarrinho = document.querySelector('.carrinho').textContent;
+    const lvr_id = window.location.pathname.split('/').splice(-1)[0];
+
+    if(noCarrinho.includes('No Carrinho')){
+        window.location.href = `/pagamento?compra=${lvr_id}`;
+        return;
+    }
+    
+    await addCarrinho(`/pagamento?compra=${lvr_id}`);
 }); 
 
 

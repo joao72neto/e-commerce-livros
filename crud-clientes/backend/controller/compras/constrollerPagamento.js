@@ -11,7 +11,24 @@ module.exports.getPagamento = async (req, res) => {
     const cartoes = await buscarCartoesClienteId(cliente[0].clt_id);
     
     //Pegando os carrinho do cliente
-    const carrinho = await buscarCarrinhoClienteId(cliente[0].clt_id);
+    let carrinho = await buscarCarrinhoClienteId(cliente[0].clt_id);
+
+    //Verificando se o cliente está comprando do carrinho ou não
+    const idCompra = req.query.compra;
+
+    if(idCompra){
+
+        carrinho = carrinho.filter(car => car.lvr_id === Number(idCompra));
+
+        res.render('compras/pagamento', {
+            cliente: cliente,
+            enderecos: enderecos,
+            cartoes: cartoes,
+            carrinho: carrinho
+        }); 
+
+        return;
+    }
 
     res.render('compras/pagamento', {
         cliente: cliente,
