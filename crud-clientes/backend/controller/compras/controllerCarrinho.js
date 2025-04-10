@@ -44,11 +44,10 @@ module.exports.deleteCarrinhoId = async (req, res) => {
 module.exports.patchQtdPrecoCarrinho = async (req, res) => {
     try{
 
-        const clt_id = req.body.clt_id; 
         const lvr_id = req.body.lvr_id; 
         const crr_qtd = req.body.crr_qtd;
 
-        await atualizarQtdPrecoCarrinho(crr_qtd, clt_id, lvr_id);
+        await atualizarQtdPrecoCarrinho(crr_qtd, lvr_id);
         res.status(204).json({msg: 'Item atualizado com sucesso!'})
 
     }catch(err){

@@ -6,15 +6,10 @@ import { buscarClienteLogadoService } from "/javaScript/service/clientes/service
 //Atualizando a qtd do livro no banco de dados
 async function atualizarQtdPreco(lvr_id, qtd) {
 
-    //Pegando os dados necessários
-    const cliente = await buscarClienteLogadoService();
-    const clt_id = Number(cliente[0].clt_id);
-
     //Organizando os dados
     const dados = {
         crr_qtd: qtd,
         lvr_id: lvr_id,
-        clt_id: clt_id
     }
 
     //Atualizando os dados no banco

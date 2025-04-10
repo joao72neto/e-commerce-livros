@@ -1,4 +1,5 @@
 const db = require('../../config/db');
+const { buscarClienteLogado } = require('../clientes/modelClientes');
 
 //SELECT
 
@@ -80,8 +81,11 @@ module.exports.adicionarCarrinho = async (dados) => {
 
 
 //Função para atualizar o preço e a qtd do item do carrinho
-module.exports.atualizarQtdPrecoCarrinho = async (crr_qtd, clt_id, lvr_id) => {
+module.exports.atualizarQtdPrecoCarrinho = async (crr_qtd, lvr_id) => {
 
+    //Obtendo os dados
+    const cliente = await buscarClienteLogado();
+    const clt_id = cliente[0].clt_id;
     const carrinho = await this.buscarCarrinhoClienteId(clt_id);
     const livro = carrinho.find(livro => livro.lvr_id === lvr_id);
 
