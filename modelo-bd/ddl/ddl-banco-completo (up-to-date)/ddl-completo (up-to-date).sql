@@ -240,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`carrinho` (
   `crr_qtd` SMALLINT NULL,
   `crr_adicao` DATE NULL,
   `crr_status` ENUM('adicionado', 'removido', 'comprado') NULL DEFAULT 'adicionado',
-  `crr_total` SMALLINT NOT NULL,
+  `crr_total` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`crr_id`),
   INDEX `fk_crr_lvr_idx` (`crr_lvr_id` ASC) VISIBLE,
   INDEX `fk_crr_clt_idx` (`crr_clt_id` ASC) VISIBLE,

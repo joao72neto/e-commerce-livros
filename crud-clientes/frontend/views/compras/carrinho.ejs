@@ -52,11 +52,11 @@
             
             let total = 0;
             carrinho.forEach(item => { 
-                total += item.crr_total;
+                total += Number(item.crr_total);
 
             }); %>
 
-            <h2 class="total">Total de R$<%=String(total).replace('.', '.')%></h2>
+            <h2 class="total">Total de R$<%=String(total.toFixed(2)).replace('.', ',')%></h2>
             <div class="pagamento">
                 <a href="/pagamento">Ir para Pagamento</a>
             </div>
