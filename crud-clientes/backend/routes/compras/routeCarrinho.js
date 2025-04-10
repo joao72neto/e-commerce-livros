@@ -11,4 +11,7 @@ router.post('/carrinho/add', controllerCarrinho.postCarrinho);
 //Rotas para deletar dados
 router.delete('/carrinho/delete/:lvr_id', controllerCarrinho.deleteCarrinhoId);
 
+//Rotas para atualizar dados
+router.patch('/carrinho/update', controllerCarrinho.patchQtdPrecoCarrinho);
+
 module.exports = router;

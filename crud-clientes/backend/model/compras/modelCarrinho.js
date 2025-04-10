@@ -80,33 +80,32 @@ module.exports.adicionarCarrinho = async (dados) => {
 
 
 //Função para atualizar o preço e a qtd do item do carrinho
-module.exports.updateQtdPrecoCarrinho = async (dados) => {
+module.exports.atualizarQtdPrecoCarrinho = async (crr_qtd, clt_id, lvr_id) => {
+
+    const carrinho = await this.buscarCarrinhoClienteId(clt_id);
+    const livro = carrinho.find(livro => livro.lvr_id === lvr_id);
 
     const sql = `
         
-        INSERT INTO carrinho (
-            crr_clt_id,
-            crr_lvr_id,
-            crr_qtd,
-            crr_adicao,
-            crr_status
-        ) VALUES (
-            ?, ?, ?, NOW(), 'adicionado'
-        )
+        UPDATE 
+            carrinho
+            SET crr_total = ?, crr_qtd = ?
+        WHERE
+            crr_lvr_id = ?;
     `;
 
     //Tratando os valores para inserir no banco
     const valores = [
-        dados.clt_id,
-        dados.lvr_id,
-        dados.crr_qtd
-    ]
+        livro.lvr_preco * crr_qtd,
+        crr_qtd,
+        lvr_id
+    ];
 
     //Adicionando os dados no banco
     try{
         await db.query(sql, valores);
     }catch(err){
-        console.error(`Erro no adicionarCarrinho - modelCarrinho: ${err}`);
+        console.error(`Erro no atualizarQtdPrecoCarrinho - modelCarrinho: ${err}`);
         throw err;
     }
 }
