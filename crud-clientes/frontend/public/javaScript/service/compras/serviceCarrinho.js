@@ -41,3 +41,20 @@ export async function removerCarrinhoIdService(lvr_id) {
         throw err;
     }
 }
+
+//Atualizando qtd e preço do carrinho
+export async function atualizarQtdPrecoCarrinhoService(dados) {
+    try{
+        let res = await fetch(`/carrinho/update`, {
+            method: 'PATCH',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(dados)
+        });
+        
+        return res.status;
+
+    }catch(err){
+        console.error(`Erro no logarClienteIdService - serviceClientes: ${err}`);
+        return 500;
+    }
+}
