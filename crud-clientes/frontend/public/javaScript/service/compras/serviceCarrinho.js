@@ -1,3 +1,22 @@
+//GET
+
+//Pegando os dados do carrinho de um cliente específico
+export async function buscarCarrinhoClienteIdService(clt_id) {
+    try{
+
+        const res = await fetch(`/api/carrinho/${clt_id}`);
+        const carrinho = await res.json();
+        return carrinho;
+
+    }catch(err){
+        console.error(`Erro no buscarCarrinhoClienteIdService - serviceCarrinho: ${err}`);
+        throw err;
+    }
+}
+
+
+//POST
+
 //Inserindo um item no carrinho
 export async function adicionarCarrinhoService(dados) {
     try{
@@ -23,6 +42,8 @@ export async function adicionarCarrinhoService(dados) {
     }
 }
 
+//DELETE
+
 //Removendo do carrinho
 export async function removerCarrinhoIdService(lvr_id) {
     try{
@@ -41,6 +62,8 @@ export async function removerCarrinhoIdService(lvr_id) {
         throw err;
     }
 }
+
+//PATCH
 
 //Atualizando qtd e preço do carrinho
 export async function atualizarQtdPrecoCarrinhoService(dados) {

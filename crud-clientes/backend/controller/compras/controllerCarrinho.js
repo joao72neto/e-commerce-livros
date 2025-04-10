@@ -14,6 +14,12 @@ module.exports.getCarrinho = async (req, res) => {
     });
 };
 
+//APIs
+module.exports.getCarrinhoClienteId = async (req, res) => {
+    const carrinho = await buscarCarrinhoClienteId(req.params.clt_id);
+    res.json(carrinho);
+}
+
 //Inserindo dados
 module.exports.postCarrinho = async (req, res) => {
     try{

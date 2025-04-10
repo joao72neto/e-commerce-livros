@@ -79,6 +79,7 @@ module.exports.adicionarCarrinho = async (dados) => {
     }
 }
 
+//UPDATE
 
 //Função para atualizar o preço e a qtd do item do carrinho
 module.exports.atualizarQtdPrecoCarrinho = async (crr_qtd, lvr_id) => {

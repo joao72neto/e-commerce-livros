@@ -5,6 +5,9 @@ const controllerCarrinho = require('../../controller/compras/controllerCarrinho'
 //Rotas para páginas
 router.get('/carrinho', controllerCarrinho.getCarrinho);
 
+//Rotas APIs
+router.get('/api/carrinho/:clt_id', controllerCarrinho.getCarrinhoClienteId);
+
 //Rotas para inserção de dados
 router.post('/carrinho/add', controllerCarrinho.postCarrinho);
 
