@@ -4,7 +4,7 @@ import { buscarClienteLogadoService } from "/javaScript/service/clientes/service
 
 
 //Atualizando a qtd do livro no banco de dados
-async function atualizarQtdPreco(lvr_id) {
+async function atualizarQtdPreco(lvr_id, qtd) {
 
     //Pegando os dados necessários
     const cliente = await buscarClienteLogadoService();
@@ -12,7 +12,7 @@ async function atualizarQtdPreco(lvr_id) {
 
     //Organizando os dados
     const dados = {
-        crr_qtd: Number(contador.textContent),
+        crr_qtd: qtd,
         lvr_id: lvr_id,
         clt_id: clt_id
     }
@@ -39,7 +39,7 @@ document.querySelectorAll('.aumentar').forEach(button => {
 
         //Atualizando a qtd
         contador.textContent = Number(contador.textContent) + 1;
-        await atualizarQtdPreco(lvr_id);
+        await atualizarQtdPreco(lvr_id, Number(contador.textContent));
     });
 });
 
@@ -56,7 +56,7 @@ document.querySelectorAll('.diminuir').forEach(button => {
         //Atualizando a qtd
         if(Number(contador.textContent) > 1){
             contador.textContent = Number(contador.textContent) - 1;
-            await atualizarQtdPreco(lvr_id);
+            await atualizarQtdPreco(lvr_id, Number(contador.textContent));
         }
     });
 });
