@@ -1,3 +1,8 @@
+// import { buscarCarrinhoClienteId }
+import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
+import { adicionarCarrinhoService, buscarCarrinhoClienteIdService } from "/javaScript/service/compras/serviceCarrinho.js";
+
+
 
 //Mostrando o menu lateral
 document.querySelector('#btn-sidebar').addEventListener('click', function(){
@@ -85,5 +90,58 @@ document.querySelectorAll('.imagem').forEach(image => {
         const lvr_id = book.querySelector('.book-id').textContent;
         
         window.location.href = `/produto/${lvr_id}`;
+    });
+});
+
+//Adicionando funcionalidade para o botão de compra
+
+//função que adicione o item no carrinho
+async function addCarrinho(lvr_id){
+
+    //Verificando se o item já está no carrinho
+    const cliente = await buscarClienteLogadoService();
+    let carrinhoCliente = await buscarCarrinhoClienteIdService(cliente[0].clt_id);
+
+    carrinhoCliente = carrinhoCliente.find(car => car.lvr_id === Number(lvr_id));
+
+
+    if(carrinhoCliente){
+        window.location.href = `/pagamento?compra=${lvr_id}`;
+        return;
+    }
+
+    //Pegando o preço do livro
+    const preco = Number(document.querySelector('.preco').textContent.split('R$')[1].replace(',', '.'));
+
+    
+
+    const carrinho = {
+        clt_id: cliente[0].clt_id,
+        lvr_id: Number(lvr_id),
+        crr_qtd: 1,
+        crr_total: Number(preco)
+    }
+
+    //Adicionando no carrinho
+    const res = await adicionarCarrinhoService(carrinho);
+    
+    if(res.status === 201){
+        window.location.href = `/pagamento?compra=${lvr_id}`;
+        return;
+    }
+
+    alert('Não foi possível adicionar o item no carrinho');
+}
+
+
+document.querySelectorAll('.compra').forEach(button => {
+    button.addEventListener('click', async function(){
+
+        //Obtendo o id do livro clicado
+        const wrapper = this.closest('.book');
+        const lvr_id = wrapper.querySelector('.book-id').textContent;
+
+        await addCarrinho(lvr_id);
+ 
     });
 });
