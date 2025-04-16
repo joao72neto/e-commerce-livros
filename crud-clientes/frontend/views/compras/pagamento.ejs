@@ -42,11 +42,11 @@
             <section class="informacoes">
                 <div class="enderecos">
 
-                    <h2>Escolha um Endereço: </h2>
+                    <h2 class="title">Escolha um Endereço: </h2>
 
                     <div class="container">
                         <div class="wrapper">
-                            <label for="endereco">Selecione um endereço:</label>
+                            <label for="endereco"><strong>Selecione um endereço:</strong></label>
                             
                             <select name="endereco" id="endereco">
                                 <% enderecos.forEach(endereco => { %>
@@ -64,17 +64,16 @@
                       
                 </div>
                 <div>
-                    <h2>Escolha um Método de Pagamento: </h2>
-                    <h3>Cartão</h3>
+                    <h2 class="title">Escolha um Método de Pagamento: </h2>
                     <div class="container">
 
                         <div class="wrapper">
-                            <label for="cartao">Selecione um cartão:</label>
+                            <label for="cartao"><strong>Selecione um cartão:</strong></label>
                             
                             <select name="cartao" id="cartao">
                                 <% cartoes.forEach(cartao => { %>
                                     <option value="<%= cartao.car_id %>">
-                                    <%= cartao.car_bandeira %> - <%= cartao.car_bandeira %>, Nº <%= cartao.car_numero.slice(-4) %>
+                                    <%= cartao.car_bandeira %> - <%= cartao.car_nome %>, Final <%= cartao.car_numero.slice(-4) %>
                                     </option>
                                 <% }); %>
                             </select>

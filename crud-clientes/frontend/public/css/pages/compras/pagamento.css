@@ -2,7 +2,12 @@
 @import url('../../colors.css');
 
 .items-title{
-    margin: 20px 0 10px 0;
+    margin: 30px 0 25px 0;
+    text-align: center;
+}
+
+.title{
+    padding: 10px;
 }
 
 .informacoes h2{
