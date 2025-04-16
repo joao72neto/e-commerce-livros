@@ -54,7 +54,7 @@ module.exports.adicionarCarrinho = async (dados) => {
     carrinho = carrinho.filter(car => car.crr_lvr_id === Number(dados.lvr_id));
 
 
-    if(carrinho){
+    if(carrinho.length > 0){
         console.log('O item já está no carrinho');
         return 409;
     }
