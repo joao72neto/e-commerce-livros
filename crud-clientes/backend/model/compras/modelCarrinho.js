@@ -48,6 +48,17 @@ module.exports.removerCarrinhoId = async (lvr_id) => {
 //Inserindo itens no carrinho
 module.exports.adicionarCarrinho = async (dados) => {
 
+    //Verificando se há um item no carrinho
+    const cliente = await buscarClienteLogado();
+    let carrinho = await this.buscarCarrinhoClienteId(cliente[0].clt_id);
+    carrinho = carrinho.filter(car => car.crr_lvr_id === Number(dados.lvr_id));
+
+
+    if(carrinho){
+        console.log('O item já está no carrinho');
+        return 409;
+    }
+
     const sql = `
         
         INSERT INTO carrinho (
@@ -73,6 +84,7 @@ module.exports.adicionarCarrinho = async (dados) => {
     //Adicionando os dados no banco
     try{
         await db.query(sql, valores);
+        return 201;
     }catch(err){
         console.error(`Erro no adicionarCarrinho - modelCarrinho: ${err}`);
         throw err;

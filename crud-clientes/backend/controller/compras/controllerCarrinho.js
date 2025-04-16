@@ -24,7 +24,12 @@ module.exports.getCarrinhoClienteId = async (req, res) => {
 module.exports.postCarrinho = async (req, res) => {
     try{
 
-        await adicionarCarrinho(req.body);
+        const result = await adicionarCarrinho(req.body);
+
+        if(result === 409){
+            return res.status(409).json({msg: 'Item já está no carrinho'});
+        }
+
         res.status(201).json({msg: 'Item adicionado ao carrinho'})
 
     }catch(err){
