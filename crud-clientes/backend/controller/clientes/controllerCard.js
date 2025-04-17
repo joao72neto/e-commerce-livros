@@ -23,9 +23,14 @@ module.exports.getCardAdd = async (req, res) => {
 module.exports.getCardAlt = async (req, res) => {
     const cartoes = await buscarCartaoId(req.params.car_id);
     const retorno = req.query.retorno;
+    const retorno_pag = req.query.retorno_pag;
+    const tipo = req.query.tipo;
+
     res.render('clientes/card/card-alt', {
         cartoes: cartoes,
-        retorno: retorno
+        retorno: retorno,
+        retorno_pag: retorno_pag,
+        tipo: tipo
     });
 };
 
