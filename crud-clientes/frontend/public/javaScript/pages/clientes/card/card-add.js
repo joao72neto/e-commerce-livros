@@ -34,8 +34,20 @@ document.querySelector('form').addEventListener('submit', async function(event){
         alert('Cartão foi cadastrado com sucesso!');
         const urlParams = new URLSearchParams(window.location.search);
         const retorno = urlParams.get('retorno'); 
+        const retorno_pag = urlParams.get('retorno_pag'); 
 
-        window.location.href = retorno ? `/${retorno}` : `/clientes/card/${clt_id}`;
+        //Definindo o retorno
+        let retorno_atual =  '';
+
+        if(retorno_pag){
+            retorno_atual = `/${retorno}?retorno_pag=${retorno_pag}`; 
+        }else if(retorno && !retorno_pag){
+            retorno_atual = `/${retorno}`;
+        }else{
+            retorno_atual = `/clientes/card/${cartoes[0].car_clt_id}`;
+        }
+
+        window.location.href = retorno_atual;
         return;
     }
 

@@ -11,9 +11,22 @@
     
     <div class="main-container">
 
+        <% 
+            let retorno_atual = '';
+
+            if(retorno_pag){
+                retorno_atual = `/${retorno}?retorno_pag=${retorno_pag}`; 
+            }else if(retorno && !retorno_pag){
+                retorno_atual = `/${retorno}`;
+            }else{
+                retorno_atual = `/clientes/card/${cartoes[0].car_clt_id}`;
+            }
+        %>
+
+
         <%- include('../../components/header', {
             titulo: 'Adição de Cartão',
-            path: retorno ? `/${retorno}` : `/clientes/card/${cartoes[0].car_clt_id}`
+            path: retorno_atual
         })%>
 
         <div class="container-card">

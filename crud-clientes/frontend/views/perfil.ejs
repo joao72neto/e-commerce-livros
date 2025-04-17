@@ -13,7 +13,7 @@
         
         <%- include('components/header', {
             titulo: 'Perfil de João',
-            path: '/'
+            path: retorno_pag ? `/${retorno_pag}` : '/'
         })%>
 
         <main>
@@ -64,7 +64,16 @@
                     <% }); %>
 
                     <div class="center add">
-                        <a href="/clientes/card/<%=cliente.clt_id%>/add?retorno=perfil">Adicionar Novo Cartão</a>
+
+                        <% 
+                            let url_add_card = `/clientes/card/${cliente.clt_id}/add?retorno=perfil`;
+
+                            if(retorno_pag){
+                                url_add_card = `/clientes/card/${cliente.clt_id}/add?retorno_pag=${retorno_pag}&retorno=perfil`
+                            }
+                        %>
+
+                        <a href="<%=url_add_card%>">Adicionar Novo Cartão</a>
                     </div>
                 </div>
                 <div class="enderecos box">
