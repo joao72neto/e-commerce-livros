@@ -76,3 +76,15 @@ INSERT INTO livros (
  'Desfecho da trilogia com batalhas épicas e a conclusão da missão para destruir o Um Anel e derrotar Sauron.', 
  '9788595084766', 15.50, 23.00, 0.65, 4.00, '/images/capas/retorno_rei.jpg', 69.90);
 
+-- Cupons
+
+INSERT INTO `e_commerce_books`.`cupons` (cup_clt_id, cup_codigo, cup_tipo, cup_valor, cup_usado) VALUES
+(1, 'PROMO10', 'promocional', 10.00, 0),
+(1, 'PROMO20', 'promocional', 20.00, 0),
+(1, 'TROCA15', 'troca', 15.00, 0),
+(1, 'PROMO5', 'promocional', 5.00, 1),
+(1, 'TROCA30', 'troca', 30.00, 0),
+(1, 'FRETEGRATIS', 'promocional', 0.00, 0),
+(1, 'DESCONTO25', 'promocional', 25.00, 1),
+(1, 'TROCA50', 'troca', 50.00, 0);
+

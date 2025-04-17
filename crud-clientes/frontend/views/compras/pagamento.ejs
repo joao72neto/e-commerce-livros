@@ -87,9 +87,11 @@
                         <h3>Cupom:</h3>
                         <select name="" id="">
                             <option value="">Nenhum</option>
-                            <option value="">R$20,00</option>
-                            <option value="">R$40,00</option>
-                            <option value="">R$60,00</option>
+                            <% cupons.forEach(cupom => { %>
+
+                                <option value="<%=cupom.cup_valor%>">R$<%=String(cupom.cup_valor).replace('.', ',')%></option>
+
+                            <% }); %>
                         </select>
                         <button>Adicionar</button>
                     </div>
