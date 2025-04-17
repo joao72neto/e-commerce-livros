@@ -97,8 +97,16 @@
                     </div>
                 </div>
                 <div class="resumo">
+
+                    <% 
+                    let total = 0;
+
+                    carrinho.forEach(item => {
+                        total += Number(item.crr_total);
+                    })%>
+
                     <p>Frete: R$12,00</p>
-                    <p>Total: R$212,00</p>
+                    <p class="total">Total: R$<%=String(total.toFixed(2)).replace('.', ',')%></p>
                 </div>
             </section>
             <div class="finalizar-compra">
