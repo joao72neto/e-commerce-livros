@@ -9,12 +9,14 @@ module.exports.getPerfil = async (req, res) => {
     const cartoes = await buscarCartoesClienteId(cliente[0].clt_id);
     const enderecos = await buscarEnderecosClienteId(cliente[0].clt_id);
     const retorno_pag = req.query.retorno_pag;
+    const tipo = req.query.tipo;
 
 
     res.render('perfil', {
         retorno_pag: retorno_pag,
         cliente: cliente[0],
         cartoes: cartoes,
-        enderecos: enderecos
+        enderecos: enderecos,
+        tipo: tipo
     });
 };

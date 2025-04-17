@@ -40,7 +40,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
         let retorno_atual =  '';
 
         if(retorno_pag){
-            retorno_atual = `/${retorno}?retorno_pag=${retorno_pag}`; 
+            retorno_atual = `/pagamento`; 
         }else if(retorno && !retorno_pag){
             retorno_atual = `/${retorno}`;
         }else{

@@ -2,6 +2,26 @@ import { deletarCardIdService } from "/javaScript/service/clientes/serviceCard.j
 
 import { deletarAddressIdService } from "/javaScript/service/clientes/serviceAddress.js"
 
+//Verificando o tipo de operação
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tipo = urlParams.get('tipo');
+    
+    if(tipo){
+    
+        if (tipo === 'cartao'){
+            document.querySelector('.usuario').remove();
+            document.querySelector('.enderecos').remove();
+        }  
+
+        if(tipo === 'endereco'){
+            document.querySelector('.usuario').remove();
+            document.querySelector('.cartoes').remove();
+        }
+    }
+    
+});
+
 //deletando um cartão
 document.querySelectorAll('.delete-card').forEach(button => {
     

@@ -10,11 +10,13 @@ module.exports.getCardAdd = async (req, res) => {
     const cartoes = await buscarCartoesClienteId(req.params.clt_id);
     const retorno = req.query.retorno;
     const retorno_pag = req.query.retorno_pag;
-    
+    const tipo = req.query.tipo;
+
     res.render('clientes/card/card-add', {
         cartoes: cartoes,
         retorno: retorno,
-        retorno_pag: retorno_pag
+        retorno_pag: retorno_pag,
+        tipo: tipo
     });
 };
 
