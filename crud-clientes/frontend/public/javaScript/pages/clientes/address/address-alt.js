@@ -45,8 +45,20 @@ document.querySelector('form').addEventListener('submit', async function(event){
         //Redirecionando o usuário
         const urlParams = new URLSearchParams(window.location.search);
         const retorno = urlParams.get('retorno');
+        const retorno_pag = urlParams.get('retorno_pag');
 
-        window.location.href = retorno ? `/${retorno}` : `/clientes/address/${clt_id}`;
+        //Definindo o retorno
+        let retorno_atual =  '';
+
+        if(retorno_pag){
+            retorno_atual = `/pagamento`; 
+        }else if(retorno && !retorno_pag){
+            retorno_atual = `/${retorno}`;
+        }else{
+            retorno_atual = `/clientes/address/${clt_id}`;
+        }
+
+        window.location.href = retorno_atual;
         return;
     }
 
