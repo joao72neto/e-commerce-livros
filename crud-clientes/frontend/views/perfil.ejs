@@ -12,7 +12,7 @@
     <div class="main-container">
         
         <%- include('components/header', {
-            titulo: 'Perfil de João',
+            titulo: `Perfil de ${cliente.clt_nome.split(' ')[0]}`,
             path: retorno_pag ? `/${retorno_pag}` : '/'
         })%>
 
@@ -99,7 +99,17 @@
                     <% }); %>
 
                     <div class="center add">
-                        <a href="/clientes/address/<%=cliente.clt_id%>/add?retorno=perfil">Adiconar Novo Endereço</a>
+
+                        <% 
+                            let url_add_address = `/clientes/address/${cliente.clt_id}/add?retorno=perfil`;
+
+                            if(retorno_pag){
+                                url_add_address = `/clientes/address/${cliente.clt_id}/add?retorno_pag=${retorno_pag}&tipo=${tipo}&retorno=perfil`
+                            }
+                        %>
+
+
+                        <a href="<%=url_add_address%>">Adiconar Novo Endereço</a>
                     </div>
                 </div>
             </div>

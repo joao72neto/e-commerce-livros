@@ -18,9 +18,14 @@ module.exports.getAddressAlt = async (req, res) => {
 module.exports.getAddressAdd = async (req, res) => {
     const retorno = req.query.retorno;
     const enderecos = await buscarEnderecosClienteId(req.params.clt_id);
+    const retorno_pag = req.query.retorno_pag;
+    const tipo = req.query.tipo;
+
     res.render('clientes/address/address-add', {
         enderecos: enderecos,
-        retorno: retorno
+        retorno: retorno,
+        retorno_pag: retorno_pag, 
+        tipo: tipo
     });
 };
 
