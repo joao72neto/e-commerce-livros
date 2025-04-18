@@ -14,6 +14,34 @@ module.exports.buscarCuponsClienteId = async (clt_id) => {
     }
 };
 
+//UPDATE
+
+//Inativando um cupom
+module.exports.inativarCupom = async (cup_id) => {
+    
+    const sql = `update cupons set cup_usado = 0 where cup_id = ?`
+    
+    try{
+        await db.query(sql, cup_id);
+    }catch(err){
+        console.error(`Erro no inativarCupom - modelPagamento: ${err}`);
+        throw err;
+    }
+}
+
+//ativando um cupom
+module.exports.ativarCupom = async (cup_id) => {
+    
+    const sql = `update cupons set cup_usado = 1 where cup_id = ?`;
+
+    try{
+        await db.query(sql, cup_id);
+    }catch(err){
+        console.error(`Erro no ativarCupom - modelPagamento: ${err}`);
+        throw err;
+    }
+}
+
 //DELETE
 
 //Deletando um cupom específico
