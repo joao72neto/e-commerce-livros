@@ -85,8 +85,8 @@
                     </div>
                     <div class="center">
                         <h3>Cupom:</h3>
-                        <select name="" id="">
-                            <option value="">Nenhum</option>
+                        <select name="cupons" id="cupons">
+                            
                             <% cupons.forEach(cupom => { %>
 
                                 <option value="<%=cupom.cup_valor%>">R$<%=String(cupom.cup_valor).replace('.', ',')%></option>
@@ -94,10 +94,10 @@
                             <% }); %>
                         </select>
                         
-                        <button>Adicionar</button>
+                        <button class="add-cupom">Adicionar</button>
 
-                        <div class="cupons-usados"> 
-                            <p>-R$10,00</p>
+                        <div class="cupons-aplicados"> 
+                        
                         </div>
                     </div>
                 </div>
@@ -123,6 +123,6 @@
 
     </div>
 
-    
+    <script type="module" src="/javaScript/pages/compras/pagamento.js"></script>
 </body>
 </html>

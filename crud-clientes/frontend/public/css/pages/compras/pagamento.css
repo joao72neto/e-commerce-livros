@@ -49,12 +49,12 @@ main{
 }
 
 
-.cupons-usados{
+.cupons-aplicados{
     display: block;
     padding: 20px 0 0 0;
     
 }
-.cupons-usados p{
+.cupons-aplicados p{
     margin: 10px;
     color: green;
     font-size: 1.1em;
