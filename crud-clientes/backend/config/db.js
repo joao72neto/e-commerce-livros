@@ -4,7 +4,7 @@ const mysql = require('mysql2/promise');
 const bd = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '123',
+    password: '1234',
     database: 'e_commerce_books',
     waitForConnections: true,
     connectionLimit: 10,
