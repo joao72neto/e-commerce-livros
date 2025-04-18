@@ -2,14 +2,26 @@ const db = require('../../config/db');
 
 //SELECT 
 
-//Buscando cupons por id de cliente
-module.exports.buscarCuponsClienteId = async (clt_id) => {
+//Buscando cupons inativos (não usados) por id de cliente
+module.exports.buscarCuponsInativosClienteId = async (clt_id) => {
     try{
-        const [cupons] = await db.query(`select * from cupons where cup_clt_id = ?`, clt_id);
+        const [cupons] = await db.query(`select * from cupons where cup_clt_id = ? and cup_usado = 0`, clt_id);
         return cupons;
 
     }catch(err){
-        console.error(`Erro no buscarCuponsClienteId - modelPagamento: ${err}`);
+        console.error(`Erro no buscarCuponsInativosClienteId - modelPagamento: ${err}`);
+        throw err;
+    }
+};
+
+//Buscando cupons ativos (usados) por id de cliente
+module.exports.buscarCuponsAtivosClienteId = async (clt_id) => {
+    try{
+        const [cupons] = await db.query(`select * from cupons where cup_clt_id = ? and cup_usado = 1`, clt_id);
+        return cupons;
+
+    }catch(err){
+        console.error(`Erro no buscarCuponsAtivosClienteId - modelPagamento: ${err}`);
         throw err;
     }
 };

@@ -2,9 +2,11 @@ const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
 const { buscarEnderecosClienteId } = require('../../model/clientes/modelAddress');
 const { buscarCartoesClienteId } = require('../../model/clientes/modelCard');
 const { buscarCarrinhoClienteId } = require('../../model/compras/modelCarrinho');
-const { buscarCuponsClienteId } = require('../../model/compras/modelPagamento');
 const { deletarCupomId } = require('../../model/compras/modelPagamento');
-
+const { inativarCupom } = require('../../model/compras/modelPagamento');
+const { ativarCupom } = require('../../model/compras/modelPagamento');
+const { buscarCuponsInativosClienteId } = require('../../model/compras/modelPagamento');
+const { buscarCuponsAtivosClienteId } = require('../../model/compras/modelPagamento');
 //Página
 module.exports.getPagamento = async (req, res) => {
 
@@ -12,8 +14,9 @@ module.exports.getPagamento = async (req, res) => {
     const cliente = await buscarClienteLogado();
     const enderecos = await buscarEnderecosClienteId(cliente[0].clt_id);
     const cartoes = await buscarCartoesClienteId(cliente[0].clt_id);
-    const cupons = await buscarCuponsClienteId(cliente[0].clt_id);
-    
+    const cuponsInativos = await buscarCuponsInativosClienteId(cliente[0].clt_id);
+    const cuponsAtivos = await buscarCuponsAtivosClienteId(cliente[0].clt_id);
+
     //Pegando os carrinho do cliente
     let carrinho = await buscarCarrinhoClienteId(cliente[0].clt_id);
 
@@ -29,7 +32,8 @@ module.exports.getPagamento = async (req, res) => {
             enderecos: enderecos,
             cartoes: cartoes,
             carrinho: carrinho,
-            cupons: cupons
+            cuponsInativos: cuponsInativos,
+            cuponsAtivos: cuponsAtivos
         }); 
 
         return;
@@ -40,8 +44,20 @@ module.exports.getPagamento = async (req, res) => {
         enderecos: enderecos,
         cartoes: cartoes,
         carrinho: carrinho,
-        cupons: cupons
+        cuponsInativos: cuponsInativos,
+        cuponsAtivos: cuponsAtivos
     });
+};
+
+//APIs
+module.exports.getApiCuponsAtivosClienteId = async (req, res) => {
+    const cupons = await buscarCuponsAtivosClienteId(req.params.clt_id);
+    res.json(cupons);
+};
+
+module.exports.getApiCuponsInativosClienteId = async (req, res) => {
+    const cupons = await buscarCuponsInativosClienteId(req.params.clt_id); 
+    res.json(cupons);
 };
 
 //Deletando um cupom 
@@ -54,5 +70,27 @@ module.exports.deleteCupomId = async (req, res) => {
     }catch(err){
         console.error(`Erro no deleteCupomId - controllerPagamento: ${err}`);
         res.status(500).json({msg:'Erro ao remover o cupom'});
+    }
+};
+
+
+//Atualizando os dados do cupom
+module.exports.patchAtivarCupom = async (req, res) => {
+    try{
+        await ativarCupom(req.params.cup_id);
+        res.sendStatus(204)
+    }catch(err){
+        console.error(`Erro no patchAtivarCupom - controllerPagamento: ${err}`);
+        res.sendStatus(500);
+    }
+};
+
+module.exports.patchInativarCupom = async (req, res) => {
+    try{
+        await inativarCupom(req.params.cup_id);
+        res.sendStatus(204)
+    }catch(err){
+        console.error(`Erro no patchInativarCupom - controllerPagamento: ${err}`);
+        res.sendStatus(500);
     }
 };

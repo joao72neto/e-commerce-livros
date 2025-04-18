@@ -87,7 +87,7 @@
                         <h3>Cupom:</h3>
                         <select name="cupons" id="cupons">
                             
-                            <% cupons.forEach(cupom => { %>
+                            <% cuponsInativos.forEach(cupom => { %>
 
                                 <option value="<%=cupom.cup_valor%>" data-cup-id="<%=cupom.cup_id%>">R$<%=String(cupom.cup_valor).replace('.', ',')%></option>
 
@@ -97,6 +97,9 @@
                         <button class="add-cupom">Adicionar</button>
 
                         <div class="cupons-aplicados"> 
+                            <% cuponsAtivos.forEach(cupom => { %>
+                                <p>-R$<%=String(cupom.cup_valor).replace('.', ',')%></p>
+                            <% }); %>
                         
                         </div>
                     </div>
@@ -104,11 +107,16 @@
                 <div class="resumo">
 
                     <% 
-                    let total = 0;
+                        let total = 0;
 
-                    carrinho.forEach(item => {
-                        total += Number(item.crr_total);
-                    })%>
+                        carrinho.forEach(item => {
+                            total += Number(item.crr_total);
+                        });
+                    
+                        cuponsAtivos.forEach(cupom => {
+                            total -= Number(cupom.cup_valor);
+                        });
+                    %>
 
                     <p>Frete: R$12,00</p>
                     <p class="total">Total: R$<%=String(total.toFixed(2)).replace('.', ',')%></p>
