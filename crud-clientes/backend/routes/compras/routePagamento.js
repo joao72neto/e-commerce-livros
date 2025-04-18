@@ -5,4 +5,7 @@ const controllerPagamento = require('../../controller/compras/constrollerPagamen
 //Rotas para páginas
 router.get('/pagamento', controllerPagamento.getPagamento);
 
+//Rotas para remoção de dados
+router.delete('/cupom/delete/:cup_id', controllerPagamento.deleteCupomId);
+
 module.exports = router;

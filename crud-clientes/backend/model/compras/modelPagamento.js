@@ -13,3 +13,20 @@ module.exports.buscarCuponsClienteId = async (clt_id) => {
         throw err;
     }
 };
+
+//DELETE
+
+//Deletando um cupom específico
+module.exports.deletarCupomId = async (cup_id) => {
+    
+    const sql = 'delete from cupons where cup_id = ?';
+
+    try{
+        const [cupons] = await db.query(sql, cup_id);
+        return cupons;
+        
+    }catch(err){
+        console.error(`Erro no deletarCupomId - modelPagamento: ${err}`);
+        throw err;
+    }
+};

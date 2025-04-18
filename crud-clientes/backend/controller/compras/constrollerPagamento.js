@@ -3,6 +3,7 @@ const { buscarEnderecosClienteId } = require('../../model/clientes/modelAddress'
 const { buscarCartoesClienteId } = require('../../model/clientes/modelCard');
 const { buscarCarrinhoClienteId } = require('../../model/compras/modelCarrinho');
 const { buscarCuponsClienteId } = require('../../model/compras/modelPagamento');
+const { deletarCupomId } = require('../../model/compras/modelPagamento');
 
 //Página
 module.exports.getPagamento = async (req, res) => {
@@ -41,4 +42,17 @@ module.exports.getPagamento = async (req, res) => {
         carrinho: carrinho,
         cupons: cupons
     });
+};
+
+//Deletando um cupom 
+module.exports.deleteCupomId = async (req, res) => {
+    try{
+    
+        await deletarCupomId(req.params.cup_id);
+        res.status(204).json({msg: 'Cupom removido com sucesso'});
+
+    }catch(err){
+        console.error(`Erro no deleteCupomId - controllerPagamento: ${err}`);
+        res.status(500).json({msg:'Erro ao remover o cupom'});
+    }
 };
