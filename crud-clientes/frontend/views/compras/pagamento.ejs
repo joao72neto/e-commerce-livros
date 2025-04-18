@@ -89,7 +89,7 @@
                             
                             <% cupons.forEach(cupom => { %>
 
-                                <option value="<%=cupom.cup_valor%>">R$<%=String(cupom.cup_valor).replace('.', ',')%></option>
+                                <option value="<%=cupom.cup_valor%>" data-cup-id="<%=cupom.cup_id%>">R$<%=String(cupom.cup_valor).replace('.', ',')%></option>
 
                             <% }); %>
                         </select>
