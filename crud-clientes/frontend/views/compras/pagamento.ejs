@@ -111,8 +111,9 @@
                 <div class="resumo">
 
                     <% 
-                        let total = 0;
-
+                        const frete = 12;
+                        let total = frete;
+                        
                         carrinho.forEach(item => {
                             total += Number(item.crr_total);
                         });
