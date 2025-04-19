@@ -1,3 +1,33 @@
+//GET
+
+//Pegando cupons ativos
+export async function buscarCuponsAtivosClienteIdService(clt_id) {
+    try{
+
+        const res = await fetch(`/api/cupons/ativos/${clt_id}`);
+        const cupons = await res.json();
+        return cupons;
+
+    }catch(err){
+        console.error(`Erro no buscarCuponsAtivosClienteIdService - servicePagamento: ${err}`);
+        throw err;
+    }
+}
+
+//Pegando cupons inativos
+export async function buscarCuponsInativosClienteIdService(clt_id) {
+    try{
+
+        const res = await fetch(`/api/cupons/inativos/${clt_id}`);
+        const cupons = await res.json();
+        return cupons;
+
+    }catch(err){
+        console.error(`Erro no buscarCuponsInativosClienteIdService - servicePagamento: ${err}`);
+        throw err;
+    }
+}
+
 //DELETE
 
 //Removendo do carrinho

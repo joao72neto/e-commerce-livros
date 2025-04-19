@@ -86,7 +86,7 @@
                     <div class="center">
                         <h3>Cupom:</h3>
                         <select name="cupons" id="cupons">
-                            
+                                
                             <% cuponsInativos.forEach(cupom => { %>
 
                                 <option value="<%=cupom.cup_valor%>" data-cup-id="<%=cupom.cup_id%>">R$<%=String(cupom.cup_valor).replace('.', ',')%></option>
@@ -98,7 +98,11 @@
 
                         <div class="cupons-aplicados"> 
                             <% cuponsAtivos.forEach(cupom => { %>
-                                <p>-R$<%=String(cupom.cup_valor).replace('.', ',')%></p>
+                                <div class="cupom">
+                                    <p class="invisible cup-id"><%=cupom.cup_id%></p>
+                                    <p>-R$<%=String(cupom.cup_valor).replace('.', ',')%></p>
+                                    <p><a class="rm-cup">X</a></p>
+                                </div>
                             <% }); %>
                         
                         </div>

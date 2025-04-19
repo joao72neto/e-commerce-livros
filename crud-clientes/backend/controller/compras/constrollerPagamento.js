@@ -76,6 +76,7 @@ module.exports.deleteCupomId = async (req, res) => {
 
 //Atualizando os dados do cupom
 module.exports.patchAtivarCupom = async (req, res) => {
+
     try{
         await ativarCupom(req.params.cup_id);
         res.sendStatus(200)

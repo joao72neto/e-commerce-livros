@@ -49,15 +49,23 @@ main{
 }
 
 
-.cupons-aplicados{
-    display: block;
+.cupons-aplicados{    
     padding: 20px 0 0 0;
+    max-width: 200px;
+    margin: 30px auto 60px auto; 
+}
+
+.cupons-aplicados .cupom{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 16px;
     
 }
+
 .cupons-aplicados p{
-    margin: 10px;
     color: green;
     font-size: 1.1em;
+    align-self: center;
 }
 
 .resumo{

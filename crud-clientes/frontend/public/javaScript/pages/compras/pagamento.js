@@ -1,50 +1,81 @@
 import { deletarCupomIdService } from "/javaScript/service/compras/servicePagamento.js";
 import { inativarCupomService } from "/javaScript/service/compras/servicePagamento.js";
 import { ativarCupomService } from "/javaScript/service/compras/servicePagamento.js";
+import { buscarCuponsAtivosClienteIdService } from "/javaScript/service/compras/servicePagamento.js";
+import { buscarCuponsInativosClienteIdService } from "/javaScript/service/compras/servicePagamento.js";
+import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
 
+//Verficado se há cupons disponíveis ou não
+document.addEventListener('DOMContentLoaded', async function(){
+
+    //Verificando se há cupons inativos
+    const cliente = await buscarClienteLogadoService();
+    const cuponsInativos = await buscarCuponsInativosClienteIdService(cliente[0].clt_id);
+    
+    if(cuponsInativos.length > 0){
+        return;
+    }
+
+    //Obtendo o select
+    const select = document.querySelector('#cupons');
+
+    // Exibindo uma msg quando não tivermais cupons para uso
+    select.innerHTML = '';
+
+    // Cria uma nova option com valor padrão
+    const option = document.createElement('option');
+    option.value = '';
+    option.textContent = 'Nenhum';
+    option.disabled = true;
+    option.selected = true;
+
+    select.appendChild(option);
+});
 
 
 //Adicionando cupons que o cliente possui
 document.querySelector('.add-cupom').addEventListener('click', async function(){
     
-    //Obetndo o ID do cupom
+    
+    //Verificando se há cupons inativos
+    const cliente = await buscarClienteLogadoService();
+    const cuponsInativos = await buscarCuponsInativosClienteIdService(cliente[0].clt_id);
+    
+    //Obtendo o select
     const select = document.querySelector('#cupons');
-    const cup_id = select.selectedOptions[0].getAttribute('data-cup-id');
 
-    //Inativando um cupom
-    const res = await ativarCupomService(cup_id);
+    if(cuponsInativos.length > 0){
 
-    if(res === 200){
-        window.location.reload();
-        return;
+        //Obetndo o ID do   
+        const cup_id = select.selectedOptions[0].getAttribute('data-cup-id');
+
+        //Ativando cupons
+        const res = await ativarCupomService(cup_id);
+
+        if(res === 200){
+            window.location.reload();
+            return;
+        }
+
     }
+});
 
-    alert('Não foi possível aplicar o cupom');
-
-    // const cup_valor = select.value;
-    // console.log(cup_id);
-
-    // //Aplicando o cupom escolhido pelo usuário
-    // const cuponsAplicados = document.querySelector('.cupons-aplicados');
-    // cuponsAplicados.innerHTML += `
-    //     <p>-R$${String(cup_valor).replace('.', ',')}</p>
-    // `;
-
-    // //Atualizando o total ao aplicar o cupom
-    // let total = Number(document.querySelector('.total').textContent.split('R$')[1].replace(',', '.'));
+//Removendo cupons já aplicados
+document.querySelectorAll('.rm-cup').forEach(btn => {
+    btn.addEventListener('click', async function(){
+        const cupom = this.closest('.cupom');
     
-    // total -= Number(cup_valor);
+        //Pegando o id do cupom
+        const cup_id = cupom.querySelector('.cup-id').textContent;
+        
+        //Removendo os cupons aplicados
+        const res = await inativarCupomService(cup_id);
 
-    // document.querySelector('.total').textContent = `Total: R$${String(total.toFixed(2)).replace('.', ',')}`
+        if(res === 200){
+            window.location.reload();
+            return;
+        }
 
-    // //Removendo o cupom do banco de dados
-    // const res = await deletarCupomIdService(cup_id);
-
-    // if(res.status === 204){
-    //     window.location.reload();
-    //     return;
-    // }
-
-    // alert('Não foi possível aplicar o cupom');
-    
+        alert('Não foi possível remover cupom aplicado');
+    });
 });
