@@ -78,7 +78,7 @@ module.exports.deleteCupomId = async (req, res) => {
 module.exports.patchAtivarCupom = async (req, res) => {
     try{
         await ativarCupom(req.params.cup_id);
-        res.sendStatus(204)
+        res.sendStatus(200)
     }catch(err){
         console.error(`Erro no patchAtivarCupom - controllerPagamento: ${err}`);
         res.sendStatus(500);
@@ -88,7 +88,7 @@ module.exports.patchAtivarCupom = async (req, res) => {
 module.exports.patchInativarCupom = async (req, res) => {
     try{
         await inativarCupom(req.params.cup_id);
-        res.sendStatus(204)
+        res.sendStatus(200)
     }catch(err){
         console.error(`Erro no patchInativarCupom - controllerPagamento: ${err}`);
         res.sendStatus(500);

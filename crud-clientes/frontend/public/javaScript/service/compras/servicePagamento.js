@@ -1,3 +1,5 @@
+//DELETE
+
 //Removendo do carrinho
 export async function deletarCupomIdService(cup_id) {
     try{
@@ -15,4 +17,32 @@ export async function deletarCupomIdService(cup_id) {
         console.error(`Erro no deletarCupomIdService - servicePagamento: ${err}`);
         throw err;
     }
+}
+
+//UPDATE
+
+//Inativando um cupom por id
+export async function inativarCupomService(cup_id) {
+    try{
+        let res = await fetch(`/cupom/inativar/${cup_id}`, {method: 'PATCH'});
+        return res.status;
+
+    }catch(err){
+        console.error(`Erro no inativarCupomService - servicePagamento: ${err}`);
+        return 500;
+    }
+    
+}
+
+//Ativando um cupom por id
+export async function ativarCupomService(cup_id) {
+    try{
+        let res = await fetch(`/cupom/ativar/${cup_id}`, {method: 'PATCH'});
+        return res.status;
+
+    }catch(err){
+        console.error(`Erro no ativarClupomService - servicePagamento: ${err}`);
+        return 500;
+    }
+    
 }
