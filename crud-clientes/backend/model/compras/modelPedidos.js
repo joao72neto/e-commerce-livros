@@ -38,3 +38,29 @@ module.exports.adicionarPedido = async (dados) => {
         throw err;
     }
 }
+
+//SELECT
+
+//Função que pegar todos os pedidos de um cliente
+module.exports.buscarPedidosClienteId = async (clt_id) => {
+    
+    const sql = `
+    
+        select  
+            *
+        from 
+            vendas v
+            join livros l on l.lvr_id = v.vnd_lvr_id
+        where
+            v.vnd_clt_id = ?
+    `;
+    
+    try{
+        const [pedidos] = await db.query(sql, clt_id);
+        return pedidos;
+        
+    }catch(err){
+        console.error(`Erro no buscarPedidosClienteId - modelPedidos: ${err}`);
+        throw err;
+    }
+}

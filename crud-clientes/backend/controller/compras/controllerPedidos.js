@@ -1,8 +1,16 @@
 const { adicionarPedido } = require('../../model/compras/modelPedidos');
+const { buscarPedidosClienteId } = require('../../model/compras/modelPedidos');
+const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
 
 //Página
-module.exports.getPedidos = (req, res) => {
-    res.render('compras/pedidos');
+module.exports.getPedidos = async (req, res) => {
+
+    const cliente = await buscarClienteLogado();
+    const pedidos = await buscarPedidosClienteId(cliente[0].clt_id);
+
+    console.log(pedidos);
+
+    res.render('compras/pedidos', {pedidos: pedidos});
 };
 
 //Inserção de pedidos
