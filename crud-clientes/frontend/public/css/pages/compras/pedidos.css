@@ -20,6 +20,15 @@ main{
     border-radius: 20px;
 }
 
+.status-pedido{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+  
+}
+
 .status{
     justify-self: center;
 }

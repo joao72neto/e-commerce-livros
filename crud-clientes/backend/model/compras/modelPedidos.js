@@ -12,11 +12,12 @@ module.exports.adicionarPedido = async (dados) => {
         INSERT INTO vendas (
             vnd_clt_id,
             vnd_lvr_id,
+            vnd_numPedido,
             vnd_data,
             vnd_valorTotal,
             vnd_frete
         ) VALUES (
-            ?, ?, CURDATE(), ?, ?
+            ?, ?, ?, CURDATE(), ?, ?
         );
 
     `;
@@ -25,6 +26,7 @@ module.exports.adicionarPedido = async (dados) => {
     const valores = [
         dados.clt_id,
         dados.lvr_id,
+        dados.lvr_numPedido,
         dados.vnd_valorTotal,
         dados.vnd_frete
     ]

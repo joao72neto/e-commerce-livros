@@ -83,6 +83,14 @@ document.querySelectorAll('.rm-cup').forEach(btn => {
     });
 });
 
+
+//Gerando o número do pedido
+function gerarNumeroPedido(vnd_id) {
+    const hoje = new Date();
+    const data = hoje.toISOString().slice(0,10).replace(/-/g, ''); 
+    return `PED-${data}-${vnd_id.toString().padStart(5, '0')}`;
+}
+
 //Função que finaliza a compra
 document.querySelector('.finalizar-compra').addEventListener('click', async function(){
 
@@ -97,10 +105,14 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
     //Preparando os dados a serem enviados
     carrinho.forEach(async item => {
 
+        //Gerando o número do pedido
+        let numPedido = gerarNumeroPedido(Number(item.lvr_id));
+
 
         let valores = {
             clt_id: cliente[0].clt_id,
             lvr_id: item.crr_lvr_id,
+            lvr_numPedido: numPedido,
             vnd_valorTotal: item.crr_total, 
             vnd_frete: 12
         } 
@@ -122,6 +134,7 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
     });
 
     //Redirecionando para a página de pedidos
+    alert('Compra ralizada com sucesso!');
     window.location.href = '/pedidos';
 
 
