@@ -1,6 +1,21 @@
 /*Importando as cores do site*/
 @import url('../colors.css');
 
+body{
+    background-color: var(--preto);
+}
+
+.main-container{
+    display: flex;
+    flex-wrap: nowrap;
+    transition: all 0.3s ease;
+    background-color: var(--branco);
+}
+
+.conteudo{
+    width: 100%;
+    transition: 0.3s ease;
+}
 
 .busca-header{
     width: 50%;
@@ -49,12 +64,21 @@
 
 /*Menu Lateral*/
 .sidebar{
-    position: absolute;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 30%;
+    transform: translate(600px, 0);
+    padding: 20px;
     color: var(--branco);
     background-color: var(--preto);
+    transition: transform 0.3s ease;
+
+}
+
+.aberta{
+    transform: translate(0, 0);
 }
 
 .sidebar h2{
@@ -71,7 +95,7 @@
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
-    
+    background-color: var(--preto);
     width: 100%;
     height: 300px;
 }
@@ -84,6 +108,7 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 40px;
+    background-color: white;
 }
 
 .book{

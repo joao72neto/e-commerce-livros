@@ -8,38 +8,40 @@ import { adicionarCarrinhoService, buscarCarrinhoClienteIdService } from "/javaS
 document.querySelector('#btn-sidebar').addEventListener('click', function(){
     const sidebar = document.querySelector('.sidebar');
     const header = document.querySelector('header');
+    const conteudo = document.querySelector('.conteudo');
+    const footer = document.querySelector('footer');
 
-    const html = `
+    // const html = `
     
-        <h2 for="">Cliente</h2>
-        <ul>
-            <li><a href="/perfil">Perfil</a></li>
-            <li><a href="/pedidos">Meus Pedidos</a></li>
-        </ul>
-        <h2 for="">ADM</h2>
-        <ul>
-            <li><a href="/clientes">Gerenciar Clientes</a></li>
-            <li><a href="/pedidos/gerenciar">Gerenciar Pedidos</a></li>
-            <li><a href="/vendas/historico">Histórico de Vendas</a></li>
-            <li><a href="/estoque">Controle de Estoque</a></li>
-            <li><a href="/logs">Logs</a></li>
-        </ul>
+    //     <h2 for="">Cliente</h2>
+    //     <ul>
+    //         <li><a href="/perfil">Perfil</a></li>
+    //         <li><a href="/pedidos">Meus Pedidos</a></li>
+    //     </ul>
+    //     <h2 for="">ADM</h2>
+    //     <ul>
+    //         <li><a href="/clientes">Gerenciar Clientes</a></li>
+    //         <li><a href="/pedidos/gerenciar">Gerenciar Pedidos</a></li>
+    //         <li><a href="/vendas/historico">Histórico de Vendas</a></li>
+    //         <li><a href="/estoque">Controle de Estoque</a></li>
+    //         <li><a href="/logs">Logs</a></li>
+    //     </ul>
      
-    `;
+    // `;
 
-    if(sidebar.innerHTML.trim() === ''){
+    if(!sidebar.classList.contains('aberta')){
+        sidebar.classList.add('aberta');
         header.style.position = 'sticky';
         header.style.top = '0';
-        header.style.width = '100%'
-        sidebar.style.top = '65px';
-        sidebar.style.padding = '20px';
-        sidebar.innerHTML = html;
+        conteudo.style.marginRight = '30%';
+        footer.style.width = '70%';
         return;
     }
 
+    sidebar.classList.remove('aberta');
+    footer.style.width = '';
     header.style.position = '';
-    sidebar.style.padding = '0';
-    sidebar.innerHTML = '';
+    conteudo.style.marginRight = '';
 });
 
 
