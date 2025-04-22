@@ -5,4 +5,7 @@ const controllerPedidos = require('../../controller/compras/controllerPedidos');
 //Rotas para páginas
 router.get('/pedidos', controllerPedidos.getPedidos);
 
+//Rota para adição de pedidos
+router.post('/pedidos/add', controllerPedidos.postPedido);
+
 module.exports = router;

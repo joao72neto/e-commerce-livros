@@ -1,3 +1,6 @@
+const db = require('../../config/db');
+
+
 //INSERT
 
 //Inserindo pedido na tabela de vendas do banco
