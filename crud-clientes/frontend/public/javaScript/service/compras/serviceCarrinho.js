@@ -14,7 +14,6 @@ export async function buscarCarrinhoClienteIdService(clt_id) {
     }
 }
 
-
 //POST
 
 //Inserindo um item no carrinho

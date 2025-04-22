@@ -4,6 +4,8 @@ import { ativarCupomService } from "/javaScript/service/compras/servicePagamento
 import { buscarCuponsAtivosClienteIdService } from "/javaScript/service/compras/servicePagamento.js";
 import { buscarCuponsInativosClienteIdService } from "/javaScript/service/compras/servicePagamento.js";
 import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
+import { buscarCarrinhoClienteIdService } from "/javaScript/service/compras/serviceCarrinho.js";
+import { adicionarPedidoService } from "/javaScript/service/compras/servicePedidos.js";
 
 //Verficado se há cupons disponíveis ou não
 document.addEventListener('DOMContentLoaded', async function(){
@@ -78,4 +80,42 @@ document.querySelectorAll('.rm-cup').forEach(btn => {
 
         alert('Não foi possível remover cupom aplicado');
     });
+});
+
+//Função que finaliza a compra
+document.querySelector('.finalizar-compra').addEventListener('click', async function(){
+
+    //Pegando os itens do carrinho
+    const cliente = await buscarClienteLogadoService();
+    const carrinho = await buscarCarrinhoClienteIdService(cliente[0].clt_id);
+
+    //Obetendo o valor total da compra
+    const valorTotal = Number(document.querySelector('.total').textContent.split('R$')[1].replace(',', '.'));
+
+
+    //Preparando os dados a serem enviados
+    carrinho.forEach(async item => {
+
+
+        let valores = {
+            clt_id: cliente[0].clt_id,
+            lvr_id: item.crr_lvr_id,
+            vnd_valorTotal: item.crr_total, 
+            vnd_frete: 12
+        } 
+
+        //Adicionando os itens na tabela de vebdas
+        const res = await adicionarPedidoService(valores);
+
+        if(!res === 201){
+            alert('Não foi possível finalizar a compra');
+            return; 
+        }
+
+    });
+
+    //Redirecionando para a página de pedidos
+    window.location.href = '/pedidos';
+
+
 });
