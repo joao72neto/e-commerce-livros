@@ -1,6 +1,4 @@
 
-
-
 .title{
     margin: 20px 0;
 }
@@ -10,18 +8,30 @@ main{
     margin: 0 auto;
 }
 
+.wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr 1fr;
+    align-items: center;
+}
+
 .imagem img{
     width: 100px;
     background-color: gray;
     border-radius: 20px;
 }
 
-strong{
+.status{
+    justify-self: center;
+}
+
+.status strong{
     padding: 20px;
     background-color: var(--cinza);
     border-radius: 20px;
 }
 
-.wrapper{
-    align-items: center;
+.acoes{
+    justify-self: center;
+
 }
+
