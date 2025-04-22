@@ -102,13 +102,14 @@ body{
 
 /*livros*/
 .books{
-    display: flex;
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
+    grid-gap: 50px;
     max-width: 1500px;
-    margin: 50px auto;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    gap: 40px;
-    background-color: white;
+    margin: 50px auto 0 auto;
+    justify-content: center; 
+
 }
 
 .book{
@@ -119,6 +120,7 @@ body{
     padding: 20px;
     box-shadow: 0px 0px 20px #0000005b;
     border-radius: 20px;
+    background-color: white;
 }
 
 .book .imagem img{

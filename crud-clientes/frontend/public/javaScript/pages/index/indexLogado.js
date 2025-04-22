@@ -33,7 +33,7 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
         sidebar.classList.add('aberta');
         header.style.position = 'sticky';
         header.style.top = '0';
-        conteudo.style.marginRight = '30%';
+        conteudo.style.width = '70%';
         footer.style.width = '70%';
         return;
     }
@@ -41,7 +41,7 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
     sidebar.classList.remove('aberta');
     footer.style.width = '';
     header.style.position = '';
-    conteudo.style.marginRight = '';
+    conteudo.style.width = '';
 });
 
 
