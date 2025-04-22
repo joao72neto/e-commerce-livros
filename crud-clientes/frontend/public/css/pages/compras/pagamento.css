@@ -29,14 +29,20 @@ main{
     border-radius: 20px;
 }
 
-.container{
+.container, .container-items{
     background-color: var(--cinza);
     padding: 20px;
     border-radius: 20px;
 }
 
-.wrapper{
+.container-items .wrapper{
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
     align-items: center;
+}
+
+.container-items .wrapper .imagem{
+    padding-right: 20px;
 }
 
 .wrapper select{
