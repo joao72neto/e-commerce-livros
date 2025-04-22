@@ -22,7 +22,7 @@ h2{
 
 
 .wrapper .imagem{
-    padding: 0 20px;
+    padding: 0 20px 0 0;
 }
 
 .wrapper .imagem img{
@@ -55,7 +55,7 @@ h2{
 }
 
 .wrapper .acoes{
-    width: 400px;
+    width: 300px;
     text-align: center;
 }
 
