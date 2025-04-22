@@ -215,6 +215,7 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`vendas` (
   `vnd_status` ENUM('em processamento', 'em transito', 'entregue', 'em troca', 'troca autorizada') NOT NULL DEFAULT 'em processamento',
   `vnd_valorTotal` DECIMAL(5,2) NOT NULL,
   `vnd_frete` DECIMAL(5,2) NULL,
+  `vnd_qtd` SMALLINT NULL,
   PRIMARY KEY (`vnd_id`),
   INDEX `fk_vnd_lvr_idx` (`vnd_lvr_id` ASC) VISIBLE,
   INDEX `fk_vnd_clt_idx` (`vnd_clt_id` ASC) VISIBLE,

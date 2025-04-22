@@ -114,7 +114,8 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
             lvr_id: item.crr_lvr_id,
             lvr_numPedido: numPedido,
             vnd_valorTotal: item.crr_total, 
-            vnd_frete: 12
+            vnd_frete: 12,
+            vnd_qtd: item.crr_qtd
         } 
 
         //Adicionando os itens na tabela de vebdas

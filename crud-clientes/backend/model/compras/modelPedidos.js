@@ -15,9 +15,10 @@ module.exports.adicionarPedido = async (dados) => {
             vnd_numPedido,
             vnd_data,
             vnd_valorTotal,
-            vnd_frete
+            vnd_frete,
+            vnd_qtd
         ) VALUES (
-            ?, ?, ?, CURDATE(), ?, ?
+            ?, ?, ?, CURDATE(), ?, ?, ?
         );
 
     `;
@@ -28,7 +29,8 @@ module.exports.adicionarPedido = async (dados) => {
         dados.lvr_id,
         dados.lvr_numPedido,
         dados.vnd_valorTotal,
-        dados.vnd_frete
+        dados.vnd_frete,
+        dados.vnd_qtd
     ]
 
     //Adicionando o pedido no banco de dados
