@@ -6,6 +6,7 @@ import { buscarCuponsInativosClienteIdService } from "/javaScript/service/compra
 import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
 import { buscarCarrinhoClienteIdService } from "/javaScript/service/compras/serviceCarrinho.js";
 import { adicionarPedidoService } from "/javaScript/service/compras/servicePedidos.js";
+import { removerCarrinhoIdService } from "/javaScript/service/compras/serviceCarrinho.js";
 
 //Verficado se há cupons disponíveis ou não
 document.addEventListener('DOMContentLoaded', async function(){
@@ -105,11 +106,17 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
         } 
 
         //Adicionando os itens na tabela de vebdas
-        const res = await adicionarPedidoService(valores);
+        const resAdd = await adicionarPedidoService(valores);
+        const resRem = await removerCarrinhoIdService(item.crr_lvr_id);
 
-        if(!res === 201){
+        if(!resAdd === 201){
             alert('Não foi possível finalizar a compra');
             return; 
+        }
+
+        if(!resRem === 204){
+            alert('Não foi possível retirar o livro do carrinho');
+            return;
         }
 
     });
