@@ -29,7 +29,7 @@
                     <th>Valor de Custo</th>
                     <th>Grupo Precificação</th>
                     <th>Margem de Lucro</th>
-                    <th class="top-right">Valor de Venda</th>
+                    <th class="top-right">Origem</th>
                 </tr>
 
                 <% estoque.forEach(row => { %>
@@ -41,7 +41,7 @@
                         <td>R$ <%=String(row.est_valorCompra).replace('.', ',')%></td>
                         <td><%=row.gpp_nome%></td>
                         <td><%=row.gpp_margemLucro%100%>%</td>
-                        <td>R$ <%=String(row.valorVenda).replace('.', ',')%></td>
+                        <td><%=row.est_origem%>
                     </tr>
                 <% }); %>
             </table>

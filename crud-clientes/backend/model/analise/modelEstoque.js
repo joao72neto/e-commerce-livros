@@ -17,6 +17,7 @@ module.exports.buscarEstoque = async () => {
             e.est_qtd,
             e.est_data,
             e.est_valorCompra,
+            e.est_origem,
             round((((g.gpp_margemLucro / 100) + 1) * e.est_valorCompra), 2) valorVenda
         from 
             estoque e
