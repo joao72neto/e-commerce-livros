@@ -1,7 +1,5 @@
-// import { buscarCarrinhoClienteId }
 import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
 import { adicionarCarrinhoService, buscarCarrinhoClienteIdService } from "/javaScript/service/compras/serviceCarrinho.js";
-
 
 
 //Mostrando o menu lateral
@@ -11,23 +9,6 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
     const conteudo = document.querySelector('.conteudo');
     const footer = document.querySelector('footer');
 
-    // const html = `
-    
-    //     <h2 for="">Cliente</h2>
-    //     <ul>
-    //         <li><a href="/perfil">Perfil</a></li>
-    //         <li><a href="/pedidos">Meus Pedidos</a></li>
-    //     </ul>
-    //     <h2 for="">ADM</h2>
-    //     <ul>
-    //         <li><a href="/clientes">Gerenciar Clientes</a></li>
-    //         <li><a href="/pedidos/gerenciar">Gerenciar Pedidos</a></li>
-    //         <li><a href="/vendas/historico">Histórico de Vendas</a></li>
-    //         <li><a href="/estoque">Controle de Estoque</a></li>
-    //         <li><a href="/logs">Logs</a></li>
-    //     </ul>
-     
-    // `;
 
     if(!sidebar.classList.contains('aberta')){
         sidebar.classList.add('aberta');
