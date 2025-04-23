@@ -2,6 +2,25 @@ import { buscarClienteLogadoService } from "/javaScript/service/clientes/service
 import { adicionarCarrinhoService, buscarCarrinhoClienteIdService } from "/javaScript/service/compras/serviceCarrinho.js";
 
 
+//Verifica se o item já está no carrinho ou se o cliente está logado
+document.addEventListener('DOMContentLoaded', async function(){
+
+    const cliente = await buscarClienteLogadoService();  
+
+    if(cliente.length === 0){
+        return;
+    }
+
+    const lvr_id = window.location.pathname.split('/').splice(-1)[0];
+    let carrinho = await buscarCarrinhoClienteIdService(cliente[0].clt_id);
+
+    carrinho = carrinho.filter(livro => livro.lvr_id === Number(lvr_id));
+
+    if(carrinho.length > 0){
+        this.querySelector('.carrinho').textContent = 'No Carrinho';
+    }
+});
+
 //Aumentado a quatidado do item
 document.querySelector('.aumentar').addEventListener('click', function(){
         
@@ -50,22 +69,25 @@ async function addCarrinho(path){
     alert('Não foi possível adicionar o item no carrinho');
 }
 
-document.addEventListener('DOMContentLoaded', async function(){
-
-    const lvr_id = window.location.pathname.split('/').splice(-1)[0];
-    const cliente = await buscarClienteLogadoService();
-    let carrinho = await buscarCarrinhoClienteIdService(cliente[0].clt_id);
-
-    carrinho = carrinho.filter(livro => livro.lvr_id === Number(lvr_id));
-
-    if(carrinho.length > 0){
-        this.querySelector('.carrinho').textContent = 'No Carrinho';
-    }
-});
-
+//Adiciona um item no carrinho e redireciona para o carrinho
 document.querySelector('.carrinho').addEventListener('click', async function (event){
     event.preventDefault();
     
+    //Verificando se o cliente está logado ou não
+    const cliente = await buscarClienteLogadoService(); 
+
+    if(cliente.length === 0){
+        alert('Cliente precisa está cadastrado para adicionar livros no carrinho');
+
+        const res = confirm('Deseja se cadastrar?');
+
+        if(!res){
+            return;
+        }
+
+        window.location.href = '/clientes/signup?retorno=';
+    }
+
     if(this.textContent.includes('No Carrinho')){
         window.location.href = '/carrinho';
         return;
@@ -75,9 +97,24 @@ document.querySelector('.carrinho').addEventListener('click', async function (ev
 });
 
 
-//Comprando o livro
+//Adicionar o item no carrino e vai para a página de pagamento
 document.querySelector('.comprar').addEventListener('click', async (event) => {
     event.preventDefault();
+
+    //Verificando se o cliente está logado ou não
+    const cliente = await buscarClienteLogadoService(); 
+
+    if(cliente.length === 0){
+        alert('Cliente precisa está cadastrado para comprar livros');
+
+        const res = confirm('Deseja se cadastrar?');
+
+        if(!res){
+            return;
+        }
+
+        window.location.href = '/clientes/signup?retorno=';
+    }
 
     //Obtendo dados
     const noCarrinho = document.querySelector('.carrinho').textContent;
