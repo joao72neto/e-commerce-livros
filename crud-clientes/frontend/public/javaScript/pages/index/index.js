@@ -22,45 +22,6 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
     conteudo.style.width = '';
 });
 
-
-//Exibindo notificações
-document.querySelector('#notificacao-index').addEventListener('click', function(event){
-    event.stopPropagation();
-        
-
-    //Retirando o menu ao clicar de novo
-    let notificacao = this.querySelector('.notificacaoa');
-
-    if(notificacao){
-        notificacao.remove();
-        return;
-    }
-
-    let submenu = document.createElement('div');
-    submenu.classList.add('notificacao');
-
-
-    submenu.innerHTML = `
-        <a href="#">Troca do produto Aceita</a>
-        <a href="#">Item adicionado ao carrinho</a>
-        <a href="#">Item retirado do carrinho</a>
-
-    `;
-
-    // Adicionando submenu ao lado do botão clicado
-    this.appendChild(submenu);
-
-});
-
-//Removendo notificação ao clicar fora da tela
-document.addEventListener('click', function(){
-    const notificacao = document.querySelector('.notificacao');
-
-    if(notificacao){
-        notificacao.remove();
-    }
-});
-
 //Redirecionando para a página de produtos
 document.querySelectorAll('.imagem').forEach(image => {
     image.addEventListener('click', function(){
@@ -70,5 +31,22 @@ document.querySelectorAll('.imagem').forEach(image => {
         const lvr_id = book.querySelector('.book-id').textContent;
         
         window.location.href = `/produto/${lvr_id}`;
+    });
+});
+
+//Redirecionando para o cadastro de cliente
+document.querySelectorAll('.compra').forEach(btn => {
+    btn.addEventListener('click', function(event){
+
+        event.preventDefault();
+
+        alert('O cliente precisa estar cadastrado para comprar livros')
+
+        const res = confirm('Deseja se cadastrar?'); 
+
+        if(res){
+            window.location.href = '/clientes/signup?retorno=';
+            return;
+        }
     });
 });
