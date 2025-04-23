@@ -143,3 +143,55 @@ INSERT INTO livros (
  '9788595084766', 15.50, 23.00, 0.65, 4.00, '/images/capas/retorno_rei.jpg', 69.90);
 
 
+-- Fornecedores
+INSERT INTO fornecedor (for_nome) VALUES
+('Distribuidora Literária Brasileira'),
+('Livraria Cultura'),
+('Saraiva Distribuidora'),
+('Editora Arqueiro'),
+('Grupo Editorial Record'),
+('Editora Intrínseca'),
+('Companhia das Letras');
+
+-- Estoque
+
+INSERT INTO estoque (est_for_id, est_lvr_id, est_qtd, est_data, est_valorCompra) VALUES
+-- O Senhor dos Anéis: A Sociedade do Anel (ID 1)
+(4, 1, 35, '2023-10-15', 69.90),
+(2, 1, 20, '2023-11-05', 71.50),
+
+-- 1984 (ID 2)
+(7, 2, 45, '2023-09-20', 49.90),
+(3, 2, 30, '2023-12-10', 51.90),
+
+-- Memórias Póstumas de Brás Cubas (ID 3)
+(1, 3, 25, '2023-08-15', 39.90),
+(5, 3, 15, '2024-01-05', 41.50),
+
+-- O Pequeno Príncipe (ID 4)
+(7, 4, 60, '2023-07-22', 34.90),
+(2, 4, 40, '2023-11-18', 36.90),
+
+-- Orgulho e Preconceito (ID 5)
+(6, 5, 30, '2023-10-10', 44.90),
+(3, 5, 25, '2023-12-15', 46.50),
+
+-- A Metamorfose (ID 6)
+(7, 6, 50, '2023-09-05', 29.90),
+(1, 6, 20, '2024-01-20', 31.50),
+
+-- Capitães da Areia (ID 7)
+(5, 7, 40, '2023-08-30', 42.90),
+(1, 7, 35, '2023-11-25', 44.50),
+
+-- O Nome do Vento (ID 8)
+(4, 8, 30, '2023-10-25', 64.90),
+(6, 8, 25, '2023-12-05', 66.90),
+
+-- O Senhor dos Anéis: As Duas Torres (ID 9)
+(4, 9, 35, '2023-11-15', 69.90),
+(2, 9, 20, '2024-01-10', 71.50),
+
+-- O Senhor dos Anéis: O Retorno do Rei (ID 10)
+(4, 10, 35, '2023-11-20', 69.90),
+(2, 10, 20, '2024-01-15', 71.50);

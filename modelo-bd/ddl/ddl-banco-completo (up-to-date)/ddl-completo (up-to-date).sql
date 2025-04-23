@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`estoque` (
   `est_lvr_id` INT NOT NULL,
   `est_qtd` INT NOT NULL,
   `est_data` DATE NOT NULL,
-  `est_valorVenda` DECIMAL(10,2) NOT NULL,
+  `est_valorCompra` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`est_id`),
   INDEX `fk_est_for_idx` (`est_for_id` ASC) VISIBLE,
   INDEX `fk_est_lvr_idx` (`est_lvr_id` ASC) VISIBLE,
