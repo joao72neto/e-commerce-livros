@@ -1,5 +1,38 @@
 const db = require('../../config/db');
 
+//INSERT
+
+// //Dando uma entrada no estoque
+// module.exports.cadastrarCartao = async (dados) => {
+
+//     //Consulta SQL
+//     sql = `
+//         INSERT INTO estoque (
+//             est_for_id,
+//             est_lvr_id,
+//             est_gpp_id,
+//             est_qtd,
+//             est_data,
+//             est_valorCompra,
+//             est_origem
+//         ) VALUES (
+//             ?, ?, ?, ?, CURDATE(), ?, 'COMPRA'
+//         )
+//     `;
+
+//     //Valores a serem inseridos no banco
+//     const valores = [
+//         dados.for_id,
+//         dados.lvr_id,
+//         dados.gpp_id,
+//         dados.car_bandeira,
+//         dados.car_cvv
+//     ]
+
+//     await db.query(sql, valores)
+//         .catch(err => `Erro no cadastrarCartao - modelCard: ${err}`);
+    
+// }
 
 //SELECT
 
