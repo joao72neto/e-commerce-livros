@@ -62,17 +62,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `e_commerce_books`.`grupo_precificacao`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `e_commerce_books`.`grupo_precificacao` (
-  `gpp_id` INT NOT NULL AUTO_INCREMENT,
-  `gpp_nome` VARCHAR(45) NOT NULL,
-  `gpp_margemLucro` DECIMAL(5,2) NOT NULL,
-  PRIMARY KEY (`gpp_id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `e_commerce_books`.`autores`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `e_commerce_books`.`autores` (
@@ -97,7 +86,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `e_commerce_books`.`livros` (
   `lvr_id` INT NOT NULL AUTO_INCREMENT,
-  `lvr_gpp_id` INT NOT NULL,
   `lvr_edt_id` INT NOT NULL,
   `lvr_aut_id` INT NOT NULL,
   `lvr_ano` SMALLINT NOT NULL,
@@ -115,14 +103,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`livros` (
   `lvr_capa` VARCHAR(255) NULL,
   `lvr_preco` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`lvr_id`),
-  INDEX `fk_lvr_gpp_idx` (`lvr_gpp_id` ASC) VISIBLE,
   INDEX `fk_lvr_aut_idx` (`lvr_aut_id` ASC) VISIBLE,
   INDEX `fk_lvr_edt_idx` (`lvr_edt_id` ASC) INVISIBLE,
-  CONSTRAINT `fk_lvr_gpp`
-    FOREIGN KEY (`lvr_gpp_id`)
-    REFERENCES `e_commerce_books`.`grupo_precificacao` (`gpp_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_lvr_aut`
     FOREIGN KEY (`lvr_aut_id`)
     REFERENCES `e_commerce_books`.`autores` (`aut_id`)
@@ -133,6 +115,17 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`livros` (
     REFERENCES `e_commerce_books`.`editora` (`edt_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `e_commerce_books`.`grupo_precificacao`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `e_commerce_books`.`grupo_precificacao` (
+  `gpp_id` INT NOT NULL AUTO_INCREMENT,
+  `gpp_nome` VARCHAR(45) NOT NULL,
+  `gpp_margemLucro` DECIMAL(5,2) NOT NULL,
+  PRIMARY KEY (`gpp_id`))
 ENGINE = InnoDB;
 
 
@@ -184,12 +177,14 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`estoque` (
   `est_id` INT NOT NULL AUTO_INCREMENT,
   `est_for_id` INT NOT NULL,
   `est_lvr_id` INT NOT NULL,
+  `est_gpp_id` INT NOT NULL,
   `est_qtd` INT NOT NULL,
   `est_data` DATE NOT NULL,
   `est_valorCompra` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`est_id`),
   INDEX `fk_est_for_idx` (`est_for_id` ASC) VISIBLE,
   INDEX `fk_est_lvr_idx` (`est_lvr_id` ASC) VISIBLE,
+  INDEX `fk_est_gpp_idx` (`est_gpp_id` ASC) VISIBLE,
   CONSTRAINT `fk_est_for`
     FOREIGN KEY (`est_for_id`)
     REFERENCES `e_commerce_books`.`fornecedor` (`for_id`)
@@ -198,6 +193,11 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`estoque` (
   CONSTRAINT `fk_est_lvr`
     FOREIGN KEY (`est_lvr_id`)
     REFERENCES `e_commerce_books`.`livros` (`lvr_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_est_gpp`
+    FOREIGN KEY (`est_gpp_id`)
+    REFERENCES `e_commerce_books`.`grupo_precificacao` (`gpp_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

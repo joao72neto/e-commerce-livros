@@ -1,5 +1,6 @@
 
 -- Clientes
+
 INSERT INTO `e_commerce_books`.`clientes`
 (`clt_nome`, `clt_genero`, `clt_dataNasc`, `clt_cpf`, `clt_telefone`, `clt_email`, `clt_senha`, `clt_ranking`, `clt_status`, `clt_logado`)
 VALUES
@@ -97,51 +98,50 @@ INSERT INTO grupo_precificacao (gpp_id, gpp_nome, gpp_margemLucro) VALUES
 
 -- Livros
 INSERT INTO livros (
-  lvr_gpp_id, lvr_edt_id, lvr_aut_id, lvr_ano, lvr_titulo,
+  lvr_edt_id, lvr_aut_id, lvr_ano, lvr_titulo,
   lvr_edicao, lvr_isbn, lvr_numPaginas, lvr_sinopse,
   lvr_codigoBarras, lvr_largura, lvr_altura, lvr_peso, lvr_profundidade,
   lvr_capa, lvr_preco
 ) VALUES
-(6, 1, 1, 1954, 'O Senhor dos Anéis: A Sociedade do Anel', 1, '9788595084742', 576, 
+(1, 1, 1954, 'O Senhor dos Anéis: A Sociedade do Anel', 1, '9788595084742', 576, 
  'Primeiro volume da trilogia épica de J.R.R. Tolkien, onde um hobbit recebe a missão de destruir um anel poderoso e perigoso.', 
  '9788595084742', 15.50, 23.00, 0.65, 4.00, '/images/capas/sociedade_anel.jpg', 69.90),
 
-(2, 2, 2, 1949, '1984', 1, '9788535914849', 416, 
+(2, 2, 1949, '1984', 1, '9788535914849', 416, 
  'Romance distópico de George Orwell que aborda vigilância extrema, manipulação da informação e a opressão de um regime totalitário.', 
  '9788535914849', 14.00, 21.00, 0.40, 3.00, '/images/capas/1984.jpg', 49.90),
 
-(5, 3, 3, 1881, 'Memórias Póstumas de Brás Cubas', 1, '9788520931836', 208, 
+(3, 3, 1881, 'Memórias Póstumas de Brás Cubas', 1, '9788520931836', 208, 
  'Narrado por um defunto, o livro de Machado de Assis combina ironia, crítica social e uma profunda reflexão sobre a existência.', 
  '9788520931836', 13.50, 20.00, 0.35, 2.50, '/images/capas/bras_cubas.jpg', 39.90),
 
-(3, 4, 4, 1943, 'O Pequeno Príncipe', 1, '9788522031442', 96, 
+(4, 4, 1943, 'O Pequeno Príncipe', 1, '9788522031442', 96, 
  'Fábula poética de Antoine de Saint-Exupéry que trata de amizade, amor e do essencial que é invisível aos olhos.', 
  '9788522031442', 13.00, 18.00, 0.25, 1.80, '/images/capas/pequeno_principe.jpg', 34.90),
 
-(4, 5, 5, 1813, 'Orgulho e Preconceito', 1, '9788583862504', 424, 
+(5, 5, 1813, 'Orgulho e Preconceito', 1, '9788583862504', 424, 
  'Romance clássico de Jane Austen que explora relações humanas, classe social e os desafios do amor na Inglaterra do século XIX.', 
  '9788583862504', 14.50, 21.50, 0.55, 3.00, '/images/capas/orgulho_preconceito.jpg', 44.90),
 
-(2, 6, 6, 1915, 'A Metamorfose', 1, '9788525421523', 104, 
+(6, 6, 1915, 'A Metamorfose', 1, '9788525421523', 104, 
  'Obra-prima de Franz Kafka em que o protagonista acorda transformado em inseto, revelando a alienação e rejeição familiar.', 
  '9788525421523', 13.00, 18.00, 0.30, 2.20, '/images/capas/metamorfose.jpg', 29.90),
 
-(5, 3, 7, 1937, 'Capitães da Areia', 1, '9788503010903', 272, 
+(3, 7, 1937, 'Capitães da Areia', 1, '9788503010903', 272, 
  'Narrativa de Jorge Amado sobre um grupo de meninos de rua que enfrentam a miséria, a marginalização e a busca por liberdade.', 
  '9788503010903', 14.00, 20.50, 0.48, 2.80, '/images/capas/capitaes_areia.jpg', 42.90),
 
-(6, 7, 8, 2007, 'O Nome do Vento', 1, '9788599296493', 656, 
+(7, 8, 2007, 'O Nome do Vento', 1, '9788599296493', 656, 
  'Primeiro livro da Crônica do Matador do Rei, de Patrick Rothfuss, que narra a trajetória do jovem músico e mago Kvothe.', 
  '9788599296493', 15.50, 23.50, 0.72, 4.20, '/images/capas/nome_do_vento.jpg', 64.90),
 
-(1, 2, 1, 1955, 'O Senhor dos Anéis: As Duas Torres', 1, '9788595084759', 448, 
+(2, 1, 1955, 'O Senhor dos Anéis: As Duas Torres', 1, '9788595084759', 448, 
  'Continuação da jornada épica de Frodo e seus companheiros, agora divididos em múltiplos caminhos rumo ao destino final.', 
  '9788595084759', 15.00, 22.50, 0.60, 4.00, '/images/capas/duas_torres.jpg', 69.90),
 
-(1, 2, 1, 1956, 'O Senhor dos Anéis: O Retorno do Rei', 1, '9788595084766', 576, 
+(2, 1, 1956, 'O Senhor dos Anéis: O Retorno do Rei', 1, '9788595084766', 576, 
  'Desfecho da trilogia com batalhas épicas e a conclusão da missão para destruir o Um Anel e derrotar Sauron.', 
  '9788595084766', 15.50, 23.00, 0.65, 4.00, '/images/capas/retorno_rei.jpg', 69.90);
-
 
 -- Fornecedores
 INSERT INTO fornecedor (for_nome) VALUES
@@ -153,45 +153,58 @@ INSERT INTO fornecedor (for_nome) VALUES
 ('Editora Intrínseca'),
 ('Companhia das Letras');
 
+-- Precificação
+
+-- Inserindo grupos de precificação
+INSERT INTO grupo_precificacao (gpp_nome, gpp_margemLucro) VALUES
+('Lançamentos', 50.00),        
+('Clássicos', 30.00),         
+('Best-sellers', 40.00),      
+('Promocionais', 20.00),      
+('Importados', 60.00),        
+('Nacionais', 35.00);         
+
 -- Estoque
 
-INSERT INTO estoque (est_for_id, est_lvr_id, est_qtd, est_data, est_valorCompra) VALUES
--- O Senhor dos Anéis: A Sociedade do Anel (ID 1)
-(4, 1, 35, '2023-10-15', 69.90),
-(2, 1, 20, '2023-11-05', 71.50),
+-- Inserindo registros de estoque atualizados
+INSERT INTO estoque (est_for_id, est_lvr_id, est_gpp_id, est_qtd, est_data, est_valorCompra) VALUES
 
--- 1984 (ID 2)
-(7, 2, 45, '2023-09-20', 49.90),
-(3, 2, 30, '2023-12-10', 51.90),
+-- O Senhor dos Anéis: A Sociedade do Anel (ID 1) - Importado
+(4, 1, 5, 35, '2023-10-15', 46.60),  -- Preço 69.90 / (1 + 0.50)
+(2, 1, 5, 20, '2023-11-05', 47.67),   -- Preço 71.50 / (1 + 0.50)
 
--- Memórias Póstumas de Brás Cubas (ID 3)
-(1, 3, 25, '2023-08-15', 39.90),
-(5, 3, 15, '2024-01-05', 41.50),
+-- 1984 (ID 2) - Clássico
+(7, 2, 2, 45, '2023-09-20', 38.38),   -- Preço 49.90 / (1 + 0.30)
+(3, 2, 2, 30, '2023-12-10', 39.92),    -- Preço 51.90 / (1 + 0.30)
 
--- O Pequeno Príncipe (ID 4)
-(7, 4, 60, '2023-07-22', 34.90),
-(2, 4, 40, '2023-11-18', 36.90),
+-- Memórias Póstumas de Brás Cubas (ID 3) - Nacional
+(1, 3, 6, 25, '2023-08-15', 29.56),   -- Preço 39.90 / (1 + 0.35)
+(5, 3, 6, 15, '2024-01-05', 30.74),    -- Preço 41.50 / (1 + 0.35)
 
--- Orgulho e Preconceito (ID 5)
-(6, 5, 30, '2023-10-10', 44.90),
-(3, 5, 25, '2023-12-15', 46.50),
+-- O Pequeno Príncipe (ID 4) - Clássico
+(7, 4, 2, 60, '2023-07-22', 26.85),   -- Preço 34.90 / (1 + 0.30)
+(2, 4, 2, 40, '2023-11-18', 28.38),    -- Preço 36.90 / (1 + 0.30)
 
--- A Metamorfose (ID 6)
-(7, 6, 50, '2023-09-05', 29.90),
-(1, 6, 20, '2024-01-20', 31.50),
+-- Orgulho e Preconceito (ID 5) - Clássico
+(6, 5, 2, 30, '2023-10-10', 34.54),   -- Preço 44.90 / (1 + 0.30)
+(3, 5, 2, 25, '2023-12-15', 35.77),    -- Preço 46.50 / (1 + 0.30)
 
--- Capitães da Areia (ID 7)
-(5, 7, 40, '2023-08-30', 42.90),
-(1, 7, 35, '2023-11-25', 44.50),
+-- A Metamorfose (ID 6) - Clássico
+(7, 6, 2, 50, '2023-09-05', 23.00),   -- Preço 29.90 / (1 + 0.30)
+(1, 6, 2, 20, '2024-01-20', 24.23),    -- Preço 31.50 / (1 + 0.30)
 
--- O Nome do Vento (ID 8)
-(4, 8, 30, '2023-10-25', 64.90),
-(6, 8, 25, '2023-12-05', 66.90),
+-- Capitães da Areia (ID 7) - Nacional
+(5, 7, 6, 40, '2023-08-30', 31.78),   -- Preço 42.90 / (1 + 0.35)
+(1, 7, 6, 35, '2023-11-25', 32.96),    -- Preço 44.50 / (1 + 0.35)
 
--- O Senhor dos Anéis: As Duas Torres (ID 9)
-(4, 9, 35, '2023-11-15', 69.90),
-(2, 9, 20, '2024-01-10', 71.50),
+-- O Nome do Vento (ID 8) - Lançamento
+(4, 8, 1, 30, '2023-10-25', 46.60),   -- Preço 69.90 / (1 + 0.50)
+(6, 8, 1, 25, '2023-12-05', 44.60),    -- Preço 66.90 / (1 + 0.50)
 
--- O Senhor dos Anéis: O Retorno do Rei (ID 10)
-(4, 10, 35, '2023-11-20', 69.90),
-(2, 10, 20, '2024-01-15', 71.50);
+-- O Senhor dos Anéis: As Duas Torres (ID 9) - Importado
+(4, 9, 5, 35, '2023-11-15', 46.60),   -- Preço 69.90 / (1 + 0.50)
+(2, 9, 5, 20, '2024-01-10', 47.67),    -- Preço 71.50 / (1 + 0.50)
+
+-- O Senhor dos Anéis: O Retorno do Rei (ID 10) - Importado
+(4, 10, 5, 35, '2023-11-20', 46.60),  -- Preço 69.90 / (1 + 0.50)
+(2, 10, 5, 20, '2024-01-15', 47.67);   -- Preço 71.50 / (1 + 0.50)
