@@ -1,7 +1,7 @@
 /*Importando as cores do site*/
 @import url('../colors.css');
 
-body{
+body, html{
     background-color: var(--preto);
 }
 
