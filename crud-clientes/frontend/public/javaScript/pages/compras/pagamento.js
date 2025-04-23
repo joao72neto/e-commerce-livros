@@ -96,32 +96,38 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
 
     //Pegando os itens do carrinho
     const cliente = await buscarClienteLogadoService();
-    const carrinho = await buscarCarrinhoClienteIdService(cliente[0].clt_id);
+    let carrinho = await buscarCarrinhoClienteIdService(cliente[0].clt_id);
 
     //Obetendo o valor total da compra
     const valorTotal = Number(document.querySelector('.total').textContent.split('R$')[1].replace(',', '.'));
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const compra = urlParams.get('compra'); 
 
-    //Preparando os dados a serem enviados
-    carrinho.forEach(async item => {
+    //Finalizando o pedido se for uma compra única
+    if(compra){
+        
+        //Obtendo o livro a ser comprado
+        carrinho = carrinho.find(car => car.crr_lvr_id === Number(compra));
+        
+        //Gerando um número para o pedido
+        const numPedido = gerarNumeroPedido(carrinho.crr_lvr_id);
 
-        //Gerando o número do pedido
-        let numPedido = gerarNumeroPedido(Number(item.lvr_id));
-
-
+        //Preparando os dados
         let valores = {
             clt_id: cliente[0].clt_id,
-            lvr_id: item.crr_lvr_id,
+            lvr_id: carrinho.crr_lvr_id,
             lvr_numPedido: numPedido,
-            vnd_valorTotal: item.crr_total, 
+            vnd_valorTotal: carrinho.crr_total, 
             vnd_frete: 12,
-            vnd_qtd: item.crr_qtd
-        } 
+            vnd_qtd: carrinho.crr_qtd
+        }
 
-        //Adicionando os itens na tabela de vebdas
+        // Adicionando os itens na tabela de vendas
         const resAdd = await adicionarPedidoService(valores);
-        const resRem = await removerCarrinhoIdService(item.crr_lvr_id);
+        const resRem = await removerCarrinhoIdService(carrinho.crr_lvr_id);
 
+        //Verificando erros
         if(!resAdd === 201){
             alert('Não foi possível finalizar a compra');
             return; 
@@ -132,11 +138,43 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
             return;
         }
 
-    });
+    }else{
+        
+        //Finalizando pedido para múltiplos pedidos
+        carrinho.forEach(async item => {
+
+            //Gerando um número para cada pedido
+            let numPedido = gerarNumeroPedido(Number(item.lvr_id));
+
+            //Preparando os dados
+            let valores = {
+                clt_id: cliente[0].clt_id,
+                lvr_id: item.crr_lvr_id,
+                lvr_numPedido: numPedido,
+                vnd_valorTotal: item.crr_total, 
+                vnd_frete: 12,
+                vnd_qtd: item.crr_qtd
+            } 
+
+            //Adicionando os itens na tabela de vendas
+            const resAdd = await adicionarPedidoService(valores);
+            const resRem = await removerCarrinhoIdService(item.crr_lvr_id);
+
+            //Vericando erros
+            if(!resAdd === 201){
+                alert('Não foi possível finalizar a compra');
+                return; 
+            }
+
+            if(!resRem === 204){
+                alert('Não foi possível retirar o livro do carrinho');
+                return;
+            }
+
+        });
+    }
 
     //Redirecionando para a página de pedidos
     alert('Compra ralizada com sucesso!');
     window.location.href = '/pedidos';
-
-
 });
