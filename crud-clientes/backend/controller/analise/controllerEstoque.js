@@ -2,16 +2,27 @@ const { buscarEstoque } = require('../../model/analise/modelEstoque');
 const { adicionarEstoque } = require('../../model/analise/modelEstoque');
 const { buscarTodosFornecedores } = require('../../model/analise/modelEstoque');
 const { buscarTodosGrpPrecificacao } = require('../../model/analise/modelEstoque');
+const { buscarTodosLivros } = require('../../model/books/modelBooks');
 
 //Página
 module.exports.getEstoque = async (req, res) => {
-
     const estoque = await buscarEstoque();
     res.render('analise/estoque/estoque', {estoque: estoque});
 };
 
-module.exports.getEstoqueEntrada = (req, res) => {
-    res.render('analise/estoque/estoqueEntrada');
+module.exports.getEstoqueEntrada = async (req, res) => {
+    
+    //Obtendo dados
+    const fornecedores = await buscarTodosFornecedores();
+    const grpPrecificacao = await buscarTodosGrpPrecificacao();
+    const livros = await buscarTodosLivros(); 
+
+    res.render('analise/estoque/estoqueEntrada', {
+        livros: livros,
+        fornecedores: fornecedores,
+        grpPrecificacao: grpPrecificacao
+
+    });
 };
 
 //Inserção de dados

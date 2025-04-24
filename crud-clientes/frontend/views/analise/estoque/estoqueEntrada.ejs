@@ -24,19 +24,22 @@
                 <label for="livro">Livros Cadastrados</label>
                 <select name="livro" id="livro" required>
                     <option value="" disabled selected>Selecione um livro</option>
-                    <option value="game_of_thrones">Game of Thrones</option>
-                    <option value="it">IT</option>
-                    <option value="codigo_limpo">Código Limpo</option>
-                    <option value="lord_of_the_rings">Lord of the Rings</option>
+
+                    <% livros.forEach(livro => { %>
+                        <option value="<%=livro.lvr_id%>"><%=livro.lvr_titulo%></option>
+                    <% }); %>
+
                 </select>
             
                 <label for="fornecedor">Fornecedor</label>
 
                 <select name="fornecedor" id="fornecedor" required>
                     <option value="" disabled selected>Selecione um Fornecedor</option>
-                    <option value="A">Grupo A (20%)</option>
-                    <option value="B">Grupo B (25%)</option>
-                    <option value="C">Grupo C (30%)</option>
+
+                    <% fornecedores.forEach(fornecedor => { %>
+                        <option value="<%=fornecedor.for_id%>"><%=fornecedor.for_nome%></option>
+                    <% }); %>
+
                 </select>
             
                 <label for="qtd">Quantidade do Item</label>
@@ -48,9 +51,11 @@
                 <label for="grupo_precificacao">Grupo de Precificação</label>
                 <select name="grupo_precificacao" id="grupo_precificacao" required>
                     <option value="" disabled selected>Selecione um grupo</option>
-                    <option value="A">Grupo A (20%)</option>
-                    <option value="B">Grupo B (25%)</option>
-                    <option value="C">Grupo C (30%)</option>
+                    
+                    <% grpPrecificacao.forEach(grp => { %>
+                        <option value="<%=grp.gpp_id%>"><%=grp.gpp_nome%> (<%=grp.gpp_margemLucro%100%>%)</option>
+                    <% }); %>
+                    
                 </select>
             
                 <div class="submit">
