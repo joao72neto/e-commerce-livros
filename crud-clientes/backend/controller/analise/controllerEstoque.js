@@ -1,4 +1,5 @@
 const { buscarEstoque } = require('../../model/analise/modelEstoque');
+const { adicionarEstoque } = require('../../model/analise/modelEstoque');
 
 //Página
 module.exports.getEstoque = async (req, res) => {
@@ -9,5 +10,16 @@ module.exports.getEstoque = async (req, res) => {
 
 module.exports.getEstoqueEntrada = (req, res) => {
     res.render('analise/estoque/estoqueEntrada');
+};
+
+//Inserção de dados
+module.exports.postAdicionarEstoque = async (req, res) => {
+    try{
+        await adicionarEstoque(req.body);
+        res.status(201).json({msg: 'Nova entrada adicionada ao estoque'});
+    }catch(err){
+        console.error(`Erro no postAdicionarEstoque - controllerEstoque: ${err}`);
+        return res.status(500).json({msg:'Erro adicionar item ao estoque'});
+    }
 };
 

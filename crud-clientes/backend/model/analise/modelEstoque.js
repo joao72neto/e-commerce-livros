@@ -1,38 +1,48 @@
 const db = require('../../config/db');
 
-//INSERT
+// INSERT
 
-// //Dando uma entrada no estoque
-// module.exports.cadastrarCartao = async (dados) => {
+// Adicionando uma nova entrada no estoque
+module.exports.adicionarEstoque = async (dados) => {
 
-//     //Consulta SQL
-//     sql = `
-//         INSERT INTO estoque (
-//             est_for_id,
-//             est_lvr_id,
-//             est_gpp_id,
-//             est_qtd,
-//             est_data,
-//             est_valorCompra,
-//             est_origem
-//         ) VALUES (
-//             ?, ?, ?, ?, CURDATE(), ?, 'COMPRA'
-//         )
-//     `;
 
-//     //Valores a serem inseridos no banco
-//     const valores = [
-//         dados.for_id,
-//         dados.lvr_id,
-//         dados.gpp_id,
-//         dados.car_bandeira,
-//         dados.car_cvv
-//     ]
+    // Insert na tabela de estoque
+    const sql = `
+        INSERT INTO estoque (
+            est_for_id,
+            est_lvr_id,
+            est_gpp_id,
+            est_qtd,
+            est_data,
+            est_valorCompra,
+            est_origem
+        ) VALUES (
+            ?, ?, ?, ?, CURDATE(), ?, 'COMPRA'
+        )
+    `;
 
-//     await db.query(sql, valores)
-//         .catch(err => `Erro no cadastrarCartao - modelCard: ${err}`);
+    //Valores a serem inseridos no banco
+    const valores = [
+        dados.est_for_id,
+        dados.est_lvr_id,
+        dados.est_gpp_id,
+        dados.est_qtd,
+        dados.est_valorCompra
+    ]
+
+    //Inserindo os dados necessários
+    try{
+
+        const res = await db.query(sql, valores);
+        console.log(res);
+
+    }catch(err){
+        console.error(`Erro no adicionarEstoque - modelEstoque: ${err}`);
+        throw err;
+    }
+        
     
-// }
+}
 
 //SELECT
 

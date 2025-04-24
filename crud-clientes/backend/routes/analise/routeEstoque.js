@@ -6,4 +6,8 @@ const controllerEstoque = require('../../controller/analise/controllerEstoque');
 router.get('/estoque', controllerEstoque.getEstoque);
 router.get('/estoque/entrada', controllerEstoque.getEstoqueEntrada);
 
+
+//Rota para adicionar item ao estoque
+router.post('/estoque/entrada/add', controllerEstoque.postAdicionarEstoque);
+
 module.exports = router;
