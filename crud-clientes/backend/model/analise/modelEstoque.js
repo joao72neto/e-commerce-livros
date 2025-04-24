@@ -78,3 +78,45 @@ module.exports.buscarEstoque = async () => {
         throw err;
     }
 }
+
+//Buscando todos os fornecedores cadastrados
+module.exports.buscarTodosFornecedores = async () => {
+    
+    const sql = `
+    
+        select
+            *
+        from 
+            fornecedor;
+    `;
+    
+    try{
+        const [fornecedores] = await db.query(sql);
+        return fornecedores;
+        
+    }catch(err){
+        console.error(`Erro no buscarTodosFornecedores - modelEstoque: ${err}`);
+        throw err;
+    }
+}
+
+//Buscando todos os grupos de precificação
+module.exports.buscarTodosGrpPrecificacao = async () => {
+    
+    const sql = `
+    
+        select
+            *
+        from 
+            grupo_precificacao;
+    `;
+    
+    try{
+        const [fornecedores] = await db.query(sql);
+        return fornecedores;
+        
+    }catch(err){
+        console.error(`Erro no buscarTodosGrpPrecificacao - modelEstoque: ${err}`);
+        throw err;
+    }
+}

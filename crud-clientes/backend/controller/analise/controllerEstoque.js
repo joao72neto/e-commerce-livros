@@ -1,5 +1,7 @@
 const { buscarEstoque } = require('../../model/analise/modelEstoque');
 const { adicionarEstoque } = require('../../model/analise/modelEstoque');
+const { buscarTodosFornecedores } = require('../../model/analise/modelEstoque');
+const { buscarTodosGrpPrecificacao } = require('../../model/analise/modelEstoque');
 
 //Página
 module.exports.getEstoque = async (req, res) => {
@@ -23,3 +25,13 @@ module.exports.postAdicionarEstoque = async (req, res) => {
     }
 };
 
+//Apis 
+module.exports.getApiTodosFornecedores = async (req, res) => {
+    const fornecedores = await buscarTodosFornecedores();
+    res.json(fornecedores); 
+};
+
+module.exports.getApiTodosGrpPrecificacao = async (req, res) => {
+    const grpPrecificacao = await buscarTodosGrpPrecificacao();
+    res.json(grpPrecificacao);
+};

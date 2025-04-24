@@ -31,7 +31,13 @@
                 </select>
             
                 <label for="fornecedor">Fornecedor</label>
-                <input type="text" id="fornecedor" name="fornecedor" placeholder="Nome da editora ou distribuidora" required>
+
+                <select name="fornecedor" id="fornecedor" required>
+                    <option value="" disabled selected>Selecione um Fornecedor</option>
+                    <option value="A">Grupo A (20%)</option>
+                    <option value="B">Grupo B (25%)</option>
+                    <option value="C">Grupo C (30%)</option>
+                </select>
             
                 <label for="qtd">Quantidade do Item</label>
                 <input type="number" id="qtd" name="qtd" min="1" placeholder="Ex: 10" required>
@@ -46,9 +52,6 @@
                     <option value="B">Grupo B (25%)</option>
                     <option value="C">Grupo C (30%)</option>
                 </select>
-            
-                <label for="data_entrada">Data de Entrada</label>
-                <input type="date" id="data_entrada" name="data_entrada" required>
             
                 <div class="submit">
                     <button type="submit">Confirmar</button>
