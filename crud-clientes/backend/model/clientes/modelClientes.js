@@ -202,6 +202,28 @@ module.exports.filtrarClientesAtivos = async (dados) => {
     }
 }
 
+//Buscar Clientes que possuem pedidos
+module.exports.buscarClientesPedidos = async () => {
+    
+    const sql = `
+    
+    select 
+        *
+    from
+        vendas v
+        inner join clientes c on c.clt_id = v.vnd_clt_id
+        inner join livros l on lvr_id = v.vnd_lvr_id;
+    `
+    
+    try{
+        const [clientes] = await db.query(sql);
+        return clientes;
+    }catch(err){
+        console.error(`Erro no buscarClientesPedidos - modelClientes: ${err}`);
+        throw err;
+    }
+}
+
 
 //Buscando clientes ativos
 module.exports.buscarClientesAtivos = async () => {
