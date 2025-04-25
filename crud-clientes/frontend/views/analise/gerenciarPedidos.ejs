@@ -47,62 +47,49 @@
                 </div>
             </div>
 
-            <div class="pedidos">
-                <h2>João Salvador Neto - 435.925.634-37</h2>
-                <div class="wrapper">
-                    <div class="imagem">
-                        <img src="/images/livros/aneis.jpg" alt="">
-                    </div>
-                    <div>
-                        <h2>Lord of The Rings</h2>
-                        <p>20-12-2020</p>
-                        <p><strong>Comprador: </strong>João Neto</p>
-                    </div>
-                    <div>
-                        <select name="" id="">
-                            <option value="">Em processamento</option>
-                            <option value="">Aprovado</option>
-                            <option value="">Reprovado</option>
-                        </select>
-                        <select name="" id="">
-                            <option value="">Em Transito</option>
-                            <option value="">Entregue</option>
-                        </select>
-                        <select name="" id="">
-                            <option value="">Sem Troca</option>
-                            <option value="">Em Troca</option>
-                            <option value="">Troca Autorizada</option>
-                            <option value="">Troca Reprovada</option>
-                        </select>
-                    </div>
+            <% clientes.forEach(cliente => { %>
+
+                <div class="pedidos">
+                    <h2><%=cliente.clt_nome%> - <%=cliente.clt_cpf%></h2>
+
+                    <% 
+                   
+                    pedidos.filter(ped => ped.clt_id === cliente.clt_id).forEach(pedido => { 
+                
+                    pedido.vnd_data = new Date(pedido.vnd_data).toLocaleDateString('pt-BR');
+
+                    %>
+
+                        <div class="wrapper">
+                            <div class="imagem">
+                                <img src="<%=pedido.lvr_capa%>" alt="">
+                            </div>
+                            <div>
+                                <h2><%=pedido.lvr_titulo%></h2>
+                                <p><%=pedido.vnd_data%></p>
+                                <p><strong>Comprador: </strong><%=pedido.clt_nome%></p>
+                            </div>
+                            <div>
+                            
+                                <select name="" id="">
+                                    <option value="">Em Transito</option>
+                                    <option value="">Entregue</option>
+                                </select>
+                                <select name="" id="">
+                                    <option value="">Sem Troca</option>
+                                    <option value="">Em Troca</option>
+                                    <option value="">Troca Autorizada</option>
+                                    <option value="">Troca Reprovada</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    <% }); %>
+
                 </div>
-                <div class="wrapper">
-                    <div class="imagem">
-                        <img src="/images/livros/got.jpg" alt="">
-                    </div>
-                    <div>
-                        <h2>Game of Thrones</h2>
-                        <p>20-10-2020</p>
-                        <p><strong>Comprador: </strong>João Neto</p>
-                    </div>
-                    <div>
-                        <select name="" id="">
-                            <option value="">Em processamento</option>
-                            <option value="">Aprovado</option>
-                            <option value="">Reprovado</option>
-                        </select>
-                        <select name="" id="">
-                            <option value="">Em Transito</option>
-                            <option value="">Entregue</option>
-                        </select>
-                        <select name="" id="">
-                            <option value="">Em Troca</option>
-                            <option value="">Sem Troca</option>
-                            <option value="">Troca Autorizada</option>
-                            <option value="">Troca Reprovada</option>
-                        </select>
-                    </div>
-            </div>
+
+            <% }); %>
+            
         </main>
 
         <%- include('../components/footer')%>
