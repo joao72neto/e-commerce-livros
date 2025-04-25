@@ -1,4 +1,5 @@
 const { buscarClientesPedidos } = require('../../model/clientes/modelClientes');
+const { atualizarStatusPedidoId } = require('../../model/analise/modelGerenciarPedidos');
 
 //Página
 module.exports.getGerenciarPedidos = async (req, res) => {
@@ -27,3 +28,17 @@ module.exports.getGerenciarPedidos = async (req, res) => {
         pedidos: clientesPedidos
     });
 };
+
+
+//Atualizando os status dos pedidos
+module.exports.patchAtualizarStatusPedidoId = async (req, res) => {
+    try{
+        
+        await atualizarStatusPedidoId(req.body);
+        return res.status(200).json({msg: 'Status atualizdo com sucesso!'});
+
+    }catch(err){
+        console.error(`Erro no patchAtualizarStatusPedidoId - controllerGerenciarPedidos: ${err}`);
+        return res.status(500).json({msg: 'Não foi possível atualizar o status'});
+    }
+}

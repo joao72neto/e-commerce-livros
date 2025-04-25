@@ -5,4 +5,6 @@ const controllerGerenciarPedidos = require('../../controller/analise/controllerG
 //Rotas para páginas
 router.get('/pedidos/gerenciar', controllerGerenciarPedidos.getGerenciarPedidos);
 
+//Rota para modificação de dados
+router.patch('/pedidos/status/update/', controllerGerenciarPedidos.patchAtualizarStatusPedidoId);
 module.exports = router;

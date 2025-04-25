@@ -45,7 +45,14 @@ main{
 }
 
 .pedidos .wrapper .status{
-    justify-self: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit);
+    gap: 20px;
+    justify-content: center;
+}
+
+.pedidos .wrapper .status select{
+    width: 250px;
 }
 
 .imagem img{
