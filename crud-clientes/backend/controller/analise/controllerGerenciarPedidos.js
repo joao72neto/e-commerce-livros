@@ -22,8 +22,6 @@ module.exports.getGerenciarPedidos = async (req, res) => {
         ).values()
     );
 
-    console.log(clientes);
-
     res.render('analise/gerenciarPedidos', {
         clientes: clientes,
         pedidos: clientesPedidos

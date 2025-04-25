@@ -39,6 +39,15 @@ main{
     padding: 20px;
 }
 
+.pedidos .wrapper{
+    display: grid;
+    grid-template-columns: 20% 1fr 1fr;
+}
+
+.pedidos .wrapper .status{
+    justify-self: center;
+}
+
 .imagem img{
     width: 100px;
     background-color: gray;
