@@ -33,8 +33,7 @@ module.exports.adicionarEstoque = async (dados) => {
     //Inserindo os dados necessários
     try{
 
-        const res = await db.query(sql, valores);
-        console.log(res);
+        await db.query(sql, valores);
 
     }catch(err){
         console.error(`Erro no adicionarEstoque - modelEstoque: ${err}`);
