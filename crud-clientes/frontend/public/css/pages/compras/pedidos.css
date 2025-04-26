@@ -44,7 +44,10 @@ main{
 }
 
 .acoes{
+    display: grid;
     justify-self: center;
+    text-align: center;
+    gap: 20px;
 
 }
 
