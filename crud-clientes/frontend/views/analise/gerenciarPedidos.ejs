@@ -84,13 +84,13 @@
                                 </select>
                                 
                                 <select name="entrega" id="entrega">
-                                    <option value="" <%= pedido.vnd_status === '' ? 'selected' : '' %>>Gerenciar Entrega</option>
+                                    <option class="empty" value="" <%= pedido.vnd_status === '' ? 'selected' : '' %>>Gerenciar Entrega</option>
                                     <option value="Em Transporte" <%= pedido.vnd_status === 'Em Transporte' ? 'selected' : '' %>>Em Transporte</option>
                                     <option value="Entregue" <%= pedido.vnd_status === 'Entregue' ? 'selected' : '' %>>Entregue</option>
                                 </select>
                                 
                                 <select name="troca" id="troca">
-                                    <option value="" <%= pedido.vnd_status === '' ? 'selected' : '' %>>Gerenciar Troca</option>
+                                    <option class="empty" value="" <%= pedido.vnd_status === '' ? 'selected' : '' %>>Gerenciar Troca</option>
                                     <option value="Troca Solicitada" <%= pedido.vnd_status === 'Troca Solicitada' ? 'selected' : '' %>>Troca Solicitada</option>
                                     <option value="Troca Aceita" <%= pedido.vnd_status === 'Troca Aceita' ? 'selected' : '' %>>Troca Aceita</option>
                                     <option value="Troca Concluída" <%= pedido.vnd_status === 'Troca Concluída' ? 'selected' : '' %>>Troca Concluída</option>
@@ -98,7 +98,7 @@
                                 </select>
                                 
                                 <select name="devolucao" id="devolucao">
-                                    <option value="Devolução Solicitada" <%= pedido.vnd_status === 'Devolução Solicitada' ? 'selected' : '' %>>Gerenciar Devolução</option>
+                                    <option class="empty" value="Devolução Solicitada" <%= pedido.vnd_status === 'Devolução Solicitada' ? 'selected' : '' %>>Gerenciar Devolução</option>
                                     <option value="Devolução Solicitada" <%= pedido.vnd_status === 'Devolução Solicitada' ? 'selected' : '' %>>Devolução Solicitada</option>
                                     <option value="Devolução Aceita" <%= pedido.vnd_status === 'Devolução Aceita' ? 'selected' : '' %>>Devolução Aceita</option>
                                     <option value="Devolução Concluída" <%= pedido.vnd_status === 'Devolução Concluída' ? 'selected' : '' %>>Devolução Concluída</option>
