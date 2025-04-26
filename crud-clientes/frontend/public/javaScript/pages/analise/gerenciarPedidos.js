@@ -17,23 +17,38 @@ document.addEventListener('DOMContentLoaded', function(){
     //Exibindo os selects corretamento
     document.querySelectorAll('.status-atual').forEach(function(status){
 
-        //Lógica para exibição dos selects
+        //Obtendo os selects
+        const statusContainer = status.closest('.status');
+        const entrega = statusContainer.querySelector('#entrega');
+        const processamento = statusContainer.querySelector('#processamento');
 
+        //Lógica para exibição dos selects
         const statusProcessamento = ['Aprovado', 'Em Transporte', 'Entregue'];
 
         if(statusProcessamento.includes(status.textContent)){
-            const statusContainer = status.closest('.status');
-            const entrega = statusContainer.querySelector('#entrega');
+
+            processamento.disabled = true;
             entrega.style.display = 'block';
 
             if (status.textContent === 'Em Transporte' || status.textContent === 'Entregue') {
                 const emptyOption = entrega.querySelector('.empty');
+                
                 if (emptyOption) {
                     emptyOption.remove(); 
                 }
+
+                processamento.remove();
+            }
+
+            if(status.textContent === 'Entregue'){
+                entrega.disabled = true;
             }
 
             return;
+        }
+
+        if(status.textContent === 'Reprovado' || status.textContent === 'Cancelado'){
+            processamento.disabled = true;
         }
     });
 
