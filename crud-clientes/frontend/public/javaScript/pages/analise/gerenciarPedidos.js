@@ -1,7 +1,8 @@
 import { atualizarStatusPedidoIdService } from "/javaScript/service/analise/serviceGerenciarPedidos.js";
 
 document.addEventListener('DOMContentLoaded', function(){
-    
+
+
     //Ocultando selects
     const entrega = document.querySelectorAll('#entrega').forEach(select => {
         select.style.display = 'none';
@@ -13,15 +14,31 @@ document.addEventListener('DOMContentLoaded', function(){
         select.style.display = 'none';
     }); 
 
-    //Lógica para mostrar os selects 
-    const processamento = document.querySelectorAll('#processamento').forEach(select => {
+    //Exibindo os selects corretamento
+    document.querySelectorAll('.status-atual').forEach(function(status){
+
+        //Lógica para exibição dos selects
+        if(status.textContent === 'Aprovado'){
+            const statusContainer = status.closest('.status');
+            const entrega = statusContainer.querySelector('#entrega');
+            entrega.style.display = 'block';
+            return;
+        }
+    });
+
+    //Lógica para alteração do status do processamento
+    document.querySelectorAll('#processamento').forEach(select => {
         
         select.addEventListener('change', async function(){
             
 
             //Obtendo os dados para atualizar o select de processamento
+
+            const wrapper = this.closest('.wrapper');
+            const vnd_id = Number(wrapper.querySelector('.vnd-id').textContent);
+
             const dados = {
-                vnd_id: Number(document.querySelector('.vnd-id').textContent),
+                vnd_id: vnd_id,
                 vnd_status: this.value
             };
 
@@ -33,18 +50,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 return;
             }
 
-            //Obtendo dados da entrega
-            const status = this.closest('.status');
-            const entrega = status.querySelector('#entrega');
-            
-            //Lógica para exibição dos selects
-            if(select.value === 'Aprovado'){
-                entrega.style.display = 'block';
-                return;
-            }
-
-            entrega.style.display = 'none';
+            window.location.reload();
         });
     });
-
 });
