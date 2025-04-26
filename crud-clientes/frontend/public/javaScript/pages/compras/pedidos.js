@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function(){
             }
 
             alert('Não foi possível fazer a troca ou devolução');
-
         });
     });
 });
