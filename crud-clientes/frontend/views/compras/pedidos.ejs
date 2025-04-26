@@ -26,6 +26,7 @@
                         <img src="<%=pedido.lvr_capa%>" alt="">
                     </div>
                     <div class="book-title">
+                        <p class="invisible vnd-id"><%=pedido.vnd_id%></p>
                         <p><strong>Qtd: <%=pedido.vnd_qtd%></strong></p>
                         <p><%=pedido.lvr_titulo%></p>
                         <p><strong>R$ <%=String(pedido.vnd_valorTotal).replace('.', ',')%></strong></p>
@@ -39,8 +40,8 @@
                         </div>
                     </div>
                     <div class="acoes">
-                        <a href="">Trocar</a>
-                        <a href="">Devolver</a>
+                        <a class="troca">Trocar</a>
+                        <a class="devolucao">Devolver</a>
                     </div>
                 </div>
 
@@ -50,5 +51,8 @@
         <%- include('../components/footer')%>
 
     </div>
+
+    <script type="module" src="/javaScript/pages/compras/pedidos.js"></script>
+
 </body>
 </html>

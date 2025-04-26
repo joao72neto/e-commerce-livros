@@ -1,5 +1,6 @@
 const { buscarClientesPedidos } = require('../../model/clientes/modelClientes');
 const { atualizarStatusPedidoId } = require('../../model/analise/modelGerenciarPedidos');
+const { devolverTrocarProduto } = require('../../model/analise/modelGerenciarPedidos');
 
 //Página
 module.exports.getGerenciarPedidos = async (req, res) => {
@@ -42,3 +43,14 @@ module.exports.patchAtualizarStatusPedidoId = async (req, res) => {
         return res.status(500).json({msg: 'Não foi possível atualizar o status'});
     }
 }
+
+//Inserção de dados
+module.exports.postDevolverTrocarProduto = async (req, res) => {
+    try{
+        await devolverTrocarProduto(req.body);
+        return res.status(201).json({msg: 'Produto em processo de troca ou devolução'});
+    }catch(err){
+        console.error(`Erro no postDevolverTrocarProduto - controllerGerenciarPedidos: ${err}`);
+        return res.status(500).json({msg: 'Não foi possível fazer a troca do produto'});
+    }
+};

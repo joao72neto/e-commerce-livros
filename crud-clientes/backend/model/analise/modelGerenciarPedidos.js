@@ -1,6 +1,5 @@
 const db = require('../../config/db');
 
-
 //UPDATE
 
 //Atualizando o status de um determinado pedido
@@ -54,7 +53,7 @@ module.exports.devolverTrocarProduto = async (dados) => {
         dados.trc_tipo
     ]
 
-    // Executando a query para a inserção dos dados 
+    // Executando a query para a inserção de dados 
     try{
 
         await db.query(sql, valores);
