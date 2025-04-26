@@ -8,7 +8,10 @@ module.exports.getPedidos = async (req, res) => {
     const cliente = await buscarClienteLogado();
     const pedidos = await buscarPedidosClienteId(cliente[0].clt_id);
 
-    res.render('compras/pedidos', {pedidos: pedidos});
+    res.render('compras/pedidos', {
+        pedidos: pedidos,
+        cliente: cliente
+    });
 };
 
 //Inserção de pedidos
