@@ -22,13 +22,13 @@ export async function atualizarStatusPedidoIdService(dados) {
 //Inserindo um produto na tabela de troca ou devolução
 export async function devolverTrocarProdutoService(dados) {
     try{
-        const result = await fetch(`/pedidos/trocarDevolver`, {
+        const result = await fetch(`/pedidos/devolverTrocar`, {
            method: 'POST',
            headers: {'Content-Type':'application/json'},
            body: JSON.stringify(dados) 
         });
 
-        return result;
+        return result.status;
 
     }catch(err){
         console.error(`Erro no devolverTrocarProdutoService - serviceGerenciarPedidos: ${err}`);
