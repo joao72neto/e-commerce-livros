@@ -10,6 +10,7 @@ module.exports.getCarrinho = async (req, res) => {
     const carrinho = await buscarCarrinhoClienteId(cliente[0].clt_id);
 
     res.render('compras/carrinho', {
+        cliente: cliente,
         carrinho: carrinho
     });
 };

@@ -34,7 +34,7 @@
 
                 <div class="wrapper">
                     <div class="imagem">
-                        <img src="/images/livros/got.jpg" alt="">
+                        <img src="#" alt="">
                     </div>
                     <div>
                         <h2>Game of Thrones</h2>
@@ -66,32 +66,36 @@
                             </div>
                             <div>
                                 <h2><%=pedido.lvr_titulo%></h2>
+                                <p class="invisible vnd-id"><%=pedido.vnd_id%></p>
                                 <p><%=pedido.vnd_data%></p>
                                 <p><strong>Comprador: </strong><%=pedido.clt_nome%></p>
                             </div>
                             <div class="status">
                             
                                 <select name="processamento" id="processamento">
-                                    <option value="">Em Processamento</option>
-                                    <option value="">Reprovado</option>
-                                    <option value="">Aprovado</option>
-                                    <option value="">Cancelado</option>
+                                    <option value="Em Processamento">Em Processamento</option>
+                                    <option value="Reprovado">Reprovado</option>
+                                    <option value="Aprovado">Aprovado</option>
+                                    <option value="Cancelado">Cancelado</option>
                                 </select>
                                 <select name="entrega" id="entrega">
-                                    <option value="">Em Transporte</option>
-                                    <option value="">Entregue</option>
+                                    <option value="">Gerenciar Entrega</option>
+                                    <option value="Em Transporte">Em Transporte</option>
+                                    <option value="Entregue">Entregue</option>
                                 </select>
                                 <select name="troca" id="troca">
-                                    <option value="">Troca Solicitada</option>
-                                    <option value="">Troca Aceita</option>
-                                    <option value="">Troca Concluída</option>
-                                    <option value="">Troca Recusada</option>
+                                    <option value="">Gerenciar Troca</option>
+                                    <option value="Troca Solicitada">Troca Solicitada</option>
+                                    <option value="Troca Aceita">Troca Aceita</option>
+                                    <option value="Troca Concluída">Troca Concluída</option>
+                                    <option value="Troca Recusada">Troca Recusada</option>
                                 </select>
                                 <select name="devolucao" id="devolucao">
-                                    <option value="">Devolução Solicitada</option>
-                                    <option value="">Devolução Aceita</option>
-                                    <option value="">Devolução Concluída</option>
-                                    <option value="">Devolução Recusada</option>
+                                    <option value="Devolução Solicitada">Gerenciar Devolução</option>
+                                    <option value="Devolução Solicitada">Devolução Solicitada</option>
+                                    <option value="Devolução Aceita">Devolução Aceita</option>
+                                    <option value="Devolução Concluída">Devolução Concluída</option>
+                                    <option value="Devolução Recusada">Devolução Recusada</option>
                                 </select>
                             </div>
                         </div>
@@ -107,6 +111,8 @@
         <%- include('../components/footer')%>
 
     </div>
+
+    <script type="module" src="/javaScript/pages/analise/gerenciarPedidos.js"></script>
 
 </body>
 </html>

@@ -12,7 +12,7 @@
     <div class="main-container">
        
         <%- include('../components/header', {
-            titulo: 'Carrinho de João',
+            titulo: 'Carrinho de ' + cliente[0].clt_nome.split(' ')[0],
             path: '/'
         })%>
 

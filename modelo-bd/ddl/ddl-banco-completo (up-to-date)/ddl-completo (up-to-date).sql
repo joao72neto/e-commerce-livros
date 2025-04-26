@@ -213,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`vendas` (
   `vnd_lvr_id` INT NOT NULL,
   `vnd_numPedido` VARCHAR(255) NULL,
   `vnd_data` DATE NOT NULL,
-  `vnd_status` ENUM('em processamento', 'em transito', 'entregue', 'em troca', 'troca autorizada') NOT NULL DEFAULT 'em processamento',
+  `vnd_status` ENUM('Em Processamento', 'Aprovado', 'Reprovado', 'Cancelado', 'Em Transporte', 'Entregue', 'Troca Solicitada', 'Troca Aceita', 'Troca Concluída', 'Troca Recusada', 'Devolução Solicitada', 'Devolução Aceita', 'Devolução Concluída', 'Devolução Recusada') NOT NULL DEFAULT 'em processamento',
   `vnd_valorTotal` DECIMAL(5,2) NOT NULL,
   `vnd_frete` DECIMAL(5,2) NULL,
   `vnd_qtd` SMALLINT NULL,
