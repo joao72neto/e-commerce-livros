@@ -1,12 +1,14 @@
 const { buscarClientesPedidos } = require('../../model/clientes/modelClientes');
 const { atualizarStatusPedidoId } = require('../../model/analise/modelGerenciarPedidos');
 const { devolverTrocarProduto } = require('../../model/analise/modelGerenciarPedidos');
+const { buscarDevolvidosTrocados } = require('../../model/analise/modelGerenciarPedidos');
 
 //Página
 module.exports.getGerenciarPedidos = async (req, res) => {
 
+    //Obtendo os dados
     const clientesPedidos = await buscarClientesPedidos();
-
+    const devolvidosTrocados = await buscarDevolvidosTrocados();
     const clientes = Array.from(
         new Map(
             clientesPedidos.map(pedido => [pedido.clt_id, {
@@ -24,9 +26,15 @@ module.exports.getGerenciarPedidos = async (req, res) => {
         ).values()
     );
 
+    //Separando em itens trocados e devolvidos apenas
+    const trocados = devolvidosTrocados.filter(trc => trc.trc_tipo === 'troca');
+    const devolvidos = devolvidosTrocados.filter(dev => dev.trc_tipo === 'devolucao');
+
     res.render('analise/gerenciarPedidos', {
         clientes: clientes,
-        pedidos: clientesPedidos
+        pedidos: clientesPedidos,
+        trocados: trocados,
+        devolvidos: devolvidos
     });
 };
 

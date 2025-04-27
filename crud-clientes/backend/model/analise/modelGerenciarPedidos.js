@@ -28,6 +28,28 @@ module.exports.atualizarStatusPedidoId = async (dados) => {
 
 }
 
+//SELECT
+module.exports.buscarDevolvidosTrocados = async () => {
+
+    const sql = `
+        select
+            *
+        from 
+            trocas t
+            join clientes c on c.clt_id = t.trc_clt_id
+            join livros l on l.lvr_id = trc_lvr_id;
+    `;
+
+    try{
+        const [result] = await db.query(sql);
+        return result;
+        
+    }catch(err){
+        console.error(`Erro no buscarDevolvidosTrocados - modelGerenciarPedidos: ${err}`);
+        throw err;
+    }
+};
+
 //INSERT
 
 //Inserindo um pedido na tabela de devoluçao e troca

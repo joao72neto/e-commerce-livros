@@ -28,24 +28,46 @@
                 <button>Filtrar</button>
             </div>
 
-            <div class="troca">
+            <% devolvidos.forEach(dev => { %>
+                <div class="devolucao">
 
-                <h2>Itens em Troca</h2>
-
-                <div class="wrapper">
-                    <div class="imagem">
-                        <img src="#" alt="">
-                    </div>
-                    <div>
-                        <h2>Game of Thrones</h2>
-                        <p>20-10-2020</p>
-                        <p><strong>Comprador: </strong>João Neto</p>
-                    </div>
-                    <div class="acoes">
-                        <a href="/estoque/entrada">Retornar ao Estoque</a>
+                    <h2>Itens em Devolução</h2>
+    
+                    <div class="wrapper">
+                        <div class="imagem">
+                            <img src="<%=dev.lvr_capa%>" alt="">
+                        </div>
+                        <div>
+                            <h2><%=dev.lvr_titulo%></h2>
+                            <p><strong>Comprador(a): </strong><%=dev.clt_nome%></p>
+                        </div>
+                        <div class="acoes">
+                            <a href="/estoque/entrada">Retornar ao Estoque</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+            <% }); %>
+
+            <% trocados.forEach(trc => { %>
+                <div class="troca">
+                    <h2>Itens em Troca</h2>
+    
+                    <div class="wrapper">
+                        <div class="imagem">
+                            <img src="<%=trc.lvr_capa%>" alt="">
+                        </div>
+                        <div>
+                            <h2><%=trc.lvr_titulo%></h2>
+                            <p><strong>Comprador: </strong><%=trc.clt_nome%></p>
+                        </div>
+                        <div class="acoes">
+                            <a href="/estoque/entrada">Retornar ao Estoque</a>
+                        </div>
+                    </div>
+                </div>
+
+            <% }) %>
 
             <% clientes.forEach(cliente => { %>
 
