@@ -212,7 +212,8 @@ module.exports.buscarClientesPedidos = async () => {
     from
         vendas v
         inner join clientes c on c.clt_id = v.vnd_clt_id
-        inner join livros l on lvr_id = v.vnd_lvr_id;
+        inner join livros l on lvr_id = v.vnd_lvr_id
+    order by v.vnd_id desc
     `
     
     try{

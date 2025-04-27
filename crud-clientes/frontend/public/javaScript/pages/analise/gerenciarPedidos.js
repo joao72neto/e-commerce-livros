@@ -96,8 +96,13 @@ document.addEventListener('DOMContentLoaded', function(){
            status.textContent === 'Devolução Recusada' ||
            status.textContent === 'Devolução Concluída'
         ){
+
             processamento.style.display = 'none'
             devolucao.style.display = 'block'; 
+
+            if(status.textContent === 'Devolução Solicitada'){
+                devolucao.querySelector('.con').remove();
+            }
 
             if(status.textContent === 'Devolução Aceita'){
                 devolucao.querySelectorAll('.rm').forEach(item => {
@@ -112,8 +117,13 @@ document.addEventListener('DOMContentLoaded', function(){
                status.textContent === 'Devolução Concluída'
             ){
 
-                // const dev_id = devolucao.querySelector('.dev-id').textContent;
-                // const res = await deletarDevolvidoTrocadoService(dev_id);
+                const wrapper = devolucao.closest('.wrapper');
+                const dados = {
+                    clt_id: wrapper.querySelector('.clt-id').textContent,
+                    lvr_id: wrapper.querySelector('.lvr-id').textContent
+                }
+
+                const res = await deletarDevolvidoTrocadoService(dados);
 
                 if(!res === 204){
                     alert('Não foi possível excluir o produto da tabela de troca');
@@ -121,11 +131,6 @@ document.addEventListener('DOMContentLoaded', function(){
                 }
 
                 devolucao.disabled = true;
-
-                if(status.textContent === 'Devolução Concluída'){
-                    const devEstoque = document.querySelector('.devolucao');
-                    devEstoque.style.display = 'none';
-                }
             }
         }
     });

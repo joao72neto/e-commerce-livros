@@ -38,7 +38,6 @@
                             <img src="<%=dev.lvr_capa%>" alt="">
                         </div>
                         <div>
-                            <p class="invisible trc-id"><%=dev.trc_id%></p>
                             <h2><%=dev.lvr_titulo%></h2>
                             <p><strong>Comprador(a): </strong><%=dev.clt_nome%></p>
                         </div>
@@ -59,7 +58,6 @@
                             <img src="<%=trc.lvr_capa%>" alt="">
                         </div>
                         <div>
-                            <p class="invisible dev-id"><%=trc.trc_id%></p>
                             <h2><%=trc.lvr_titulo%></h2>
                             <p><strong>Comprador: </strong><%=trc.clt_nome%></p>
                         </div>
@@ -93,6 +91,8 @@
                             <div>
                                 <h2><%=pedido.lvr_titulo%></h2>
                                 <p class="invisible vnd-id"><%=pedido.vnd_id%></p>
+                                <p class="invisible clt-id"><%=pedido.clt_id%></p>
+                                <p class="invisible lvr-id"><%=pedido.lvr_id%></p>
                                 <p><%=pedido.vnd_data%></p>
                                 <p><strong>Comprador: </strong><%=pedido.clt_nome%></p>
                             </div>
@@ -126,7 +126,7 @@
                                 
                                     <option class="rm" value="Devolução Solicitada" <%= pedido.vnd_status === 'Devolução Solicitada' ? 'selected' : '' %>>Devolução Solicitada</option>
                                     <option value="Devolução Aceita" <%= pedido.vnd_status === 'Devolução Aceita' ? 'selected' : '' %>>Devolução Aceita</option>
-                                    <option value="Devolução Concluída" <%= pedido.vnd_status === 'Devolução Concluída' ? 'selected' : '' %>>Devolução Concluída</option>
+                                    <option class="con" value="Devolução Concluída" <%= pedido.vnd_status === 'Devolução Concluída' ? 'selected' : '' %>>Devolução Concluída</option>
                                     <option class="rm" value="Devolução Recusada" <%= pedido.vnd_status === 'Devolução Recusada' ? 'selected' : '' %>>Devolução Recusada</option>
                                 </select>
                             </div>

@@ -57,6 +57,7 @@ module.exports.buscarPedidosClienteId = async (clt_id) => {
             join livros l on l.lvr_id = v.vnd_lvr_id
         where
             v.vnd_clt_id = ?
+        order by v.vnd_id desc
     `;
     
     try{
