@@ -3,7 +3,7 @@ import { atualizarStatusPedidoIdService } from "/javaScript/service/analise/serv
 document.addEventListener('DOMContentLoaded', function(){
 
 
-    //Ocultando selects
+    //OCULTANDO SELECTS
     const entrega = document.querySelectorAll('#entrega').forEach(select => {
         select.style.display = 'none';
     });
@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function(){
         select.style.display = 'none';
     }); 
 
+    
+    //CRIANDO O FLUXO DE ALTERAÇÃO DO STATUS
+
     //Exibindo os selects corretamento
     document.querySelectorAll('.status-atual').forEach(function(status){
 
@@ -21,8 +24,10 @@ document.addEventListener('DOMContentLoaded', function(){
         const statusContainer = status.closest('.status');
         const entrega = statusContainer.querySelector('#entrega');
         const processamento = statusContainer.querySelector('#processamento');
+        const troca = statusContainer.querySelector('#troca');
+        const devolucao = statusContainer.querySelector('#devolucao');
 
-        //Lógica para exibição dos selects
+        //Lógica do fluxo de processamento de pedidos
         const statusProcessamento = ['Aprovado', 'Em Transporte', 'Entregue'];
 
         if(statusProcessamento.includes(status.textContent)){
@@ -43,67 +48,114 @@ document.addEventListener('DOMContentLoaded', function(){
             if(status.textContent === 'Entregue'){
                 entrega.disabled = true;
             }
-
-            return;
         }
 
-        if(status.textContent === 'Reprovado' || status.textContent === 'Cancelado'){
+        if(status.textContent === 'Reprovado' || 
+           status.textContent === 'Cancelado'){
             processamento.disabled = true;
+        }
+
+        //Fluxo de Troca
+        if(status.textContent === 'Troca Solicitada' ||
+           status.textContent === 'Troca Aceita' ||
+           status.textContent === 'Troca Recusada' ||
+           status.textContent === 'Troca Concluída'
+        ){
+            processamento.style.display = 'none'
+            troca.style.display = 'block'; 
+
+            if(status.textContent === 'Troca Aceita'){
+                troca.querySelectorAll('.rm').forEach(item => {
+                    item.remove();
+                });
+            }
+
+            if(status.textContent === 'Troca Recusada' || 
+               status.textContent === 'Troca Concluída'
+            ){
+                troca.disabled = true;
+            }
+        }
+
+        //Fluxo de Devolução
+        if(status.textContent === 'Devolução Solicitada' ||
+           status.textContent === 'Devolução Aceita' ||
+           status.textContent === 'Devolução Recusada' ||
+           status.textContent === 'Devolução Concluída'
+        ){
+            processamento.style.display = 'none'
+            devolucao.style.display = 'block'; 
+
+            if(status.textContent === 'Devolução Aceita'){
+                devolucao.querySelectorAll('.rm').forEach(item => {
+                    item.remove();
+                });
+            }
+
+            if(status.textContent === 'Devolução Recusada' ||
+               status.textContent === 'Devolução Concluída'
+            ){
+                devolucao.disabled = true;
+            }
         }
     });
 
-    //Lógica para alteração do status do processamento
+    //ALTERANDO O STATUS NO BANCO
+
+    //Alterando status do select de processamento do pedido
     document.querySelectorAll('#processamento').forEach(select => {
-        
         select.addEventListener('change', async function(){
-            
-
-            //Obtendo os dados para atualizar o select de processamento
-            const wrapper = this.closest('.wrapper');
-            const vnd_id = Number(wrapper.querySelector('.vnd-id').textContent);
-
-            const dados = {
-                vnd_id: vnd_id,
-                vnd_status: this.value
-            };
-
-            //Atualizando o status do processamento no banco
-            const res = await atualizarStatusPedidoIdService(dados);
-
-            if(!res === 200){
-                alert('Não foi possível atualizar o status');
-                return;
-            }
-
-            window.location.reload();
+            await atualizarStatus(this);
         });
     });
 
-    //Lógica para alteração do status da entrega
+    //Alterando o status dos selects de entrega
     document.querySelectorAll('#entrega').forEach(entrega => {
         if(entrega.style.display === 'block'){
             entrega.addEventListener('change', async function(){
-                
-                //Obtendo os dados para atualizar o select de entrega
-                const wrapper = this.closest('.wrapper');
-                const vnd_id = Number(wrapper.querySelector('.vnd-id').textContent);
-
-                const dados = {
-                    vnd_id: vnd_id,
-                    vnd_status: this.value
-                };
-
-                //Atualizando o status no banco de dados
-                const res = await atualizarStatusPedidoIdService(dados);
-
-                if(!res === 200){
-                    alert('Não foi possível atualizar o status');
-                    return;
-                }
-
-                window.location.reload();
-
+                await atualizarStatus(this);
             });
         }
     });
+
+    //Alterando o status do select de troca
+    document.querySelectorAll('#troca').forEach(entrega => {
+        if(entrega.style.display === 'block'){
+            entrega.addEventListener('change', async function(){
+                await atualizarStatus(this);
+            });
+        }
+    });
+
+    //Alterando o status do select de troca
+    document.querySelectorAll('#devolucao').forEach(entrega => {
+        if(entrega.style.display === 'block'){
+            entrega.addEventListener('change', async function(){
+                await atualizarStatus(this);
+            });
+        }
+    });
+
+
+    async function atualizarStatus(select){
+
+        //Obtendo os dados para atualizar o select de entrega
+        const wrapper = select.closest('.wrapper');
+        const vnd_id = Number(wrapper.querySelector('.vnd-id').textContent);
+
+        const dados = {
+            vnd_id: vnd_id,
+            vnd_status: select.value
+        };
+
+        //Atualizando o status no banco de dados
+        const res = await atualizarStatusPedidoIdService(dados);
+
+        if(!res === 200){
+            alert('Não foi possível atualizar o status');
+            return;
+        }
+
+        window.location.reload();
+    }
 });

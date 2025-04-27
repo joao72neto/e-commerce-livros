@@ -90,19 +90,18 @@
                                 </select>
                                 
                                 <select name="troca" id="troca">
-                                    <option class="empty" value="" <%= pedido.vnd_status === '' ? 'selected' : '' %>>Gerenciar Troca</option>
-                                    <option value="Troca Solicitada" <%= pedido.vnd_status === 'Troca Solicitada' ? 'selected' : '' %>>Troca Solicitada</option>
+                                    <option class="rm" value="Troca Solicitada" <%= pedido.vnd_status === 'Troca Solicitada' ? 'selected' : '' %>>Troca Solicitada</option>
                                     <option value="Troca Aceita" <%= pedido.vnd_status === 'Troca Aceita' ? 'selected' : '' %>>Troca Aceita</option>
                                     <option value="Troca Concluída" <%= pedido.vnd_status === 'Troca Concluída' ? 'selected' : '' %>>Troca Concluída</option>
-                                    <option value="Troca Recusada" <%= pedido.vnd_status === 'Troca Recusada' ? 'selected' : '' %>>Troca Recusada</option>
+                                    <option class="rm" value="Troca Recusada" <%= pedido.vnd_status === 'Troca Recusada' ? 'selected' : '' %>>Troca Recusada</option>
                                 </select>
                                 
                                 <select name="devolucao" id="devolucao">
-                                    <option class="empty" value="Devolução Solicitada" <%= pedido.vnd_status === 'Devolução Solicitada' ? 'selected' : '' %>>Gerenciar Devolução</option>
-                                    <option value="Devolução Solicitada" <%= pedido.vnd_status === 'Devolução Solicitada' ? 'selected' : '' %>>Devolução Solicitada</option>
+                                
+                                    <option class="rm" value="Devolução Solicitada" <%= pedido.vnd_status === 'Devolução Solicitada' ? 'selected' : '' %>>Devolução Solicitada</option>
                                     <option value="Devolução Aceita" <%= pedido.vnd_status === 'Devolução Aceita' ? 'selected' : '' %>>Devolução Aceita</option>
                                     <option value="Devolução Concluída" <%= pedido.vnd_status === 'Devolução Concluída' ? 'selected' : '' %>>Devolução Concluída</option>
-                                    <option value="Devolução Recusada" <%= pedido.vnd_status === 'Devolução Recusada' ? 'selected' : '' %>>Devolução Recusada</option>
+                                    <option class="rm" value="Devolução Recusada" <%= pedido.vnd_status === 'Devolução Recusada' ? 'selected' : '' %>>Devolução Recusada</option>
                                 </select>
                             </div>
                         </div>

@@ -45,12 +45,11 @@ document.addEventListener('DOMContentLoaded', function(){
                 
                 if(res === 201){
                     alert(tipo + ' solicitado(a) com sucesso!');
+                    window.location.reload();
                     return;
                 }
 
                 alert('Não foi possível solicitar o(a) ' + tipo);
-
-                window.location.reload();
                 return;
             }
 
