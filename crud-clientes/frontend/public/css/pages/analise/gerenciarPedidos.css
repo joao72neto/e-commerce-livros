@@ -39,6 +39,10 @@ main{
     padding: 20px;
 }
 
+.devolucao, .troca{
+    display: none;
+}
+
 .devolucao .wrapper, .troca .wrapper{
     display: grid;
     grid-template-columns: 20% 1fr 1fr;

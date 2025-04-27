@@ -45,6 +45,10 @@ document.addEventListener('DOMContentLoaded', function(){
                 processamento.remove();
             }
 
+            if(status.textContent === 'Aprovado'){
+                entrega.querySelector('.rm').remove();
+            }
+
             if(status.textContent === 'Entregue'){
                 entrega.disabled = true;
             }
@@ -68,12 +72,20 @@ document.addEventListener('DOMContentLoaded', function(){
                 troca.querySelectorAll('.rm').forEach(item => {
                     item.remove();
                 });
+
+                const trocaEstoque = document.querySelector('.troca');
+                trocaEstoque.style.display = 'block';
             }
 
             if(status.textContent === 'Troca Recusada' || 
                status.textContent === 'Troca Concluída'
             ){
                 troca.disabled = true;
+
+                if(status.textContent === 'Troca Concluída'){
+                    const trocaEstoque = document.querySelector('.troca');
+                    trocaEstoque.style.display = 'none';
+                }
             }
         }
 
@@ -90,12 +102,20 @@ document.addEventListener('DOMContentLoaded', function(){
                 devolucao.querySelectorAll('.rm').forEach(item => {
                     item.remove();
                 });
+
+                const devEstoque = document.querySelector('.devolucao');
+                devEstoque.style.display = 'block';
             }
 
             if(status.textContent === 'Devolução Recusada' ||
                status.textContent === 'Devolução Concluída'
             ){
                 devolucao.disabled = true;
+
+                if(status.textContent === 'Devolução Concluída'){
+                    const devEstoque = document.querySelector('.devolucao');
+                    devEstoque.style.display = 'none';
+                }
             }
         }
     });

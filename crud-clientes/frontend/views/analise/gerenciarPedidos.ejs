@@ -28,11 +28,11 @@
                 <button>Filtrar</button>
             </div>
 
-            <% devolvidos.forEach(dev => { %>
-                <div class="devolucao">
+            <div class="devolucao">
 
-                    <h2>Itens em Devolução</h2>
-    
+                <h2>Itens em Devolução</h2>
+
+                <% devolvidos.forEach(dev => { %>
                     <div class="wrapper">
                         <div class="imagem">
                             <img src="<%=dev.lvr_capa%>" alt="">
@@ -45,14 +45,14 @@
                             <a href="/estoque/entrada">Retornar ao Estoque</a>
                         </div>
                     </div>
-                </div>
+                <% }); %>
+            </div>
 
-            <% }); %>
+            <div class="troca">
+                <h2>Itens em Troca</h2>
+                
+                <% trocados.forEach(trc => { %>
 
-            <% trocados.forEach(trc => { %>
-                <div class="troca">
-                    <h2>Itens em Troca</h2>
-    
                     <div class="wrapper">
                         <div class="imagem">
                             <img src="<%=trc.lvr_capa%>" alt="">
@@ -65,10 +65,12 @@
                             <a href="/estoque/entrada">Retornar ao Estoque</a>
                         </div>
                     </div>
-                </div>
 
-            <% }) %>
+                <% }) %>
 
+            </div>
+
+            
             <% clientes.forEach(cliente => { %>
 
                 <div class="pedidos">
@@ -108,7 +110,7 @@
                                 <select name="entrega" id="entrega">
                                     <option class="empty" value="" <%= pedido.vnd_status === '' ? 'selected' : '' %>>Gerenciar Entrega</option>
                                     <option value="Em Transporte" <%= pedido.vnd_status === 'Em Transporte' ? 'selected' : '' %>>Em Transporte</option>
-                                    <option value="Entregue" <%= pedido.vnd_status === 'Entregue' ? 'selected' : '' %>>Entregue</option>
+                                    <option class="rm" value="Entregue" <%= pedido.vnd_status === 'Entregue' ? 'selected' : '' %>>Entregue</option>
                                 </select>
                                 
                                 <select name="troca" id="troca">

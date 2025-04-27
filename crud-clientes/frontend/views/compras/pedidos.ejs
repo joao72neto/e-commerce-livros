@@ -27,6 +27,7 @@
                     </div>
                     <div class="book-title">
                         <p class="invisible vnd-id"><%=pedido.vnd_id%></p>
+                        <p class="invisible book-id"><%=pedido.vnd_lvr_id%></p>
                         <p><strong>Qtd: <%=pedido.vnd_qtd%></strong></p>
                         <p><%=pedido.lvr_titulo%></p>
                         <p><strong>R$ <%=String(pedido.vnd_valorTotal).replace('.', ',')%></strong></p>

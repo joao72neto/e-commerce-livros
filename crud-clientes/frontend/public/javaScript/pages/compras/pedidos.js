@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function(){
             //Atualizando o status dos pedidos
             const wrapper = this.closest('.wrapper');
             const vnd_id = wrapper.querySelector('.vnd-id').textContent;
+            const lvr_id = wrapper.querySelector('.book-id').textContent;
             let tipo = 'devolucao';
 
             //Preparando os dados
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 //Preparando os dados
                 const troca = {
                     trc_clt_id: cliente[0].clt_id,
-                    trc_lvr_id: vnd_id,
+                    trc_lvr_id: lvr_id,
                     trc_status: dados.vnd_status,
                     trc_tipo: tipo
                 }
@@ -55,5 +56,18 @@ document.addEventListener('DOMContentLoaded', function(){
 
             alert('Não foi possível atualizar o status do pedido');
         });
+    });
+
+    this.querySelectorAll('.acoes').forEach(function(acoes){
+        const wrapper = acoes.closest('.wrapper');
+        const statusText = wrapper.querySelector('.status strong').textContent;
+
+        if(statusText !== 'Entregue'){
+            acoes.remove();
+            wrapper.style.cssText = `
+                grid-template-columns: 1fr 1fr 40%;
+            
+            `
+        }
     });
 });
