@@ -1,4 +1,5 @@
 import { atualizarStatusPedidoIdService } from "/javaScript/service/analise/serviceGerenciarPedidos.js";
+import { deletarDevolvidoTrocadoService } from "/javaScript/service/analise/serviceGerenciarPedidos.js";
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
     //CRIANDO O FLUXO DE ALTERAÇÃO DO STATUS
 
     //Exibindo os selects corretamento
-    document.querySelectorAll('.status-atual').forEach(function(status){
+    document.querySelectorAll('.status-atual').forEach(async function(status){
 
         //Obtendo os selects
         const statusContainer = status.closest('.status');
@@ -110,6 +111,15 @@ document.addEventListener('DOMContentLoaded', function(){
             if(status.textContent === 'Devolução Recusada' ||
                status.textContent === 'Devolução Concluída'
             ){
+
+                // const dev_id = devolucao.querySelector('.dev-id').textContent;
+                // const res = await deletarDevolvidoTrocadoService(dev_id);
+
+                if(!res === 204){
+                    alert('Não foi possível excluir o produto da tabela de troca');
+                    return;
+                }
+
                 devolucao.disabled = true;
 
                 if(status.textContent === 'Devolução Concluída'){

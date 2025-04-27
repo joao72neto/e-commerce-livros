@@ -35,3 +35,18 @@ export async function devolverTrocarProdutoService(dados) {
         throw err;
     }
 }
+
+//DELETE
+export async function deletarDevolvidoTrocadoService(trc_id) {
+    try{
+        const res = await fetch(`/pedidos/devolverTrocar/deletar/${trc_id}`, {
+           method: 'DELETE'
+        });
+
+        return res.status;
+
+    }catch(err){
+        console.error(`Erro no deletarDevolvidoTrocadoService - serviceGerenciarPedidos: ${err}`);
+        throw err;
+    }
+}
