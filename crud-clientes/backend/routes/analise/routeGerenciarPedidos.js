@@ -11,4 +11,7 @@ router.patch('/pedidos/status/update/', controllerGerenciarPedidos.patchAtualiza
 //Rota para inserção de dados
 router.post('/pedidos/devolverTrocar', controllerGerenciarPedidos.postDevolverTrocarProduto);
 
+//Rota para deleção de dados
+router.delete('/pedidos/devolverTrocar/deletar/:trc_id', controllerGerenciarPedidos.deleteDevolvidoTrocado);
+
 module.exports = router;

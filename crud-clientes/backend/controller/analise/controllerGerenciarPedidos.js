@@ -2,6 +2,7 @@ const { buscarClientesPedidos } = require('../../model/clientes/modelClientes');
 const { atualizarStatusPedidoId } = require('../../model/analise/modelGerenciarPedidos');
 const { devolverTrocarProduto } = require('../../model/analise/modelGerenciarPedidos');
 const { buscarDevolvidosTrocados } = require('../../model/analise/modelGerenciarPedidos');
+const { deletarDevolvidoTrocado } = require('../../model/analise/modelGerenciarPedidos');
 
 //Página
 module.exports.getGerenciarPedidos = async (req, res) => {
@@ -60,5 +61,16 @@ module.exports.postDevolverTrocarProduto = async (req, res) => {
     }catch(err){
         console.error(`Erro no postDevolverTrocarProduto - controllerGerenciarPedidos: ${err}`);
         return res.status(500).json({msg: 'Não foi possível fazer a troca do produto'});
+    }
+};
+
+//Deleção de dados
+module.exports.deleteDevolvidoTrocado = async (req, res) => {
+    try{
+        await deletarDevolvidoTrocado(req.params.trc_id);
+        res.status(204).json({msg: 'Produto removido com sucesso!'});
+    }catch(err){
+        console.error(`Erro no deleteClienteId - controllerClientes: ${err}`);
+        res.status(500).json({msg: 'Não foi possível remover o produto devolvido ou trocado'});
     }
 };

@@ -86,3 +86,13 @@ module.exports.devolverTrocarProduto = async (dados) => {
     }
 };
 
+//DELETE
+module.exports.deletarDevolvidoTrocado = async (trc_id) => {
+    const sql = `DELETE FROM trocas WHERE trc_id = ?`;
+
+    try{
+        await db.query(sql, trc_id);
+    }catch(err){
+        console.error(`Erro no deletarDevolvidoTrocado - modelGerenciarPedidos ${err}`);
+    }
+}
