@@ -39,6 +39,15 @@ main{
     padding: 20px;
 }
 
+.devolucao .wrapper, .troca .wrapper{
+    display: grid;
+    grid-template-columns: 20% 1fr 1fr;
+}
+
+.devolucao .wrapper .acoes, .troca .wrapper .acoes{
+    justify-self: center;
+}
+
 .pedidos .wrapper{
     display: grid;
     grid-template-columns: 20% 1fr 1fr;
