@@ -2,7 +2,7 @@
 <h1 align="center" style="font-weight: bold;">E-commerce de Livros 📚</h1>
 
 <p align="center">
- <a href="#crud">Layout CRUD clientes</a> •
+ <a href="#ecommerce">Layout do E-commerce</a> •
  <a href="#tech">Tecnologias</a> • 
  <a href="#started">Como rodar CRUD</a> 
 </p>
@@ -16,10 +16,10 @@
  
 </p>
 
-<h2 id="crud">Layout CRUD de Clientes</h2>
+<h2 id="ecommerce">Layout E-commerce</h2>
 
-<div align="center">
-    <img src="https://github.com/user-attachments/assets/2a457ace-c8ed-42b7-b307-b11dd7519564">
+ <div align="center">
+    <img src="https://github.com/user-attachments/assets/e2fd89a1-1a4d-4365-aa63-992809524b0c">
 </div>
 
 <h2 id="tech">💻 Tecnologias</h2>
