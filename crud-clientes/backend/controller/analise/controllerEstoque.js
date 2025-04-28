@@ -16,11 +16,13 @@ module.exports.getEstoqueEntrada = async (req, res) => {
     const fornecedores = await buscarTodosFornecedores();
     const grpPrecificacao = await buscarTodosGrpPrecificacao();
     const livros = await buscarTodosLivros(); 
+    const retorno = req.query.retorno;
 
     res.render('analise/estoque/estoqueEntrada', {
         livros: livros,
         fornecedores: fornecedores,
-        grpPrecificacao: grpPrecificacao
+        grpPrecificacao: grpPrecificacao,
+        retorno: retorno
 
     });
 };
