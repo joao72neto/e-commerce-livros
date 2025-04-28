@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
             if(status.textContent === 'Devolução Solicitada'){
                 devolucao.querySelector('.con').remove();
+                return;
             }
 
             if(status.textContent === 'Devolução Aceita'){
@@ -111,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
                 const devEstoque = document.querySelector('.devolucao');
                 devEstoque.style.display = 'block';
+                return;
             }
 
             if(status.textContent === 'Devolução Recusada' ||
@@ -118,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function(){
             ){
 
                 const wrapper = devolucao.closest('.wrapper');
+                const statusAtual = wrapper.querySelector('.status-atual');
                 const dados = {
                     clt_id: wrapper.querySelector('.clt-id').textContent,
                     lvr_id: wrapper.querySelector('.lvr-id').textContent
@@ -131,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 }
 
                 devolucao.disabled = true;
+                statusAtual.remove();
             }
         }
     });
