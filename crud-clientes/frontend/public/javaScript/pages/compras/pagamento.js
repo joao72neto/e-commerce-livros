@@ -85,10 +85,11 @@ document.querySelectorAll('.rm-cup').forEach(btn => {
 
 
 //Gerando o número do pedido
-function gerarNumeroPedido(vnd_id) {
+function gerarNumeroPedido() {
     const hoje = new Date();
-    const data = hoje.toISOString().slice(0,10).replace(/-/g, ''); 
-    return `PED-${data}-${vnd_id.toString().padStart(5, '0')}`;
+    const data = hoje.toISOString().slice(0,10).replace(/-/g, '');
+    const aleatorio = Math.floor(Math.random() * 100000).toString().padStart(5, '0'); // 5 dígitos aleatórios
+    return `PED-${data}-${aleatorio}`;
 }
 
 //Função que finaliza a compra
@@ -111,7 +112,7 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
         carrinho = carrinho.find(car => car.crr_lvr_id === Number(compra));
         
         //Gerando um número para o pedido
-        const numPedido = gerarNumeroPedido(carrinho.crr_lvr_id);
+        const numPedido = gerarNumeroPedido();
 
         //Preparando os dados
         let valores = {
@@ -144,7 +145,7 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
         carrinho.forEach(async item => {
 
             //Gerando um número para cada pedido
-            let numPedido = gerarNumeroPedido(Number(item.lvr_id));
+            let numPedido = gerarNumeroPedido();
 
             //Preparando os dados
             let valores = {

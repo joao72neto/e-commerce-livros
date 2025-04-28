@@ -8,8 +8,6 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
     event.preventDefault();
 
     
-
-
     //Obtendo os dados
     const lvr_id = Number(document.querySelector('#livro').value);
     const for_id = Number(document.querySelector('#fornecedor').value);
