@@ -4,6 +4,8 @@ const { buscarTodosFornecedores } = require('../../model/analise/modelEstoque');
 const { buscarTodosGrpPrecificacao } = require('../../model/analise/modelEstoque');
 const { buscarTodosLivros } = require('../../model/books/modelBooks');
 const { buscarDevolvidosTrocados } = require('../../model/analise/modelGerenciarPedidos');
+const { buscarPedidosClienteId } = require('../../model/compras/modelPedidos');
+
 
 //Página
 module.exports.getEstoque = async (req, res) => {
@@ -22,6 +24,11 @@ module.exports.getEstoqueEntrada = async (req, res) => {
     const query = req.query;
 
     if(Object.keys(query).length !== 0){
+
+        //Buscando o número do pedido
+        const pedidos = await buscarPedidosClienteId(req.query.clt_id);
+        const pedido = pedidos.find(ped => ped.vnd_clt_id == req.query.clt_id && ped.vnd_lvr_id == req.query.lvr_id);
+
         //Pegando dados para o retorno do estoque
         const estoqueFiltrado = estoque.find(est => est.lvr_id == req.query.lvr_id);
         const troca = trocas.find(trc => trc.trc_id == req.query.trc_id);
@@ -39,12 +46,12 @@ module.exports.getEstoqueEntrada = async (req, res) => {
             fornecedores: fornecedores,
             grpPrecificacao: grpPrecificacao,
             query: query,
-            estoque: estoque
+            estoque: estoque,
+            pedido: pedido
     
         });
         return;
     }
-
 
     res.render('analise/estoque/estoqueEntrada', {
         livros: livros,
@@ -55,7 +62,8 @@ module.exports.getEstoqueEntrada = async (req, res) => {
         fornecedores: fornecedores,
         grpPrecificacao: grpPrecificacao,
         query: query,
-        estoque: estoque
+        estoque: estoque,
+        pedidos: pedidos
     });
 };
 

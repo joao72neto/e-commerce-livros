@@ -1,5 +1,7 @@
 import { adicionarEstoqueService } from "/javaScript/service/analise/serviceEstoque.js"
 import { deletarDevolvidoTrocadoService } from "/javaScript/service/analise/serviceGerenciarPedidos.js";
+import { atualizarStatusPedidoIdService } from "/javaScript/service/analise/serviceGerenciarPedidos.js";
+
 
 
 //Adicionando nova entrada no estoque ou retornando um item para o estoque
@@ -54,6 +56,19 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
             if(!res === 204){
                 alert('Não foi possível excluir o produto da tabela de troca');
                 return;
+            }
+
+            const vnd_id = document.querySelector('.vnd-id').textContent;
+
+            const updateStatus = {
+                vnd_id: vnd_id,
+                vnd_status: 'Devolução Concluída'
+            }
+
+            const resStatus = await atualizarStatusPedidoIdService(updateStatus);
+
+            if(!resStatus === 200){
+                alert('Não foi possível atualizar o status');
             }
 
             window.location.href = retorno;
