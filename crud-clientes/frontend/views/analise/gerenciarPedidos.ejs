@@ -44,7 +44,7 @@
                             <p>R$ <%=String(dev.trc_preco).replace('.', ',')%></p>
                         </div>
                         <div class="acoes">
-                            <a href="/estoque/entrada?retorno=/pedidos/gerenciar&trc_id=<%=dev.trc_id%>">Retornar ao Estoque</a>
+                            <a href="/estoque/entrada?retorno=/pedidos/gerenciar&trc_id=<%=dev.trc_id%>&lvr_id=<%=dev.lvr_id%>&clt_id=<%=dev.clt_id%>">Retornar ao Estoque</a>
                         </div>
                     </div>
                 <% }); %>

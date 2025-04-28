@@ -156,12 +156,12 @@ document.addEventListener('DOMContentLoaded', function(){
         if(entrega.style.display === 'block'){
             entrega.addEventListener('change', async function(){
 
-                if(entrega.value === 'Devolução Recusada' ||
-                   entrega.value === 'Devolução Concluída'
-                ){
+                // if(entrega.value === 'Devolução Recusada' ||
+                //    entrega.value === 'Devolução Concluída'
+                // ){
 
-                    await removerDevolvidoTrocado(this);
-                }
+                //     await removerDevolvidoTrocado(this);
+                // }
 
                 await atualizarStatus(this);
             });
@@ -171,22 +171,22 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
-//Função para retirar um livro da tabela de troca
-async function removerDevolvidoTrocado(select) {
+// //Função para retirar um livro da tabela de troca
+// async function removerDevolvidoTrocado(select) {
 
-    const wrapper = select.closest('.wrapper');
-    const dados = {
-        clt_id: wrapper.querySelector('.clt-id').textContent,
-        lvr_id: wrapper.querySelector('.lvr-id').textContent
-    }
+//     const wrapper = select.closest('.wrapper');
+//     const dados = {
+//         clt_id: wrapper.querySelector('.clt-id').textContent,
+//         lvr_id: wrapper.querySelector('.lvr-id').textContent
+//     }
 
-    const res = await deletarDevolvidoTrocadoService(dados);
+//     const res = await deletarDevolvidoTrocadoService(dados);
 
-    if(!res === 204){
-        alert('Não foi possível excluir o produto da tabela de troca');
-        return;
-    }
-}
+//     if(!res === 204){
+//         alert('Não foi possível excluir o produto da tabela de troca');
+//         return;
+//     }
+// }
 
 //Função para atualizar o status dos livros
 async function atualizarStatus(select){

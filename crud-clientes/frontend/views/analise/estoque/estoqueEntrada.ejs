@@ -13,7 +13,7 @@
        
         <%- include('../../components/header', {
             titulo: 'Nova Entrada no Estoque',
-            path: retorno
+            path: Object.keys(query).length !== 0 ? query.retorno : '/estoque'
         })%>
 
         <main>
@@ -23,7 +23,7 @@
 
                 <label for="livro">Livros Cadastrados</label>
                 <select name="livro" id="livro" required>
-                    <option value="" disabled selected>Selecione um livro</option>
+                    <option value="<%=Object.keys(query).length !== 0?livro.lvr_id:''%>" disabled selected><%=Object.keys(query).length !== 0?livro.lvr_titulo:"Selecione um Livro"%></option>
 
                     <% livros.forEach(livro => { %>
                         <option value="<%=livro.lvr_id%>"><%=livro.lvr_titulo%></option>
@@ -34,7 +34,7 @@
                 <label for="fornecedor">Fornecedor</label>
 
                 <select name="fornecedor" id="fornecedor" required>
-                    <option value="" disabled selected>Selecione um Fornecedor</option>
+                    <option value="<%=Object.keys(query).length !== 0?fornecedor.for_id:''%>" disabled selected><%=Object.keys(query).length !== 0?fornecedor.for_nome:"Selecione um Fornecedor"%></option>
 
                     <% fornecedores.forEach(fornecedor => { %>
                         <option value="<%=fornecedor.for_id%>"><%=fornecedor.for_nome%></option>
@@ -43,14 +43,14 @@
                 </select>
             
                 <label for="qtd">Quantidade do Item</label>
-                <input type="number" id="qtd" name="qtd" min="1" placeholder="Ex: 10" required>
+                <input type="number" id="qtd" name="qtd" min="1" placeholder="Ex: 10" required value="<%=query?troca.trc_qtd:''%>">
             
                 <label for="valor_custo">Valor de Custo (R$)</label>
-                <input type="number" id="valor_custo" name="valor_custo" step="0.01" min="0" placeholder="Ex: 45.00" required>
+                <input type="number" id="valor_custo" name="valor_custo" step="0.01" min="0" placeholder="Ex: 45.00" required value="<%=query?troca.trc_preco:''%>">
             
                 <label for="grupo_precificacao">Grupo de Precificação</label>
                 <select name="grupo_precificacao" id="grupo_precificacao" required>
-                    <option value="" disabled selected>Selecione um grupo</option>
+                    <option value="<%=Object.keys(query).length !== 0?grpPre.gpp_id:''%>" disabled selected><%=Object.keys(query).length !== 0?grpPre.gpp_nome:"Selecione um Grupo"%></option>
                     
                     <% grpPrecificacao.forEach(grp => { %>
                         <option value="<%=grp.gpp_id%>"><%=grp.gpp_nome%> (<%=grp.gpp_margemLucro%100%>%)</option>

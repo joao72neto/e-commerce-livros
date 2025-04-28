@@ -52,8 +52,11 @@ module.exports.buscarEstoque = async () => {
     
         select
             e.est_id,
+            f.for_id,
             f.for_nome,
+            l.lvr_id,
             l.lvr_titulo,
+            g.gpp_id,
             g.gpp_nome,
             g.gpp_margemLucro,
             e.est_qtd,
