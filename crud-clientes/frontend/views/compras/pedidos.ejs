@@ -31,6 +31,8 @@
                         <p><strong>Qtd: <%=pedido.vnd_qtd%></strong></p>
                         <p><%=pedido.lvr_titulo%></p>
                         <p><strong>R$ <%=String(pedido.vnd_valorTotal).replace('.', ',')%></strong></p>
+                        <p class="invisible" id="preco"><%=pedido.lvr_preco%></p>
+                        <p class="invisible" id="qtd"><%=pedido.vnd_qtd%></p>
                     </div>
                     <div class="status-pedido">
                         <div class="status">

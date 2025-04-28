@@ -37,10 +37,13 @@ document.addEventListener('DOMContentLoaded', function(){
                 //Preparando os dados
                 const troca = {
                     trc_clt_id: cliente[0].clt_id,
-                    trc_lvr_id: lvr_id,
-                    trc_status: dados.vnd_status,
+                    trc_lvr_id: Number(lvr_id),
+                    trc_qtd: Number(wrapper.querySelector('#qtd').textContent),
+                    trc_preco: Number(wrapper.querySelector('#preco').textContent),
                     trc_tipo: tipo
                 }
+
+                console.log(troca);
 
                 const res = await devolverTrocarProdutoService(troca);
                 

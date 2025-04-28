@@ -40,9 +40,13 @@
                         <div>
                             <h2><%=dev.lvr_titulo%></h2>
                             <p><strong>Comprador(a): </strong><%=dev.clt_nome%></p>
+                            <p><strong>Qtd:</strong> <%=dev.trc_qtd%></p>
+                            <p>R$ <%=String(dev.trc_preco).replace('.', ',')%></p>
+                            <p class="invisible clt-id"><%=dev.clt_id%></p>
+                            <p class="invisible lvr-id"><%=dev.lvr_id%></p>
                         </div>
                         <div class="acoes">
-                            <a href="/estoque/entrada">Retornar ao Estoque</a>
+                            <a href="/estoque/entrada?retorno=/pedidos/gerenciar&trc_id=<%=dev.trc_id%>&lvr_id=<%=dev.lvr_id%>&clt_id=<%=dev.clt_id%>">Retornar ao Estoque</a>
                         </div>
                     </div>
                 <% }); %>

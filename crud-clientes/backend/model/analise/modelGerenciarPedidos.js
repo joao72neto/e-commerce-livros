@@ -60,10 +60,11 @@ module.exports.devolverTrocarProduto = async (dados) => {
         INSERT INTO trocas (
             trc_clt_id,
             trc_lvr_id,
-            trc_status,
+            trc_qtd,
+            trc_preco,
             trc_tipo
         ) VALUES (
-            ?, ?, ?, ?
+            ?, ?, ?, ?, ?
         );
     `;
 
@@ -71,7 +72,8 @@ module.exports.devolverTrocarProduto = async (dados) => {
     const valores = [
         dados.trc_clt_id,
         dados.trc_lvr_id,
-        dados.trc_status,
+        dados.trc_qtd,
+        dados.trc_preco,
         dados.trc_tipo
     ]
 
