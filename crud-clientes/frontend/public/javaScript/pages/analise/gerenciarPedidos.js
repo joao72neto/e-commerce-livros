@@ -5,13 +5,13 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
     //OCULTANDO SELECTS
-    const entrega = document.querySelectorAll('#entrega').forEach(select => {
+    const entrega = this.querySelectorAll('#entrega').forEach(select => {
         select.style.display = 'none';
     });
-    const troca = document.querySelectorAll('#troca').forEach(select => {
+    const troca = this.querySelectorAll('#troca').forEach(select => {
         select.style.display = 'none';
     });
-    const devolucao = document.querySelectorAll('#devolucao').forEach(select => {
+    const devolucao = this.querySelectorAll('#devolucao').forEach(select => {
         select.style.display = 'none';
     }); 
 
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
     //CRIANDO O FLUXO DE ALTERAÇÃO DO STATUS
 
     //Exibindo os selects corretamento
-    document.querySelectorAll('.status-atual').forEach(async function(status){
+    this.querySelectorAll('.status-atual').forEach(async function(status){
 
         //Obtendo os selects
         const statusContainer = status.closest('.status');
@@ -119,22 +119,7 @@ document.addEventListener('DOMContentLoaded', function(){
                status.textContent === 'Devolução Concluída'
             ){
 
-                const wrapper = devolucao.closest('.wrapper');
-                const statusAtual = wrapper.querySelector('.status-atual');
-                const dados = {
-                    clt_id: wrapper.querySelector('.clt-id').textContent,
-                    lvr_id: wrapper.querySelector('.lvr-id').textContent
-                }
-
-                const res = await deletarDevolvidoTrocadoService(dados);
-
-                if(!res === 204){
-                    alert('Não foi possível excluir o produto da tabela de troca');
-                    return;
-                }
-
                 devolucao.disabled = true;
-                statusAtual.remove();
             }
         }
     });
@@ -142,14 +127,14 @@ document.addEventListener('DOMContentLoaded', function(){
     //ALTERANDO O STATUS NO BANCO
 
     //Alterando status do select de processamento do pedido
-    document.querySelectorAll('#processamento').forEach(select => {
+    this.querySelectorAll('#processamento').forEach(select => {
         select.addEventListener('change', async function(){
             await atualizarStatus(this);
         });
     });
 
     //Alterando o status dos selects de entrega
-    document.querySelectorAll('#entrega').forEach(entrega => {
+    this.querySelectorAll('#entrega').forEach(entrega => {
         if(entrega.style.display === 'block'){
             entrega.addEventListener('change', async function(){
                 await atualizarStatus(this);
@@ -158,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
     //Alterando o status do select de troca
-    document.querySelectorAll('#troca').forEach(entrega => {
+    this.querySelectorAll('#troca').forEach(entrega => {
         if(entrega.style.display === 'block'){
             entrega.addEventListener('change', async function(){
                 await atualizarStatus(this);
@@ -167,34 +152,61 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
     //Alterando o status do select de troca
-    document.querySelectorAll('#devolucao').forEach(entrega => {
+    this.querySelectorAll('#devolucao').forEach(entrega => {
         if(entrega.style.display === 'block'){
             entrega.addEventListener('change', async function(){
+
+                if(entrega.value === 'Devolução Recusada' ||
+                   entrega.value === 'Devolução Concluída'
+                ){
+
+                    await removerDevolvidoTrocado(this);
+                }
+
                 await atualizarStatus(this);
             });
         }
     });
-
-
-    async function atualizarStatus(select){
-
-        //Obtendo os dados para atualizar o select de entrega
-        const wrapper = select.closest('.wrapper');
-        const vnd_id = Number(wrapper.querySelector('.vnd-id').textContent);
-
-        const dados = {
-            vnd_id: vnd_id,
-            vnd_status: select.value
-        };
-
-        //Atualizando o status no banco de dados
-        const res = await atualizarStatusPedidoIdService(dados);
-
-        if(!res === 200){
-            alert('Não foi possível atualizar o status');
-            return;
-        }
-
-        window.location.reload();
-    }
 });
+
+
+
+//Função para retirar um livro da tabela de troca
+async function removerDevolvidoTrocado(select) {
+
+    const wrapper = select.closest('.wrapper');
+    const dados = {
+        clt_id: wrapper.querySelector('.clt-id').textContent,
+        lvr_id: wrapper.querySelector('.lvr-id').textContent
+    }
+
+    const res = await deletarDevolvidoTrocadoService(dados);
+
+    if(!res === 204){
+        alert('Não foi possível excluir o produto da tabela de troca');
+        return;
+    }
+}
+
+//Função para atualizar o status dos livros
+async function atualizarStatus(select){
+
+    //Obtendo os dados para atualizar o select de entrega
+    const wrapper = select.closest('.wrapper');
+    const vnd_id = Number(wrapper.querySelector('.vnd-id').textContent);
+
+    const dados = {
+        vnd_id: vnd_id,
+        vnd_status: select.value
+    };
+
+    //Atualizando o status no banco de dados
+    const res = await atualizarStatusPedidoIdService(dados);
+
+    if(!res === 200){
+        alert('Não foi possível atualizar o status');
+        return;
+    }
+
+    window.location.reload();
+}
