@@ -40,6 +40,8 @@
                         <div>
                             <h2><%=dev.lvr_titulo%></h2>
                             <p><strong>Comprador(a): </strong><%=dev.clt_nome%></p>
+                            <p><strong>Qtd:</strong> <%=dev.trc_qtd%></p>
+                            <p>R$ <%=String(dev.trc_preco).replace('.', ',')%></p>
                         </div>
                         <div class="acoes">
                             <a href="/estoque/entrada?retorno=/pedidos/gerenciar&trc_id=<%=dev.trc_id%>">Retornar ao Estoque</a>
