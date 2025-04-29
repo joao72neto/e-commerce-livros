@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS e_commerce_books;
+
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
