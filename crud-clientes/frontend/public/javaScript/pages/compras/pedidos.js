@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if (this.classList.contains('troca')){
                 dados.vnd_status = 'Troca Solicitada';
                 tipo = 'troca';
+                return;
             }
 
             //Atualizando o status
