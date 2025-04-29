@@ -94,7 +94,7 @@ module.exports.adicionarCupom = async (dados) => {
 
     //Valores a serem inseridos no banco
     const valores = [
-        dados.clt_id,
+        dados.cup_clt_id,
         dados.cup_codigo,
         dados.cup_tipo,
         dados.cup_valor
