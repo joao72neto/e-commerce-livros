@@ -19,13 +19,19 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
 
 
     //Preparando os dados
+    const urlParams = new URLSearchParams(window.location.search);
+    const retorno = urlParams.get('retorno');
+
     const entrada = {
         est_for_id: for_id,
         est_lvr_id: lvr_id,
         est_gpp_id: gpp_id,
         est_qtd: est_qtd,
-        est_valorCompra: est_valorCompra
+        est_valorCompra: est_valorCompra,
+        est_origem: retorno ? 'DEVOLUÇÃO' : 'COMPRA'
     }
+
+    console.log(entrada);
 
     //Cadastrando os dados no banco de dados
     const res = await adicionarEstoqueService(entrada);
