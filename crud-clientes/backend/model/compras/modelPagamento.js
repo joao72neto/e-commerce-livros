@@ -70,3 +70,42 @@ module.exports.deletarCupomId = async (cup_id) => {
         throw err;
     }
 };
+
+
+//INSERT
+
+//Adicionando cupons no banco de dados
+module.exports.adicionarCupom = async (dados) => {
+
+    //Consulta SQL
+    const sql = `
+    
+        INSERT INTO cupons (
+            cup_clt_id,
+            cup_codigo,
+            cup_tipo,
+            cup_valor,
+            cup_usado
+        ) VALUES (
+            ?, ?, ?, ?, 0
+        );
+
+    `;
+
+    //Valores a serem inseridos no banco
+    const valores = [
+        dados.clt_id,
+        dados.cup_codigo,
+        dados.cup_tipo,
+        dados.cup_valor
+    ]
+
+    //Inserindo os cupons no banco de dados
+    try{
+        await db.query(sql, valores);
+    }catch(err){
+        console.error(`Erro no adicionarCupom - modelPagamento: ${err}`);
+        throw err;
+    } 
+    
+}

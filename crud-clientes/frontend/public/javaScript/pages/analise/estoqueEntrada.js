@@ -60,12 +60,15 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
 
             const vnd_id = document.querySelector('.vnd-id').textContent;
 
+            //Atualizando o status do pedido
             const updateStatus = {
                 vnd_id: vnd_id,
                 vnd_status: 'Devolução Concluída'
             }
 
             const resStatus = await atualizarStatusPedidoIdService(updateStatus);
+
+            //Adicionando um cupom para o cliente
 
             if(!resStatus === 200){
                 alert('Não foi possível atualizar o status');
