@@ -63,7 +63,7 @@ module.exports.getEstoqueEntrada = async (req, res) => {
         grpPrecificacao: grpPrecificacao,
         query: query,
         estoque: estoque,
-        pedidos: pedidos
+        pedido: ''
     });
 };
 
