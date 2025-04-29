@@ -75,11 +75,13 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
             }
 
             //Adicionando um cupom para o cliente
+            let valor = (preco * qtd) * 0.25;
+            valor = valor.toFixed(2);
             const dadosCupom = {
                 cup_clt_id: clt_id,
                 cup_codigo: 'TROCA25',
                 cup_tipo: 'troca',
-                cup_valor: (preco * qtd) * 0.25
+                cup_valor: valor
             }
 
             console.log(dadosCupom)
@@ -91,6 +93,8 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
                 alert('Não foi possível adicionar um cupom para o usuário');
                 return;
             }
+
+            alert(`Cupom de R$ ${String(valor).replace('.', ',')} adicionado ao usuário`);
 
             window.location.href = retorno;
             return;
