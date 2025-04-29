@@ -1,7 +1,7 @@
 import { adicionarEstoqueService } from "/javaScript/service/analise/serviceEstoque.js"
 import { deletarDevolvidoTrocadoService } from "/javaScript/service/analise/serviceGerenciarPedidos.js";
 import { atualizarStatusPedidoIdService } from "/javaScript/service/analise/serviceGerenciarPedidos.js";
-
+import { adicionarCupomService } from "/javaScript/service/compras/servicePagamento.js";
 
 
 //Adicionando nova entrada no estoque ou retornando um item para o estoque
@@ -40,8 +40,9 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
         const retorno = urlParams.get('retorno');
         const clt_id = urlParams.get('clt_id');
         const lvr_id = urlParams.get('lvr_id');
+        const preco = document.querySelector('#valor_custo').value;
+        const qtd = document.querySelector('#qtd').value;
 
-        console.log(retorno);
 
         if(retorno){
 
@@ -68,10 +69,27 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
 
             const resStatus = await atualizarStatusPedidoIdService(updateStatus);
 
-            //Adicionando um cupom para o cliente
-
             if(!resStatus === 200){
                 alert('Não foi possível atualizar o status');
+                return;
+            }
+
+            //Adicionando um cupom para o cliente
+            const dadosCupom = {
+                cup_clt_id: clt_id,
+                cup_codigo: 'TROCA25',
+                cup_tipo: 'troca',
+                cup_valor: (preco * qtd) * 0.25
+            }
+
+            console.log(dadosCupom)
+
+            //Adicionando o cupom para o cliente
+            const resCupom = await adicionarCupomService(dadosCupom);
+
+            if (!resCupom === 201){
+                alert('Não foi possível adicionar um cupom para o usuário');
+                return;
             }
 
             window.location.href = retorno;

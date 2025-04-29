@@ -49,7 +49,7 @@ export async function deletarCupomIdService(cup_id) {
     }
 }
 
-//UPDATE
+//PATCH
 
 //Inativando um cupom por id
 export async function inativarCupomService(cup_id) {
@@ -75,4 +75,31 @@ export async function ativarCupomService(cup_id) {
         return 500;
     }
     
+}
+
+//POST
+
+//Adicionando um cupom 
+export async function adicionarCupomService(dados) {
+    try{
+
+        const res = await fetch('/cupom/add', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(dados)
+        });
+
+
+        if(!res.ok){
+            const erros = await res.json();
+            return {status: res.status, erros: erros};
+        }
+
+        return {status: res.status};
+
+
+    }catch(err){
+        console.error(`Erro no adicionarCupomService - servicePagamento: ${err}`);
+        throw err;
+    }
 }
