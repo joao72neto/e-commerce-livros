@@ -33,7 +33,7 @@
                 <h2>Itens em Devolução</h2>
 
                 <% devolvidos.forEach(dev => { %>
-                    <div class="wrapper">
+                    <div class="wrapper" style="display: none;">
                         <div class="imagem">
                             <img src="<%=dev.lvr_capa%>" alt="">
                         </div>
@@ -130,7 +130,7 @@
                                 
                                     <option class="rm" value="Devolução Solicitada" <%= pedido.vnd_status === 'Devolução Solicitada' ? 'selected' : '' %>>Devolução Solicitada</option>
                                     <option value="Devolução Aceita" <%= pedido.vnd_status === 'Devolução Aceita' ? 'selected' : '' %>>Devolução Aceita</option>
-                                    <option class="con" value="Devolução Concluída" <%= pedido.vnd_status === 'Devolução Concluída' ? 'selected' : '' %>>Devolução Concluída</option>
+                                    <option class="con rm" value="Devolução Concluída" <%= pedido.vnd_status === 'Devolução Concluída' ? 'selected' : '' %>>Devolução Concluída</option>
                                     <option class="rm" value="Devolução Recusada" <%= pedido.vnd_status === 'Devolução Recusada' ? 'selected' : '' %>>Devolução Recusada</option>
                                 </select>
                             </div>

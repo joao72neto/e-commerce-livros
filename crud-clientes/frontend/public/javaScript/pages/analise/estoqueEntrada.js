@@ -1,7 +1,7 @@
 import { adicionarEstoqueService } from "/javaScript/service/analise/serviceEstoque.js"
 import { deletarDevolvidoTrocadoService } from "/javaScript/service/analise/serviceGerenciarPedidos.js";
 import { atualizarStatusPedidoIdService } from "/javaScript/service/analise/serviceGerenciarPedidos.js";
-
+import { adicionarCupomService } from "/javaScript/service/compras/servicePagamento.js";
 
 
 //Adicionando nova entrada no estoque ou retornando um item para o estoque
@@ -19,13 +19,19 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
 
 
     //Preparando os dados
+    const urlParams = new URLSearchParams(window.location.search);
+    const retorno = urlParams.get('retorno');
+
     const entrada = {
         est_for_id: for_id,
         est_lvr_id: lvr_id,
         est_gpp_id: gpp_id,
         est_qtd: est_qtd,
-        est_valorCompra: est_valorCompra
+        est_valorCompra: est_valorCompra,
+        est_origem: retorno ? 'DEVOLUÇÃO' : 'COMPRA'
     }
+
+    console.log(entrada);
 
     //Cadastrando os dados no banco de dados
     const res = await adicionarEstoqueService(entrada);
@@ -40,8 +46,9 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
         const retorno = urlParams.get('retorno');
         const clt_id = urlParams.get('clt_id');
         const lvr_id = urlParams.get('lvr_id');
+        const preco = document.querySelector('#valor_custo').value;
+        const qtd = document.querySelector('#qtd').value;
 
-        console.log(retorno);
 
         if(retorno){
 
@@ -60,6 +67,7 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
 
             const vnd_id = document.querySelector('.vnd-id').textContent;
 
+            //Atualizando o status do pedido
             const updateStatus = {
                 vnd_id: vnd_id,
                 vnd_status: 'Devolução Concluída'
@@ -69,7 +77,30 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
 
             if(!resStatus === 200){
                 alert('Não foi possível atualizar o status');
+                return;
             }
+
+            //Adicionando um cupom para o cliente
+            let valor = (preco * qtd) * 0.25;
+            valor = valor.toFixed(2);
+            const dadosCupom = {
+                cup_clt_id: clt_id,
+                cup_codigo: 'TROCA25',
+                cup_tipo: 'troca',
+                cup_valor: valor
+            }
+
+            console.log(dadosCupom)
+
+            //Adicionando o cupom para o cliente
+            const resCupom = await adicionarCupomService(dadosCupom);
+
+            if (!resCupom === 201){
+                alert('Não foi possível adicionar um cupom para o usuário');
+                return;
+            }
+
+            alert(`Cupom de R$ ${String(valor).replace('.', ',')} adicionado ao usuário`);
 
             window.location.href = retorno;
             return;

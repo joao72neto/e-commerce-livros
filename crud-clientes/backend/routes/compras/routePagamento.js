@@ -10,9 +10,11 @@ router.get('/api/cupons/inativos/:clt_id', controllerPagamento.getApiCuponsInati
 //Rotas para remoção de dados
 router.delete('/cupom/delete/:cup_id', controllerPagamento.deleteCupomId);
 
-
 //Rotas de atualização de dados
 router.patch ('/cupom/ativar/:cup_id', controllerPagamento.patchAtivarCupom);
 router.patch('/cupom/inativar/:cup_id', controllerPagamento.patchInativarCupom);
+
+//Rota para adição de dados
+router.post('/cupom/add', controllerPagamento.postAdicionarCupons);
 
 module.exports = router;

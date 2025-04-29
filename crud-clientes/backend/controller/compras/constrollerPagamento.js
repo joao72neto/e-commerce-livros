@@ -7,6 +7,8 @@ const { inativarCupom } = require('../../model/compras/modelPagamento');
 const { ativarCupom } = require('../../model/compras/modelPagamento');
 const { buscarCuponsInativosClienteId } = require('../../model/compras/modelPagamento');
 const { buscarCuponsAtivosClienteId } = require('../../model/compras/modelPagamento');
+const { adicionarCupom } = require('../../model/compras/modelPagamento');
+
 //Página
 module.exports.getPagamento = async (req, res) => {
 
@@ -93,5 +95,19 @@ module.exports.patchInativarCupom = async (req, res) => {
     }catch(err){
         console.error(`Erro no patchInativarCupom - controllerPagamento: ${err}`);
         res.sendStatus(500);
+    }
+};
+
+//Inserindo dados
+module.exports.postAdicionarCupons = async (req, res) => {
+    try{
+
+        await adicionarCupom(req.body);
+        res.status(201).json({msg: 'Cupom adicionado com sucesso!'})
+
+    }catch(err){
+        console.error(`Erro no postAdicionarCupons - controllerPagamento: ${err}`);
+        res.status(500).json({msg:'Não foi possível adicionar o cupom'});
+
     }
 };

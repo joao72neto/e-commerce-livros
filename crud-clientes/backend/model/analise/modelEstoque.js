@@ -17,7 +17,7 @@ module.exports.adicionarEstoque = async (dados) => {
             est_valorCompra,
             est_origem
         ) VALUES (
-            ?, ?, ?, ?, CURDATE(), ?, 'COMPRA'
+            ?, ?, ?, ?, CURDATE(), ?, ?
         )
     `;
 
@@ -27,7 +27,8 @@ module.exports.adicionarEstoque = async (dados) => {
         dados.est_lvr_id,
         dados.est_gpp_id,
         dados.est_qtd,
-        dados.est_valorCompra
+        dados.est_valorCompra,
+        dados.est_origem
     ]
 
     //Inserindo os dados necessários
@@ -68,7 +69,8 @@ module.exports.buscarEstoque = async () => {
             estoque e
             join grupo_precificacao g on g.gpp_id = e.est_gpp_id
             join fornecedor f on f.for_id = e.est_for_id
-            join livros l on l.lvr_id = e.est_lvr_id;
+            join livros l on l.lvr_id = e.est_lvr_id
+        order by e.est_id desc;
     `;
     
     try{

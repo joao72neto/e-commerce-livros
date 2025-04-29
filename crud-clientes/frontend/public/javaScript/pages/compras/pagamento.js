@@ -157,7 +157,7 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
                 vnd_qtd: item.crr_qtd
             } 
 
-            //Adicionando os itens na tabela de vendas
+            //Adicionando os itens na tabela de vendas 
             const resAdd = await adicionarPedidoService(valores);
             const resRem = await removerCarrinhoIdService(item.crr_lvr_id);
 
@@ -174,6 +174,18 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
 
         });
     }
+
+    //Removendo cupons usados pelo usuário
+    const cuponsUsados = await buscarCuponsAtivosClienteIdService(cliente[0].clt_id);
+
+    cuponsUsados.forEach(async cupom => {
+        let resCupom = await deletarCupomIdService(cupom.cup_id);
+
+        if(!resCupom === 204){
+            alert('Não foi possível deletar o cupom');
+            return;
+        }
+    });
 
     //Redirecionando para a página de pedidos
     alert('Compra ralizada com sucesso!');
