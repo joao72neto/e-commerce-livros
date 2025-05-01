@@ -150,6 +150,8 @@ CREATE TABLE IF NOT EXISTS `e_commerce_books`.`cartoes` (
   `car_bandeira` VARCHAR(45) NOT NULL,
   `car_cvv` VARCHAR(4) NOT NULL,
   `car_principal` TINYINT(1) NOT NULL DEFAULT 0,
+  `car_status` TINYINT(1) NOT NULL DEFAULT 0,
+  `car_valorPag` DECIMAL(10,2) NULL,
   PRIMARY KEY (`car_id`),
   INDEX `fk_car_clt_idx` (`car_clt_id` ASC) VISIBLE,
   CONSTRAINT `fk_car_clt`

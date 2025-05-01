@@ -1,6 +1,6 @@
 const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
 const { buscarEnderecosClienteId } = require('../../model/clientes/modelAddress');
-const { buscarCartoesClienteId } = require('../../model/clientes/modelCard');
+const { buscarCartoesClienteId, buscarCartaoId } = require('../../model/clientes/modelCard');
 const { buscarCarrinhoClienteId } = require('../../model/compras/modelCarrinho');
 const { deletarCupomId } = require('../../model/compras/modelPagamento');
 const { inativarCupom } = require('../../model/compras/modelPagamento');
@@ -25,6 +25,15 @@ module.exports.getPagamento = async (req, res) => {
     //Verificando se o cliente está comprando do carrinho ou não
     const idCompra = req.query.compra;
 
+    //Obtendo o id do cartão que o cliente quer adicionar
+    const car_id = req.query.car_id;
+
+    if(car_id){
+
+        // Obtendo o cartão que o usuário quer adicionar
+        const cartao = await buscarCartaoId(car_id);
+    }
+
     if(idCompra){
 
         carrinho = carrinho.filter(car => car.lvr_id === Number(idCompra));
@@ -35,7 +44,7 @@ module.exports.getPagamento = async (req, res) => {
             cartoes: cartoes,
             carrinho: carrinho,
             cuponsInativos: cuponsInativos,
-            cuponsAtivos: cuponsAtivos
+            cuponsAtivos: cuponsAtivos,
         }); 
 
         return;
@@ -47,7 +56,7 @@ module.exports.getPagamento = async (req, res) => {
         cartoes: cartoes,
         carrinho: carrinho,
         cuponsInativos: cuponsInativos,
-        cuponsAtivos: cuponsAtivos
+        cuponsAtivos: cuponsAtivos,
     });
 };
 
