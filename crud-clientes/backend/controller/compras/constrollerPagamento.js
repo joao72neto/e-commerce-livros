@@ -8,6 +8,7 @@ const { ativarCupom } = require('../../model/compras/modelPagamento');
 const { buscarCuponsInativosClienteId } = require('../../model/compras/modelPagamento');
 const { buscarCuponsAtivosClienteId } = require('../../model/compras/modelPagamento');
 const { adicionarCupom } = require('../../model/compras/modelPagamento');
+const { atualizarCardIdStatus } = require('../../model/clientes/modelCard');
 
 //Página
 module.exports.getPagamento = async (req, res) => {
@@ -29,9 +30,12 @@ module.exports.getPagamento = async (req, res) => {
     const car_id = req.query.car_id;
 
     if(car_id){
-
-        // Obtendo o cartão que o usuário quer adicionar
-        const cartao = await buscarCartaoId(car_id);
+        try{
+            await atualizarCardIdStatus(car_id);
+        }catch(err){
+            console.error(`Erro no getPagamento - controllerPagamento: ${err}`);
+            throw err;
+        }
     }
 
     if(idCompra){

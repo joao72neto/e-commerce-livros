@@ -68,6 +68,44 @@ module.exports.atualizarCard = async (dados, car_id) => {
 
 }
 
+//Função que atuazliaza o status do cartão no banco
+module.exports.atualizarCardIdStatus = async (car_id) => {
+    
+    //Obtendo o cartão a ser atualizado
+    const card = await this.buscarCartaoId(car_id);
+    
+    //Preparando a query
+    let sql = `
+        update 
+            cartoes
+            set car_status = 1
+        where 
+            car_id = ?;
+    `;
+
+    if(card[0].car_status === 1){
+
+        sql = `
+            update 
+                cartoes
+                set car_status = 0
+            where 
+                car_id = ?;
+        `;
+    }
+
+    //Atualizando o status do cartão
+    try{
+        const [cartao] = await db.query(sql, car_id);
+        return cartao;
+        
+    }catch(err){
+        console.error(`Erro no atualizarCardIdStatus - modelCard: ${err}`);
+        throw err;
+    }
+
+}
+
 //SELECT 
 
 //Função que pega todos os cartões do banco
@@ -77,6 +115,48 @@ module.exports.buscarTodosCartoes = async () => {
         return cartoes;
     }catch(err){
         console.error(`Erro no buscarTodosCartoes - modelCard: ${err}`);
+        throw err;
+    }
+}
+
+//Função que pega todos os cartões ativos
+module.exports.buscarTodosCartoesAtivos = async () => {
+    
+    const sql = `
+        select 
+            *
+        from
+            cartoes
+        where 
+            car_status = 1;
+    `;
+    
+    try{
+        const [cartoes] = await db.query(sql);
+        return cartoes;
+    }catch(err){
+        console.error(`Erro no buscarTodosCartoesAtivos - modelCard: ${err}`);
+        throw err;
+    }
+}
+
+//Função que pega todos os cartões inativos
+module.exports.buscarTodosCartoesInativos = async () => {
+    
+    const sql = `
+        select 
+            *
+        from
+            cartoes
+        where 
+            car_status = 0;
+    `;
+    
+    try{
+        const [cartoes] = await db.query(sql);
+        return cartoes;
+    }catch(err){
+        console.error(`Erro no buscarTodosCartoesInativos - modelCard: ${err}`);
         throw err;
     }
 }
