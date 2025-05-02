@@ -1,6 +1,6 @@
 const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
 const { buscarEnderecosClienteId } = require('../../model/clientes/modelAddress');
-const { buscarCartoesClienteId, buscarCartaoId } = require('../../model/clientes/modelCard');
+const { buscarCartoesClienteId } = require('../../model/clientes/modelCard');
 const { buscarCarrinhoClienteId } = require('../../model/compras/modelCarrinho');
 const { deletarCupomId } = require('../../model/compras/modelPagamento');
 const { inativarCupom } = require('../../model/compras/modelPagamento');
@@ -9,6 +9,8 @@ const { buscarCuponsInativosClienteId } = require('../../model/compras/modelPaga
 const { buscarCuponsAtivosClienteId } = require('../../model/compras/modelPagamento');
 const { adicionarCupom } = require('../../model/compras/modelPagamento');
 const { atualizarCardIdStatus } = require('../../model/clientes/modelCard');
+const { buscarCartoesAtivosClienteId } = require('../../model/clientes/modelCard');
+const { buscarCartoesInativosClienteId } = require('../../model/clientes/modelCard');
 
 //Página
 module.exports.getPagamento = async (req, res) => {
@@ -28,6 +30,8 @@ module.exports.getPagamento = async (req, res) => {
 
     //Obtendo o id do cartão que o cliente quer adicionar
     const car_id = req.query.car_id;
+    const cartoesAtivos = await buscarCartoesAtivosClienteId(cliente[0].clt_id);
+    const cartoesInativos = await buscarCartoesInativosClienteId(cliente[0].clt_id);
 
     if(car_id){
         try{
@@ -45,10 +49,11 @@ module.exports.getPagamento = async (req, res) => {
         res.render('compras/pagamento', {
             cliente: cliente,
             enderecos: enderecos,
-            cartoes: cartoes,
+            cartoesInativos: cartoesInativos,
+            cartoesAtivos: cartoesAtivos,
             carrinho: carrinho,
             cuponsInativos: cuponsInativos,
-            cuponsAtivos: cuponsAtivos,
+            cuponsAtivos: cuponsAtivos
         }); 
 
         return;
@@ -57,10 +62,11 @@ module.exports.getPagamento = async (req, res) => {
     res.render('compras/pagamento', {
         cliente: cliente,
         enderecos: enderecos,
-        cartoes: cartoes,
+        cartoesInativos: cartoesInativos,
+        cartoesAtivos: cartoesAtivos,
         carrinho: carrinho,
         cuponsInativos: cuponsInativos,
-        cuponsAtivos: cuponsAtivos,
+        cuponsAtivos: cuponsAtivos
     });
 };
 

@@ -119,8 +119,8 @@ module.exports.buscarTodosCartoes = async () => {
     }
 }
 
-//Função que pega todos os cartões ativos
-module.exports.buscarTodosCartoesAtivos = async () => {
+//Função que pega todos os cartões ativos de um cliente
+module.exports.buscarCartoesAtivosClienteId = async (clt_id) => {
     
     const sql = `
         select 
@@ -128,11 +128,11 @@ module.exports.buscarTodosCartoesAtivos = async () => {
         from
             cartoes
         where 
-            car_status = 1;
+            car_status = 1 and car_clt_id = ?;
     `;
     
     try{
-        const [cartoes] = await db.query(sql);
+        const [cartoes] = await db.query(sql, clt_id);
         return cartoes;
     }catch(err){
         console.error(`Erro no buscarTodosCartoesAtivos - modelCard: ${err}`);
@@ -140,8 +140,8 @@ module.exports.buscarTodosCartoesAtivos = async () => {
     }
 }
 
-//Função que pega todos os cartões inativos
-module.exports.buscarTodosCartoesInativos = async () => {
+//Função que pega todos os cartões inativos de um cliente
+module.exports.buscarCartoesInativosClienteId = async (clt_id) => {
     
     const sql = `
         select 
@@ -149,11 +149,11 @@ module.exports.buscarTodosCartoesInativos = async () => {
         from
             cartoes
         where 
-            car_status = 0;
+            car_status = 0 and car_clt_id = ?;
     `;
     
     try{
-        const [cartoes] = await db.query(sql);
+        const [cartoes] = await db.query(sql, clt_id);
         return cartoes;
     }catch(err){
         console.error(`Erro no buscarTodosCartoesInativos - modelCard: ${err}`);

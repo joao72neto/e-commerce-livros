@@ -45,30 +45,41 @@ document.querySelector('.add-card').addEventListener('click', async function(eve
 
     //Obtendo dados
     const wrapper = event.target.closest('.container');
-    const cartoesUsados = wrapper.querySelector('.cartoes-adicionados');
     const select = wrapper.querySelector('select').value;
 
     //Passando o id do cartão na URL para o back
     try{
-        const res = await fetch(`/pagamento?car_id=${select}`);
-        const cartoes = await res.json();
-
-        // const teste = document.createElement('div');
-
-        // cartoesUsados.innerHTML = '';
-
-        // cartoes.cartoesAdicionados.forEach(cartao => {
-        //     teste.innerHTML += `<p>${cartao[0].car_bandeira}</p>`;
-        //     cartoesUsados.appendChild(teste);
-        // });
-
-        // console.log(cartoes.cartoesAdicionados);
-
+        await fetch(`/pagamento?car_id=${select}`);
     }catch(err){
         console.error('Não foi possível enviar o ID do cartão');
         throw err;
     }
 
+    //Recarregando a página
+    window.location.reload();
+
+});
+
+//Removendo cartões que o cliente adicionou no pagamento
+document.querySelectorAll('.rm-card').forEach(cartao => {
+    cartao.addEventListener('click', async function(){
+
+        //Obtendo o ID do cartão clicado
+        const wrapper = this.closest('.wrapper');
+        const car_id = wrapper.querySelector('.card-id').textContent;
+
+        //Removendo o cartão
+        try{
+            await fetch(`/pagamento?car_id=${car_id}`);
+        }catch(err){
+            console.error('Não foi possível enviar o cartão para remoção');
+            throw err;
+        }
+
+        //Recarregando a página
+        window.location.reload();
+        
+    });
 });
 
 //Adicionando cupons que o cliente possui

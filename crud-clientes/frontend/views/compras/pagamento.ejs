@@ -72,7 +72,7 @@
                             <label for="cartao"><strong>Selecione um cartão:</strong></label>
                             
                             <select name="cartao" id="cartao">
-                                <% cartoes.forEach(cartao => { %>
+                                <% cartoesInativos.forEach(cartao => { %>
                                     <option value="<%= cartao.car_id %>">
                                     <%= cartao.car_bandeira %> - <%= cartao.car_nome %>, Final <%= cartao.car_numero.slice(-4) %>
                                     </option>
@@ -80,7 +80,22 @@
                             </select>
                         </div>
                         
-                        <div class="cartoes-adicionados"></div>
+                        <div class="cartoes-adicionados">
+                            <% cartoesAtivos.forEach(cartao => { %>
+                                <div class="wrapper">
+                                    <div class="card-main">
+                                        <p class="invisible card-id"><%=cartao.car_id%></p>
+                                        <h2><%=cartao.car_bandeira%></h2>
+                                        <p><%=cartao.car_nome%></p>
+                                        <p><strong>Final: </strong><%=cartao.car_numero.slice(-4)%></p>
+                                    </div>
+                                    <div class="acoes">
+                                        <input class="valor" type="number">
+                                        <a class="rm-card">Remover</a>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
 
                         <div class="add">
                             <a href="/perfil?retorno_pag=pagamento&tipo=cartao">Editar Cartão</a>
