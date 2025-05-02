@@ -68,6 +68,30 @@ module.exports.atualizarCard = async (dados, car_id) => {
 
 }
 
+//Função que desativa o status de todos os cartões de um cliente
+module.exports.desativarCartoesClienteId = async (clt_id) => {
+    
+    //Preparando a query
+    let sql = `
+        update 
+            cartoes	
+            set car_status = 0
+        where car_clt_id = ?;
+
+    `;
+
+    //Desativando todos os cartões do cliente
+    try{
+        const [cartao] = await db.query(sql, clt_id);
+        return cartao;
+        
+    }catch(err){
+        console.error(`Erro no desativarCartoesClienteId - modelCard: ${err}`);
+        throw err;
+    }
+}
+
+
 //Função que atuazliaza o status do cartão no banco
 module.exports.atualizarCardIdStatus = async (car_id) => {
     
