@@ -53,6 +53,28 @@ main{
     width: 70%;
 }
 
+
+.cartoes-adicionados .wrapper{
+    display:  grid;
+    grid-template-columns: 70% 30%;
+
+}
+
+.cartoes-adicionados .card-main h2, .cartoes-adicionados .card-main p{
+    margin-bottom: 5px;
+}
+
+.cartoes-adicionados .wrapper .acoes{
+    display: grid;
+    justify-items: center;
+    grid-gap: 15px;
+}
+
+.cartoes-adicionados .wrapper input{
+    width: 150px;
+    text-align: center;
+}
+
 .add{
     margin: 40px;
     text-align: center;
