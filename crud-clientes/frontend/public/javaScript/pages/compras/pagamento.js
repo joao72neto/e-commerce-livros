@@ -43,6 +43,29 @@ document.addEventListener('DOMContentLoaded', async function(){
     }
 });
 
+// Dividindo o valor a ser pago em cada cartão
+document.addEventListener('DOMContentLoaded', function(){
+    const containerCartoes = this.querySelector('.cartoes-adicionados');
+    if(containerCartoes.innerHTML.trim() !== ''){
+        
+        //Pegando o valor total a ser pago
+        const total = Number(this.querySelector('.total').textContent.split(' ')[2].replace(',', '.'));
+        
+
+        //Obtendo a qtd de cartões que estão adicionados
+        const cartoes = containerCartoes.querySelectorAll('.wrapper');
+        const valorPorCartao = (total / cartoes.length).toFixed(2); 
+
+        //Adicionando valores para os cada cartão
+        cartoes.forEach(cartao => {
+            const inputValor = cartao.querySelector('.valor');
+            inputValor.value = valorPorCartao;
+        });
+
+        return;
+    }
+});
+
 
 //Adicionando múltiplos cartões
 document.querySelector('.add-card').addEventListener('click', async function(event){
