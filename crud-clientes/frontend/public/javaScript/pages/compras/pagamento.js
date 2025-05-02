@@ -7,6 +7,7 @@ import { buscarClienteLogadoService } from "/javaScript/service/clientes/service
 import { buscarCarrinhoClienteIdService } from "/javaScript/service/compras/serviceCarrinho.js";
 import { adicionarPedidoService } from "/javaScript/service/compras/servicePedidos.js";
 import { removerCarrinhoIdService } from "/javaScript/service/compras/serviceCarrinho.js";
+import { desativarCartoesClienteIdService } from "/javaScript/service/clientes/serviceCard.js";
 
 //Verficado se há cupons disponíveis ou não
 document.addEventListener('DOMContentLoaded', async function(){
@@ -261,6 +262,14 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
             return;
         }
     });
+
+    //Desativando os cartões
+    const res = await desativarCartoesClienteIdService(cliente[0].clt_id);
+    
+    if(!res === 200){
+        alert('Não foi possível desativar os cartões do usuário');
+        return;
+    }
 
     //Redirecionando para a página de pedidos
     alert('Compra ralizada com sucesso!');

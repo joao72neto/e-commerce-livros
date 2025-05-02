@@ -56,3 +56,21 @@ export async function atualizarCardService(dados, clt_id, car_id) {
         throw err;
     }
 }
+
+//PATCH
+
+//Desativando os cartões de um determinado cliente
+export async function desativarCartoesClienteIdService(clt_id) {
+    try{
+        const result = await fetch(`/clientes/card/desativar/${clt_id}`, {
+           method: 'PATCH'
+        });
+
+        return result.status;
+
+    }catch(err){
+        console.error(`Erro no desativarCartoesClienteIdService - serviceCard: ${err}`);
+        throw err;
+    }
+}
+
