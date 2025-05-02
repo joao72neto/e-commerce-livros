@@ -11,32 +11,38 @@ import { removerCarrinhoIdService } from "/javaScript/service/compras/serviceCar
 //Verficado se há cupons disponíveis ou não
 document.addEventListener('DOMContentLoaded', async function(){
 
-    //Verificando se há cupons inativos
-    const cliente = await buscarClienteLogadoService();
-    const cuponsInativos = await buscarCuponsInativosClienteIdService(cliente[0].clt_id);
-    
-    if(cuponsInativos.length > 0){
-        return;
-    }
-
     //Obtendo o select
-    const select = document.querySelector('#cupons');
+    const selectCupom = this.querySelector('#cupons');
+    const selectCartao = this.querySelector('#cartao');
 
-    // Exibindo uma msg quando não tivermais cupons para uso
-    select.innerHTML = '';
+    if(!selectCupom.value){
+        selectCupom.innerHTML = '';
 
-    // Cria uma nova option com valor padrão
-    const option = document.createElement('option');
-    option.value = '';
-    option.textContent = 'Nenhum';
-    option.disabled = true;
-    option.selected = true;
+        // Cria uma nova option com valor padrão
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = 'R$ 00,00';
+        option.disabled = true;
+        option.selected = true;
 
-    select.appendChild(option);
+        selectCupom.appendChild(option);
+    }    
+
+    if(!selectCartao.value){
+        selectCartao.innerHTML = '';
+
+        // Cria uma nova option com valor padrão
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = 'Nenhum Cartão Disponível';
+        option.disabled = true;
+        option.selected = true;
+
+
+        selectCartao.appendChild(option);
+    }
 });
 
-
-//Adicionando o endereço selecionando na página
 
 //Adicionando múltiplos cartões
 document.querySelector('.add-card').addEventListener('click', async function(event){
