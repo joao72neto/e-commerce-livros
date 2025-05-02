@@ -1,4 +1,5 @@
 const { atualizarCard, buscarCartaoId, buscarCartoesClienteId, cadastrarCartao, deletarCardId, deletarCardsClienteId } = require("../../model/clientes/modelCard");
+const { desativarCartoesClienteId } = require('../../model/clientes/modelCard');
 
 //Páginas
 module.exports.getCard = async (req, res) => {
@@ -69,4 +70,16 @@ module.exports.deleteCardId = async (req, res) => {
 module.exports.putCardAlt = async (req, res) => {
     const cartao = await atualizarCard(req.body, req.params.car_id);
     res.json(cartao);
+};
+
+module.exports.patchDesativarCartoesClienteId = async (req, res) => {
+    try{
+        
+        await desativarCartoesClienteId(req.params.clt_id);
+        return res.status(200).json({msg: 'Cartões desativados com sucesso!'});
+
+    }catch(err){
+        console.error(`Erro no patchDesativarCartoesClienteId - controllerCard: ${err}`);
+        return res.status(500).json({msg: 'Não foi possível desativar os cartões'});
+    }
 };

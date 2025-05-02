@@ -82,8 +82,7 @@ module.exports.desativarCartoesClienteId = async (clt_id) => {
 
     //Desativando todos os cartões do cliente
     try{
-        const [cartao] = await db.query(sql, clt_id);
-        return cartao;
+        await db.query(sql, clt_id);
         
     }catch(err){
         console.error(`Erro no desativarCartoesClienteId - modelCard: ${err}`);

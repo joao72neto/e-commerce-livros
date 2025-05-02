@@ -10,6 +10,7 @@ router.get('/clientes/card/:clt_id/alt/:car_id', controllerCard.getCardAlt);
 
 //Atualizando dados
 router.put('/clientes/card/:clt_id/alt/:car_id', validarCard, controllerCard.putCardAlt);
+router.patch('/clientes/card/desativar/:clt_id', controllerCard.patchDesativarCartoesClienteId);
 
 //Inserção de dados
 router.post('/clientes/card/:clt_id/add', validarCard, controllerCard.postCardAdd);
