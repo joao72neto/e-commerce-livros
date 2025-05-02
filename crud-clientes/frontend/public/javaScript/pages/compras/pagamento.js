@@ -272,6 +272,6 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
     }
 
     //Redirecionando para a página de pedidos
-    alert('Compra ralizada com sucesso!');
+    alert('Compra realizada com sucesso!');
     window.location.href = '/pedidos';
 });
