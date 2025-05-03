@@ -3,6 +3,20 @@ let lvr_id = 1;
 
 describe('Realizando a compra de um livro', () => {
  
+    it('Deve realizar login de um cliente', () => {
+
+        //Visitando a página de clientes
+        cy.visit('/clientes');
+
+        //Logando com o cliente de id 1
+        cy.wait(2000);
+        cy.get('.login').first().click();
+
+        //Esperando para voltar para a pǵina inicial
+        cy.wait(2000);
+
+    });
+
     it('Deve adicionar o livro à tela de pagamento', () => {
         
         //Visitando a página principal do e-commerce

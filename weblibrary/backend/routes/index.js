@@ -57,11 +57,5 @@ router.use('/', routeHistoricoVendas);
 router.use('/', routeLogs);
 router.use('/', routeEstoque);
 
-
-//Obtendo rota de reset
-const routeReset = require('../routes/database/routeReset');
-
-router.use('/', routeReset);
-
 //Expotando as rotas pra o app
 module.exports = router;
