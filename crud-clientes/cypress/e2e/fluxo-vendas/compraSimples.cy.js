@@ -9,11 +9,11 @@ describe('Realizando a compra de um livro', () => {
         cy.visit('/');
 
         //Abrindo o livro
-        cy.wait(1500);
+        cy.wait(2000);
         cy.contains('.book-id', lvr_id).siblings('.imagem').click();
 
         //Clicando no botão de compra
-        cy.wait(1500);
+        cy.wait(2000);
         cy.get('.comprar').click();
 
     });
@@ -24,15 +24,15 @@ describe('Realizando a compra de um livro', () => {
         cy.visit('/pagamento');
 
         //Escolhendo o endereço
-        cy.wait(1500);
+        cy.wait(2000);
         cy.get('#endereco').select('2');
 
         //Adicionando um cartão para pagamento
-        cy.wait(1500);
+        cy.wait(2000);
         cy.get('.add-card').click();
 
         //Finalizando a compra
-        cy.wait(1500);
+        cy.wait(2000);
         cy.get('.finalizar-compra a').click();
 
         // Verificando o alert
@@ -53,21 +53,27 @@ describe('Gerenciando os pedidos feitos pelo cliente', () => {
         cy.visit('/pedidos/gerenciar');
 
         //Aprovando o pedido do usuário
-        cy.wait(1500);
+        cy.wait(2000);
         cy.contains('.lvr-id', lvr_id).get('#processamento').select('Aprovado');
+        cy.wait(2000);
+        cy.visit('/pedidos');
+        cy.wait(2000);
 
         //Mudando o stauts para em transporte
-        cy.wait(1500);
+        cy.visit('/pedidos/gerenciar');
         cy.contains('.lvr-id', lvr_id).get('#entrega').select('Em Transporte');
+        cy.wait(2000);
+        cy.visit('/pedidos');
+        cy.wait(2000);
 
         //Mudando o status para enutregue
-        cy.wait(1500);
+        cy.visit('/pedidos/gerenciar');
         cy.contains('.lvr-id', lvr_id).get('#entrega').select('Entregue');
-        cy.wait(1500);
+        cy.wait(2000);
     });
 });
 
-describe('Gerenciar a devolução de um livro', () => {
+describe('Gerenciando a devolução de um livro', () => {
 
     it('Deve realizar a devolução do pedido solicitado', () => {
 
@@ -79,35 +85,43 @@ describe('Gerenciar a devolução de um livro', () => {
         cy.visit('/pedidos');
 
         //Solicitando a devolução do produto
-        cy.wait(1500);
+        cy.wait(2000);
         cy.contains('.book-id', lvr_id).get('.devolucao').first().click();
 
         //Voltando para a página de gerenciamento de pedidos
-        cy.wait(1500);
+        cy.wait(2000);
         cy.visit('/pedidos/gerenciar');
 
         //Aceitando a solicitação da devolução
-        cy.wait(1500);
+        cy.wait(2000);
         cy.contains('.lvr-id', lvr_id).get('#devolucao').select('Devolução Aceita'); 
+        cy.wait(2000);
+        cy.visit('/pedidos');
+        cy.wait(2000);
 
         //Retornando o item para o estoque
-        cy.wait(1500);
+        cy.visit('/pedidos/gerenciar');
+        cy.wait(2000);
         cy.get('.devolucao .acoes a').first().click();
 
         //Confirmando o retorno do item para o estoque
-        cy.wait(1500);
+        cy.wait(2000);
         cy.get('.submit button').click();
+        cy.wait(2000);
+
+        //Verificando o status da página de pedidos
+        cy.visit('/pedidos');
+
+        //Redirecionando para a página de estoque
+        cy.wait(2000);
+        cy.visit('/estoque');
+        cy.wait(2000);
 
         //Verificando todos os alerts
         cy.wrap(alerts).should(stub => {
             expect(stub.getCall(0)).to.be.calledWith('devolucao solicitado(a) com sucesso!');
             expect(stub.getCall(1)).to.be.calledWith('Entrada adicionada com sucesso!');
         })
-
-        //Redirecionando para a página de estoque
-        cy.wait(1500);
-        cy.visit('/estoque');
-        cy.wait(1500);
 
     });
 
@@ -120,29 +134,29 @@ describe('Gerenciar a devolução de um livro', () => {
         lvr_id = 2;
 
         //Selecionando o livro
-        cy.wait(1500);
+        cy.wait(2000);
         cy.contains('.book-id', lvr_id).siblings('.imagem').click();
 
         //Clicando no botão de compra
-        cy.wait(1500);
+        cy.wait(2000);
         cy.get('.comprar').click();
 
         //Selecionando um endereço
-        cy.wait(1500);
+        cy.wait(2000);
         cy.get('#endereco').select('1');
 
         //Adicionando dois cartões
-        cy.wait(1500);
+        cy.wait(2000);
         cy.get('.add-card').click();
-        cy.wait(1500);
+        cy.wait(2000);
         cy.get('.add-card').click();
 
         //Adicionando um cupom de troca no momento da compra
-        cy.wait(1500);
+        cy.wait(2000);
         cy.get('.add-cupom').click();
 
         //Finalizando a compra
-        cy.wait(1500);
+        cy.wait(2000);
         cy.get('.finalizar-compra a').click();
 
         // Verificando o alert da finalização da compra
@@ -150,9 +164,12 @@ describe('Gerenciar a devolução de um livro', () => {
             expect(msg).to.contains('Compra realizada com sucesso!');
         });
 
-        cy.wait(1500);
+        cy.wait(2000);
 
     });
+});
+
+describe('Recusando um pedido feito pelo cliente', () => {
 
     it('Não deve aprovar o pedido feito pelo cliente', () => {
 
@@ -160,11 +177,11 @@ describe('Gerenciar a devolução de um livro', () => {
         cy.visit('/pedidos/gerenciar');
 
         //Recusando ou cancelando o pedido
-        cy.wait(1500);
+        cy.wait(2000);
         cy.contains('.lvr-id', lvr_id).get('#processamento').select('Reprovado');
 
         //Voltando para a página de pedidos
-        cy.wait(1500);
+        cy.wait(2000);
         cy.visit('/pedidos');
 
     });
