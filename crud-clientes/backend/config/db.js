@@ -8,7 +8,8 @@ const bd = mysql.createPool({
     database: 'e_commerce_books',
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0
+    queueLimit: 0,
+    multipleStatements: true
 });
 
 //Exportando as configuralões do banco de dados

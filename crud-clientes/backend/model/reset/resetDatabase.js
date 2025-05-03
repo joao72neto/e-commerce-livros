@@ -1,0 +1,25 @@
+const db = require('../../config/db');
+const fs = require('fs');
+const path = require('path');
+
+// Dropando todos os dados do banco de dados
+module.exports.resetarBanco = async () => {
+    
+    try{
+
+        //Preparando as queries
+        const sqlDrop = 'DROP DATABASE IF EXISTS e_commerce_books;';
+        const sqlPath = path.join(__dirname, '../../../../modelo-bd/ddl/ddl-banco-completo (up-to-date).sql');
+        const sqlDdl = fs.readFileSync(sqlPath, 'utf8');
+
+        //Resetando o banco
+        await db.query(sqlDrop);
+        await db.query(sqlDdl);
+
+        console.log('Banco resetado com sucesso!');
+
+    }catch(err){
+        console.error(`Erro no dropDatabase - modelReset: ${err}`);
+        throw err;
+    }
+};
