@@ -1,9 +1,13 @@
-const db = require('../../config/db');
+const { getDb } = require('../../config/db');
 
 //DELETE
 
 //Função que deleta todos os dados de uma tabela
 module.exports.deletarCardsClienteId = async (clt_id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+
     const sql = `DELETE FROM cartoes WHERE car_clt_id = ?`;
 
     try{
@@ -15,6 +19,10 @@ module.exports.deletarCardsClienteId = async (clt_id) => {
 
 //Função que deleta clientes do banco de dados
 module.exports.deletarCardId = async (id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+    
     const sql = `DELETE FROM cartoes WHERE car_id = ?`;
 
     try{
@@ -28,6 +36,9 @@ module.exports.deletarCardId = async (id) => {
 
 //Inserindo um novo cartão no banco de dados
 module.exports.cadastrarCartao = async (dados) => {
+
+    //Obtendo o banco
+    const db = await getDb();
 
     //Consulta SQL
     sql = `INSERT INTO cartoes (car_clt_id, car_nome, car_numero, car_bandeira, car_cvv, car_principal) VALUES (?, ?, ?, ?, ?, 1)`;
@@ -51,6 +62,9 @@ module.exports.cadastrarCartao = async (dados) => {
 //Atualizando os dados dos cartões no banco
 module.exports.atualizarCard = async (dados, car_id) => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     const campos = Object.keys(dados).map(key =>  `${key} = ?`).join(', ');
     let valores = Object.values(dados);
     valores.push(car_id);
@@ -70,7 +84,10 @@ module.exports.atualizarCard = async (dados, car_id) => {
 
 //Função que desativa o status de todos os cartões de um cliente
 module.exports.desativarCartoesClienteId = async (clt_id) => {
-    
+
+    //Obtendo o banco
+    const db = await getDb();
+
     //Preparando a query
     let sql = `
         update 
@@ -94,6 +111,9 @@ module.exports.desativarCartoesClienteId = async (clt_id) => {
 //Função que atuazliaza o status do cartão no banco
 module.exports.atualizarCardIdStatus = async (car_id) => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     //Obtendo o cartão a ser atualizado
     const card = await this.buscarCartaoId(car_id);
     
@@ -133,6 +153,10 @@ module.exports.atualizarCardIdStatus = async (car_id) => {
 
 //Função que pega todos os cartões do banco
 module.exports.buscarTodosCartoes = async () => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+    
     try{
         const [cartoes] = await db.query('select * from cartoes');
         return cartoes;
@@ -145,6 +169,9 @@ module.exports.buscarTodosCartoes = async () => {
 //Função que pega todos os cartões ativos de um cliente
 module.exports.buscarCartoesAtivosClienteId = async (clt_id) => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     const sql = `
         select 
             *
@@ -166,6 +193,9 @@ module.exports.buscarCartoesAtivosClienteId = async (clt_id) => {
 //Função que pega todos os cartões inativos de um cliente
 module.exports.buscarCartoesInativosClienteId = async (clt_id) => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     const sql = `
         select 
             *
@@ -186,6 +216,10 @@ module.exports.buscarCartoesInativosClienteId = async (clt_id) => {
 
 //Função que pegar um cartão pelo seu id
 module.exports.buscarCartaoId = async (id) =>{
+    
+    //Obtendo o banco
+    const db = await getDb();
+    
     try{
         const [cartao] = await db.query(`select * from cartoes where car_id = ?`, id);
         return cartao;
@@ -197,6 +231,10 @@ module.exports.buscarCartaoId = async (id) =>{
 
 //Função que pegar cartões de um determinado cliente
 module.exports.buscarCartoesClienteId = async (id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+
     try{
         const [cartoes] = await db.query(`select * from cartoes where car_clt_id = ?`, id);
         return cartoes;

@@ -1,10 +1,12 @@
-const db = require('../../config/db');
+const { getDb } = require('../../config/db');
 
 // INSERT
 
 // Adicionando uma nova entrada no estoque
 module.exports.adicionarEstoque = async (dados) => {
 
+    //Obtendo o banco
+    const db = await getDb();
 
     // Insert na tabela de estoque
     const sql = `
@@ -49,6 +51,9 @@ module.exports.adicionarEstoque = async (dados) => {
 //Função que pega os dados do estoque
 module.exports.buscarEstoque = async () => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     const sql = `
     
         select
@@ -86,6 +91,9 @@ module.exports.buscarEstoque = async () => {
 //Buscando todos os fornecedores cadastrados
 module.exports.buscarTodosFornecedores = async () => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     const sql = `
     
         select
@@ -107,6 +115,9 @@ module.exports.buscarTodosFornecedores = async () => {
 //Buscando todos os grupos de precificação
 module.exports.buscarTodosGrpPrecificacao = async () => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     const sql = `
     
         select

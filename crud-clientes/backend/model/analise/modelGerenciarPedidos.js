@@ -1,10 +1,13 @@
-const db = require('../../config/db');
+const { getDb } = require('../../config/db');
 
 //UPDATE
 
 //Atualizando o status de um determinado pedido
 module.exports.atualizarStatusPedidoId = async (dados) => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     sql = `
         update 
             vendas
@@ -31,6 +34,9 @@ module.exports.atualizarStatusPedidoId = async (dados) => {
 //SELECT
 module.exports.buscarDevolvidosTrocados = async () => {
 
+    //Obtendo o banco
+    const db = await getDb();
+
     const sql = `
         select
             *
@@ -54,6 +60,9 @@ module.exports.buscarDevolvidosTrocados = async () => {
 
 //Inserindo um pedido na tabela de devoluçao e troca
 module.exports.devolverTrocarProduto = async (dados) => {
+
+    //Obtendo o banco
+    const db = await getDb();
 
     // Inserindo dados na tabela de trocas
     const sql = `
@@ -91,6 +100,9 @@ module.exports.devolverTrocarProduto = async (dados) => {
 //DELETE
 module.exports.deletarDevolvidoTrocado = async (dados) => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     const sql = `
         delete from 
             trocas

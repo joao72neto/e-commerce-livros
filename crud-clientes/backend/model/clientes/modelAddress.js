@@ -1,9 +1,13 @@
-const db = require('../../config/db');
+const { getDb } = require('../../config/db');
 
 //DELETE
 
 //Função que deleta todos os dados de uma tabela
 module.exports.deletarAddressClienteId = async (clt_id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+
     const sql = `DELETE FROM enderecos WHERE end_clt_id = ?`;
 
     try{
@@ -15,6 +19,10 @@ module.exports.deletarAddressClienteId = async (clt_id) => {
 
 //Função que deleta clientes do banco de dados
 module.exports.deletarAddressId = async (id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+    
     const sql = `DELETE FROM enderecos WHERE end_id = ?`;
 
     try{
@@ -28,6 +36,9 @@ module.exports.deletarAddressId = async (id) => {
 
 //Cadastrando um novo endereço no banco de dadso
 module.exports.cadastrarAddress = async (dados) => {
+
+    //Obtendo o banco
+    const db = await getDb();
 
     //Consulta SQL
     sql = `INSERT INTO enderecos (end_clt_id, end_nome, end_tipoResidencia, end_tipoLogradouro, end_logradouro, end_numero, end_bairro, end_cep, end_cidade, end_estado, end_pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -56,6 +67,9 @@ module.exports.cadastrarAddress = async (dados) => {
 //Atualizando os endereços do banco de dados
 module.exports.atualizarAddress = async (dados, end_id) => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     const campos = Object.keys(dados).map(key =>  `${key} = ?`).join(', ');
     let valores = Object.values(dados);
     valores.push(end_id);
@@ -77,6 +91,10 @@ module.exports.atualizarAddress = async (dados, end_id) => {
 
 //Bsucando todos os endereços do banco de dados
 module.exports.buscarTodosEnderecos = async () => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+
     try{
         const [enderecos] = await db.query('select * from enderecos');
         return enderecos;
@@ -88,6 +106,10 @@ module.exports.buscarTodosEnderecos = async () => {
 
 //Bsucando endereço por id
 module.exports.buscarEnderecoId = async (id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+
     try{
         const [endereco] = await db.query(`select * from enderecos where end_id = ?`, id);
         return endereco;
@@ -99,6 +121,10 @@ module.exports.buscarEnderecoId = async (id) => {
 
 //Bsucando endereços por id de cliente
 module.exports.buscarEnderecosClienteId = async (id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+    
     try{
         const [enderecos] = await db.query(`select * from enderecos where end_clt_id = ?`, id);
         return enderecos;

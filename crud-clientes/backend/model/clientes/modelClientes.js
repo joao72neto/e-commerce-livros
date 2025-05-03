@@ -1,10 +1,14 @@
-const db = require('../../config/db');
+const { getDb } = require('../../config/db');
 const bcrypt = require('bcrypt');
 
 //DELETE
 
 //Função que deleta clientes do banco de dados
 module.exports.deletarClienteId = async (id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+    
     const sql = `DELETE FROM clientes WHERE clt_id = ?`;
 
     try{
@@ -18,6 +22,9 @@ module.exports.deletarClienteId = async (id) => {
 
 //Função que insere um novo cliente no banco 
 module.exports.cadastrarCliente = async (dados) => {
+
+    //Obtendo o banco
+    const db = await getDb();
 
     //Consulta SQL
     const logado = dados.clt_logado ? dados.clt_logado : 0;
@@ -58,6 +65,9 @@ module.exports.cadastrarCliente = async (dados) => {
 //Atualizando os dados dos clientes no banco
 module.exports.atualizarCliente = async (dados, clt_id) => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     const campos = Object.keys(dados).map(key =>  `${key} = ?`).join(', ');
     let valores = Object.values(dados);
     valores.push(clt_id);
@@ -78,6 +88,9 @@ module.exports.atualizarCliente = async (dados, clt_id) => {
 //Alterar senha cliente de um cliente
 module.exports.alterarSenhaCliente = async (senha, id) => {
 
+    //Obtendo o banco
+    const db = await getDb();
+
     //Criptografando a senha
     const saltos = 10; 
     senha.clt_senha = await bcrypt.hash(senha.clt_senha, saltos);
@@ -92,6 +105,9 @@ module.exports.alterarSenhaCliente = async (senha, id) => {
 
 //Alterando o status de login de um cliente para logado
 module.exports.logarClienteId = async (id) => {
+
+    //Obtendo o banco
+    const db = await getDb();
 
     const clienteLogado = await this.buscarClienteLogado();
 
@@ -112,6 +128,9 @@ module.exports.logarClienteId = async (id) => {
 //Alterando o status de login de um cliente para logado
 module.exports.deslogarCliente = async () => {
 
+    //Obtendo o banco
+    const db = await getDb();
+
     const clienteLogado = await this.buscarClienteLogado();
 
     try{
@@ -124,6 +143,10 @@ module.exports.deslogarCliente = async () => {
 
 //Inativando um cliente específico
 module.exports.inativarCliente = async (id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+
     try{
         await db.query(`update clientes set clt_status = 0 where clt_id = ?`, id);
     }catch(err){
@@ -134,6 +157,10 @@ module.exports.inativarCliente = async (id) => {
 
 //Ativando um cliente específico
 module.exports.ativarCliente = async (id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+    
     try{
         await db.query(`update clientes set clt_status = 1 where clt_id = ?`, id);
     }catch(err){
@@ -146,6 +173,10 @@ module.exports.ativarCliente = async (id) => {
 
 //Buscar cliente logado
 module.exports.buscarClienteLogado = async () => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+    
     try{
         const [cliente] = await db.query('select * from clientes where clt_logado = 1');
         return cliente;
@@ -159,6 +190,9 @@ module.exports.buscarClienteLogado = async () => {
 //Filtro do Usuário
 module.exports.filtrarClientesAtivos = async (dados) => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     let sql = 'SELECT * FROM clientes WHERE clt_status = 1';
     let valores = []
 
@@ -205,6 +239,9 @@ module.exports.filtrarClientesAtivos = async (dados) => {
 //Buscar Clientes que possuem pedidos
 module.exports.buscarClientesPedidos = async () => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     const sql = `
     
     select 
@@ -228,6 +265,10 @@ module.exports.buscarClientesPedidos = async () => {
 
 //Buscando clientes ativos
 module.exports.buscarClientesAtivos = async () => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+    
     try{
         const [clientes] = await db.query('select * from clientes where clt_status = 1');
         return clientes;
@@ -239,6 +280,10 @@ module.exports.buscarClientesAtivos = async () => {
 
 //Buscando clientes inativos
 module.exports.buscarClientesInativos = async () => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+    
     try{
         const [clientes] = await db.query('select * from clientes where clt_status = 0');
         return clientes;
@@ -250,6 +295,10 @@ module.exports.buscarClientesInativos = async () => {
 
 //Bsucando todos os clientes do banco de dados
 module.exports.buscarTodosClientes = async () => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+
     try{
         const [clientes] = await db.query('select * from clientes');
         return clientes;
@@ -261,6 +310,10 @@ module.exports.buscarTodosClientes = async () => {
 
 //Bsucando clientes por id
 module.exports.buscarClienteId = async (id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+
     try{
         const [cliente] = await db.query(`select * from clientes where clt_id = ?`, id);
         return cliente;

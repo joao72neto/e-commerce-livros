@@ -1,13 +1,44 @@
-const db = require('../../config/db');
+const { getDb } = require('../../config/db');
 const fs = require('fs');
 const path = require('path');
 
-const teste = require('../../../../modelo-bd/inserts')
+//Verificando se o banco foi criado ou não e inicializando ele
+module.exports.verificarInicializarBanco = async () => {
 
+    try{
+        
+        //Verificando se há alguma estrutura ou dados no banco
+        const db = await getDb();
+        const [estrutura] = await db.query("SHOW tables LIKE 'clientes'");
+
+        if(estrutura.length === 0){
+            console.log('Criando a estrutura do banco...');
+            await this.resetarBanco();
+        }
+
+        const [dados] = await db.query('SELECT count(*) total FROM clientes');
+
+        if(dados[0].total === 0){
+            console.log('Povoando o banco...');
+            await this.povoarBanco();
+        }
+
+        console.log('Banco pronto!');
+
+
+    }catch(err){
+        console.error(`Erro no verificarInicializarBanco - modelReset: ${err}`);
+        throw err;
+    }
+
+};
 
 // Dropando e criando o banco novamente
 module.exports.resetarBanco = async () => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     try{
 
         //Preparando as queries
@@ -19,10 +50,8 @@ module.exports.resetarBanco = async () => {
         await db.query(sqlDrop);
         await db.query(sqlDdl);
 
-        console.log('Banco resetado com sucesso!');
-
     }catch(err){
-        console.error(`Erro no dropDatabase - modelReset: ${err}`);
+        console.error(`Erro no resetarBanco - modelReset: ${err}`);
         throw err;
     }
 };
@@ -30,30 +59,33 @@ module.exports.resetarBanco = async () => {
 // Povoando o banco
 module.exports.povoarBanco = async () => {
 
+    //Obtendo o banco
+    const db = await getDb();
+
     try{
 
         //Preparando a query
-        const sqlInserts = path.join(__dirname, '../../../../modelo-bd/inserts/inserts.sql');
-
+        const insertPath = path.join(__dirname, '../../../../modelo-bd/inserts/inserts.sql');
+        const sqlInserts = fs.readFileSync(insertPath, 'utf8');
+        
         //Resetando o banco
         await db.query(sqlInserts);
-
-        console.log('Banco povoado com sucesso!');
 
     }catch(err){
         console.error(`Erro no povoarBanco - modelReset: ${err}`);
         throw err;
     }
-
 };
 
 // Resetando o banco e povoando
 module.exports.resetarPovoarBanco = async () => {
 
+    //Obtendo o banco
+    const db = await getDb();
+
     try{
         await this.resetarBanco();
         await this.povoarBanco();
-        console.log('Banco resetado por completo com sucesso!')
     }catch(err){
         console.error(`Erro no resetarPovoarBanco - modelReset: ${err}`);
         throw err;

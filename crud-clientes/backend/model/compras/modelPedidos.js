@@ -1,10 +1,12 @@
-const db = require('../../config/db');
-
+const { getDb } = require('../../config/db');
 
 //INSERT
 
 //Inserindo pedido na tabela de vendas do banco
 module.exports.adicionarPedido = async (dados) => {
+
+    //Obtendo o banco
+    const db = await getDb();
 
     //Preparando a query sql
     const sql = `
@@ -48,6 +50,9 @@ module.exports.adicionarPedido = async (dados) => {
 //Função que pegar todos os pedidos de um cliente
 module.exports.buscarPedidosClienteId = async (clt_id) => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     const sql = `
     
         select  

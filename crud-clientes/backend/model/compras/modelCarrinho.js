@@ -1,10 +1,14 @@
-const db = require('../../config/db');
+const { getDb } = require('../../config/db');
 const { buscarClienteLogado } = require('../clientes/modelClientes');
 
 //SELECT
 
 //Trazendo todos os itens do carrinho
 module.exports.buscarCarrinhoClienteId = async (clt_id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+    
     try{
 
         const sql = `
@@ -32,6 +36,10 @@ module.exports.buscarCarrinhoClienteId = async (clt_id) => {
 
 //Removendo itens do carrinho
 module.exports.removerCarrinhoId = async (lvr_id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+    
     try{
         const [livros] = await db.query('delete from carrinho where crr_lvr_id = ?', lvr_id);
         return livros;
@@ -47,6 +55,9 @@ module.exports.removerCarrinhoId = async (lvr_id) => {
 
 //Inserindo itens no carrinho
 module.exports.adicionarCarrinho = async (dados) => {
+
+    //Obtendo o banco
+    const db = await getDb();
 
     //Verificando se há um item no carrinho
     const cliente = await buscarClienteLogado();
@@ -95,6 +106,9 @@ module.exports.adicionarCarrinho = async (dados) => {
 
 //Função para atualizar o preço e a qtd do item do carrinho
 module.exports.atualizarQtdPrecoCarrinho = async (crr_qtd, lvr_id) => {
+
+    //Obtendo o banco
+    const db = await getDb();
 
     //Obtendo os dados
     const cliente = await buscarClienteLogado();
