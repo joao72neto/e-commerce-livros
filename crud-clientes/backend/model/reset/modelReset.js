@@ -2,6 +2,8 @@ const db = require('../../config/db');
 const fs = require('fs');
 const path = require('path');
 
+const teste = require('../../../../modelo-bd/inserts')
+
 
 // Dropando e criando o banco novamente
 module.exports.resetarBanco = async () => {
@@ -28,11 +30,34 @@ module.exports.resetarBanco = async () => {
 // Povoando o banco
 module.exports.povoarBanco = async () => {
 
+    try{
+
+        //Preparando a query
+        const sqlInserts = path.join(__dirname, '../../../../modelo-bd/inserts/inserts.sql');
+
+        //Resetando o banco
+        await db.query(sqlInserts);
+
+        console.log('Banco povoado com sucesso!');
+
+    }catch(err){
+        console.error(`Erro no povoarBanco - modelReset: ${err}`);
+        throw err;
+    }
+
 };
 
 // Resetando o banco e povoando
 module.exports.resetarPovoarBanco = async () => {
 
+    try{
+        await this.resetarBanco();
+        await this.povoarBanco();
+        console.log('Banco resetado por completo com sucesso!')
+    }catch(err){
+        console.error(`Erro no resetarPovoarBanco - modelReset: ${err}`);
+        throw err;
+    }
 };
 
 
