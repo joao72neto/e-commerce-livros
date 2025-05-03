@@ -59,7 +59,7 @@ router.use('/', routeEstoque);
 
 
 //Obtendo rota de reset
-const routeReset = require('../routes/reset/routeReset');
+const routeReset = require('../routes/database/routeReset');
 
 router.use('/', routeReset);
 

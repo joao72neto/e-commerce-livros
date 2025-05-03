@@ -1,6 +1,6 @@
-const { resetarBanco } = require('../../model/reset/modelReset');
-const { povoarBanco } = require('../../model/reset/modelReset');
-const { resetarPovoarBanco } = require('../../model/reset/modelReset');
+const { resetarBanco } = require('../../model/database/modelReset');
+const { povoarBanco } = require('../../model/database/modelReset');
+const { resetarPovoarBanco } = require('../../model/database/modelReset');
 
 //Resetando o banco de dados
 module.exports.postResetarBanco = async (req, res) => {

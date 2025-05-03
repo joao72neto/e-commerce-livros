@@ -2,7 +2,7 @@
 const path = require('path');
 const express = require('express');
 const routes = require('./backend/routes');
-const { verificarInicializarBanco } = require('./backend/model/reset/modelReset');
+const { verificarInicializarBanco } = require('./backend/model/database/modelReset');
 
 //Iniciando o express
 const app = express();

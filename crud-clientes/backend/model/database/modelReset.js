@@ -43,7 +43,7 @@ module.exports.resetarBanco = async () => {
 
         //Preparando as queries
         const sqlDrop = 'DROP DATABASE IF EXISTS e_commerce_books;';
-        const sqlPath = path.join(__dirname, '../../../../modelo-bd/ddl/ddl-banco-completo (up-to-date)/ddl-completo (up-to-date).sql');
+        const sqlPath = path.join(__dirname, '../../../scripts/ddl.sql');
         const sqlDdl = fs.readFileSync(sqlPath, 'utf8');
 
         //Resetando o banco
@@ -65,7 +65,7 @@ module.exports.povoarBanco = async () => {
     try{
 
         //Preparando a query
-        const insertPath = path.join(__dirname, '../../../../modelo-bd/inserts/inserts.sql');
+        const insertPath = path.join(__dirname, '../../../scripts/inserts.sql');
         const sqlInserts = fs.readFileSync(insertPath, 'utf8');
         
         //Resetando o banco

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controllerReset = require('../../controller/reset/controllerReset');
+const controllerReset = require('../../controller/database/controllerReset');
 
 //Rotas para páginas
 router.post('/banco/resetar', controllerReset.postResetarBanco);
