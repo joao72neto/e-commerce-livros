@@ -1,5 +1,5 @@
 //Definindo o livro que participará do teste
-const lvr_id = 1;
+let lvr_id = 1;
 
 describe('Realizando a compra de um livro', () => {
  
@@ -113,8 +113,59 @@ describe('Gerenciar a devolução de um livro', () => {
 
     it('Deve comprar um livro usando cupons de troca', () => {
 
-        //Indo para a tela principal do e-commerce
+        //Indo para a página principal do e-commerce
         cy.visit('/');
+
+        //Escolhendo outro livro para a compra
+        lvr_id = 2;
+
+        //Selecionando o livro
+        cy.wait(1500);
+        cy.contains('.book-id', lvr_id).siblings('.imagem').click();
+
+        //Clicando no botão de compra
+        cy.wait(1500);
+        cy.get('.comprar').click();
+
+        //Selecionando um endereço
+        cy.wait(1500);
+        cy.get('#endereco').select('1');
+
+        //Adicionando dois cartões
+        cy.wait(1500);
+        cy.get('.add-card').click();
+        cy.wait(1500);
+        cy.get('.add-card').click();
+
+        //Adicionando um cupom de troca no momento da compra
+        cy.wait(1500);
+        cy.get('.add-cupom').click();
+
+        //Finalizando a compra
+        cy.wait(1500);
+        cy.get('.finalizar-compra a').click();
+
+        // Verificando o alert da finalização da compra
+        cy.on('window:alert', msg => {
+            expect(msg).to.contains('Compra realizada com sucesso!');
+        });
+
+        cy.wait(1500);
+
+    });
+
+    it('Não deve aprovar o pedido feito pelo cliente', () => {
+
+        //Visitando a página de gerenciamento de pedidos
+        cy.visit('/pedidos/gerenciar');
+
+        //Recusando ou cancelando o pedido
+        cy.wait(1500);
+        cy.contains('.lvr-id', lvr_id).get('#processamento').select('Reprovado');
+
+        //Voltando para a página de pedidos
+        cy.wait(1500);
+        cy.visit('/pedidos');
 
     });
 });
