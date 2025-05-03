@@ -63,6 +63,7 @@ describe('Gerenciando os pedidos feitos pelo cliente', () => {
         //Mudando o status para enutregue
         cy.wait(1500);
         cy.contains('.lvr-id', lvr_id).get('#entrega').select('Entregue');
+        cy.wait(1500);
     });
 });
 
@@ -116,5 +117,4 @@ describe('Gerenciar a devolução de um livro', () => {
         cy.visit('/');
 
     });
-
 });
