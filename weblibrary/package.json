@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "bd:reset": "node scripts/resetarBanco.js",
-    "cypress": "npx cypress open"
+    "cypress": "npx cypress open",
+    "start": "nodemon app.js"
   },
   "author": "João Neto",
   "license": "ISC",
