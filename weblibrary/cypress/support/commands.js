@@ -2,3 +2,4 @@
 import "./commands/compras";
 import "./commands/cupons";
 import "./commands/login";
+import "./commands/pedidos"

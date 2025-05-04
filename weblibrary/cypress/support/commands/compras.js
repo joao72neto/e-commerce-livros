@@ -15,7 +15,7 @@ Cypress.Commands.add('comprarLivroId', (lvr_id, sleep=2000) => {
 });
 
 //Finalizando a compra
-Cypress.Commands.add('finalizarCompra', (end, cardTot=1, sleep=2000) => {
+Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=2000) => {
 
     //Visitando a página de pagamento
     cy.visit('/pagamento');
@@ -38,6 +38,9 @@ Cypress.Commands.add('finalizarCompra', (end, cardTot=1, sleep=2000) => {
     cy.on('window:alert', msg => {
         expect(msg).to.contains('Compra realizada com sucesso!');
     });
+
+    //Mostrando os pedidos
+    cy.wait(sleep);
 });
 
 //Adicionandno itens ao carrinho
