@@ -39,7 +39,7 @@ describe('Realizando a compra de um livro', () => {
 
         //Escolhendo o endereço
         cy.wait(2000);
-        cy.get('#endereco').select('2');
+        cy.get('#endereco').select('10');
 
         //Adicionando um cartão para pagamento
         cy.wait(2000);
@@ -157,7 +157,7 @@ describe('Gerenciando a devolução de um livro', () => {
 
         //Selecionando um endereço
         cy.wait(2000);
-        cy.get('#endereco').select('1');
+        cy.get('#endereco').select('9');
 
         //Adicionando dois cartões
         cy.wait(2000);
