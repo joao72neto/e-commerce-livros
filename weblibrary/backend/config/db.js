@@ -26,6 +26,7 @@ module.exports.getDb = async () => {
 
     //Criando o banco se ele não existir
     await poolSemBanco.query(`CREATE DATABASE IF NOT EXISTS ${database}`);
+
     
     // Criando uma pool definitiva com o banco
     db = mysql.createPool({

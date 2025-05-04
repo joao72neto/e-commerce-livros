@@ -1,6 +1,5 @@
-
 -- Clientes
-INSERT INTO e_commerce_books.clientes
+INSERT INTO clientes
 (clt_nome, clt_genero, clt_dataNasc, clt_cpf, clt_telefone, clt_email, clt_senha, clt_ranking, clt_status, clt_logado)
 VALUES
 ('Ana Souza', 'F', '1990-05-12', '123.456.789-00', '+55 (11) 91234-5678', 'ana.souza@email.com', '$2b$10$CmQWqcdWQ9e.J1ShE9RPZ.nqMj7dEHOH.CxXfrIY.H7BNkgP0qY8O', 10, 1, 0),
@@ -10,7 +9,7 @@ VALUES
 ('Eduarda Ribeiro', 'F', '1995-07-20', '999.888.777-66', '+55 (51) 93456-7890', 'eduarda.ribeiro@email.com', '$2b$10$CmQWqcdWQ9e.J1ShE9RPZ.nqMj7dEHOH.CxXfrIY.H7BNkgP0qY8O', 8, 1, 0);
 
 -- Endereços
-INSERT INTO e_commerce_books.enderecos
+INSERT INTO enderecos
 (end_clt_id, end_nome, end_tipoResidencia, end_tipoLogradouro, end_logradouro, end_numero, end_bairro, end_cep, end_cidade, end_estado, end_pais)
 VALUES
 (1, 'Residência Principal', 'Apartamento', 'Rua', 'das Flores', 123, 'Jardim Primavera', '01234-567', 'São Paulo', 'SP', 'Brasil'),
@@ -25,7 +24,7 @@ VALUES
 (5, 'Casa da Avó', 'Casa', 'Rua', 'dos Ipês', 88, 'Taguatinga', '72000-000', 'Brasília', 'DF', 'Brasil');
 
 -- Cartões
-INSERT INTO e_commerce_books.cartoes
+INSERT INTO cartoes
 (car_clt_id, car_nome, car_numero, car_bandeira, car_cvv, car_principal)
 VALUES
 (1, 'Ana Souza', '4111 1111 1111 1111', 'Visa', '123', 1),
@@ -40,7 +39,7 @@ VALUES
 (5, 'Eduarda Ribeiro', '6304 0000 0000 0000', 'Aura', '258', 0);
 
 -- Autores
-INSERT INTO e_commerce_books.autores (aut_id, aut_nome) VALUES
+INSERT INTO autores (aut_id, aut_nome) VALUES
 (1, 'J.R.R. Tolkien'),
 (2, 'George Orwell'),
 (3, 'Machado de Assis'),
@@ -51,7 +50,7 @@ INSERT INTO e_commerce_books.autores (aut_id, aut_nome) VALUES
 (8, 'Patrick Rothfuss');
 
 -- Editora
-INSERT INTO e_commerce_books.editora (edt_id, edt_nome) VALUES
+INSERT INTO editora (edt_id, edt_nome) VALUES
 (1, 'Martins Fontes'),
 (2, 'Companhia das Letras'),
 (3, 'Nova Fronteira'),
@@ -61,7 +60,7 @@ INSERT INTO e_commerce_books.editora (edt_id, edt_nome) VALUES
 (7, 'Arqueiro');
 
 -- Precificação
-INSERT INTO e_commerce_books.grupo_precificacao (gpp_id, gpp_nome, gpp_margemLucro) VALUES
+INSERT INTO grupo_precificacao (gpp_id, gpp_nome, gpp_margemLucro) VALUES
 (1, 'Lançamentos', 5.00),
 (2, 'Clássicos', 10.00),
 (3, 'Infantil', 15.00),
@@ -70,7 +69,7 @@ INSERT INTO e_commerce_books.grupo_precificacao (gpp_id, gpp_nome, gpp_margemLuc
 (6, 'Fantasia', 5.00);
 
 -- Livros
-INSERT INTO e_commerce_books.livros (
+INSERT INTO livros (
   lvr_edt_id, lvr_aut_id, lvr_ano, lvr_titulo,
   lvr_edicao, lvr_isbn, lvr_numPaginas, lvr_sinopse,
   lvr_codigoBarras, lvr_largura, lvr_altura, lvr_peso, lvr_profundidade,
@@ -108,7 +107,7 @@ INSERT INTO e_commerce_books.livros (
  '9788595084766', 15.50, 23.00, 0.65, 4.00, '/images/capas/retorno_rei.jpg', 69.90);
 
 -- Fornecedores
-INSERT INTO e_commerce_books.fornecedor (for_nome) VALUES
+INSERT INTO fornecedor (for_nome) VALUES
 ('Distribuidora Literária Brasileira'),
 ('Livraria Cultura'),
 ('Saraiva Distribuidora'),
@@ -118,7 +117,7 @@ INSERT INTO e_commerce_books.fornecedor (for_nome) VALUES
 ('Companhia das Letras');
 
 -- Estoque
-INSERT INTO e_commerce_books.estoque (est_for_id, est_lvr_id, est_gpp_id, est_qtd, est_data, est_valorCompra) VALUES
+INSERT INTO estoque (est_for_id, est_lvr_id, est_gpp_id, est_qtd, est_data, est_valorCompra) VALUES
 (4, 1, 5, 35, '2023-10-15', 46.60),
 (2, 1, 5, 20, '2023-11-05', 47.67),
 (7, 2, 2, 45, '2023-09-20', 38.38),

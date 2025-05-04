@@ -13,14 +13,14 @@ module.exports.verificarInicializarBanco = async () => {
 
         if(estrutura.length === 0){
             console.log('Criando a estrutura do banco...');
-            await this.resetarBanco();
+            await module.exports.resetarBanco();
         }
 
         const [dados] = await db.query('SELECT count(*) total FROM clientes');
 
         if(dados[0].total === 0){
             console.log('Povoando o banco...');
-            await this.povoarBanco();
+            await module.exports.povoarBanco();
         }
 
         console.log('Banco pronto!');
@@ -37,17 +37,22 @@ module.exports.verificarInicializarBanco = async () => {
 module.exports.resetarBanco = async () => {
     
     //Obtendo o banco
-    const db = await getDb();
+    let db = await getDb();
 
     try{
 
         //Preparando as queries
-        const sqlDrop = 'DROP DATABASE IF EXISTS e_commerce_books;';
+        const sqlReset = `
+            DROP DATABASE IF EXISTS e_commerce_books;
+            CREATE DATABASE IF NOT EXISTS e_commerce_books;
+            USE e_commerce_books;
+        `;
+
         const sqlPath = path.join(__dirname, '../../../scripts/ddl.sql');
         const sqlDdl = fs.readFileSync(sqlPath, 'utf8');
 
         //Resetando o banco
-        await db.query(sqlDrop);
+        await db.query(sqlReset);
         await db.query(sqlDdl);
 
     }catch(err){
@@ -80,12 +85,9 @@ module.exports.povoarBanco = async () => {
 // Resetando o banco e povoando
 module.exports.resetarPovoarBanco = async () => {
 
-    //Obtendo o banco
-    const db = await getDb();
-
     try{
-        await this.resetarBanco();
-        await this.povoarBanco();
+        await module.exports.resetarBanco();
+        await module.exports.povoarBanco();
     }catch(err){
         console.error(`Erro no resetarPovoarBanco - modelReset: ${err}`);
         throw err;
