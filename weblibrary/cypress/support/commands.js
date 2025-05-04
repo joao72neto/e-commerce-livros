@@ -1,5 +1,5 @@
 //Importando todos os comandos
 import "./commands/compras";
-import "./commands/cupons";
+import "./commands/devolucoes";
 import "./commands/login";
-import "./commands/pedidos"
+import "./commands/gerenciarPedidos"
