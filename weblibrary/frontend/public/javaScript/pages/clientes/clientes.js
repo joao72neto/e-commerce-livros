@@ -7,8 +7,6 @@ import { logarClienteIdService } from "/javaScript/service/clientes/serviceClien
 import { deslogarClienteService } from "/javaScript/service/clientes/serviceClientes.js";
 
 
-
-
 mascarasFiltro();
 
 //FILTRO
@@ -135,6 +133,9 @@ document.querySelectorAll('.login').forEach(button => {
 
         this.textContent = 'Logado';
         this.classList.add('logado');
+
+        //Recarregando a página
+        window.location.reload();
     });
 });
 

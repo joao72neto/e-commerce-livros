@@ -1,5 +1,5 @@
 const { getDb } = require('../../config/db');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 //DELETE
 
@@ -225,6 +225,12 @@ module.exports.filtrarClientesAtivos = async (dados) => {
         sql += ' AND clt_telefone LIKE ?';
         valores.push(`%${dados.clt_telefone}%`);
     }
+
+    sql += `
+        order by
+            clt_logado desc,
+            clt_id desc;
+    `;
     
     try{
         const [clientes] = await db.query(sql, valores);
@@ -244,14 +250,14 @@ module.exports.buscarClientesPedidos = async () => {
 
     const sql = `
     
-    select 
-        *
-    from
-        vendas v
-        inner join clientes c on c.clt_id = v.vnd_clt_id
-        inner join livros l on lvr_id = v.vnd_lvr_id
-    order by v.vnd_id desc
-    `
+        select 
+            *
+        from
+            vendas v
+            inner join clientes c on c.clt_id = v.vnd_clt_id
+            inner join livros l on lvr_id = v.vnd_lvr_id
+        order by v.vnd_id desc;
+    `;
     
     try{
         const [clientes] = await db.query(sql);
@@ -268,9 +274,21 @@ module.exports.buscarClientesAtivos = async () => {
     
     //Obtendo o banco
     const db = await getDb();
-    
+
+    const sql = `
+        select
+            *
+        from 
+            clientes c
+        where 
+            c.clt_status = 1
+        order by
+            c.clt_logado desc,
+            c.clt_id desc;
+    `;
+
     try{
-        const [clientes] = await db.query('select * from clientes where clt_status = 1');
+        const [clientes] = await db.query(sql);
         return clientes;
     }catch(err){
         console.error(`Erro no buscarClientesAtivos - modelClientes: ${err}`);

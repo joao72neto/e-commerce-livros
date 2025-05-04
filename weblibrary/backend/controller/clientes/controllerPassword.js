@@ -1,5 +1,5 @@
 const { alterarSenhaCliente, buscarClienteId } = require("../../model/clientes/modelClientes");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 //Páginas
 module.exports.getPassword = (req, res) => {
