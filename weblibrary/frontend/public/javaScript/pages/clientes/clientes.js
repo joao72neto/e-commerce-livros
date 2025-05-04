@@ -121,6 +121,10 @@ document.querySelectorAll('.login').forEach(button => {
 
             if(clt_idLogado === clt_id){
                 await deslogarClienteService();
+
+                //Recarregando a página
+                window.location.reload();
+
                 return;
             }
 
