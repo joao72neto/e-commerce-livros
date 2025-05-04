@@ -1,24 +1,112 @@
-//Deve reprovar o pedidos de um usuário
+//Deve solicitar a devolução de livros
 Cypress.Commands.add('devolverLivroId', (lvr_id, sleep=2000) => {
 
     //Página a ser visitada
     cy.visit('/pedidos');
 
-    //Recusando o pedido de um usuário
+    //Solicitando a devolução do livro 
     cy.wait(sleep);
 
     //Encontrando o livro
     cy.get('.book-id').contains(lvr_id).closest('.wrapper').then($wrapper => {
 
         const status = $wrapper.find('.status').text().trim();
-        
         if(status === 'Entregue'){
             cy.wrap($wrapper).find('.devolucao').click();
         }
 
-    })
+    });
 
+    //Redirecionando para a página de pedidos
     cy.wait(sleep);
     cy.visit('/pedidos');
     cy.wait(sleep);
+
+    // Verificando o alert
+    cy.on('window:alert', msg => {
+        expect(msg).to.contains('devolucao solicitado(a) com sucesso!');
+    });
 });
+
+
+//Deve aceitar a devolução de livros 
+Cypress.Commands.add('aceitarDevolucaoId', (lvr_id, sleep=2000) => {
+
+    //Página a ser visitada
+    cy.visit('/pedidos/gerenciar');
+
+    //Aceitando a devolução do livro
+    cy.wait(sleep);
+
+    //Encontrando o livro
+    cy.get('.pedidos .lvr-id').contains(lvr_id).closest('.wrapper').within(() => {
+        cy.get('#devolucao').select('Devolução Aceita');
+    });
+
+
+    cy.wait(sleep);
+});
+
+//Deve recusar a devolução de livros 
+Cypress.Commands.add('recusarDevolucaoId', (lvr_id, sleep=2000) => {
+
+    //Página a ser visitada
+    cy.visit('/pedidos/gerenciar');
+
+    //Recusando o pedido de um usuário
+    cy.wait(sleep);
+
+    //Encontrando o livro
+    cy.get('.pedidos .lvr-id').contains(lvr_id).closest('.wrapper').within(() => {
+        cy.get('#devolucao').select('Devolução Recusada');
+    });
+
+    cy.wait(sleep);
+});
+
+//Retornando item para o estoque
+Cypress.Commands.add('retornarEstoqueId', (lvr_id, sleep=2000) => {
+
+    //Obtendo todos os alerts
+    const alerts = cy.stub();
+    cy.on('window:alert', alerts);
+
+    //Página a ser visitada
+    cy.visit('/pedidos/gerenciar');
+
+    //Recusando o pedido de um usuário
+    cy.wait(sleep);
+
+    //Encontrando o livro
+    cy.get('.devolucao .lvr-id').contains(lvr_id).closest('.wrapper').within(() => {
+        cy.get('.acoes a').click();
+    });
+
+    //Retornando o item para o estoque
+    cy.wait(sleep);
+    cy.get('.submit button').click();
+
+    //Verificando o status da página de pedidos
+    cy.wait(sleep);
+    cy.visit('/pedidos');
+    cy.wait(sleep);
+
+    //Verificando todos os alerts
+    cy.wrap(alerts).should(stub => {
+        expect(stub.getCall(0)).to.be.calledWith('Entrada adicionada com sucesso!');
+    })
+});
+
+//Exibindo o estoque
+Cypress.Commands.add('exibirEstoque', (sleep=2000) => {
+
+    cy.wait(sleep);
+    cy.visit('/estoque');
+    cy.wait(sleep);
+});
+
+
+
+
+
+

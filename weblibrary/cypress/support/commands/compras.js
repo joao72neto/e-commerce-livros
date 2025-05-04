@@ -43,6 +43,41 @@ Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=2000) => {
     cy.wait(sleep);
 });
 
+//Finalizando a compra
+Cypress.Commands.add('finalizarCompraCupom', (end=9, totCard=1, totCup=1, sleep=2000) => {
+
+    //Visitando a página de pagamento
+    cy.visit('/pagamento');
+
+    //Escolhendo o endereço
+    cy.wait(sleep);
+    cy.get('#endereco').select(String(end));
+
+    //Adicionando um cartão para pagamento
+    for(let i=0; i < totCard; i++){
+        cy.wait(sleep);
+        cy.get('.add-card').click();
+    }
+
+    for(let i=0; i < totCup; i++){
+        cy.wait(sleep);
+        cy.get('.add-cupom').click();
+    }
+
+    //Finalizando a compra
+    cy.wait(sleep);
+    cy.get('.finalizar-compra a').click();
+
+    // Verificando o alert
+    cy.on('window:alert', msg => {
+        expect(msg).to.contains('Compra realizada com sucesso!');
+    });
+
+    //Mostrando os pedidos
+    cy.wait(sleep);
+});
+
+
 //Adicionandno itens ao carrinho
 Cypress.Commands.add('adicionarCarrinhoId', (lvr_id, sleep=2000) => {
 

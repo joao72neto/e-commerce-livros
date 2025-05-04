@@ -17,6 +17,7 @@ Cypress.Commands.add('reprovarPedidoId', (lvr_id, sleep=2000) => {
 
 //Deve cancelar o pedido do cliente
 Cypress.Commands.add('cancelarPedidoId', (lvr_id, sleep=2000) => {
+    
     //Página a ser visitada
     cy.visit('/pedidos/gerenciar');
 
