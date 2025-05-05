@@ -28,7 +28,13 @@
                     <div class="book-title">
                         <p class="invisible vnd-id"><%=pedido.vnd_id%></p>
                         <p class="invisible book-id"><%=pedido.vnd_lvr_id%></p>
-                        <p><strong>Qtd: <%=pedido.vnd_qtd%></strong></p>
+
+                        <%
+                            const qtdTrocada = pedido.vnd_qtd_trocada;
+                            const stringTrocada = ` / Troca: ${qtdTrocada}`; 
+                        %>
+
+                        <p><strong>Qtd: <%=pedido.vnd_qtd%><%=qtdTrocada?stringTrocada:""%></strong></p>
                         <p><%=pedido.lvr_titulo%></p>
                         <p><strong>R$ <%=String(pedido.vnd_valorTotal).replace('.', ',')%></strong></p>
                         <p class="invisible" id="preco"><%=pedido.lvr_preco%></p>

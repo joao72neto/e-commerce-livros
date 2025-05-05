@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 qtdUpdate = prompt('Quantos livros deseja devolver?');
                 if(qtdUpdate > qtd){
                     alert('Não pode devolver mais do que ' + qtd + ' livro(s)');
+                    continue;
                 }
 
             }while(qtdUpdate > qtd);
@@ -67,6 +68,8 @@ document.addEventListener('DOMContentLoaded', function(){
             if(!qtdUpdate || qtdUpdate === 0){
                 return;
             }
+
+            qtd = qtdUpdate;
         }
 
         //Atualizando o status
