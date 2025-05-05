@@ -32,7 +32,7 @@ document.querySelector('#notificacao-index').addEventListener('click', function(
         
 
     //Retirando o menu ao clicar de novo
-    let notificacao = this.querySelector('.notificacaoa');
+    let notificacao = this.querySelector('.notificacao');
 
     if(notificacao){
         notificacao.remove();

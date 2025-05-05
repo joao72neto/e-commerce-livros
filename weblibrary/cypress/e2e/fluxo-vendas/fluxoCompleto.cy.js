@@ -51,6 +51,7 @@ describe('Gerenciar pedidos dos clientes', () => {
         cy.reprovarPedidoId(3, 500);
         cy.aprovarPedidoId(2, 500);
         cy.aprovarPedidoId(1, 500);
+        cy.pause();
     });
 
     it('Deve tratar as solicitações de troca dos clientes', () => {
