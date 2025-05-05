@@ -31,6 +31,7 @@ module.exports.atualizarStatusPedidoId = async (dados) => {
 
 }
 
+
 //SELECT
 module.exports.buscarDevolvidosTrocados = async () => {
 
@@ -68,18 +69,20 @@ module.exports.devolverTrocarProduto = async (dados) => {
     const sql = `
         INSERT INTO trocas (
             trc_clt_id,
+            trc_vnd_id,
             trc_lvr_id,
             trc_qtd,
             trc_preco,
             trc_tipo
         ) VALUES (
-            ?, ?, ?, ?, ?
+            ?, ?, ?, ?, ?, ?
         );
     `;
 
     // Preparando os valores que serão adicionados
     const valores = [
         dados.trc_clt_id,
+        dados.trc_vnd_id,
         dados.trc_lvr_id,
         dados.trc_qtd,
         dados.trc_preco,

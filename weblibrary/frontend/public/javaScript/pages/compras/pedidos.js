@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function(){
             //Preparando os dados
             const troca = {
                 trc_clt_id: cliente[0].clt_id,
+                trc_vnd_id: vnd_id,
                 trc_lvr_id: Number(lvr_id),
                 trc_qtd: qtd,
                 trc_preco: Number(wrapper.querySelector('#preco').textContent),
