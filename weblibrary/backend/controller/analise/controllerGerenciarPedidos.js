@@ -3,6 +3,7 @@ const { atualizarStatusPedidoId } = require('../../model/analise/modelGerenciarP
 const { devolverTrocarProduto } = require('../../model/analise/modelGerenciarPedidos');
 const { buscarDevolvidosTrocados } = require('../../model/analise/modelGerenciarPedidos');
 const { deletarDevolvidoTrocado } = require('../../model/analise/modelGerenciarPedidos');
+const { atualizarQtdTrocadaPedidoId } = require('../../model/analise/modelGerenciarPedidos');
 
 //Página
 module.exports.getGerenciarPedidos = async (req, res) => {
@@ -57,6 +58,15 @@ module.exports.patchAtualizarStatusPedidoId = async (req, res) => {
 module.exports.postDevolverTrocarProduto = async (req, res) => {
     try{
         await devolverTrocarProduto(req.body);
+
+        //Preparando os dados para atualizar a qtd trocada
+        const dados = {
+            vnd_qtd_trocada: req.body.trc_qtd,
+            vnd_id: req.body.trc_vnd_id
+        }
+       
+        await atualizarQtdTrocadaPedidoId(dados);
+
         return res.status(201).json({msg: 'Produto em processo de troca ou devolução'});
     }catch(err){
         console.error(`Erro no postDevolverTrocarProduto - controllerGerenciarPedidos: ${err}`);

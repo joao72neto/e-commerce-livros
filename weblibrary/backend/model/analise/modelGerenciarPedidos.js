@@ -21,8 +21,8 @@ module.exports.atualizarStatusPedidoId = async (dados) => {
     ]
 
     try{
-        const [cliente] = await db.query(sql, valores);
-        return cliente;
+        const [venda] = await db.query(sql, valores);
+        return venda;
         
     }catch(err){
         console.error(`Erro no atualizarStatusPedidoId - modelGerenciarPedidos: ${err}`);
@@ -31,6 +31,34 @@ module.exports.atualizarStatusPedidoId = async (dados) => {
 
 }
 
+//Adicionando a qtd que o usuário quer trocar
+module.exports.atualizarQtdTrocadaPedidoId = async (dados) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+
+    sql = `
+        update 
+            vendas
+            set vnd_qtd_trocada = ?
+        where vnd_id = ?;
+    `;
+
+    const valores = [
+        dados.vnd_qtd_trocada,
+        dados.vnd_id
+    ]
+
+    try{
+        const [venda] = await db.query(sql, valores);
+        return venda;
+        
+    }catch(err){
+        console.error(`Erro no atualizarQtdTrocadaPedidoId - modelGerenciarPedidos: ${err}`);
+        throw err;
+    }
+
+}
 
 //SELECT
 module.exports.buscarDevolvidosTrocados = async () => {
