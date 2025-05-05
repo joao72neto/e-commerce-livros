@@ -194,6 +194,7 @@ CREATE TABLE IF NOT EXISTS `vendas` (
   `vnd_valorTotal` DECIMAL(5,2) NOT NULL,
   `vnd_frete` DECIMAL(5,2) NULL,
   `vnd_qtd` SMALLINT NULL,
+  `vnd_qtd_trocada` SMALLINT NULL DEFAULT NULL,
   PRIMARY KEY (`vnd_id`),
   CONSTRAINT `fk_vnd_clt`
     FOREIGN KEY (`vnd_clt_id`)
@@ -256,6 +257,7 @@ CREATE TABLE IF NOT EXISTS `trocas` (
   `trc_id` INT NOT NULL AUTO_INCREMENT,
   `trc_clt_id` INT NOT NULL,
   `trc_lvr_id` INT NOT NULL,
+  `trc_vnd_id` INT NOT NULL,
   `trc_qtd` SMALLINT NULL,
   `trc_preco` DECIMAL(10,2) NULL,
   `trc_tipo` ENUM('troca', 'devolucao') NULL,
@@ -268,6 +270,11 @@ CREATE TABLE IF NOT EXISTS `trocas` (
   CONSTRAINT `fk_trc_lvr`
     FOREIGN KEY (`trc_lvr_id`)
     REFERENCES `livros` (`lvr_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_trc_vnd`
+    FOREIGN KEY (`trc_vnd_id`)
+    REFERENCES `vendas` (`vnd_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
