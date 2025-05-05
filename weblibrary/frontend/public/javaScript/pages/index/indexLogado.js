@@ -94,9 +94,14 @@ async function addCarrinho(lvr_id){
     }
 
     //Pegando o preço do livro
-    const preco = Number(document.querySelector('.preco').textContent.split('R$')[1].replace(',', '.'));
-
-    
+    let preco;
+    document.querySelectorAll('.book').forEach(book => {
+            
+        if(book.querySelector('.book-id').textContent === lvr_id){
+            preco = Number(book.querySelector('.preco').textContent.split('R$')[1].replace(',', '.'));
+            return;
+        }
+    });
 
     const carrinho = {
         clt_id: cliente[0].clt_id,
