@@ -37,12 +37,10 @@ export async function devolverTrocarProdutoService(dados) {
 }
 
 //DELETE
-export async function deletarDevolvidoTrocadoService(dados) {
+export async function deletarDevolvidoTrocadoService(vnd_id) {
     try{
-        const res = await fetch(`/pedidos/devolverTrocar/deletar`, {
-           method: 'DELETE',
-           headers: {'Content-Type':'application/json'},
-           body: JSON.stringify(dados) 
+        const res = await fetch(`/pedidos/devolverTrocar/deletar/${vnd_id}`, {
+           method: 'DELETE'
         });
 
         return res.status;

@@ -77,7 +77,7 @@ module.exports.postDevolverTrocarProduto = async (req, res) => {
 //Deleção de dados
 module.exports.deleteDevolvidoTrocado = async (req, res) => {
     try{
-        await deletarDevolvidoTrocado(req.body);
+        await deletarDevolvidoTrocado(req.params.vnd_id);
         res.status(204).json({msg: 'Produto removido com sucesso!'});
     }catch(err){
         console.error(`Erro no deleteClienteId - controllerClientes: ${err}`);

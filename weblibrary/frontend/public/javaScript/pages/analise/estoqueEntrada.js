@@ -46,26 +46,19 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
         const retorno = urlParams.get('retorno');
         const clt_id = urlParams.get('clt_id');
         const lvr_id = urlParams.get('lvr_id');
+        const vnd_id = urlParams.get('vnd_id');
         const preco = document.querySelector('#valor_custo').value;
         const qtd = document.querySelector('#qtd').value;
 
 
         if(retorno){
 
-            //Removendo o livro da tabela de troca
-            const dados = {
-                clt_id: clt_id,
-                lvr_id: lvr_id
-            }
-
-            const res = await deletarDevolvidoTrocadoService(dados);
+            const res = await deletarDevolvidoTrocadoService(vnd_id);
 
             if(!res === 204){
                 alert('Não foi possível excluir o produto da tabela de troca');
                 return;
             }
-
-            const vnd_id = document.querySelector('.vnd-id').textContent;
 
             //Atualizando o status do pedido
             const updateStatus = {

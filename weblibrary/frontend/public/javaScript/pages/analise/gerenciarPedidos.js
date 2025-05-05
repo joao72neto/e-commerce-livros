@@ -114,16 +114,13 @@ document.addEventListener('DOMContentLoaded', function(){
                 devEstoque.style.display = 'block';
 
                 const wrapperUser = devolucao.closest('.wrapper');
-                const clt_id_user = wrapperUser.querySelector('.clt-id').textContent;
-                const lvr_id_user = wrapperUser.querySelector('.lvr-id').textContent;
+                const vnd_id_user = wrapperUser.querySelector('.vnd-id').textContent;
 
                 devEstoque.querySelectorAll('.wrapper').forEach(wrapperEst => {
                     
-                    let clt_id_est = wrapperEst.querySelector('.clt-id').textContent;
+                    let vnd_id_est = wrapperEst.querySelector('.vnd-id').textContent;
 
-                    let lvr_id_est = wrapperEst.querySelector('.lvr-id').textContent;
-
-                    if((clt_id_est === clt_id_user) && (lvr_id_est === lvr_id_user)){
+                    if(vnd_id_est === vnd_id_user){
                         wrapperEst.style.display = 'grid';
                     }
                     
