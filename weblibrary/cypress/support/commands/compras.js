@@ -31,6 +31,10 @@ Cypress.Commands.add('comprarLivroId', (lvr_id, lvr_qtd=1, sleep=time) => {
 //Finalizando a compra
 Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=time) => {
 
+    //Obtendo todos os alerts
+    const alerts = cy.stub();
+    cy.on('window:alert', alerts);
+
     //Visitando a página de pagamento
     cy.visit('/pagamento');
 
@@ -38,19 +42,38 @@ Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=time) => {
     cy.wait(sleep);
     cy.get('#endereco').select(String(end));
 
+    //Finalizando sem adicionar cartão
+    cy.wait(sleep);
+    cy.get('.finalizar-compra a').click();
+
     //Adicionando um cartão para pagamento
     for(let i=0; i < cardTot; i++){
         cy.wait(sleep);
         cy.get('.add-card').click();
     }
 
+    //Finalizando com o valor cartão menor do que R$ 10,00
+    cy.get('.acoes .valor').first().clear().type('2');
+    cy.wait(sleep);
+    cy.get('.finalizar-compra a').click();
+
+    //Finalizando com o valor cartão diferente do total
+    cy.get('.acoes .valor').first().clear().type('15');
+    cy.wait(sleep);
+    cy.get('.finalizar-compra a').click();
+
+    cy.reload();
+
     //Finalizando a compra
     cy.wait(sleep);
     cy.get('.finalizar-compra a').click();
 
-    // Verificando o alert
-    cy.on('window:alert', msg => {
-        expect(msg).to.contains('Compra realizada com sucesso!');
+    //Verificando todos os alerts
+    cy.wrap(alerts).should(stub => {
+        expect(stub.getCall(0)).to.be.calledWith('Adicione um cartão para finalizar a compra.');
+        expect(stub.getCall(1)).to.be.calledWith('Valor a ser pago no cartão precisa ser maior ou igual a R$ 10,00.');
+        expect(stub.getCall(2)).to.be.calledWith('O valor a ser pago no cartão precisa ser igual ao valor total da compra.');
+        expect(stub.getCall(3)).to.be.calledWith('Compra realizada com sucesso!');
     });
 });
 

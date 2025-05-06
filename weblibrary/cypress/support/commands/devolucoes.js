@@ -128,7 +128,7 @@ Cypress.Commands.add('retornarEstoqueId', (vnd_id, sleep=time) => {
     //Verificando todos os alerts
     cy.wrap(alerts).should(stub => {
         expect(stub.getCall(0)).to.be.calledWith('Entrada adicionada com sucesso!');
-    })
+    });
 });
 
 //Exibindo o estoque

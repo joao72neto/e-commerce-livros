@@ -1,5 +1,5 @@
-const pause = false;
-const standardSleep = 1000;
+const pause = true;
+const standardSleep = 2000;
 const fastSleep = 1000;
 
 before(() => {
