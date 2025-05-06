@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
         if(!btn) return;
 
+        event.preventDefault();
+
         //Atualizando o status dos pedidos
         const wrapper = btn.closest('.wrapper');
         const vnd_id = wrapper.querySelector('.vnd-id').textContent;
