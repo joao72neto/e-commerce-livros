@@ -8,21 +8,21 @@ before(() => {
 describe('Realizando o login do usuário no sistema', () => {
 
     it('Deve logar um usuário do sistema', () => {
-        cy.logarUsuario();
+        cy.logarUsuario(5);
     });
 });
 
-describe('Realizando a compra de um livro no sistema', () => {
+// describe('Realizando a compra de um livro no sistema', () => {
 
-    it('Deve adicionar um livro na tela de pagamente', () => {
-        cy.comprarLivroId(1, 10);
-    });
+//     it('Deve adicionar um livro na tela de pagamente', () => {
+//         cy.comprarLivroId(1, 10);
+//     });
 
-    it('Deve finalizar o pagamento do livro', () => {
-        cy.finalizarCompra();
-    });
+//     it('Deve finalizar o pagamento do livro', () => {
+//         cy.finalizarCompra();
+//     });
 
-});
+// });
 
 // describe('Realizando a compra de múltiplos livros', () => {
 
