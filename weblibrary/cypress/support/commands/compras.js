@@ -1,6 +1,6 @@
 
 //Abrindo um livro por id
-Cypress.Commands.add('comprarLivroId', (lvr_id, sleep=2000) => {
+Cypress.Commands.add('comprarLivroId', (lvr_id, lvr_qtd=1, sleep=2000) => {
 
     //Visitando a página principal do e-commerce
     cy.visit('/');
@@ -9,9 +9,15 @@ Cypress.Commands.add('comprarLivroId', (lvr_id, sleep=2000) => {
     cy.wait(sleep);
     cy.contains('.book-id', lvr_id).siblings('.imagem').click();
 
-     //Clicando no botão de compra
-     cy.wait(sleep);
-     cy.get('.comprar').click();
+    //Definindo a qtd do livro a ser comprado
+    cy.wait(sleep);
+    cy.get('#contador').then($cont => {
+        $cont.text(lvr_qtd);
+    });
+
+    //Clicando no botão de compra
+    cy.wait(sleep);
+    cy.get('.comprar').click();
 });
 
 //Finalizando a compra
@@ -79,7 +85,7 @@ Cypress.Commands.add('finalizarCompraCupom', (end=9, totCard=1, totCup=1, sleep=
 
 
 //Adicionandno itens ao carrinho
-Cypress.Commands.add('adicionarCarrinhoId', (lvr_id, sleep=2000) => {
+Cypress.Commands.add('adicionarCarrinhoId', (lvr_id, lvr_qtd=1, sleep=2000) => {
 
     //Visitando a página principal
     cy.visit('/');
@@ -87,6 +93,12 @@ Cypress.Commands.add('adicionarCarrinhoId', (lvr_id, sleep=2000) => {
     //Abrindo o livro
     cy.wait(sleep);
     cy.contains('.book-id', lvr_id).siblings('.imagem').click();
+
+    //Definindo a qtd do livro a ser comprado
+    cy.wait(sleep);
+    cy.get('#contador').then($cont => {
+        $cont.text(lvr_qtd);
+    });
 
     //Adicionando o livro ao carrinho
     cy.wait(sleep);
