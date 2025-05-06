@@ -8,7 +8,12 @@ Cypress.Commands.add('logarUsuario', (clt_id=1, sleep=time) => {
 
     //Logando com o cliente 
     cy.wait(sleep);
-    cy.get('.cliente-id').contains(clt_id).closest('.wrapper').find('.login').click();
-
+    cy.get('.cliente-id').each($id => {
+        if($id.text().trim() === String(clt_id)){
+            cy.wrap($id).closest('.wrapper').then($wrapper => {
+                cy.wrap($wrapper).find('.login').click();
+            });
+        }
+    });
 });
 

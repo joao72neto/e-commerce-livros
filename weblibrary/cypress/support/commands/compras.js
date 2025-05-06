@@ -8,7 +8,14 @@ Cypress.Commands.add('comprarLivroId', (lvr_id, lvr_qtd=1, sleep=time) => {
 
     //Abrindo o livro
     cy.wait(sleep);
-    cy.contains('.book-id', lvr_id).siblings('.imagem').click();
+
+    cy.get('.book-id').each($id => {
+        if($id.text().trim() === String(lvr_id)){
+            cy.wrap($id).closest('.book').then($book => {
+                cy.wrap($book).find('.imagem').click();
+            });
+        }
+    });
 
     //Definindo a qtd do livro a ser comprado
     cy.wait(sleep);
@@ -90,7 +97,14 @@ Cypress.Commands.add('adicionarCarrinhoId', (lvr_id, lvr_qtd=1, sleep=time) => {
 
     //Abrindo o livro
     cy.wait(sleep);
-    cy.contains('.book-id', lvr_id).siblings('.imagem').click();
+
+    cy.get('.book-id').each($id => {
+        if($id.text().trim() === String(lvr_id)){
+            cy.wrap($id).closest('.book').then($book => {
+                cy.wrap($book).find('.imagem').click();
+            });
+        }
+    });
 
     //Definindo a qtd do livro a ser comprado
     cy.wait(sleep);

@@ -1,6 +1,6 @@
-const pause = true;
-const standardSleep = 1500;
-const fastSleep = 300;
+const pause = false;
+const standardSleep = 1000;
+const fastSleep = 1000;
 
 before(() => {
     cy.wait(1000);
@@ -72,96 +72,94 @@ describe('Comprando livros com um outro cliente', () => {
 });
 
 
-// describe('Gerenciar pedidos dos clientes', () => {
+describe('Gerenciar pedidos dos clientes', () => {
 
-//     it('Deve processar os pedidos dos clientes', () => {
+    it('Deve processar os pedidos dos clientes', () => {
 
-//         //Gerenciando os pedidos da Ana
-//         cy.logarUsuario(1, fastSleep);
-//         cy.aprovarPedidoId(10, standardSleep);
-//         cy.aprovarPedidoId(9, standardSleep);
-//         cy.reprovarPedidoId(8, fastSleep);
-//         cy.cancelarPedidoId(7, fastSleep);
-//         if (pause) cy.pause();
+        //Gerenciando os pedidos da Ana
+        cy.aprovarPedidoId(10, standardSleep);
+        cy.aprovarPedidoId(9, standardSleep);
+        cy.reprovarPedidoId(8, fastSleep);
+        cy.cancelarPedidoId(7, fastSleep);
+        if (pause) cy.pause();
 
-//         //Gerenciando os pedidos da Eduarda
-//         cy.logarUsuario(5, fastSleep);
-//         cy.aprovarPedidoId(6, standardSleep);
-//         cy.cancelarPedidoId(5, standardSleep);
-//         cy.aprovarPedidoId(4, fastSleep);
-//         cy.aprovarPedidoId(3, fastSleep);
-//         cy.aprovarPedidoId(2, fastSleep);
-//         cy.reprovarPedidoId(1, fastSleep);
-//         if (pause) cy.pause();
-//     });
+        //Gerenciando os pedidos da Eduarda
+        cy.logarUsuario(5, fastSleep);
+        cy.aprovarPedidoId(6, standardSleep);
+        cy.cancelarPedidoId(5, standardSleep);
+        cy.aprovarPedidoId(4, fastSleep);
+        cy.aprovarPedidoId(3, fastSleep);
+        cy.aprovarPedidoId(2, fastSleep);
+        cy.reprovarPedidoId(1, fastSleep);
+        if (pause) cy.pause();
+    });
 
-//     it('Deve tratar as solicitações de troca dos clientes', () => {
+    it('Deve tratar as solicitações de troca dos clientes', () => {
 
-//         //Tratando das devoluções da Ana
-//         cy.logarUsuario(1, fastSleep);
-//         cy.devolverPedidoId(10, true, 2, standardSleep);
-//         cy.devolverPedidoId(9, false, 1, fastSleep);
-//         if (pause) cy.pause();
+        //Tratando das devoluções da Ana
+        cy.logarUsuario(1, fastSleep);
+        cy.devolverLivroId(10, true, 2, standardSleep);
+        cy.devolverLivroId(9, false, 1, fastSleep);
+        if (pause) cy.pause();
 
-//         //Tratando das devoluções da Eduarda
-//         cy.logarUsuario(5, fastSleep);
-//         cy.devolverLivroId(6, true, 1, standardSleep);
-//         cy.devolverLivroId(4, false, 1, fastSleep);
-//         cy.devolverLivroId(2, false, 1, fastSleep);
-//         if (pause) cy.pause();
-//     });
+        //Tratando das devoluções da Eduarda
+        cy.logarUsuario(5, fastSleep);
+        cy.devolverLivroId(6, true, 1, standardSleep);
+        cy.devolverLivroId(4, false, 1, fastSleep);
+        cy.devolverLivroId(2, false, 1, fastSleep);
+        if (pause) cy.pause();
+    });
 
-//     it('Deve gerenciar os pedidos de devolução', () => {
+    it('Deve gerenciar os pedidos de devolução', () => {
 
-//         //Tratando das devoluções da Ana
-//         cy.logarUsuario(1, fastSleep);
-//         cy.aceitarDevolucaoId(10, standardSleep);
-//         cy.recusarDevolucaoId(9, fastSleep);
-//         if (pause) cy.pause();
+        //Tratando das devoluções da Ana
+        cy.logarUsuario(1, fastSleep);
+        cy.aceitarDevolucaoId(10, standardSleep);
+        cy.recusarDevolucaoId(9, fastSleep);
+        if (pause) cy.pause();
 
-//         //Tratando das devoluções da Eduarda
-//         cy.logarUsuario(5, fastSleep);
-//         cy.aceitarDevolucaoId(6, standardSleep);
-//         cy.recusarDevolucaoId(4, standardSleep);
-//         cy.aceitarDevolucaoId(2, fastSleep);
-//         if (pause) cy.pause();
-//     });
+        //Tratando das devoluções da Eduarda
+        cy.logarUsuario(5, fastSleep);
+        cy.aceitarDevolucaoId(6, standardSleep);
+        cy.recusarDevolucaoId(4, standardSleep);
+        cy.aceitarDevolucaoId(2, fastSleep);
+        if (pause) cy.pause();
+    });
 
-//     it('Deve retornar todos os itens aceitos para o estoque', () => {
+    it('Deve retornar todos os itens aceitos para o estoque', () => {
 
-//         cy.retornarEstoqueId(6, standardSleep);
-//         cy.retornarEstoqueId(2, fastSleep);
-//         cy.retornarEstoqueId(10, fastSleep);
-//         cy.exibirEstoque(standardSleep);
-//         if (pause) cy.pause();
-//     })
-// });
+        cy.retornarEstoqueId(6, standardSleep);
+        cy.retornarEstoqueId(2, fastSleep);
+        cy.retornarEstoqueId(10, fastSleep);
+        cy.exibirEstoque(standardSleep);
+        if (pause) cy.pause();
+    })
+});
 
-// describe('Usando cupons recebidos pela troca de produtos', () => {
+describe('Usando cupons recebidos pela troca de produtos', () => {
 
-//     it('Deve adicionar um livro ao pagamento', () => {
+    it('Deve adicionar um livro ao pagamento', () => {
 
-//         //Visitando a tela principal
-//         cy.visit('/')
-//         cy.wait(standardSleep);
-//         cy.comprarLivroId(7, 20, fastSleep);
-//         if (pause) cy.pause();
-//     });
+        //Visitando a tela principal
+        cy.visit('/')
+        cy.wait(standardSleep);
+        cy.comprarLivroId(7, 20, fastSleep);
+        if (pause) cy.pause();
+    });
 
-//     it('Deve finalizar a compra usando cupons', () => {
-//         cy.finalizarCompraCupom(10, 2, 2, standardSleep);
-//         if (pause) cy.pause();
-//     });
+    it('Deve finalizar a compra usando cupons', () => {
+        cy.finalizarCompraCupom(10, 2, 2, standardSleep);
+        if (pause) cy.pause();
+    });
 
-//     it('Deve entregar o produto para o cliente', () => {
-//         cy.aprovarPedidoId(7, fastSleep);
+    it('Deve entregar o produto para o cliente', () => {
+        cy.aprovarPedidoId(11, fastSleep);
 
-//         //Visitando a página de pedidos
-//         cy.visit('/pedidos');
-//         cy.pause();
+        //Visitando a página de pedidos
+        cy.visit('/pedidos');
+        if (pause) cy.pause();
 
-//         //Voltando para a tela principal
-//         cy.visit('/');
-//     })
-
-// });
+        //Voltando para a tela principal
+        cy.visit('/');
+    });
+});
