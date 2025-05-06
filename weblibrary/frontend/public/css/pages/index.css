@@ -29,6 +29,34 @@ body, html{
     margin-left: 20px;
 }
 
+header .acoes{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.no-style{
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    
+
+    &:hover{
+        transition: 0.5s;
+        cursor: pointer;
+        border: none;
+        background-color: transparent;  
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.315);
+    }
+}
+
+#carrinho-index img, #notificacao-index img{
+    height: 35px;
+    filter: brightness(0) invert(1);
+
+}
+
 #busca-index{
     flex-grow: 2;
 }
