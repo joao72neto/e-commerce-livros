@@ -1,5 +1,7 @@
+const time = 1500;
+
 //Deve reprovar o pedidos de um usuário
-Cypress.Commands.add('reprovarPedidoId', (lvr_id, sleep=2000) => {
+Cypress.Commands.add('reprovarPedidoId', (lvr_id, sleep=time) => {
     //Página a ser visitada
     cy.visit('/pedidos/gerenciar');
 
@@ -16,7 +18,7 @@ Cypress.Commands.add('reprovarPedidoId', (lvr_id, sleep=2000) => {
 });
 
 //Deve cancelar o pedido do cliente
-Cypress.Commands.add('cancelarPedidoId', (lvr_id, sleep=2000) => {
+Cypress.Commands.add('cancelarPedidoId', (lvr_id, sleep=time) => {
     
     //Página a ser visitada
     cy.visit('/pedidos/gerenciar');
@@ -34,7 +36,7 @@ Cypress.Commands.add('cancelarPedidoId', (lvr_id, sleep=2000) => {
 });
 
 //Deve aceitar o pedidos do cliente
-Cypress.Commands.add('aprovarPedidoId', (lvr_id, sleep=2000) => {
+Cypress.Commands.add('aprovarPedidoId', (lvr_id, sleep=time) => {
     //Página a ser visitada
     cy.visit('/pedidos/gerenciar');
 

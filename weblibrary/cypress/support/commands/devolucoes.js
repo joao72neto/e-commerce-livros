@@ -1,5 +1,7 @@
+const time = 1500;
+
 //Deve solicitar a devolução de livros
-Cypress.Commands.add('devolverLivroId', (lvr_id, alguns=true, qtdTrc=1, sleep=2000) => {
+Cypress.Commands.add('devolverLivroId', (lvr_id, alguns=true, qtdTrc=1, sleep=time) => {
 
     //Página a ser visitada
     cy.visit('/pedidos');
@@ -22,8 +24,6 @@ Cypress.Commands.add('devolverLivroId', (lvr_id, alguns=true, qtdTrc=1, sleep=20
                     cy.stub(win, 'prompt').returns(qtdTrc);
                 });
 
-                cy.wrap($wrapper).find('.submenu').click();
-                cy.wait(sleep);
                 cy.wrap($wrapper).find('.dev-alguns').click();
                 return;
 
@@ -39,7 +39,6 @@ Cypress.Commands.add('devolverLivroId', (lvr_id, alguns=true, qtdTrc=1, sleep=20
     //Redirecionando para a página de pedidos
     cy.wait(sleep);
     cy.visit('/pedidos');
-    cy.wait(sleep);
 
     // Verificando o alert
     cy.on('window:alert', msg => {
@@ -49,7 +48,7 @@ Cypress.Commands.add('devolverLivroId', (lvr_id, alguns=true, qtdTrc=1, sleep=20
 
 
 //Deve aceitar a devolução de livros 
-Cypress.Commands.add('aceitarDevolucaoId', (lvr_id, sleep=2000) => {
+Cypress.Commands.add('aceitarDevolucaoId', (lvr_id, sleep=time) => {
 
     //Página a ser visitada
     cy.visit('/pedidos/gerenciar');
@@ -67,7 +66,7 @@ Cypress.Commands.add('aceitarDevolucaoId', (lvr_id, sleep=2000) => {
 });
 
 //Deve recusar a devolução de livros 
-Cypress.Commands.add('recusarDevolucaoId', (lvr_id, sleep=2000) => {
+Cypress.Commands.add('recusarDevolucaoId', (lvr_id, sleep=time) => {
 
     //Página a ser visitada
     cy.visit('/pedidos/gerenciar');
@@ -84,7 +83,7 @@ Cypress.Commands.add('recusarDevolucaoId', (lvr_id, sleep=2000) => {
 });
 
 //Retornando item para o estoque
-Cypress.Commands.add('retornarEstoqueId', (lvr_id, sleep=2000) => {
+Cypress.Commands.add('retornarEstoqueId', (lvr_id, sleep=time) => {
 
     //Obtendo todos os alerts
     const alerts = cy.stub();
@@ -117,7 +116,7 @@ Cypress.Commands.add('retornarEstoqueId', (lvr_id, sleep=2000) => {
 });
 
 //Exibindo o estoque
-Cypress.Commands.add('exibirEstoque', (sleep=2000) => {
+Cypress.Commands.add('exibirEstoque', (sleep=time) => {
 
     cy.wait(sleep);
     cy.visit('/estoque');

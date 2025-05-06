@@ -1,7 +1,7 @@
-const sleep = 1500;
+const time = 1500;
 
 //Fazendo login de um usuáruio no sistema
-Cypress.Commands.add('logarUsuario', (clt_id=1) => {
+Cypress.Commands.add('logarUsuario', (clt_id=1, sleep=time) => {
 
     //Visitando a página de clientes
     cy.visit('/clientes');
@@ -9,9 +9,6 @@ Cypress.Commands.add('logarUsuario', (clt_id=1) => {
     //Logando com o cliente 
     cy.wait(sleep);
     cy.get('.cliente-id').contains(clt_id).closest('.wrapper').find('.login').click();
-
-    //Esperando para voltar para a pǵina inicial
-    cy.wait(sleep);
 
 });
 

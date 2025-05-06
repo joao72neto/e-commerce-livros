@@ -1,6 +1,7 @@
+const time = 1500;
 
 //Abrindo um livro por id
-Cypress.Commands.add('comprarLivroId', (lvr_id, lvr_qtd=1, sleep=2000) => {
+Cypress.Commands.add('comprarLivroId', (lvr_id, lvr_qtd=1, sleep=time) => {
 
     //Visitando a página principal do e-commerce
     cy.visit('/');
@@ -21,7 +22,7 @@ Cypress.Commands.add('comprarLivroId', (lvr_id, lvr_qtd=1, sleep=2000) => {
 });
 
 //Finalizando a compra
-Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=2000) => {
+Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=time) => {
 
     //Visitando a página de pagamento
     cy.visit('/pagamento');
@@ -44,13 +45,10 @@ Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=2000) => {
     cy.on('window:alert', msg => {
         expect(msg).to.contains('Compra realizada com sucesso!');
     });
-
-    //Mostrando os pedidos
-    cy.wait(sleep);
 });
 
 //Finalizando a compra
-Cypress.Commands.add('finalizarCompraCupom', (end=9, totCard=1, totCup=1, sleep=2000) => {
+Cypress.Commands.add('finalizarCompraCupom', (end=9, totCard=1, totCup=1, sleep=time) => {
 
     //Visitando a página de pagamento
     cy.visit('/pagamento');
@@ -85,7 +83,7 @@ Cypress.Commands.add('finalizarCompraCupom', (end=9, totCard=1, totCup=1, sleep=
 
 
 //Adicionandno itens ao carrinho
-Cypress.Commands.add('adicionarCarrinhoId', (lvr_id, lvr_qtd=1, sleep=2000) => {
+Cypress.Commands.add('adicionarCarrinhoId', (lvr_id, lvr_qtd=1, sleep=time) => {
 
     //Visitando a página principal
     cy.visit('/');
