@@ -171,12 +171,44 @@ function gerarNumeroPedido() {
 //Função que finaliza a compra
 document.querySelector('.finalizar-compra').addEventListener('click', async function(){
 
+    //Obetendo o valor total da compra
+    const valorTotal = Number(document.querySelector('.total').textContent.split('R$')[1].replace(',', '.'));
+
+    //Verificando se há cartões ativos
+    const containerCartoes = document.querySelector('.cartoes-adicionados');
+    let totalCard=0;
+    let menoQue10;
+    containerCartoes.querySelectorAll('.wrapper').forEach(card => {
+        const inputValor = card.querySelector('.valor').value;
+
+        if(inputValor < 10){
+            menoQue10 = true;
+            return;
+        }
+
+        totalCard += Number(inputValor);
+    });
+
+    //Validações para a compra
+    if(menoQue10){
+        alert('Valor a ser pago no cartão precisa ser maior ou igual a R$ 10,00.');
+        return;
+    }
+
+    if(containerCartoes.innerHTML.trim() === ''){
+        alert('Adicione um cartão para finalizar a compra.');
+        return;
+    }
+
+    if(totalCard !== valorTotal){
+        alert('O valor a ser pago no cartão precisa ser igual ao valor total da compra.');
+        return;
+    }
+
+
     //Pegando os itens do carrinho
     const cliente = await buscarClienteLogadoService();
     let carrinho = await buscarCarrinhoClienteIdService(cliente[0].clt_id);
-
-    //Obetendo o valor total da compra
-    const valorTotal = Number(document.querySelector('.total').textContent.split('R$')[1].replace(',', '.'));
 
     const urlParams = new URLSearchParams(window.location.search);
     const compra = urlParams.get('compra'); 
