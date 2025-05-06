@@ -60,12 +60,9 @@ Cypress.Commands.add('aprovarPedidoId', (vnd_id, sleep=time) => {
     });
 
     cy.wait(sleep);
-    cy.visit('/pedidos');
-    cy.wait(sleep);
 
     //Mudando o stauts para em transporte
     cy.visit('/pedidos/gerenciar');
-
     cy.get('.vnd-id').each($id => {
         if($id.text().trim() === String(vnd_id)){
             cy.wrap($id).closest('.wrapper').then($wrapper => {
@@ -75,12 +72,9 @@ Cypress.Commands.add('aprovarPedidoId', (vnd_id, sleep=time) => {
     });
 
     cy.wait(sleep);
-    cy.visit('/pedidos');
-    cy.wait(sleep);
 
-    //Mudando o status para enutregue
+    //Mudando o status para entregue
     cy.visit('/pedidos/gerenciar');
-
     cy.get('.vnd-id').each($id => {
         if($id.text().trim() === String(vnd_id)){
             cy.wrap($id).closest('.wrapper').then($wrapper => {
@@ -90,6 +84,9 @@ Cypress.Commands.add('aprovarPedidoId', (vnd_id, sleep=time) => {
     });
 
     cy.wait(sleep);
+    cy.visit('/pedidos');
+    cy.wait(sleep);
+
 });
 
 

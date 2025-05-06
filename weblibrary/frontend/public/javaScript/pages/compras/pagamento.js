@@ -115,7 +115,6 @@ document.querySelectorAll('.rm-card').forEach(cartao => {
 //Adicionando cupons que o cliente possui
 document.querySelector('.add-cupom').addEventListener('click', async function(){
     
-    
     //Verificando se há cupons inativos
     const cliente = await buscarClienteLogadoService();
     const cuponsInativos = await buscarCuponsInativosClienteIdService(cliente[0].clt_id);
@@ -200,7 +199,7 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
         return;
     }
 
-    if(totalCard !== valorTotal){
+    if(totalCard.toFixed(0) !== valorTotal.toFixed(0)){
         alert('O valor a ser pago no cartão precisa ser igual ao valor total da compra.');
         return;
     }

@@ -41,9 +41,6 @@ Cypress.Commands.add('devolverLivroId', (lvr_id, alguns=true, qtdTrc=1, sleep=ti
         }
     });
 
-    //Redirecionando para a página de pedidos
-    cy.wait(sleep);
-    cy.visit('/pedidos');
 
     // Verificando o alert
     cy.on('window:alert', msg => {
@@ -119,10 +116,6 @@ Cypress.Commands.add('retornarEstoqueId', (vnd_id, sleep=time) => {
     //Retornando o item para o estoque
     cy.wait(sleep);
     cy.get('.submit button').click();
-
-    //Verificando o status da página de pedidos
-    cy.wait(sleep);
-    cy.visit('/pedidos');
     cy.wait(sleep);
 
     //Verificando todos os alerts

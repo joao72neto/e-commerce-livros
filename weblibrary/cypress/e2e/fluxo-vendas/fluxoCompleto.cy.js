@@ -1,6 +1,6 @@
-const pause = true;
-const standardSleep = 2000;
-const fastSleep = 1000;
+const pause = false;
+const standardSleep = 500;
+const fastSleep = 500;
 
 before(() => {
     cy.wait(1000);
@@ -112,16 +112,10 @@ describe('Gerenciar pedidos dos clientes', () => {
 
     it('Deve gerenciar os pedidos de devolução', () => {
 
-        //Tratando das devoluções da Ana
-        cy.logarUsuario(1, fastSleep);
         cy.aceitarDevolucaoId(10, standardSleep);
         cy.recusarDevolucaoId(9, fastSleep);
-        if (pause) cy.pause();
-
-        //Tratando das devoluções da Eduarda
-        cy.logarUsuario(5, fastSleep);
-        cy.aceitarDevolucaoId(6, standardSleep);
-        cy.recusarDevolucaoId(4, standardSleep);
+        cy.aceitarDevolucaoId(6, fastSleep);
+        cy.recusarDevolucaoId(4, fastSleep);
         cy.aceitarDevolucaoId(2, fastSleep);
         if (pause) cy.pause();
     });
