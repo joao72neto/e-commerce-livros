@@ -61,8 +61,8 @@ module.exports.postDevolverTrocarProduto = async (req, res) => {
 
         //Preparando os dados para atualizar a qtd trocada
         const dados = {
-            vnd_qtd_trocada: req.body.trc_qtd,
-            vnd_id: req.body.trc_vnd_id
+            vnd_qtd_trocada: Number(req.body.trc_qtd),
+            vnd_id: Number(req.body.trc_vnd_id)
         }
        
         await atualizarQtdTrocadaPedidoId(dados);
