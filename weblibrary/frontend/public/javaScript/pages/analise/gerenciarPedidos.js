@@ -184,12 +184,9 @@ document.addEventListener('DOMContentLoaded', function(){
 async function removerDevolvidoTrocado(select) {
 
     const wrapper = select.closest('.wrapper');
-    const dados = {
-        clt_id: wrapper.querySelector('.clt-id').textContent,
-        lvr_id: wrapper.querySelector('.lvr-id').textContent
-    }
+    const vnd_id = Number(wrapper.querySelector('.vnd-id').textContent);
 
-    const res = await deletarDevolvidoTrocadoService(dados);
+    const res = await deletarDevolvidoTrocadoService(vnd_id);
 
     if(!res === 204){
         alert('Não foi possível excluir o produto da tabela de troca');
