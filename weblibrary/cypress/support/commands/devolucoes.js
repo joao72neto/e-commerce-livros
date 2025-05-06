@@ -1,5 +1,5 @@
 //Deve solicitar a devolução de livros
-Cypress.Commands.add('devolverLivroId', (lvr_id, sleep=2000) => {
+Cypress.Commands.add('devolverLivroId', (lvr_id, alguns=true, qtdTrc=1, sleep=2000) => {
 
     //Página a ser visitada
     cy.visit('/pedidos');
@@ -12,7 +12,26 @@ Cypress.Commands.add('devolverLivroId', (lvr_id, sleep=2000) => {
 
         const status = $wrapper.find('.status').text().trim();
         if(status === 'Entregue'){
+
             cy.wrap($wrapper).find('.devolucao').click();
+            
+            if(alguns){
+
+                //Sobrescrevendo o valor do prompt
+                cy.window().then((win) => {
+                    cy.stub(win, 'prompt').returns(qtdTrc);
+                });
+
+                cy.wrap($wrapper).find('.submenu').click();
+                cy.wait(sleep);
+                cy.wrap($wrapper).find('.dev-alguns').click();
+                return;
+
+            }
+            
+            cy.wrap($wrapper).find('.submenu').click();
+            cy.wait(sleep);
+            cy.wrap($wrapper).find('.dev-tudo').click();
         }
 
     });
