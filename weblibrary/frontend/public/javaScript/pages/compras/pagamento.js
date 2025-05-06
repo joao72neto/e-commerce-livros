@@ -115,12 +115,20 @@ document.querySelectorAll('.rm-card').forEach(cartao => {
 //Adicionando cupons que o cliente possui
 document.querySelector('.add-cupom').addEventListener('click', async function(){
     
+    //Obetendo o valor total da compra
+    const valorTotal = Number(document.querySelector('.total').textContent.split('R$')[1].replace(',', '.'));
+
     //Verificando se há cupons inativos
     const cliente = await buscarClienteLogadoService();
     const cuponsInativos = await buscarCuponsInativosClienteIdService(cliente[0].clt_id);
     
     //Obtendo o select
     const select = document.querySelector('#cupons');
+   
+    if((valorTotal - select.value) < 10){
+        alert('Cupom possui valor muito alto');
+        return;
+    }
 
     if(cuponsInativos.length > 0){
 
