@@ -39,7 +39,7 @@ header .acoes{
 .acoes button{
     all: unset;
     text-align: center;
-    height: 55px;
+    height: 50px;
     width: 80px;
     border-radius: 15px;
 }
@@ -60,7 +60,7 @@ header .acoes{
 }
 
 #carrinho-index img, #notificacao-index img{
-    height: 35px;
+    height: 30px;
     filter: brightness(0) invert(1);
 
 }
