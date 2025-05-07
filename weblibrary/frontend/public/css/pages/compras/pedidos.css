@@ -18,6 +18,10 @@ main{
     margin: 10px 0;
 }
 
+.wrapper input {
+    width: 85px;
+    text-align: center;
+}
 .imagem img{
     width: 100px;
     background-color: gray;

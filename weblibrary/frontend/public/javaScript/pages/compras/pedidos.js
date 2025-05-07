@@ -3,11 +3,9 @@ import { buscarClienteLogadoService } from "/javaScript/service/clientes/service
 import { devolverTrocarProdutoService } from "/javaScript/service/analise/serviceGerenciarPedidos.js";
 
 document.addEventListener('DOMContentLoaded', function(){
-
-
     this.querySelectorAll('#submenu-dev').forEach(menu => {
-        menu.addEventListener('click', function(event){
-
+        menu.addEventListener('click', function(){
+            
             setTimeout(() => {
                 //Retirando o menu ao clicar de novo
                 let submenuAtual = this.querySelector('.submenu');
@@ -33,6 +31,15 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     });
 
+    //Removendo notificação ao clicar fora da tela
+    this.addEventListener('click', function(){
+        const submenu = document.querySelector('.submenu');
+
+        if(submenu){
+            submenu.remove();
+        }
+    });
+
     //Adicionando evento para quando clicar algum link
     this.querySelector('.main-container').addEventListener('click', async function(event){
 
@@ -49,75 +56,75 @@ document.addEventListener('DOMContentLoaded', function(){
         let qtd = Number(wrapper.querySelector('#qtd').textContent)
         let tipo = 'devolucao';
 
-        //Preparando os dados
-        let dados = {
+        //Preparando os dados para atualizar o status
+        let status = {
             vnd_id: vnd_id,
             vnd_status: 'Devolução Solicitada'
         }
 
+        //Obtendo o cliente logado
+        const cliente = await buscarClienteLogadoService();
+
+        //Preparando os dados para colocar na tabela de troca
+        const troca = {
+            trc_clt_id: cliente[0].clt_id,
+            trc_vnd_id: vnd_id,
+            trc_lvr_id: Number(lvr_id),
+            trc_qtd: qtd,
+            trc_preco: Number(wrapper.querySelector('#preco').textContent),
+            trc_tipo: tipo
+        }
+
+        //Verificando qual botão foi selecionado
         if (btn.classList.contains('dev-alguns')){
-            let qtdUpdate = 0;
 
-            do{
-                qtdUpdate = prompt('Quantos livros deseja devolver?');
-                if(qtdUpdate > qtd){
-                    alert('Não pode devolver mais do que ' + qtd + ' livro(s)');
-                    continue;
-                }
+            //Obtendo os elementos
+            const inputQtdTroca = wrapper.querySelector('#qtd-troca');
+            const btnDev = wrapper.querySelector('.devolucao');
 
-            }while(qtdUpdate > qtd);
+            //Removendo o menu ao clicar fora
+            const eventoClique = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            });
+
+            setTimeout(() => {
+                wrapper.dispatchEvent(eventoClique);
+            }, 0);
             
-            if(!qtdUpdate || qtdUpdate === 0){
-                return;
-            }
+            //Mudando o valor do botão ao clicar
+            btnDev.textContent = 'Confimar';
+            
+            //Mostrando o input
+            inputQtdTroca.classList.remove('invisible'); 
 
-            qtd = qtdUpdate;
+
+            //Verificando se a qtd foi confirmada ou não
+            btnDev.addEventListener('click', async function(event){
+                event.stopPropagation();
+
+                //Obtendo o valor do input
+                let qtdUpdate = inputQtdTroca.value;
+
+                //Verificando o valor
+                if(qtdUpdate < 1 || qtdUpdate > qtd) {
+                    alert('Qtd definida não é válida');
+                    return;
+                }           
+                
+                 //Atualizando a nova qtd
+                troca.trc_qtd = Number(qtdUpdate);
+
+                //Devolvendo o livro
+                await devolverLivro(troca, status, tipo);
+            });
+
+        }else{
+            await devolverLivro(troca, status, tipo);
         }
-
-        //Atualizando o status
-        const res = await atualizarStatusPedidoIdService(dados);
-
-        if(res === 200){
-
-            //Adicionando o livro na tabela de trocas
-            const cliente = await buscarClienteLogadoService();
-            
-
-            //Preparando os dados
-            const troca = {
-                trc_clt_id: cliente[0].clt_id,
-                trc_vnd_id: vnd_id,
-                trc_lvr_id: Number(lvr_id),
-                trc_qtd: qtd,
-                trc_preco: Number(wrapper.querySelector('#preco').textContent),
-                trc_tipo: tipo
-            }
-
-            const res = await devolverTrocarProdutoService(troca);
-            
-            if(res === 201){
-                alert(tipo + ' solicitado(a) com sucesso!');
-                window.location.reload();
-                return;
-            }
-
-            alert('Não foi possível solicitar o(a) ' + tipo);
-            return;
-        }
-
-        alert('Não foi possível atualizar o status do pedido');
 
     });
-
-    //Removendo notificação ao clicar fora da tela
-    this.addEventListener('click', function(){
-        const submenu = document.querySelector('.submenu');
-
-        if(submenu){
-            submenu.remove();
-        }
-    });
-
 
     this.querySelectorAll('.acoes').forEach(function(acoes){
         const wrapper = acoes.closest('.wrapper');
@@ -134,3 +141,25 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
+async function devolverLivro(troca, status, tipo) {
+
+    //Atualizando o status
+    const res = await atualizarStatusPedidoIdService(status);
+
+    if(res === 200){
+
+        //Adicionando o livro na tabela de trocas
+        const res = await devolverTrocarProdutoService(troca);
+        
+        if(res === 201){
+            alert(tipo + ' solicitado(a) com sucesso!');
+            window.location.reload();
+            return;
+        }
+
+        alert('Não foi possível solicitar o(a) ' + tipo);
+        return;
+    }
+
+    alert('Não foi possível atualizar o status do pedido');    
+}
