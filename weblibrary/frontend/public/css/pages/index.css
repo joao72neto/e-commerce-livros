@@ -59,9 +59,23 @@ header #logado{
     }
 }
 
+#carrinho-index a, #notificacao-index a{
+
+    &:hover{
+        cursor: pointer;
+        border: none;
+        box-shadow: none;
+    }
+}
+
 #carrinho-index img, #notificacao-index img{
     height: 25px;
     filter: brightness(0) invert(1);
+    
+    &:hover{
+        transition: 0.2s;
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.897)) brightness(0) invert(1);
+    }
 
 }
 
@@ -81,7 +95,7 @@ header #logado{
     position: absolute;
     top: 50px;
     right: 200px;
-    left: -100px;
+    left: -150px;
     background-color: var(--preto);
     z-index: 2;
 }
