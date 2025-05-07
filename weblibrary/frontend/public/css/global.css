@@ -200,7 +200,3 @@ ul{
         color: var(--preto);
     }
 }
-
-.no-style{
-    all: unset;
-}

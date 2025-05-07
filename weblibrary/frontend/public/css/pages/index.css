@@ -26,20 +26,28 @@ body, html{
 
 #title-index{
     flex-grow: 1;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 header .acoes{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 90px 100px 100px;
     align-items: center;
     justify-items: center;
 }
 
-.no-style{
+.acoes button{
+    all: unset;
+    text-align: center;
+    height: 55px;
+    width: 80px;
+    border-radius: 15px;
+}
+
+.header-btn{
     display: inline-block;
     padding: 8px 20px;
-    border-radius: 20px;
+    border-radius: 15px;
     
 
     &:hover{
@@ -64,6 +72,7 @@ header .acoes{
 #btn-sidebar{
     font-size: 1.3em;
 }
+
 
 /*Notificações*/
 .notificacao{
