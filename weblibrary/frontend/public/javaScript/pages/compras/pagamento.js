@@ -118,6 +118,11 @@ document.querySelector('.add-cupom').addEventListener('click', async function(){
     //Obetendo o valor total da compra
     const valorTotal = Number(document.querySelector('.total').textContent.split('R$')[1].replace(',', '.'));
 
+    //Obtendo a qtd de cartões que estão adicionados
+    const containerCartoes = document.querySelector('.cartoes-adicionados');
+    const totCartoes = containerCartoes.querySelectorAll('.wrapper').length;
+    console.log(totCartoes);
+
     //Verificando se há cupons inativos
     const cliente = await buscarClienteLogadoService();
     const cuponsInativos = await buscarCuponsInativosClienteIdService(cliente[0].clt_id);
@@ -125,7 +130,7 @@ document.querySelector('.add-cupom').addEventListener('click', async function(){
     //Obtendo o select
     const select = document.querySelector('#cupons');
    
-    if((valorTotal - select.value) < 10){
+    if((valorTotal - select.value) < (10 * totCartoes)){
         alert('Cupom possui valor muito alto');
         return;
     }
