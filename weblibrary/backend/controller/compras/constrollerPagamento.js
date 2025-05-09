@@ -66,7 +66,8 @@ module.exports.getPagamento = async (req, res) => {
 
         res.render('compras/pagamento', {
             cliente: cliente,
-            enderecos: enderecos,
+            enderecosAtivos: enderecosAtivos,
+            enderecosInativos: enderecosInativos,
             cartoesInativos: cartoesInativos,
             cartoesAtivos: cartoesAtivos,
             carrinho: carrinho,

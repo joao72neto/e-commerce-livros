@@ -49,7 +49,7 @@
                             <label for="endereco"><strong>Selecione um endereço:</strong></label>
                             
                             <select name="endereco" id="endereco">
-                                <% enderecos.forEach(endereco => { %>
+                                <% enderecosInativos.forEach(endereco => { %>
                                     <option value="<%= endereco.end_id %>">
                                     <%= endereco.end_nome %> - <%= endereco.end_bairro %>, Nº <%= endereco.end_numero %>
                                     </option>
@@ -58,20 +58,19 @@
                         </div>
 
                         <div class="enderecos-adicionados">
-                            <!-- <% cartoesAtivos.forEach(cartao => { %>
+                            <% enderecosAtivos.forEach(endereco => { %>
                                 <div class="wrapper">
-                                    <div class="end-main">
-                                        <p class="invisible end-id"><%=cartao.car_id%></p>
-                                        <h2><%=cartao.car_bandeira%></h2>
-                                        <p><%=cartao.car_nome%></p>
-                                        <p><strong>Final: </strong><%=cartao.car_numero.slice(-4)%></p>
+                                    <div class="endereco">
+                                        <p class="invisible address-id"><%=endereco.end_id%></p>
+                                        <h2><%=endereco.end_logradouro%></h2>
+                                        <p><%=endereco.end_bairro%></p>
+                                        <p><strong>Número: </strong><%=endereco.end_numero%></p>
                                     </div>
-                                    <div class="acoes">
-                                        <input class="valor" type="number" placeholder="Valor R$">
-                                        <a class="rm-card">Remover</a>
+                                    <div class="acoes-address">
+                                        <a class="rm-endereco" href="">Remover</a>
                                     </div>
                                 </div>
-                            <% }) %> -->
+                            <% }) %>
                         </div>
         
                         <div class="add">
