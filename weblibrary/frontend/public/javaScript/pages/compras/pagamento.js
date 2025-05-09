@@ -67,6 +67,26 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 });
 
+//Adicionando endereços selecionados
+document.querySelector('.add-endereco').addEventListener('click', async function(event){
+
+    event.preventDefault();
+
+    //Obtendo dados
+    const wrapper = event.target.closest('.container');
+    const select = wrapper.querySelector('select').value;
+
+    //Passando o id do endereço para o back
+    try{
+        await fetch(`/pagamento?end_id=${select}`);
+    }catch(err){
+        console.error('Não foi possível enviar o ID do endereço');
+        throw err;
+    }
+
+    //Recarregando a página
+    window.location.reload();
+});
 
 //Adicionando múltiplos cartões
 document.querySelector('.add-card').addEventListener('click', async function(event){
