@@ -169,6 +169,54 @@ module.exports.buscarTodosEnderecos = async () => {
     }
 }
 
+//Função que pega todos os endereços ativos de um cliente
+module.exports.buscarEnderecosAtivosClienteId = async (clt_id) => {
+    
+    //Obtendo o banco 
+    const db = await getDb();
+
+    const sql = `
+        select 
+            *
+        from
+            enderecos
+        where 
+            end_status = 1 and end_clt_id = ?;
+    `;
+    
+    try{
+        const [enderecos] = await db.query(sql, clt_id);
+        return enderecos;
+    }catch(err){
+        console.error(`Erro no buscarEnderecosAtivosClienteId - modelAddress: ${err}`);
+        throw err;
+    }
+}
+
+//Função que pega todos os endereços inativos de um cliente
+module.exports.buscarEnderecosInativosClienteId = async (clt_id) => {
+    
+    //Obtendo o banco 
+    const db = await getDb();
+
+    const sql = `
+        select 
+            *
+        from
+            enderecos
+        where 
+            end_status = 0 and end_clt_id = ?;
+    `;
+    
+    try{
+        const [enderecos] = await db.query(sql, clt_id);
+        return enderecos;
+    }catch(err){
+        console.error(`Erro no buscarEnderecosInativosClienteId - modelAddress: ${err}`);
+        throw err;
+    }
+}
+
 //Bsucando endereço por id
 module.exports.buscarEnderecoId = async (id) => {
     
