@@ -142,7 +142,7 @@ module.exports.atualizarEnderecoIdStatus = async (end_id) => {
 
     //Atualizando o status do endereço
     try{
-        const [result] = await db.query(sql, car_id);
+        const [result] = await db.query(sql, end_id);
         return result;
         
     }catch(err){

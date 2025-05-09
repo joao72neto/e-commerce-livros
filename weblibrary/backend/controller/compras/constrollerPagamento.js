@@ -10,8 +10,9 @@ const { adicionarCupom } = require('../../model/compras/modelPagamento');
 const { atualizarCardIdStatus } = require('../../model/clientes/modelCard');
 const { buscarCartoesAtivosClienteId } = require('../../model/clientes/modelCard');
 const { buscarCartoesInativosClienteId } = require('../../model/clientes/modelCard');
-
-const cepTest = '90840-070';
+const { buscarEnderecosInativosClienteId } = require('../../model/clientes/modelAddress');
+const { buscarEnderecosAtivosClienteId } = require('../../model/clientes/modelAddress');
+const { atualizarEnderecoIdStatus } = require('../../model/clientes/modelAddress');
 
 //Página
 module.exports.getPagamento = async (req, res) => {
@@ -33,14 +34,31 @@ module.exports.getPagamento = async (req, res) => {
     const cartoesAtivos = await buscarCartoesAtivosClienteId(cliente[0].clt_id);
     const cartoesInativos = await buscarCartoesInativosClienteId(cliente[0].clt_id);
 
+    //Obtendo o id do endereço
+    const end_id = req.query.end_id;
+    const enderecosAtivos = await buscarEnderecosAtivosClienteId(cliente[0].clt_id);
+    const enderecosInativos = await buscarEnderecosInativosClienteId(cliente[0].clt_id);
+
+    //Atualizando o status do cartão
     if(car_id){
         try{
             await atualizarCardIdStatus(car_id);
         }catch(err){
-            console.error(`Erro no getPagamento - controllerPagamento: ${err}`);
+            console.error(`Erro no atualizarCardIdStatus - controllerPagamento: ${err}`);
             throw err;
         }
     }
+
+    //Atualizando o status do endereço
+    if(end_id){
+        try{
+            await atualizarEnderecoIdStatus(end_id);
+        }catch(err){
+            console.error(`Erro no atualizarEnderecoIdStatus - controllerPagamento: ${err}`);
+            throw err;
+        }
+    }   
+
 
     if(idCompra){
 
