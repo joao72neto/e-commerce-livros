@@ -87,6 +87,71 @@ module.exports.atualizarAddress = async (dados, end_id) => {
 
 }
 
+//Função que desativa todos os endereços ativos do cliente
+module.exports.desativarEnderecosClienteId = async (clt_id) => {
+
+    //Obtendo o banco
+    const db = await getDb();
+
+    //Preparando a query
+    let sql = `
+        update 
+            enderecos	
+            set end_status = 0
+        where end_clt_id = 1;
+    `;
+
+    //Desativando todos os endereços
+    try{
+        await db.query(sql, clt_id);
+        
+    }catch(err){
+        console.error(`Erro no desativarEnderecosClienteId - modelAddress: ${err}`);
+        throw err;
+    }
+}
+
+//Função que atualiza o status do endereço no banco de dados
+module.exports.atualizarEnderecoIdStatus = async (end_id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+
+    //Obtendo o cartão a ser atualizado
+    const endereco = await module.exports.buscarEnderecoId(end_id);
+    
+    //Preparando a query
+    let sql = `
+        update 
+            enderecos
+            set end_status = 1
+        where 
+            end_id = ?;
+    `;
+
+    if(endereco[0].end_status === 1){
+
+        sql = `
+            update 
+                enderecos
+                set end_status = 0
+            where 
+                end_id = ?;
+        `;
+    }
+
+    //Atualizando o status do endereço
+    try{
+        const [result] = await db.query(sql, car_id);
+        return result;
+        
+    }catch(err){
+        console.error(`Erro no atualizarEnderecoIdStatus - modelAddress: ${err}`);
+        throw err;
+    }
+
+}
+
 //SELECT
 
 //Bsucando todos os endereços do banco de dados

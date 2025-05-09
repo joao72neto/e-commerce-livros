@@ -1,6 +1,5 @@
 const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
 const { buscarEnderecosClienteId } = require('../../model/clientes/modelAddress');
-const { buscarCartoesClienteId } = require('../../model/clientes/modelCard');
 const { buscarCarrinhoClienteId } = require('../../model/compras/modelCarrinho');
 const { deletarCupomId } = require('../../model/compras/modelPagamento');
 const { inativarCupom } = require('../../model/compras/modelPagamento');
@@ -22,9 +21,6 @@ module.exports.getPagamento = async (req, res) => {
     const enderecos = await buscarEnderecosClienteId(cliente[0].clt_id);
     const cuponsInativos = await buscarCuponsInativosClienteId(cliente[0].clt_id);
     const cuponsAtivos = await buscarCuponsAtivosClienteId(cliente[0].clt_id);
-
-    //Calculando um frete fictício com base no cep
-    const cep = calcularFreteFicticio(cepTest);
 
     //Pegando os carrinho do cliente
     let carrinho = await buscarCarrinhoClienteId(cliente[0].clt_id);
