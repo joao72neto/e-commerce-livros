@@ -42,6 +42,19 @@ document.addEventListener('DOMContentLoaded', async function(){
 
         selectCartao.appendChild(option);
     }
+
+    //Verificando se já existe um endereço cadastrado
+    const containerEndereco = this.querySelector('.endereco-adicionado');
+    const endereco = containerEndereco.querySelector('.wrapper');
+    const select = this.querySelector('.select');
+    const btnAddEnd = this.querySelector('.add-endereco');
+    const editar = this.querySelector('.add a');
+    if(endereco) { 
+        btnAddEnd.remove(); 
+        select.remove();
+        editar.remove();
+    }
+    // if(endereco) btnAddEnd.remove();
 });
 
 // Dividindo o valor a ser pago em cada cartão
@@ -108,6 +121,29 @@ document.querySelector('.add-card').addEventListener('click', async function(eve
     //Recarregando a página
     window.location.reload();
 
+});
+
+
+//Removendo o endereço que o cliente adicionou no pagamento
+document.querySelectorAll('.rm-endereco').forEach(endereco => {
+    endereco.addEventListener('click', async function(){
+
+        //Obtendo o ID do endereço clicado
+        const wrapper = this.closest('.wrapper');
+        const end_id = wrapper.querySelector('.address-id').textContent;
+
+        //Removendo o endereço
+        try{
+            await fetch(`/pagamento?end_id=${end_id}`);
+        }catch(err){
+            console.error('Não foi possível enviar o endereço para remoção');
+            throw err;
+        }
+
+        //Recarregando a página
+        window.location.reload();
+        
+    });
 });
 
 //Removendo cartões que o cliente adicionou no pagamento

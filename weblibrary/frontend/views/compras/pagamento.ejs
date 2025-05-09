@@ -45,7 +45,7 @@
                     <h2 class="title">Escolha um Endereço: </h2>
 
                     <div class="container">
-                        <div class="wrapper">
+                        <div class="wrapper select">
                             <label for="endereco"><strong>Selecione um endereço:</strong></label>
                             
                             <select name="endereco" id="endereco">
@@ -57,25 +57,25 @@
                             </select>
                         </div>
 
-                        <div class="enderecos-adicionados">
+                        <div class="endereco-adicionado">
                             <% enderecosAtivos.forEach(endereco => { %>
                                 <div class="wrapper">
                                     <div class="endereco">
                                         <p class="invisible address-id"><%=endereco.end_id%></p>
-                                        <h2><%=endereco.end_logradouro%></h2>
+                                        <h2><%=endereco.end_nome%></h2>
                                         <p><%=endereco.end_bairro%></p>
                                         <p><strong>Número: </strong><%=endereco.end_numero%></p>
                                     </div>
                                     <div class="acoes-address">
-                                        <a class="rm-endereco" href="">Remover</a>
+                                        <a class="rm-endereco">Remover</a>
                                     </div>
                                 </div>
                             <% }) %>
                         </div>
         
                         <div class="add">
-                            <a href="/perfil?retorno_pag=pagamento&tipo=endereco">Editar Endereço</a>
-                            <a class="add-endereco">Selecionar Endereço</a>
+                            <a href="/perfil?retorno_pag=pagamento&tipo=endereco">Editar Endereços</a>
+                            <a class="add-endereco">Confirmar</a>
                         </div>
                     </div>
                       
@@ -114,8 +114,8 @@
                         </div>
 
                         <div class="add">
-                            <a href="/perfil?retorno_pag=pagamento&tipo=cartao">Editar Cartão</a>
-                            <a class="add-card">Seleciona Cartão</a>
+                            <a href="/perfil?retorno_pag=pagamento&tipo=cartao">Editar Cartões</a>
+                            <a class="add-card">Adicionar Cartão</a>
                         </div>
                     </div>
                     <div class="center">
