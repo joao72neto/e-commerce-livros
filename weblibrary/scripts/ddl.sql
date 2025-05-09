@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `enderecos` (
   `end_cidade` VARCHAR(45) NOT NULL,
   `end_estado` VARCHAR(45) NOT NULL,
   `end_pais` VARCHAR(45) NOT NULL,
+  `end_status` TINYINT(1) NULL DEFAULT 0,
   PRIMARY KEY (`end_id`),
   CONSTRAINT `fk_end_clt`
     FOREIGN KEY (`end_clt_id`)
