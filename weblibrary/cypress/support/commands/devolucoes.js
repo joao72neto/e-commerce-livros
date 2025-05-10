@@ -41,6 +41,7 @@ Cypress.Commands.add('devolverLivroId', (lvr_id, alguns=true, qtdTrc=1, sleep=ti
         }
     });
 
+    cy.wait(sleep);
 
     // Verificando o alert
     cy.on('window:alert', msg => {

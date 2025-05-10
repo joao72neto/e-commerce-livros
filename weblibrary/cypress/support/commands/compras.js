@@ -26,6 +26,7 @@ Cypress.Commands.add('comprarLivroId', (lvr_id, lvr_qtd=1, sleep=time) => {
     //Clicando no botão de compra
     cy.wait(sleep);
     cy.get('.comprar').click();
+    cy.wait(sleep);
 });
 
 //Finalizando a compra
@@ -72,6 +73,7 @@ Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=time) => {
     //Finalizando a compra
     cy.wait(sleep);
     cy.get('.finalizar-compra a').click();
+    cy.wait(sleep);
 
     //Verificando todos os alerts
     cy.wrap(alerts).should(stub => {

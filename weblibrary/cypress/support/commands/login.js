@@ -15,5 +15,7 @@ Cypress.Commands.add('logarUsuario', (clt_id=1, sleep=time) => {
             });
         }
     });
+
+    cy.wait(sleep);
 });
 
