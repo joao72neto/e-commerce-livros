@@ -1,6 +1,6 @@
-const pause = true;
-const standardSleep = 1500;
-const fastSleep = 300;
+const pause = false;
+const standardSleep = 100;
+const fastSleep = 100;
 
 before(() => {
     cy.wait(1000);
@@ -56,7 +56,7 @@ describe('Comprando livros com um outro cliente', () => {
         if (pause) cy.pause();
     });
 
-    it('Deve adicioanr livros no carrinho', () => {
+    it('Deve adicionar livros no carrinho', () => {
         cy.adicionarCarrinhoId(7, 20, standardSleep);
         cy.adicionarCarrinhoId(8, 10, fastSleep);
         cy.adicionarCarrinhoId(9, 5, fastSleep);
@@ -104,8 +104,8 @@ describe('Gerenciar pedidos dos clientes', () => {
 
         //Tratando das devoluções da Eduarda
         cy.logarUsuario(5, fastSleep);
-        cy.devolverLivroId(6, false, 1, standardSleep);
-        cy.devolverLivroId(4, true, 2, fastSleep);
+        cy.devolverLivroId(6, true, 2, standardSleep);
+        cy.devolverLivroId(4, false, 1, fastSleep);
         cy.devolverLivroId(2, false, 1, fastSleep);
         if (pause) cy.pause();
     });
