@@ -1,7 +1,7 @@
 const time = 1500;
 
 //Deve solicitar a devolução de livros
-Cypress.Commands.add('devolverLivroId', (lvr_id, alguns=true, qtdTrc=1, sleep=time) => {
+Cypress.Commands.add('devolverLivroId', (vnd_id, alguns=true, qtdTrc=1, sleep=time) => {
 
     //Página a ser visitada
     cy.visit('/pedidos');
@@ -10,9 +10,9 @@ Cypress.Commands.add('devolverLivroId', (lvr_id, alguns=true, qtdTrc=1, sleep=ti
     cy.wait(sleep);
 
     //Encontrando o livro
-    cy.get('.book-id').each($id => {
+    cy.get('.vnd-id').each($id => {
 
-        if($id.text().trim() === String(lvr_id)){
+        if($id.text().trim() === String(vnd_id)){
 
             cy.wrap($id).closest('.wrapper').then($wrapper => {
                 
@@ -20,17 +20,16 @@ Cypress.Commands.add('devolverLivroId', (lvr_id, alguns=true, qtdTrc=1, sleep=ti
                 if(status === 'Entregue'){
 
                     cy.wrap($wrapper).find('.devolucao').click();
-                    
-                    if(alguns){
 
+                    if(alguns){
+                        cy.wait(sleep);
                         cy.wrap($wrapper).find('.dev-alguns').click();
                         cy.wait(sleep);
-                        cy.get('#qtd-troca').clear().type(qtdTrc);
+                        cy.get('#qtd-troca').clear({force: true}).type(qtdTrc, {force: true});
                         cy.wait(sleep);
                         cy.wrap($wrapper).find('.devolucao').click();
                         cy.wait(sleep);
                         return;
-
                     }
                     
                     cy.wait(sleep);
@@ -40,8 +39,6 @@ Cypress.Commands.add('devolverLivroId', (lvr_id, alguns=true, qtdTrc=1, sleep=ti
             });
         }
     });
-
-    cy.wait(sleep);
 
     // Verificando o alert
     cy.on('window:alert', msg => {
@@ -63,7 +60,7 @@ Cypress.Commands.add('aceitarDevolucaoId', (vnd_id, sleep=time) => {
     cy.get('.pedidos .vnd-id').each($id => {
         if($id.text().trim() === String(vnd_id)){
             cy.wrap($id).closest('.wrapper').then($wrapper => {
-                cy.wrap($wrapper).find('#devolucao').select('Devolução Aceita');
+                cy.wrap($wrapper).find('#devolucao').select('Devolução Aceita',  {force: true});
             });
         }
     });
@@ -84,7 +81,7 @@ Cypress.Commands.add('recusarDevolucaoId', (vnd_id, sleep=time) => {
     cy.get('.pedidos .vnd-id').each($id => {
         if($id.text().trim() === String(vnd_id)){
             cy.wrap($id).closest('.wrapper').then($wrapper => {
-                cy.wrap($wrapper).find('#devolucao').select('Devolução Recusada');
+                cy.wrap($wrapper).find('#devolucao').select('Devolução Recusada',  {force: true});
             });
         }
     });
@@ -110,6 +107,7 @@ Cypress.Commands.add('retornarEstoqueId', (vnd_id, sleep=time) => {
         if($id.text().trim() === String(vnd_id)){
             cy.wrap($id).closest('.wrapper').then($wrapper => {
                 cy.wrap($wrapper).find('.acoes a').click();
+                cy.wait(sleep);
             });
         }
     });

@@ -8,7 +8,6 @@ Cypress.Commands.add('comprarLivroId', (lvr_id, lvr_qtd=1, sleep=time) => {
 
     //Abrindo o livro
     cy.wait(sleep);
-
     cy.get('.book-id').each($id => {
         if($id.text().trim() === String(lvr_id)){
             cy.wrap($id).closest('.book').then($book => {
@@ -46,6 +45,7 @@ Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=time) => {
     //Escolhendo o endereço
     cy.wait(sleep);
     cy.get('#endereco').select(String(end));
+    cy.wait(sleep);
     cy.get('.add-endereco').click();
 
     //Finalizando sem adicionar cartão
@@ -59,14 +59,17 @@ Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=time) => {
     }
 
     //Finalizando com o valor cartão menor do que R$ 10,00
+    cy.wait(sleep);
     cy.get('.acoes .valor').first().clear().type('2');
     cy.wait(sleep);
     cy.get('.finalizar-compra a').click();
 
     //Finalizando com o valor cartão diferente do total
+    cy.wait(sleep);
     cy.get('.acoes .valor').first().clear().type('15');
     cy.wait(sleep);
     cy.get('.finalizar-compra a').click();
+    cy.wait(sleep);
 
     cy.reload();
 
@@ -94,6 +97,7 @@ Cypress.Commands.add('finalizarCompraCupom', (end=9, totCard=1, totCup=1, sleep=
     //Escolhendo o endereço
     cy.wait(sleep);
     cy.get('#endereco').select(String(end));
+    cy.wait(sleep);
     cy.get('.add-endereco').click();
 
     //Adicionando um cartão para pagamento
@@ -129,7 +133,6 @@ Cypress.Commands.add('adicionarCarrinhoId', (lvr_id, lvr_qtd=1, sleep=time) => {
 
     //Abrindo o livro
     cy.wait(sleep);
-
     cy.get('.book-id').each($id => {
         if($id.text().trim() === String(lvr_id)){
             cy.wrap($id).closest('.book').then($book => {

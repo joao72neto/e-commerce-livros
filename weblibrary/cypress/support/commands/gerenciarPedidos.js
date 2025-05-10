@@ -11,7 +11,7 @@ Cypress.Commands.add('reprovarPedidoId', (vnd_id, sleep=time) => {
     cy.get('.vnd-id').each($id => {
         if($id.text().trim() === String(vnd_id)){
             cy.wrap($id).closest('.wrapper').then($wrapper => {
-                cy.wrap($wrapper).find('#processamento').select('Reprovado');
+                cy.wrap($wrapper).find('#processamento').select('Reprovado', {force: true});
             });
         }
     });
@@ -33,7 +33,7 @@ Cypress.Commands.add('cancelarPedidoId', (vnd_id, sleep=time) => {
     cy.get('.vnd-id').each($id => {
         if($id.text().trim() === String(vnd_id)){
             cy.wrap($id).closest('.wrapper').then($wrapper => {
-                cy.wrap($wrapper).find('#processamento').select('Cancelado');
+                cy.wrap($wrapper).find('#processamento').select('Cancelado',  {force: true});
             });
         }
     });
@@ -54,7 +54,7 @@ Cypress.Commands.add('aprovarPedidoId', (vnd_id, sleep=time) => {
     cy.get('.vnd-id').each($id => {
         if($id.text().trim() === String(vnd_id)){
             cy.wrap($id).closest('.wrapper').then($wrapper => {
-                cy.wrap($wrapper).find('#processamento').select('Aprovado');
+                cy.wrap($wrapper).find('#processamento').select('Aprovado',  {force: true});
             });
         }
     });
@@ -66,7 +66,7 @@ Cypress.Commands.add('aprovarPedidoId', (vnd_id, sleep=time) => {
     cy.get('.vnd-id').each($id => {
         if($id.text().trim() === String(vnd_id)){
             cy.wrap($id).closest('.wrapper').then($wrapper => {
-                cy.wrap($wrapper).find('#entrega').select('Em Transporte');
+                cy.wrap($wrapper).find('#entrega').select('Em Transporte',  {force: true});
             });
         }
     });
@@ -78,7 +78,7 @@ Cypress.Commands.add('aprovarPedidoId', (vnd_id, sleep=time) => {
     cy.get('.vnd-id').each($id => {
         if($id.text().trim() === String(vnd_id)){
             cy.wrap($id).closest('.wrapper').then($wrapper => {
-                cy.wrap($wrapper).find('#entrega').select('Entregue');
+                cy.wrap($wrapper).find('#entrega').select('Entregue',  {force: true});
             });
         }
     });
