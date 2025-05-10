@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `enderecos` (
   `end_numero` SMALLINT UNSIGNED NOT NULL,
   `end_bairro` VARCHAR(45) NOT NULL,
   `end_cep` VARCHAR(20) NOT NULL,
+  `end_frete` DECIMAL(10,2) NULL,
   `end_cidade` VARCHAR(45) NOT NULL,
   `end_estado` VARCHAR(45) NOT NULL,
   `end_pais` VARCHAR(45) NOT NULL,
