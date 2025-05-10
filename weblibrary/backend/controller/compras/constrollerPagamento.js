@@ -40,10 +40,10 @@ module.exports.getPagamento = async (req, res) => {
     const enderecosInativos = await buscarEnderecosInativosClienteId(cliente[0].clt_id);
 
 
-    //Calculando o frete com base no cep do endereço ativo
+    //Obtendo o frete do endereço específico
     let frete;
     if(enderecosAtivo.length !== 0){
-        frete = calcularFreteFicticio(enderecosAtivo[0].end_cep);
+        frete = Number(enderecosAtivo[0].end_frete);
     }
 
     //Atualizando o status do cartão
@@ -159,30 +159,3 @@ module.exports.postAdicionarCupons = async (req, res) => {
 
     }
 };
-
-
-//Função que gera um frete fictício com base no cep
-function calcularFreteFicticio(cep) {
-
-    // Removendo tudo que não é número
-    const cepLimpo = cep.replace(/\D/g, '');
-
-    if (cepLimpo.length !== 8) {
-        return null;
-    }
-
-    // Pegando os dois primeiro dígitos do cep
-    const faixa = parseInt(cepLimpo.substring(0, 2));
-
-    //Função que gera um valor aleatório de frete dentro de uma faixa
-    const gerarValorAleatorio = (min, max) => {
-        return parseFloat((Math.random() * (max - min) + min).toFixed(2));
-    };
-
-    // Regra fictícia baseada na "distância"
-    if (faixa <= 20) return gerarValorAleatorio(8.50, 13.00);      
-    if (faixa <= 50) return gerarValorAleatorio(13.01, 20.00);   
-    if (faixa <= 80) return gerarValorAleatorio(20.01, 30.00); 
-    return gerarValorAleatorio(30.01, 45.00);                    
-}
-

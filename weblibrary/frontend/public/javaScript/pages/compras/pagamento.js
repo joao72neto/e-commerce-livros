@@ -279,9 +279,11 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
     //Pegando os itens do carrinho
     const cliente = await buscarClienteLogadoService();
     let carrinho = await buscarCarrinhoClienteIdService(cliente[0].clt_id);
-
     const urlParams = new URLSearchParams(window.location.search);
     const compra = urlParams.get('compra'); 
+
+    //Obtendo o frete do endereço
+    const end_frete = Number(document.querySelector('#frete').textContent.split(' ')[2].replace(',', '.'));
 
     //Finalizando o pedido se for uma compra única
     if(compra){
@@ -298,7 +300,7 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
             lvr_id: carrinho.crr_lvr_id,
             lvr_numPedido: numPedido,
             vnd_valorTotal: carrinho.crr_total, 
-            vnd_frete: 12,
+            vnd_frete: end_frete,
             vnd_qtd: carrinho.crr_qtd
         }
 
@@ -331,7 +333,7 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
                 lvr_id: item.crr_lvr_id,
                 lvr_numPedido: numPedido,
                 vnd_valorTotal: item.crr_total, 
-                vnd_frete: 12,
+                vnd_frete: end_frete,
                 vnd_qtd: item.crr_qtd
             } 
 

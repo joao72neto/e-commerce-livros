@@ -157,7 +157,7 @@
                         });
                     %>
 
-                    <p id="frete" class="invisible">Frete: R$ <%=String(frete).replace('.', ',')%></p>
+                    <p id="frete" class="invisible">Frete: R$ <%=String(frete.toFixed(2)).replace('.', ',')%></p>
                     <p class="total">Total: R$ <%=String(total.toFixed(2)).replace('.', ',')%></p>
                 </div>
             </section>
