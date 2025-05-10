@@ -260,7 +260,15 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
         totalCard += Number(inputValor);
     });
 
+    //Verificando se há um endereço ativo
+    const containerEndereco = document.querySelector('.endereco-adicionado');
+
     //Validações para a compra
+    if(containerEndereco.innerHTML.trim() === ''){
+        alert('Confirme o endereço para finalizar a compra');
+        return;
+    }
+
     if(menoQue10){
         alert('Valor a ser pago no cartão precisa ser maior ou igual a R$ 10,00.');
         return;
