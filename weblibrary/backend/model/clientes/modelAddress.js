@@ -40,8 +40,26 @@ module.exports.cadastrarAddress = async (dados) => {
     //Obtendo o banco
     const db = await getDb();
 
-    //Consulta SQL
-    sql = `INSERT INTO enderecos (end_clt_id, end_nome, end_tipoResidencia, end_tipoLogradouro, end_logradouro, end_numero, end_bairro, end_cep, end_cidade, end_estado, end_pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    //Query SQL
+    sql = `
+    
+        INSERT INTO enderecos (
+            end_clt_id, 
+            end_nome, 
+            end_tipoResidencia, 
+            end_tipoLogradouro, 
+            end_logradouro, 
+            end_numero, 
+            end_bairro, 
+            end_cep, 
+            end_cidade, 
+            end_estado, 
+            end_pais, 
+            end_frete
+        ) VALUES (
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+        )    
+    `;
 
     //Pegando os valores a serem inseridos no banco
     const valores = [
@@ -55,7 +73,8 @@ module.exports.cadastrarAddress = async (dados) => {
         dados.end_cep,
         dados.end_cidade,
         dados.end_estado,
-        dados.end_pais
+        dados.end_pais, 
+        dados.end_frete
     ]
 
     await db.query(sql, valores)

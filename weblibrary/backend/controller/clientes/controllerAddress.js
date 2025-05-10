@@ -1,5 +1,30 @@
 const { buscarEnderecosClienteId, buscarEnderecoId, atualizarAddress, cadastrarAddress, deletarAddressId, deletarAddressClienteId } = require("../../model/clientes/modelAddress");
 
+//Função que gera um frete fictício com base no cep
+function calcularFreteFicticio(cep) {
+
+    // Removendo tudo que não é número
+    const cepLimpo = cep.replace(/\D/g, '');
+
+    if (cepLimpo.length !== 8) {
+        return null;
+    }
+
+    // Pegando os dois primeiro dígitos do cep
+    const faixa = parseInt(cepLimpo.substring(0, 2));
+
+    //Função que gera um valor aleatório de frete dentro de uma faixa
+    const gerarValorAleatorio = (min, max) => {
+        return parseFloat((Math.random() * (max - min) + min).toFixed(2));
+    };
+
+    // Regra fictícia baseada na "distância"
+    if (faixa <= 20) return gerarValorAleatorio(8.50, 13.00);      
+    if (faixa <= 50) return gerarValorAleatorio(13.01, 20.00);   
+    if (faixa <= 80) return gerarValorAleatorio(20.01, 30.00); 
+    return gerarValorAleatorio(30.01, 45.00);                    
+}
+
 //Paginas
 module.exports.getAddress = async (req, res) => {
     const enderecos = await buscarEnderecosClienteId(req.params.clt_id );
@@ -44,7 +69,13 @@ module.exports.putAddressAlt = async (req, res) => {
 //Inserção de dados
 module.exports.postAddressAdd = async (req, res) => {
     try{
-        await cadastrarAddress(req.body);
+        
+        //Calculando o frete para o endereço com base no cep
+        let dados = req.body;
+        dados.end_frete = calcularFreteFicticio(dados.end_cep);
+
+        //Cadastrando o novo endereço
+        await cadastrarAddress(dados);
         res.sendStatus(200);
         
     }catch(err){
