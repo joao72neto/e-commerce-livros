@@ -13,6 +13,7 @@ router.put('/clientes/address/:clt_id/alt/:end_id',
     validarAddress, 
     controllerAddress.putAddressAlt
 );
+router.patch('/clientes/address/desativar/:clt_id', controllerAddress.patchDesativarEnderecosClienteId);
 
 //Rota para adicionar um endereco
 router.post('/clientes/address/:clt_id/add', 

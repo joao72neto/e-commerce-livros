@@ -1,4 +1,5 @@
 const { buscarEnderecosClienteId, buscarEnderecoId, atualizarAddress, cadastrarAddress, deletarAddressId, deletarAddressClienteId } = require("../../model/clientes/modelAddress");
+const { desativarEnderecosClienteId } = require('../../model/clientes/modelAddress');
 
 //Função que gera um frete fictício com base no cep
 function calcularFreteFicticio(cep) {
@@ -65,6 +66,19 @@ module.exports.putAddressAlt = async (req, res) => {
     const endereco = await atualizarAddress(req.body, req.params.end_id);
     res.json(endereco);
 };
+
+module.exports.patchDesativarEnderecosClienteId = async (req, res) => {
+    try{
+        
+        await desativarEnderecosClienteId(req.params.clt_id);
+        return res.status(200).json({msg: 'Endereço desativado com sucesso!'});
+
+    }catch(err){
+        console.error(`Erro no patchDesativarEnderecosClienteId - controllerAddress: ${err}`);
+        return res.status(500).json({msg: 'Não foi possível desativar o endereço'});
+    }
+};
+
 
 //Inserção de dados
 module.exports.postAddressAdd = async (req, res) => {

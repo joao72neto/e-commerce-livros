@@ -8,6 +8,7 @@ import { buscarCarrinhoClienteIdService } from "/javaScript/service/compras/serv
 import { adicionarPedidoService } from "/javaScript/service/compras/servicePedidos.js";
 import { removerCarrinhoIdService } from "/javaScript/service/compras/serviceCarrinho.js";
 import { desativarCartoesClienteIdService } from "/javaScript/service/clientes/serviceCard.js";
+import { desativarEnderecosClienteIdService } from "/javaScript/service/clientes/serviceAddress.js"
 
 //Verficado se há cupons disponíveis ou não
 document.addEventListener('DOMContentLoaded', async function(){
@@ -367,10 +368,19 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
         }
     });
 
+    //Desativando o endereço ativo
+    const resAddress = await desativarEnderecosClienteIdService(cliente[0].clt_id
+    );
+
+    if(!resAddress === 200){
+        alert('Não foi possível desativar o endereço ativo');
+        return;
+    }
+
     //Desativando os cartões
-    const res = await desativarCartoesClienteIdService(cliente[0].clt_id);
+    const resCard = await desativarCartoesClienteIdService(cliente[0].clt_id);
     
-    if(!res === 200){
+    if(!resCard === 200){
         alert('Não foi possível desativar os cartões do usuário');
         return;
     }

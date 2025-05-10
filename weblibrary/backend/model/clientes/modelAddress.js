@@ -117,7 +117,7 @@ module.exports.desativarEnderecosClienteId = async (clt_id) => {
         update 
             enderecos	
             set end_status = 0
-        where end_clt_id = 1;
+        where end_clt_id = ?;
     `;
 
     //Desativando todos os endereços

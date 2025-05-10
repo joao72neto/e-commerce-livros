@@ -73,3 +73,21 @@ export async function buscarEnderecoIdService(id) {
         throw err;
     }
 }
+
+//PATCH
+
+//Desativando a endereço ativo
+export async function desativarEnderecosClienteIdService(clt_id) {
+    try{
+        const result = await fetch(`/clientes/address/desativar/${clt_id}`, {
+           method: 'PATCH'
+        });
+
+        return result.status;
+
+    }catch(err){
+        console.error(`Erro no desativarEnderecosClienteIdService - serviceAddress: ${err}`);
+        throw err;
+    }
+}
+
