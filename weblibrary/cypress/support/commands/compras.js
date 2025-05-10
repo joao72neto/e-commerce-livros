@@ -38,9 +38,14 @@ Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=time) => {
     //Visitando a página de pagamento
     cy.visit('/pagamento');
 
+    //Finalizando sem adicionar o endereço
+    cy.wait(sleep);
+    cy.get('.finalizar-compra a').click();
+
     //Escolhendo o endereço
     cy.wait(sleep);
     cy.get('#endereco').select(String(end));
+    cy.get('.add-endereco').click();
 
     //Finalizando sem adicionar cartão
     cy.wait(sleep);
@@ -70,10 +75,11 @@ Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=time) => {
 
     //Verificando todos os alerts
     cy.wrap(alerts).should(stub => {
-        expect(stub.getCall(0)).to.be.calledWith('Adicione um cartão para finalizar a compra.');
-        expect(stub.getCall(1)).to.be.calledWith('Valor a ser pago no cartão precisa ser maior ou igual a R$ 10,00.');
-        expect(stub.getCall(2)).to.be.calledWith('O valor a ser pago no cartão precisa ser igual ao valor total da compra.');
-        expect(stub.getCall(3)).to.be.calledWith('Compra realizada com sucesso!');
+        expect(stub.getCall(0)).to.be.calledWith('Confirme o endereço para finalizar a compra');
+        expect(stub.getCall(1)).to.be.calledWith('Adicione um cartão para finalizar a compra.');
+        expect(stub.getCall(2)).to.be.calledWith('Valor a ser pago no cartão precisa ser maior ou igual a R$ 10,00.');
+        expect(stub.getCall(3)).to.be.calledWith('O valor a ser pago no cartão precisa ser igual ao valor total da compra.');
+        expect(stub.getCall(4)).to.be.calledWith('Compra realizada com sucesso!');
     });
 });
 
@@ -86,6 +92,7 @@ Cypress.Commands.add('finalizarCompraCupom', (end=9, totCard=1, totCup=1, sleep=
     //Escolhendo o endereço
     cy.wait(sleep);
     cy.get('#endereco').select(String(end));
+    cy.get('.add-endereco').click();
 
     //Adicionando um cartão para pagamento
     for(let i=0; i < totCard; i++){

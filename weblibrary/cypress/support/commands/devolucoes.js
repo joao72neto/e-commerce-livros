@@ -23,19 +23,19 @@ Cypress.Commands.add('devolverLivroId', (lvr_id, alguns=true, qtdTrc=1, sleep=ti
                     
                     if(alguns){
 
-                        //Sobrescrevendo o valor do prompt
-                        cy.window().then((win) => {
-                            cy.stub(win, 'prompt').returns(qtdTrc);
-                        });
-
                         cy.wrap($wrapper).find('.dev-alguns').click();
+                        cy.wait(sleep);
+                        cy.get('#qtd-troca').clear().type(qtdTrc);
+                        cy.wait(sleep);
+                        cy.wrap($wrapper).find('.devolucao').click();
+                        cy.wait(sleep);
                         return;
 
                     }
                     
-                    cy.wrap($wrapper).find('.submenu').click();
                     cy.wait(sleep);
                     cy.wrap($wrapper).find('.dev-tudo').click();
+                    cy.wait(sleep);
                 }
             });
         }
