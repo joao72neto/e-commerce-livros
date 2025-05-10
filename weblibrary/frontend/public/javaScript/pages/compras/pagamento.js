@@ -49,12 +49,14 @@ document.addEventListener('DOMContentLoaded', async function(){
     const select = this.querySelector('.select');
     const btnAddEnd = this.querySelector('.add-endereco');
     const editar = this.querySelector('.add a');
+    const frete = this.querySelector('#frete');
     if(endereco) { 
         btnAddEnd.remove(); 
         select.remove();
         editar.remove();
+        frete.classList.remove('invisible');
     }
-    // if(endereco) btnAddEnd.remove();
+
 });
 
 // Dividindo o valor a ser pago em cada cartão
