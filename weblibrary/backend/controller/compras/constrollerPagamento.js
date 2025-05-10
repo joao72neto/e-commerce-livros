@@ -36,8 +36,15 @@ module.exports.getPagamento = async (req, res) => {
 
     //Obtendo o id do endereço
     const end_id = req.query.end_id;
-    const enderecosAtivos = await buscarEnderecosAtivosClienteId(cliente[0].clt_id);
+    const enderecosAtivo = await buscarEnderecosAtivosClienteId(cliente[0].clt_id);
     const enderecosInativos = await buscarEnderecosInativosClienteId(cliente[0].clt_id);
+
+
+    //Calculando o frete com base no cep do endereço ativo
+    let frete;
+    if(enderecosAtivo.length !== 0){
+        frete = calcularFreteFicticio(enderecosAtivo[0].end_cep);
+    }
 
     //Atualizando o status do cartão
     if(car_id){
@@ -66,13 +73,14 @@ module.exports.getPagamento = async (req, res) => {
 
         res.render('compras/pagamento', {
             cliente: cliente,
-            enderecosAtivos: enderecosAtivos,
+            enderecosAtivo: enderecosAtivo,
             enderecosInativos: enderecosInativos,
             cartoesInativos: cartoesInativos,
             cartoesAtivos: cartoesAtivos,
             carrinho: carrinho,
             cuponsInativos: cuponsInativos,
-            cuponsAtivos: cuponsAtivos
+            cuponsAtivos: cuponsAtivos, 
+            frete: frete?frete:0
         }); 
 
         return;
@@ -80,13 +88,14 @@ module.exports.getPagamento = async (req, res) => {
 
     res.render('compras/pagamento', {
         cliente: cliente,
-        enderecosAtivos: enderecosAtivos,
+        enderecosAtivo: enderecosAtivo,
         enderecosInativos: enderecosInativos,
         cartoesInativos: cartoesInativos,
         cartoesAtivos: cartoesAtivos,
         carrinho: carrinho,
         cuponsInativos: cuponsInativos,
-        cuponsAtivos: cuponsAtivos
+        cuponsAtivos: cuponsAtivos,
+        frete: frete?frete:0
     });
 };
 
