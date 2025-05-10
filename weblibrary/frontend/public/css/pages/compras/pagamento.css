@@ -54,6 +54,15 @@ main{
 }
 
 
+.endereco-adicionado .wrapper h2{
+    margin: 8px 0;
+}
+
+.endereco-adicionado .wrapper p{
+    margin: 8px 0;
+}
+
+
 .cartoes-adicionados .wrapper{
     display:  grid;
     grid-template-columns: 70% 30%;
