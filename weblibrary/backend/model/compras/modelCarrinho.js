@@ -20,7 +20,9 @@ module.exports.buscarCarrinhoClienteId = async (clt_id) => {
             JOIN 
                 livros l ON l.lvr_id = c.crr_lvr_id
             WHERE 
-                c.crr_clt_id = ?;
+                c.crr_clt_id = ?
+            ORDER BY 
+                c.crr_id desc;
         `;
 
         const [carrinho] = await db.query(sql, clt_id);

@@ -56,8 +56,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 `;
 
                 submenuTro.innerHTML = `
-                    <a class="opcoes dev-tudo" href="#">Troca Tudo</a>
-                    <a class ="opcoes dev-alguns" href="#">Trocar Alguns</a>
+                    <a class="opcoes tro-tudo" href="#">Troca Tudo</a>
+                    <a class ="opcoes tro-alguns" href="#">Trocar Alguns</a>
                 `;
 
                 // Adicionando submenu ao lado do botão clicado
@@ -97,11 +97,17 @@ document.addEventListener('DOMContentLoaded', function(){
             vnd_status: 'Devolução Solicitada'
         }
 
+        //Mudando o status caso o usuário escolha troca
+        if(btn.classList.contains('tro-tudo')){
+            status.vnd_status = 'Troca Solicitada';
+            tipo = 'troca';
+        }
+        
         //Obtendo o cliente logado
         const cliente = await buscarClienteLogadoService();
 
         //Preparando os dados para colocar na tabela de troca
-        const troca = {
+        let trocaDev = {
             trc_clt_id: cliente[0].clt_id,
             trc_vnd_id: vnd_id,
             trc_lvr_id: Number(lvr_id),
@@ -110,12 +116,21 @@ document.addEventListener('DOMContentLoaded', function(){
             trc_tipo: tipo
         }
 
-        //Verificando qual botão foi selecionado
-        if (btn.classList.contains('dev-alguns')){
+        //Obtendo os elementos
+        const inputQtdTroca = wrapper.querySelector('#qtd-troca');
+        const btnDev = wrapper.querySelector('.devolucao');
+        const btnTroca = wrapper.querySelector('.troca');
 
-            //Obtendo os elementos
-            const inputQtdTroca = wrapper.querySelector('#qtd-troca');
-            const btnDev = wrapper.querySelector('.devolucao');
+        //Verificando qual botão foi selecionado
+        if (btn.classList.contains('dev-alguns') || 
+            btn.classList.contains('tro-alguns')){
+            
+            //Editando os dados para troca
+            if(btn.classList.contains('tro-alguns')){
+                status.vnd_status = 'Troca Solicitada';
+                trocaDev.trc_tipo = 'troca';
+                tipo = 'troca';
+            }
 
             //Removendo o menu ao clicar fora
             const eventoClique = new MouseEvent('click', {
@@ -128,15 +143,33 @@ document.addEventListener('DOMContentLoaded', function(){
                 wrapper.dispatchEvent(eventoClique);
             }, 0);
             
-            //Mudando o valor do botão ao clicar
-            btnDev.textContent = 'Confimar';
-            
+            //Organizando os botões caso seja troca ou devolução
+            if(btn.classList.contains('dev-alguns')){
+
+                btnTroca.remove();
+                btnDev.textContent = 'Confimar';
+                
+            }else{
+
+                btnDev.remove();
+                btnTroca.textContent = 'Confimar';
+                btnTroca.style.cssText = `
+                    grid-row: 0;
+                `;
+            }
+
             //Mostrando o input
             inputQtdTroca.classList.remove('invisible'); 
 
+            //Definindo o botão ser clicado
+            let botao = btnDev;
+            if(btn.classList.contains('tro-alguns')){
+                botao = btnTroca;
+                
+            }
 
             //Verificando se a qtd foi confirmada ou não
-            btnDev.addEventListener('click', async function(event){
+            botao.addEventListener('click', async function(event){
                 event.stopPropagation();
 
                 //Obtendo o valor do input
@@ -148,19 +181,20 @@ document.addEventListener('DOMContentLoaded', function(){
                     return;
                 }           
                 
-                 //Atualizando a nova qtd
-                troca.trc_qtd = Number(qtdUpdate);
+                //Atualizando a nova qtd
+                trocaDev.trc_qtd = Number(qtdUpdate);
 
                 //Devolvendo o livro
-                await devolverLivro(troca, status, tipo);
+                await devolverLivro(trocaDev, status, tipo);
             });
 
         }else{
-            await devolverLivro(troca, status, tipo);
+            await devolverLivro(trocaDev, status, tipo);
         }
 
     });
 
+    //Mostrnado os botões quando o status é "Entregue"
     this.querySelectorAll('.acoes').forEach(function(acoes){
         const wrapper = acoes.closest('.wrapper');
         const statusText = wrapper.querySelector('.status strong').textContent;
