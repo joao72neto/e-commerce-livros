@@ -30,8 +30,17 @@
                         <p class="invisible book-id"><%=pedido.vnd_lvr_id%></p>
 
                         <%
+
+                            const status = pedido.vnd_status;
                             const qtdTrocada = pedido.vnd_qtd_trocada;
-                            const stringTrocada = ` / Troca: ${qtdTrocada}`; 
+                            let stringTrocada;
+
+                            if(status.split(' ')[0] === 'Troca'){
+                                stringTrocada = ` / Troca: ${qtdTrocada}`;
+                            }else{
+                                stringTrocada = ` / Devolução: ${qtdTrocada}`;
+                            }
+
                         %>
 
                         <p><strong>Qtd: <%=pedido.vnd_qtd%><%=qtdTrocada?stringTrocada:""%></strong></p>
