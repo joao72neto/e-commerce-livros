@@ -1,7 +1,7 @@
 const time = 1500;
 
 //Deve solicitar a devolução de livros
-Cypress.Commands.add('devolverLivroId', (vnd_id, alguns=true, qtdTrc=1, sleep=time) => {
+Cypress.Commands.add('trocarLivroId', (vnd_id, alguns=true, qtdTrc=1, sleep=time) => {
 
     //Página a ser visitada
     cy.visit('/pedidos');
@@ -19,21 +19,21 @@ Cypress.Commands.add('devolverLivroId', (vnd_id, alguns=true, qtdTrc=1, sleep=ti
                 const status = $wrapper.find('.status').text().trim();
                 if(status === 'Entregue'){
 
-                    cy.wrap($wrapper).find('.devolucao').click();
+                    cy.wrap($wrapper).find('.troca').click();
 
                     if(alguns){
                         cy.wait(sleep);
-                        cy.wrap($wrapper).find('.dev-alguns').click();
+                        cy.wrap($wrapper).find('.tro-alguns').click();
                         cy.wait(sleep);
                         cy.get('#qtd-troca').clear({force: true}).type(qtdTrc, {force: true});
                         cy.wait(sleep);
-                        cy.wrap($wrapper).find('.devolucao').click();
+                        cy.wrap($wrapper).find('.troca').click();
                         cy.wait(sleep);
                         return;
                     }
                     
                     cy.wait(sleep);
-                    cy.wrap($wrapper).find('.dev-tudo').click();
+                    cy.wrap($wrapper).find('.tro-tudo').click();
                     cy.wait(sleep);
                 }
             });
@@ -48,7 +48,7 @@ Cypress.Commands.add('devolverLivroId', (vnd_id, alguns=true, qtdTrc=1, sleep=ti
 
 
 //Deve aceitar a devolução de livros 
-Cypress.Commands.add('aceitarDevolucaoId', (vnd_id, sleep=time) => {
+Cypress.Commands.add('aceitarTrocaId', (vnd_id, sleep=time) => {
 
     //Página a ser visitada
     cy.visit('/pedidos/gerenciar');
@@ -60,7 +60,7 @@ Cypress.Commands.add('aceitarDevolucaoId', (vnd_id, sleep=time) => {
     cy.get('.pedidos .vnd-id').each($id => {
         if($id.text().trim() === String(vnd_id)){
             cy.wrap($id).closest('.wrapper').then($wrapper => {
-                cy.wrap($wrapper).find('#devolucao').select('Devolução Aceita',  {force: true});
+                cy.wrap($wrapper).find('#troca').select('Troca Aceita',  {force: true});
             });
         }
     });
@@ -69,7 +69,7 @@ Cypress.Commands.add('aceitarDevolucaoId', (vnd_id, sleep=time) => {
 });
 
 //Deve recusar a devolução de livros 
-Cypress.Commands.add('recusarDevolucaoId', (vnd_id, sleep=time) => {
+Cypress.Commands.add('recusarTrocaId', (vnd_id, sleep=time) => {
 
     //Página a ser visitada
     cy.visit('/pedidos/gerenciar');
@@ -81,16 +81,10 @@ Cypress.Commands.add('recusarDevolucaoId', (vnd_id, sleep=time) => {
     cy.get('.pedidos .vnd-id').each($id => {
         if($id.text().trim() === String(vnd_id)){
             cy.wrap($id).closest('.wrapper').then($wrapper => {
-                cy.wrap($wrapper).find('#devolucao').select('Devolução Recusada',  {force: true});
+                cy.wrap($wrapper).find('#troca').select('Troca Recusada',  {force: true});
             });
         }
     });
 
     cy.wait(sleep);
 });
-
-
-
-
-
-
