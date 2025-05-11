@@ -3,6 +3,8 @@ import { buscarClienteLogadoService } from "/javaScript/service/clientes/service
 import { devolverTrocarProdutoService } from "/javaScript/service/analise/serviceGerenciarPedidos.js";
 
 document.addEventListener('DOMContentLoaded', function(){
+
+    //Submenu para o botão de devolução
     this.querySelectorAll('#submenu-dev').forEach(menu => {
         menu.addEventListener('click', function(){
             
@@ -31,6 +33,39 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     });
 
+    //Submenu para o botão de troca
+    this.querySelectorAll('#submenu-tro').forEach(menu => {
+        menu.addEventListener('click', function(){
+            
+            setTimeout(() => {
+                //Retirando o menu ao clicar de novo
+                let submenuAtual = this.querySelector('.submenu');
+
+                if(submenuAtual){
+                    submenuAtual.remove();
+                    return;
+                }
+
+                //Criando submenu-dev
+                let submenuTro = document.createElement('div');
+                submenuTro.classList.add('submenu');
+
+                submenuTro.style.cssText = `
+                    top: 100px;
+
+                `;
+
+                submenuTro.innerHTML = `
+                    <a class="opcoes dev-tudo" href="#">Troca Tudo</a>
+                    <a class ="opcoes dev-alguns" href="#">Trocar Alguns</a>
+                `;
+
+                // Adicionando submenu ao lado do botão clicado
+                this.appendChild(submenuTro);
+            }, 0);
+        });
+    });
+
     //Removendo notificação ao clicar fora da tela
     this.addEventListener('click', function(){
         const submenu = document.querySelector('.submenu');
@@ -53,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const wrapper = btn.closest('.wrapper');
         const vnd_id = wrapper.querySelector('.vnd-id').textContent;
         const lvr_id = wrapper.querySelector('.book-id').textContent;
-        let qtd = Number(wrapper.querySelector('#qtd').textContent)
+        let qtd = Number(wrapper.querySelector('#qtd').textContent);
         let tipo = 'devolucao';
 
         //Preparando os dados para atualizar o status
