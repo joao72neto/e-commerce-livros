@@ -43,8 +43,6 @@
                             <p><strong>Qtd:</strong> <%=dev.trc_qtd%></p>
                             <p>R$ <%=String(dev.trc_preco).replace('.', ',')%></p>
                             <p class="invisible vnd-id"><%=dev.trc_vnd_id%></p>
-                            <p class="invisible clt-id"><%=dev.clt_id%></p>
-                            <p class="invisible lvr-id"><%=dev.lvr_id%></p>
                         </div>
                         <div class="acoes">
                             <a href="/estoque/entrada?retorno=/pedidos/gerenciar&trc_id=<%=dev.trc_id%>&lvr_id=<%=dev.lvr_id%>&clt_id=<%=dev.clt_id%>&vnd_id=<%=dev.trc_vnd_id%>">Retornar ao Estoque</a>
@@ -58,13 +56,16 @@
                 
                 <% trocados.forEach(trc => { %>
 
-                    <div class="wrapper">
+                    <div class="wrapper" style="display: none;">
                         <div class="imagem">
                             <img src="<%=trc.lvr_capa%>" alt="">
                         </div>
                         <div>
                             <h2><%=trc.lvr_titulo%></h2>
-                            <p><strong>Comprador: </strong><%=trc.clt_nome%></p>
+                            <p><strong>Comprador(a): </strong><%=trc.clt_nome%></p>
+                            <p><strong>Qtd:</strong> <%=trc.trc_qtd%></p>
+                            <p>R$ <%=String(trc.trc_preco).replace('.', ',')%></p>
+                            <p class="invisible vnd-id"><%=trc.trc_vnd_id%></p>
                         </div>
                         <div class="acoes">
                             <a href="/estoque/entrada">Retornar ao Estoque</a>
@@ -122,7 +123,7 @@
                                 <select name="troca" id="troca">
                                     <option class="rm" value="Troca Solicitada" <%= pedido.vnd_status === 'Troca Solicitada' ? 'selected' : '' %>>Troca Solicitada</option>
                                     <option value="Troca Aceita" <%= pedido.vnd_status === 'Troca Aceita' ? 'selected' : '' %>>Troca Aceita</option>
-                                    <option value="Troca Concluída" <%= pedido.vnd_status === 'Troca Concluída' ? 'selected' : '' %>>Troca Concluída</option>
+                                    <option class="con rm" value="Troca Concluída" <%= pedido.vnd_status === 'Troca Concluída' ? 'selected' : '' %>>Troca Concluída</option>
                                     <option class="rm" value="Troca Recusada" <%= pedido.vnd_status === 'Troca Recusada' ? 'selected' : '' %>>Troca Recusada</option>
                                 </select>
                                 

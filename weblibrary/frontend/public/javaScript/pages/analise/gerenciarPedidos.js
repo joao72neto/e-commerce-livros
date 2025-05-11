@@ -69,6 +69,11 @@ document.addEventListener('DOMContentLoaded', function(){
             processamento.style.display = 'none'
             troca.style.display = 'block'; 
 
+            if(status.textContent === 'Troca Solicitada'){
+                troca.querySelector('.con').remove();
+                return;
+            }
+
             if(status.textContent === 'Troca Aceita'){
                 troca.querySelectorAll('.rm').forEach(item => {
                     item.remove();
@@ -76,17 +81,27 @@ document.addEventListener('DOMContentLoaded', function(){
 
                 const trocaEstoque = document.querySelector('.troca');
                 trocaEstoque.style.display = 'block';
+
+                const wrapperUser = troca.closest('.wrapper');
+                const vnd_id_user = wrapperUser.querySelector('.vnd-id').textContent;
+
+                trocaEstoque.querySelectorAll('.wrapper').forEach(wrapperEst => {
+                    
+                    let vnd_id_est = wrapperEst.querySelector('.vnd-id').textContent;
+
+                    if(vnd_id_est === vnd_id_user){
+                        wrapperEst.style.display = 'grid';
+                    }
+                    
+                });
+                
+                return;
             }
 
             if(status.textContent === 'Troca Recusada' || 
                status.textContent === 'Troca Concluída'
             ){
                 troca.disabled = true;
-
-                if(status.textContent === 'Troca Concluída'){
-                    const trocaEstoque = document.querySelector('.troca');
-                    trocaEstoque.style.display = 'none';
-                }
             }
         }
 
@@ -125,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     }
                     
                 });
+
                 return;
             }
 
@@ -159,6 +175,12 @@ document.addEventListener('DOMContentLoaded', function(){
     this.querySelectorAll('#troca').forEach(entrega => {
         if(entrega.style.display === 'block'){
             entrega.addEventListener('change', async function(){
+
+                if(entrega.value === 'Troca Recusada' 
+                ){
+                    await removerDevolvidoTrocado(this);
+                }
+
                 await atualizarStatus(this);
             });
         }
@@ -170,9 +192,9 @@ document.addEventListener('DOMContentLoaded', function(){
             entrega.addEventListener('change', async function(){
 
                 if(entrega.value === 'Devolução Recusada' 
-                 ){
-                     await removerDevolvidoTrocado(this);
-                 }
+                ){
+                    await removerDevolvidoTrocado(this);
+                }
 
                 await atualizarStatus(this);
             });
