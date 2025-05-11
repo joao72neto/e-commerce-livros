@@ -45,8 +45,8 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
         const urlParams = new URLSearchParams(window.location.search);
         const retorno = urlParams.get('retorno');
         const clt_id = urlParams.get('clt_id');
-        const lvr_id = urlParams.get('lvr_id');
         const vnd_id = urlParams.get('vnd_id');
+        const trc_tipo = urlParams.get('trc_tipo');
         const preco = document.querySelector('#valor_custo').value;
         const qtd = document.querySelector('#qtd').value;
 
@@ -73,27 +73,28 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
                 return;
             }
 
-            //Adicionando um cupom para o cliente
-            let valor = (preco * qtd) * 0.25;
-            valor = valor.toFixed(2);
-            const dadosCupom = {
-                cup_clt_id: clt_id,
-                cup_codigo: 'TROCA25',
-                cup_tipo: 'troca',
-                cup_valor: valor
+
+            //Preparando os dados do cupom, caso a solicitação tenha sido troca
+            if(trc_tipo === 'troca'){
+                let valor = (preco * qtd) * 0.25;
+                valor = valor.toFixed(2);
+                const dadosCupom = {
+                    cup_clt_id: clt_id,
+                    cup_codigo: 'TROCA25',
+                    cup_tipo: 'troca',
+                    cup_valor: valor
+                }
+
+                //Adicionando o cupom para o cliente
+                const resCupom = await adicionarCupomService(dadosCupom);
+
+                if (!resCupom === 201){
+                    alert('Não foi possível adicionar um cupom para o usuário');
+                    return;
+                }
+
+                alert(`Cupom de R$ ${String(valor).replace('.', ',')} adicionado ao usuário`);
             }
-
-            console.log(dadosCupom)
-
-            //Adicionando o cupom para o cliente
-            const resCupom = await adicionarCupomService(dadosCupom);
-
-            if (!resCupom === 201){
-                alert('Não foi possível adicionar um cupom para o usuário');
-                return;
-            }
-
-            alert(`Cupom de R$ ${String(valor).replace('.', ',')} adicionado ao usuário`);
 
             window.location.href = retorno;
             return;
