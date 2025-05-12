@@ -6,7 +6,10 @@
   "scripts": {
     "bd:reset": "node scripts/resetarBanco.js",
     "cypress": "npx cypress open",
-    "start": "npx nodemon app.js"
+    "start": "npx nodemon app.js",
+    "cy:clientes": "npx cypress run --spec cypress/e2e/fluxo-vendas/fluxoVariosClientes.cy.js",
+    "cy:cliente": "npx cypress run --spec cypress/e2e/fluxo-vendas/fluxoUnicoCliente.cy.js",
+    "cy:fluxo-vendas": "npx cypress run --spec cypress/e2e/fluxo-vendas/*"
   },
   "author": "João Neto",
   "license": "ISC",

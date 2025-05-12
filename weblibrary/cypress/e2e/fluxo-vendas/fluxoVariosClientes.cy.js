@@ -1,6 +1,6 @@
-const pause = false;
-const standardSleep = 200;
-const fastSleep = 200;
+const pause = true;
+const standardSleep = 1500;
+const fastSleep = 300;
 
 before(() => {
     cy.wait(1000);
@@ -112,12 +112,12 @@ describe('Gerenciar pedidos dos clientes', () => {
 
          //Tratando das devoluções da Ana
          cy.logarUsuario(1, fastSleep);
-         cy.trocarLivroId(9, false, 1, fastSleep);
+         cy.trocarLivroId(9, false, 1, standardSleep);
          if (pause) cy.pause();
 
          //Tratando das devoluções da Eduarda
         cy.logarUsuario(5, fastSleep);
-        cy.trocarLivroId(6, true, 2, standardSleep);
+        cy.trocarLivroId(6, true, 2, fastSleep);
         if (pause) cy.pause();
     });
 
@@ -133,9 +133,8 @@ describe('Gerenciar pedidos dos clientes', () => {
 
     it('Deve retornar ao estoque todos os itens aceitos para devolução', () => {
 
-        cy.retornarEstoqueId(2, true, fastSleep);
+        cy.retornarEstoqueId(2, true, standardSleep);
         cy.retornarEstoqueId(10, true, fastSleep);
-        cy.exibirEstoque(standardSleep);
         if (pause) cy.pause();
     });
 
