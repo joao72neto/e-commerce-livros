@@ -63,30 +63,39 @@ describe('Gerenciar pedidos dos clientes', () => {
         if (pause) cy.pause();
     });
 
-    it('Deve tratar as solicitações de troca dos clientes', () => {
+    it('Deve tratar as solicitações de devolução dos clientes', () => {
 
         //Tratando das devoluções da Eduarda
-        cy.devolverLivroId(6, true, 2, standardSleep);
         cy.devolverLivroId(4, false, 1, fastSleep);
         cy.devolverLivroId(2, true, 4, fastSleep);
         if (pause) cy.pause();
     });
 
+    it('Deve tratar as solicitações de troca dos clientes', () => {
+        cy.trocarLivroId(6, true, 2, standardSleep);
+    });
+
     it('Deve gerenciar os pedidos de devolução', () => {
 
-        cy.aceitarDevolucaoId(6, standardSleep);
+        cy.aceitarTrocaId(6, standardSleep);
         cy.recusarDevolucaoId(4, fastSleep);
         cy.aceitarDevolucaoId(2, fastSleep);
         if (pause) cy.pause();
     });
 
-    it('Deve retornar todos os itens aceitos para o estoque', () => {
+    it('Deve retornar ao estoque todos os itens aceitos para devolução', () => {
 
-        cy.retornarEstoqueId(6, standardSleep);
-        cy.retornarEstoqueId(2, fastSleep);
+        cy.retornarEstoqueId(2, true, fastSleep);
         cy.exibirEstoque(standardSleep);
         if (pause) cy.pause();
-    })
+    });
+
+    it('Deve retornar ao estoque todos os itens aceitos para troca', () => {
+        
+        cy.retornarEstoqueId(6, false, standardSleep);
+        cy.exibirEstoque(standardSleep);
+        if (pause) cy.pause();
+    });
 });
 
 describe('Usando cupons recebidos pela troca de produtos', () => {
