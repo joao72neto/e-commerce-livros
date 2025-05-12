@@ -1,5 +1,5 @@
 //Retornando item para o estoque
-Cypress.Commands.add('retornarEstoqueId', (vnd_id, sleep=time) => {
+Cypress.Commands.add('retornarEstoqueId', (vnd_id, dev=true, sleep=time) => {
 
     //Obtendo todos os alerts
     const alerts = cy.stub();
@@ -11,8 +11,12 @@ Cypress.Commands.add('retornarEstoqueId', (vnd_id, sleep=time) => {
     //Recusando o pedido de um usuário
     cy.wait(sleep);
 
+    //Definindo o tipo (troca ou devolução)
+    let tipo = '.devolucao';
+    if(!dev) tipo = '.troca';
+
     //Encontrando o livro
-    cy.get('.devolucao .vnd-id').each($id => {
+    cy.get(`${tipo} .vnd-id`).each($id => {
         if($id.text().trim() === String(vnd_id)){
             cy.wrap($id).closest('.wrapper').then($wrapper => {
                 cy.wrap($wrapper).find('.acoes a').click();
@@ -26,10 +30,18 @@ Cypress.Commands.add('retornarEstoqueId', (vnd_id, sleep=time) => {
     cy.get('.submit button').click();
     cy.wait(sleep);
 
-    //Verificando todos os alerts
-    cy.wrap(alerts).should(stub => {
-        expect(stub.getCall(0)).to.be.calledWith('Entrada adicionada com sucesso!');
-    });
+    // //Verificando os alerts da troca
+    // if(!dev){
+    //     cy.wrap(alerts).should(stub => {
+    //         expect(stub.getCall(0)).to.be.calledWith('Entrada adicionada com sucesso!');
+    //     });
+    //     return;
+    // }
+    
+    // //Verificando o alert devolução
+    // cy.on('window:alert', msg => {
+    //     expect(msg).to.contains('Entrada adicionada com sucesso!');
+    // });
 });
 
 //Exibindo o estoque

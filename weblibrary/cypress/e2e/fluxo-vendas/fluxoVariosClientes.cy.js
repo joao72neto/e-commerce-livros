@@ -94,17 +94,17 @@ describe('Gerenciar pedidos dos clientes', () => {
         if (pause) cy.pause();
     });
 
-    it('Deve tratar as solicitações de troca dos clientes', () => {
+    it('Deve tratar as solicitações de troca e devolução dos clientes', () => {
 
         //Tratando das devoluções da Ana
         cy.logarUsuario(1, fastSleep);
         cy.devolverLivroId(10, true, 2, standardSleep);
-        cy.devolverLivroId(9, false, 1, fastSleep);
+        cy.trocarLivroId(9, false, 1, fastSleep);
         if (pause) cy.pause();
 
         //Tratando das devoluções da Eduarda
         cy.logarUsuario(5, fastSleep);
-        cy.devolverLivroId(6, true, 2, standardSleep);
+        cy.trocarLivroId(6, true, 2, standardSleep);
         cy.devolverLivroId(4, false, 1, fastSleep);
         cy.devolverLivroId(2, false, 1, fastSleep);
         if (pause) cy.pause();
@@ -113,8 +113,8 @@ describe('Gerenciar pedidos dos clientes', () => {
     it('Deve gerenciar os pedidos de devolução', () => {
 
         cy.aceitarDevolucaoId(10, standardSleep);
-        cy.recusarDevolucaoId(9, fastSleep);
-        cy.aceitarDevolucaoId(6, fastSleep);
+        cy.aceitarTrocaId(9, fastSleep);
+        cy.aceitarTrocaId(6, fastSleep);
         cy.recusarDevolucaoId(4, fastSleep);
         cy.aceitarDevolucaoId(2, fastSleep);
         if (pause) cy.pause();
@@ -122,9 +122,10 @@ describe('Gerenciar pedidos dos clientes', () => {
 
     it('Deve retornar todos os itens aceitos para o estoque', () => {
 
-        cy.retornarEstoqueId(6, standardSleep);
-        cy.retornarEstoqueId(2, fastSleep);
-        cy.retornarEstoqueId(10, fastSleep);
+        cy.retornarEstoqueId(6, false, standardSleep);
+        cy.retornarEstoqueId(2, true, fastSleep);
+        cy.retornarEstoqueId(9, false, fastSleep);
+        cy.retornarEstoqueId(10, true, fastSleep);
         cy.exibirEstoque(standardSleep);
         if (pause) cy.pause();
     })

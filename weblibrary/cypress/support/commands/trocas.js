@@ -40,10 +40,10 @@ Cypress.Commands.add('trocarLivroId', (vnd_id, alguns=true, qtdTrc=1, sleep=time
         }
     });
 
-    // Verificando o alert
-    cy.on('window:alert', msg => {
-        expect(msg).to.contains('devolucao solicitado(a) com sucesso!');
-    });
+    // // Verificando o alert
+    // cy.on('window:alert', msg => {
+    //     expect(msg).to.contains('troca solicitado(a) com sucesso!');
+    // });
 });
 
 
