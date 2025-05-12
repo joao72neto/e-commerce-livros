@@ -94,23 +94,34 @@ describe('Gerenciar pedidos dos clientes', () => {
         if (pause) cy.pause();
     });
 
-    it('Deve tratar as solicitações de troca e devolução dos clientes', () => {
+    it('Deve tratar as solicitações de devolução dos clientes', () => {
 
         //Tratando das devoluções da Ana
         cy.logarUsuario(1, fastSleep);
         cy.devolverLivroId(10, true, 2, standardSleep);
-        cy.trocarLivroId(9, false, 1, fastSleep);
         if (pause) cy.pause();
 
         //Tratando das devoluções da Eduarda
         cy.logarUsuario(5, fastSleep);
-        cy.trocarLivroId(6, true, 2, standardSleep);
         cy.devolverLivroId(4, false, 1, fastSleep);
         cy.devolverLivroId(2, false, 1, fastSleep);
         if (pause) cy.pause();
     });
 
-    it('Deve gerenciar os pedidos de devolução', () => {
+    it('Deve tratar as solicitações de troca dos clientes', () => {
+
+         //Tratando das devoluções da Ana
+         cy.logarUsuario(1, fastSleep);
+         cy.trocarLivroId(9, false, 1, fastSleep);
+         if (pause) cy.pause();
+
+         //Tratando das devoluções da Eduarda
+        cy.logarUsuario(5, fastSleep);
+        cy.trocarLivroId(6, true, 2, standardSleep);
+        if (pause) cy.pause();
+    });
+
+    it('Deve gerenciar os pedidos de devolução e troca', () => {
 
         cy.aceitarDevolucaoId(10, standardSleep);
         cy.aceitarTrocaId(9, fastSleep);
@@ -120,15 +131,21 @@ describe('Gerenciar pedidos dos clientes', () => {
         if (pause) cy.pause();
     });
 
-    it('Deve retornar todos os itens aceitos para o estoque', () => {
+    it('Deve retornar ao estoque todos os itens aceitos para devolução', () => {
 
-        cy.retornarEstoqueId(6, false, standardSleep);
         cy.retornarEstoqueId(2, true, fastSleep);
-        cy.retornarEstoqueId(9, false, fastSleep);
         cy.retornarEstoqueId(10, true, fastSleep);
         cy.exibirEstoque(standardSleep);
         if (pause) cy.pause();
-    })
+    });
+
+    it('Deve retornar ao estoque todos os itens aceitos para troca', () => {
+        
+        cy.retornarEstoqueId(6, false, standardSleep);
+        cy.retornarEstoqueId(9, false, fastSleep);
+        cy.exibirEstoque(standardSleep);
+        if (pause) cy.pause();
+    });
 });
 
 describe('Usando cupons recebidos pela troca de produtos', () => {

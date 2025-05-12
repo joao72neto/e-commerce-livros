@@ -30,18 +30,12 @@ Cypress.Commands.add('retornarEstoqueId', (vnd_id, dev=true, sleep=time) => {
     cy.get('.submit button').click();
     cy.wait(sleep);
 
-    // //Verificando os alerts da troca
-    // if(!dev){
-    //     cy.wrap(alerts).should(stub => {
-    //         expect(stub.getCall(0)).to.be.calledWith('Entrada adicionada com sucesso!');
-    //     });
-    //     return;
-    // }
-    
-    // //Verificando o alert devolução
-    // cy.on('window:alert', msg => {
-    //     expect(msg).to.contains('Entrada adicionada com sucesso!');
-    // });
+    //Verificando os alerts da troca
+    cy.wrap(alerts).should(stub => {
+        expect(stub.getCall(0)).to.be.calledWith('Entrada adicionada com sucesso!');
+    });
+    return;
+  
 });
 
 //Exibindo o estoque

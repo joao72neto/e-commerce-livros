@@ -3,6 +3,11 @@ const time = 1500;
 //Deve solicitar a devolução de livros
 Cypress.Commands.add('devolverLivroId', (vnd_id, alguns=true, qtdTrc=1, sleep=time) => {
 
+    // Verificando o alert
+    cy.on('window:alert', msg => {
+        expect(msg).to.contains('devolucao solicitado(a) com sucesso!');
+    });
+
     //Página a ser visitada
     cy.visit('/pedidos');
 
@@ -39,11 +44,6 @@ Cypress.Commands.add('devolverLivroId', (vnd_id, alguns=true, qtdTrc=1, sleep=ti
             });
         }
     });
-
-    // // Verificando o alert
-    // cy.on('window:alert', msg => {
-    //     expect(msg).to.contains('devolucao solicitado(a) com sucesso!');
-    // });
 });
 
 

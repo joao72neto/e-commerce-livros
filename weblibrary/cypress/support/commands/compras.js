@@ -91,6 +91,11 @@ Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=time) => {
 //Finalizando a compra
 Cypress.Commands.add('finalizarCompraCupom', (end=9, totCard=1, totCup=1, sleep=time) => {
 
+    // Verificando o alert
+    cy.on('window:alert', msg => {
+        expect(msg).to.contains('Compra realizada com sucesso!');
+    });
+
     //Visitando a página de pagamento
     cy.visit('/pagamento');
 
@@ -114,11 +119,6 @@ Cypress.Commands.add('finalizarCompraCupom', (end=9, totCard=1, totCup=1, sleep=
     //Finalizando a compra
     cy.wait(sleep);
     cy.get('.finalizar-compra a').click();
-
-    // Verificando o alert
-    cy.on('window:alert', msg => {
-        expect(msg).to.contains('Compra realizada com sucesso!');
-    });
 
     //Mostrando os pedidos
     cy.wait(sleep);
