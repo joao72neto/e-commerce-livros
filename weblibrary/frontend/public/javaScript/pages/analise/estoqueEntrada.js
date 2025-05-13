@@ -20,7 +20,7 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
 
     //Preparando os dados
     const urlParams = new URLSearchParams(window.location.search);
-    const retorno = urlParams.get('retorno');
+    const trc_tipo = urlParams.get('trc_tipo');
 
     const entrada = {
         est_for_id: for_id,
@@ -28,7 +28,7 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
         est_gpp_id: gpp_id,
         est_qtd: est_qtd,
         est_valorCompra: est_valorCompra,
-        est_origem: retorno ? 'DEVOLUÇÃO' : 'COMPRA'
+        est_origem: trc_tipo ? trc_tipo.toUpperCase() : 'COMPRA'
     }
 
     console.log(entrada);
@@ -46,7 +46,6 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
         const retorno = urlParams.get('retorno');
         const clt_id = urlParams.get('clt_id');
         const vnd_id = urlParams.get('vnd_id');
-        const trc_tipo = urlParams.get('trc_tipo');
         const preco = document.querySelector('#valor_custo').value;
         const qtd = document.querySelector('#qtd').value;
 

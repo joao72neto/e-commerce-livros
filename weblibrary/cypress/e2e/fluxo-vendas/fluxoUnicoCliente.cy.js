@@ -73,6 +73,7 @@ describe('Gerenciar pedidos dos clientes', () => {
 
     it('Deve tratar as solicitações de troca dos clientes', () => {
         cy.trocarLivroId(6, true, 2, standardSleep);
+        if (pause) cy.pause();
     });
 
     it('Deve gerenciar os pedidos de devolução', () => {
