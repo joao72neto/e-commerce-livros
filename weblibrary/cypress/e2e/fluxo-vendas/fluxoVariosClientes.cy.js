@@ -11,7 +11,7 @@ before(() => {
 
 describe('Realizando o login do usuário no sistema', () => {
 
-    it('Deve logar um usuário do sistema', () => {
+    it('Deve logar um usuário no sistema', () => {
         cy.logarUsuario(5, fastSleep);
         if (pause) cy.pause();
     });
@@ -19,7 +19,7 @@ describe('Realizando o login do usuário no sistema', () => {
 
 describe('Realizando a compra de um livro no sistema', () => {
 
-    it('Deve adicionar um livro na tela de pagamente', () => {
+    it('Deve adicionar um livro na tela de pagamento', () => {
         cy.comprarLivroId(1, 10, standardSleep);
         if (pause) cy.pause();
     });
