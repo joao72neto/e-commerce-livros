@@ -18,6 +18,10 @@ main{
     margin: 10px 0;
 }
 
+.wrapper input{
+    width: 85px;
+}
+
 .imagem img{
     width: 100px;
     background-color: gray;
@@ -46,14 +50,14 @@ main{
     display: grid;
     justify-self: center;
     text-align: center;
-    gap: 25px;
+    gap: 15px;
 }
 
 .acoes .btns{
     display: grid;
-    gap: 25px;
+    gap: 15px;
 }
 
-.acoes .troca{
+.acoes .troca, .acoes .devolucao{
     display: block;
 }

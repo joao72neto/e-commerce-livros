@@ -151,22 +151,16 @@ document.addEventListener('DOMContentLoaded', function(){
                 
             }else{
 
-                btnDev.remove();
-                btnTroca.textContent = 'Confimar';
-                btnTroca.style.cssText = `
-                    grid-row: 0;
-                `;
+                btnDev.textContent = 'Confimar';
+                btnDev.setAttribute('class', 'troca');
+                btnTroca.remove();
             }
 
             //Mostrando o input
             inputQtdTroca.classList.remove('invisible'); 
 
             //Definindo o botão ser clicado
-            let botao = btnDev;
-            if(btn.classList.contains('tro-alguns')){
-                botao = btnTroca;
-                
-            }
+            const botao = btnDev;
 
             //Verificando se a qtd foi confirmada ou não
             botao.addEventListener('click', async function(event){
