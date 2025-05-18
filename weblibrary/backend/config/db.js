@@ -1,10 +1,11 @@
 const mysql = require('mysql2/promise');
+require('dotenv').config();
 
 //Dados de conexão com o banco
-const host = 'localhost';
-const user = 'root';
-const password = '123';
-const database = 'e_commerce_books';
+const host = process.env.DB_HOST;
+const user = process.env.DB_USER;
+const password = process.env.DB_PASSWORD;
+const database = process.env.DB_NAME;
 
 //Pool do banco
 let db;
