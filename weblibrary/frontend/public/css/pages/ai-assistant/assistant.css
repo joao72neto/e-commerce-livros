@@ -34,6 +34,7 @@ p{
     justify-content: flex-end;
     bottom: 70px;
     right: 5px;
+    transition: right ease 0.25s;
 }
 
 .chat-button span{
@@ -59,7 +60,7 @@ p{
 
 
 /*JavaScript Classe*/
-
+/* 
 .fade{
     opacity: 0;
     transition: 0.5s ease;
@@ -69,7 +70,7 @@ p{
     opacity: 1;
     transition: 0.5s ease;
     
-}
+} */
 
 .selected{
     display: flex;

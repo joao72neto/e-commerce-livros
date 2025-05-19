@@ -39,24 +39,30 @@ let click_ia = () => {
     let chat_button = document.querySelector('.chat-button');
     chat_button.addEventListener('click', () => {
 
+        if(chat_button.classList.contains('selected')){
+            chat.style.display = 'none';
+            chat_button.classList.toggle('selected');
+            return;
+        }
+
+        chat.style.display = 'flex';
         chat_button.classList.toggle('selected');
-
-        if(chat.classList.length == 1){
-            chat.classList.add('fade');
-            return;
-        }
-
-        if(chat.classList.contains('fade')){
-            chat.classList.remove('fade');
-            chat.classList.add('show');
-            return;
-        }
-
-        chat.classList.remove('show');
-        chat.classList.add('fade');
-
     });
 }
+
+//Removendo a IA ao clicar fora
+document.addEventListener('click', (event) => {
+    const chat = document.querySelector('.chat');
+    const chatButton = document.querySelector('.chat-button');
+    
+    if (chat.style.display === 'flex' && 
+       !chat.contains(event.target) &&
+       !chatButton.contains(event.target)) {
+        chat.style.display = 'none';
+        chatButton.classList.remove('selected');
+    }
+});
+
 
 
 //Calling all the functions

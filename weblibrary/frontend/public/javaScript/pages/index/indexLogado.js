@@ -8,18 +8,26 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
     const header = document.querySelector('header');
     const conteudo = document.querySelector('.conteudo');
     const footer = document.querySelector('footer');
+    const chat = document.querySelector('.chat');
+    const chatButton = document.querySelector('.chat-button');
+
+    console.log(chat);
 
 
     if(!sidebar.classList.contains('aberta')){
         sidebar.classList.add('aberta');
         header.style.position = 'sticky';
         header.style.top = '0';
+        chat.style.right = '37%';
+        chatButton.style.right = '31%';
         conteudo.style.width = '70%';
         footer.style.width = '70%';
         return;
     }
 
     sidebar.classList.remove('aberta');
+    chat.style.right = '100px';
+    chatButton.style.right = '5px';
     footer.style.width = '';
     header.style.position = '';
     conteudo.style.width = '';
@@ -76,7 +84,6 @@ document.querySelectorAll('.imagem').forEach(image => {
     });
 });
 
-//Adicionando funcionalidade para o botão de compra
 
 //função que adicione o item no carrinho
 async function addCarrinho(lvr_id){
@@ -121,7 +128,7 @@ async function addCarrinho(lvr_id){
     alert('Não foi possível adicionar o item no carrinho');
 }
 
-
+//Adicionando funcionalidade para o botão de compra
 document.querySelectorAll('.compra').forEach(button => {
     button.addEventListener('click', async function(){
 
