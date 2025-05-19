@@ -200,3 +200,22 @@ ul{
         color: var(--preto);
     }
 }
+
+/*Scroll Bar*/
+::-webkit-scrollbar {
+    width: 8px; 
+}
+  
+::-webkit-scrollbar-track {
+    background: var(--preto);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--cinza);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--amarelo);
+}
+  

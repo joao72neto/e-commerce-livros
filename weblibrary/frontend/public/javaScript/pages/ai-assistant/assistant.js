@@ -1,6 +1,5 @@
 //Elements
 let chat = document.querySelector('.chat');
-chat.classList.add('fade');
 
 //Functions
 let click_msg = () => {
