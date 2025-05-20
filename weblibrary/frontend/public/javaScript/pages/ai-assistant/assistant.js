@@ -7,40 +7,29 @@ document.addEventListener('DOMContentLoaded', function(){
     const chat = this.querySelector('.chat');
 
     //Verificando se os botões realmente existem
-    if(!chatButton || !footer || !chat) return;
-
-    //Verificando se o botão já está levantado
-    let isLifted = false;
+    if(!footer || !chat || !chatButton) return;
 
     //Função para ajustar a posição do botão da IA
     function adjustButtonPosition(){
 
-        const footerRect = footer.getBoundingClientRect();
-        const chatButtonRect = chatButton.getBoundingClientRect();
-    
-        //Arredondando os valores
-        const btn = Number(chatButtonRect.bottom.toFixed(0)) + 5;
+        //Obtendo a posição do footer
+        const footerRect = footer.getBoundingClientRect();  
         const ft = Number(footerRect.top.toFixed(0));
 
-        if((btn > ft) && !isLifted){
+        if(ft <= (window.innerHeight - 2)){
             chatButton.style.bottom = '70px';
             chat.style.bottom = '76px';
-            isLifted = true;
-            
-        }else if(!(btn > ft) && isLifted){
-            chatButton.style.bottom = '5px';
-            chat.style.bottom = '11px';
-            isLifted = false;
+            return;
         }
+
+        chatButton.style.bottom = '5px';
+        chat.style.bottom = '11px';
     }
 
     window.addEventListener('scroll', adjustButtonPosition);
     window.addEventListener('resize', adjustButtonPosition);
     adjustButtonPosition();
 });
-
-
-
 
 //Elements
 let chat = document.querySelector('.chat');
@@ -52,22 +41,36 @@ let click_msg = () => {
     let screen = document.querySelector('.screen');
     let button = document.querySelector('#ai-button');
 
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (event) => {
 
-        let input = document.querySelector('.chat .input input').value;
+        event.preventDefault();
 
-        if(input){
+        let input = document.querySelector('.chat .input input');
+
+        if(input.value){
 
             screen.innerHTML += `<p 
-                                    style="margin: 0 0 0 20px; 
+                                    style="margin: 0 0 30px 20px; 
                                     border-radius: 20px 0px 0px 20px;
                                     background-color: #F4F440;
                                     color: black;"
-                                >${input}</p>`;
+                                >${input.value}</p>`;
 
-            screen.innerHTML += `<p 
-                                    style="margin: 30px 20px 30px 0;"
-                                >Parece que você está muito interessado em ${input}</p>`;
+            
+            //Limpando o input
+            const res = input.value
+            input.value = ''
+            //Rolando a tela para o fim
+            screen.scrollTop = screen.scrollHeight;
+
+            setTimeout(() => {
+                screen.innerHTML += `<p 
+                                    style="margin: 0px 20px 30px 0;"
+                                >Parece que você está muito interessado em ${res}</p>`;    
+                                
+                //Rolando a tela para o fim
+                screen.scrollTop = screen.scrollHeight;
+            }, 600);
             return;
         }
 
@@ -79,8 +82,9 @@ let click_msg = () => {
 
 let click_ia = () => {
 
-    let chat_button = document.querySelector('.chat-button');
-    chat_button.addEventListener('click', () => {
+    const chat_button = document.querySelector('.chat-button');
+
+    chat_button.addEventListener('click', (event) => {
 
         if(chat_button.classList.contains('selected')){
             chat.style.display = 'none';
@@ -88,24 +92,24 @@ let click_ia = () => {
             return;
         }
 
-        chat.style.display = 'flex';
+        chat.style.display = 'grid';
         chat_button.classList.toggle('selected');
     });
 }
 
 //Removendo a IA ao clicar fora
 document.addEventListener('click', (event) => {
+    
     const chat = document.querySelector('.chat');
     const chatButton = document.querySelector('.chat-button');
-    
-    if (chat.style.display === 'flex' && 
+
+    if (chat.style.display === 'grid' && 
        !chat.contains(event.target) &&
        !chatButton.contains(event.target)) {
         chat.style.display = 'none';
         chatButton.classList.remove('selected');
     }
 });
-
 
 //Calling all the functions
 click_msg();
