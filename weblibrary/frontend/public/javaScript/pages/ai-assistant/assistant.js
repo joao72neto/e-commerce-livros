@@ -2,11 +2,12 @@
 document.addEventListener('DOMContentLoaded', function(){
     
     //Obtendo os elementos
-    const chatButton = document.querySelector('.chat-button');
-    const footer = document.querySelector('footer');
+    const chatButton = this.querySelector('.chat-button');
+    const footer = this.querySelector('footer');
+    const chat = this.querySelector('.chat');
 
     //Verificando se os botões realmente existem
-    if(!chatButton || !footer) return;
+    if(!chatButton || !footer || !chat) return;
 
     //Verificando se o botão já está levantado
     let isLifted = false;
@@ -23,10 +24,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
         if((btn > ft) && !isLifted){
             chatButton.style.bottom = '70px';
+            chat.style.bottom = '76px';
             isLifted = true;
             
         }else if(!(btn > ft) && isLifted){
             chatButton.style.bottom = '5px';
+            chat.style.bottom = '11px';
             isLifted = false;
         }
     }

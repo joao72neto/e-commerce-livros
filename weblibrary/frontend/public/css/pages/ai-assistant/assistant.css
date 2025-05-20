@@ -81,7 +81,7 @@ p{
 .chat{
     position: fixed;
     display: flex;
-    bottom: 76px;
+    bottom: 11px;
     right: 100px;
     border: 1px solid white;
     height: 400px;
@@ -89,6 +89,7 @@ p{
     align-items: flex-end;
     border-radius: 20px;
     box-shadow: 0px 0px 15px #00000044;
+    transition: bottom 0.25s ease;
 }
 
 .chat .title{
