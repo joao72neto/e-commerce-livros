@@ -1,3 +1,44 @@
+//Ajustando o posicionamento da IA conforme o footer aparece
+document.addEventListener('DOMContentLoaded', function(){
+    
+    //Obtendo os elementos
+    const chatButton = document.querySelector('.chat-button');
+    const footer = document.querySelector('footer');
+
+    //Verificando se os botões realmente existem
+    if(!chatButton || !footer) return;
+
+    //Verificando se o botão já está levantado
+    let isLifted = false;
+
+    //Função para ajustar a posição do botão da IA
+    function adjustButtonPosition(){
+
+        const footerRect = footer.getBoundingClientRect();
+        const chatButtonRect = chatButton.getBoundingClientRect();
+    
+        //Arredondando os valores
+        const btn = Number(chatButtonRect.bottom.toFixed(0)) + 5;
+        const ft = Number(footerRect.top.toFixed(0));
+
+        if((btn > ft) && !isLifted){
+            chatButton.style.bottom = '70px';
+            isLifted = true;
+            
+        }else if(!(btn > ft) && isLifted){
+            chatButton.style.bottom = '5px';
+            isLifted = false;
+        }
+    }
+
+    window.addEventListener('scroll', adjustButtonPosition);
+    window.addEventListener('resize', adjustButtonPosition);
+    adjustButtonPosition();
+});
+
+
+
+
 //Elements
 let chat = document.querySelector('.chat');
 
@@ -61,7 +102,6 @@ document.addEventListener('click', (event) => {
         chatButton.classList.remove('selected');
     }
 });
-
 
 
 //Calling all the functions

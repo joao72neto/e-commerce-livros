@@ -32,9 +32,9 @@ p{
     position: fixed;
     display: flex;
     justify-content: flex-end;
-    bottom: 70px;
+    bottom: 5px;
     right: 5px;
-    transition: right ease 0.25s;
+    transition: bottom 0.25s ease, right 0.25s ease;
 }
 
 .chat-button span{
