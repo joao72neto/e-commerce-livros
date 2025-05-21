@@ -1,4 +1,4 @@
 //Página
 module.exports.getLogs = (req, res) => {
-    res.render('analise/logs');
+    return res.render('analise/logs');
 };

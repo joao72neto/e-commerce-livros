@@ -1,10 +1,10 @@
-const { atualizarCard, buscarCartaoId, buscarCartoesClienteId, cadastrarCartao, deletarCardId, deletarCardsClienteId } = require("../../model/clientes/modelCard");
+const { atualizarCard, buscarCartaoId, buscarCartoesClienteId, cadastrarCartao, deletarCardId } = require("../../model/clientes/modelCard");
 const { desativarCartoesClienteId } = require('../../model/clientes/modelCard');
 
 //Páginas
 module.exports.getCard = async (req, res) => {
     const cartoes = await buscarCartoesClienteId(req.params.clt_id);
-    res.render('clientes/card/card-main', {cartoes: cartoes});
+    return res.render('clientes/card/card-main', {cartoes: cartoes});
 };
 
 module.exports.getCardAdd = async (req, res) => {
@@ -13,7 +13,7 @@ module.exports.getCardAdd = async (req, res) => {
     const retorno_pag = req.query.retorno_pag;
     const tipo = req.query.tipo;
 
-    res.render('clientes/card/card-add', {
+    return res.render('clientes/card/card-add', {
         cartoes: cartoes,
         retorno: retorno,
         retorno_pag: retorno_pag,
@@ -27,7 +27,7 @@ module.exports.getCardAlt = async (req, res) => {
     const retorno_pag = req.query.retorno_pag;
     const tipo = req.query.tipo;
 
-    res.render('clientes/card/card-alt', {
+    return res.render('clientes/card/card-alt', {
         cartoes: cartoes,
         retorno: retorno,
         retorno_pag: retorno_pag,
@@ -39,11 +39,11 @@ module.exports.getCardAlt = async (req, res) => {
 module.exports.postCardAdd = async (req, res) => {
     try{
         await cadastrarCartao(req.body)
-        res.sendStatus(200);
+        return res.sendStatus(200);
         
     }catch(err){
         console.error(`Erro no postCardAdd - controllerCard: ${err}`);
-        res.sendStatus(500);
+        return res.sendStatus(500);
     }
 };
 
@@ -59,17 +59,17 @@ module.exports.deleteCardId = async (req, res) => {
         }
 
         await deletarCardId(req.params.car_id);
-        res.sendStatus(204);
+        return res.sendStatus(204);
     } catch (err) {
         console.error(`Erro no deleteCardId - controllerCard: ${err}`);
-        res.sendStatus(500);
+        return res.sendStatus(500);
     }
 };
 
 //Atualizando os dados dos cartões
 module.exports.putCardAlt = async (req, res) => {
     const cartao = await atualizarCard(req.body, req.params.car_id);
-    res.json(cartao);
+    return res.json(cartao);
 };
 
 module.exports.patchDesativarCartoesClienteId = async (req, res) => {

@@ -9,7 +9,7 @@ module.exports.getCarrinho = async (req, res) => {
     const cliente = await buscarClienteLogado();
     const carrinho = await buscarCarrinhoClienteId(cliente[0].clt_id);
 
-    res.render('compras/carrinho', {
+    return res.render('compras/carrinho', {
         cliente: cliente,
         carrinho: carrinho
     });
@@ -18,7 +18,7 @@ module.exports.getCarrinho = async (req, res) => {
 //APIs
 module.exports.getCarrinhoClienteId = async (req, res) => {
     const carrinho = await buscarCarrinhoClienteId(req.params.clt_id);
-    res.json(carrinho);
+    return res.json(carrinho);
 }
 
 //Inserindo dados
@@ -31,11 +31,11 @@ module.exports.postCarrinho = async (req, res) => {
             return res.status(409).json({msg: 'Item já está no carrinho'});
         }
 
-        res.status(201).json({msg: 'Item adicionado ao carrinho'})
+        return res.status(201).json({msg: 'Item adicionado ao carrinho'})
 
     }catch(err){
         console.error(`Erro no postCarrinho - controllerCarrinho: ${err}`);
-        res.status(500).json({msg:'Erro ao adiciona item ao carrinho'});
+        return res.status(500).json({msg:'Erro ao adiciona item ao carrinho'});
     }
 };
 
@@ -44,11 +44,11 @@ module.exports.deleteCarrinhoId = async (req, res) => {
     try{
 
         await removerCarrinhoId(req.params.lvr_id);
-        res.status(204).json({msg: 'Item removido do carrinho'})
+        return res.status(204).json({msg: 'Item removido do carrinho'})
 
     }catch(err){
         console.error(`Erro no deleteCarrinhoId - controllerCarrinho: ${err}`);
-        res.status(500).json({msg:'Erro ao remover item do carrinho'});
+        return res.status(500).json({msg:'Erro ao remover item do carrinho'});
     }
 };
 
@@ -60,10 +60,10 @@ module.exports.patchQtdPrecoCarrinho = async (req, res) => {
         const crr_qtd = req.body.crr_qtd;
 
         await atualizarQtdPrecoCarrinho(crr_qtd, lvr_id);
-        res.status(204).json({msg: 'Item atualizado com sucesso!'})
+        return res.status(204).json({msg: 'Item atualizado com sucesso!'})
 
     }catch(err){
         console.error(`Erro no patchQtdPrecoCarrinho - controllerCarrinho: ${err}`);
-        res.status(500).json({msg:'Erro ao atuaizar a qtd e preço do carrinho'});
+        return res.status(500).json({msg:'Erro ao atuaizar a qtd e preço do carrinho'});
     }
 };

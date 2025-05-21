@@ -32,7 +32,7 @@ module.exports.getGerenciarPedidos = async (req, res) => {
     const trocados = devolvidosTrocados.filter(trc => trc.trc_tipo === 'troca');
     const devolvidos = devolvidosTrocados.filter(dev => dev.trc_tipo === 'devolucao');
 
-    res.render('analise/gerenciarPedidos', {
+    return res.render('analise/gerenciarPedidos', {
         clientes: clientes,
         pedidos: clientesPedidos,
         trocados: trocados,
@@ -78,9 +78,9 @@ module.exports.postDevolverTrocarProduto = async (req, res) => {
 module.exports.deleteDevolvidoTrocado = async (req, res) => {
     try{
         await deletarDevolvidoTrocado(req.params.vnd_id);
-        res.status(204).json({msg: 'Produto removido com sucesso!'});
+        return res.status(204).json({msg: 'Produto removido com sucesso!'});
     }catch(err){
         console.error(`Erro no deleteClienteId - controllerClientes: ${err}`);
-        res.status(500).json({msg: 'Não foi possível remover o produto devolvido ou trocado'});
+        return res.status(500).json({msg: 'Não foi possível remover o produto devolvido ou trocado'});
     }
 };

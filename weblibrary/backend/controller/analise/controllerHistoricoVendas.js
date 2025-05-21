@@ -1,4 +1,4 @@
 //Página
 module.exports.getHistoricoVendas = (req, res) => {
-    res.render('analise/historicoVendas');
+    return res.render('analise/historicoVendas');
 };

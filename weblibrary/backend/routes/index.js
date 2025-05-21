@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-
 //Pegando a rotas gerais
 const routeIndex = require('./routeIndex');
 const routePerfil = require('./routePerfil');
 const routeCadastro = require('./routeCadastro');
-
 
 router.use('/', routeIndex);
 router.use('/', routePerfil);
@@ -39,12 +37,6 @@ router.use('/', routeCarrinho);
 router.use('/', routePagamento);
 router.use('/', routePedidos);
 router.use('/', routeProduto);
-
-
-//Pegando as rotas dos livros
-const routeBooks = require('../routes/books/routeBooks');
-
-router.use('/', routeBooks);
 
 //Pegando as rotas das análises
 const routeGerenciarPedidos = require('../routes/analise/routeGerenciarPedidos');

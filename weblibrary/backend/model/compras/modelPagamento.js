@@ -129,3 +129,29 @@ module.exports.adicionarCupom = async (dados) => {
     } 
     
 }
+
+
+//Função que calcula o Frete com base no cep
+module.exports.calcularFreteFicticio = (cep) => {
+
+    // Removendo tudo que não é número
+    const cepLimpo = cep.replace(/\D/g, '');
+
+    if (cepLimpo.length !== 8) {
+        return null;
+    }
+
+    // Pegando os dois primeiro dígitos do cep
+    const faixa = parseInt(cepLimpo.substring(0, 2));
+
+    //Função que gera um valor aleatório de frete dentro de uma faixa
+    const gerarValorAleatorio = (min, max) => {
+        return parseFloat((Math.random() * (max - min) + min).toFixed(2));
+    };
+
+    // Regra fictícia baseada na "distância"
+    if (faixa <= 20) return gerarValorAleatorio(8.50, 13.00);      
+    if (faixa <= 50) return gerarValorAleatorio(13.01, 20.00);   
+    if (faixa <= 80) return gerarValorAleatorio(20.01, 30.00); 
+    return gerarValorAleatorio(30.01, 45.00);                    
+}

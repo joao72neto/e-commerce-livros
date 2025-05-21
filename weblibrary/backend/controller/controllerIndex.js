@@ -7,13 +7,12 @@ module.exports.getIndex = async (req, res) => {
     const cliente = await buscarClienteLogado();
 
     if(cliente.length > 0){
-        res.render('index/indexLogado', {
+        return res.render('index/indexLogado', {
             livros: livros, 
             cliente: cliente
         });
-        return;
     }
 
-    res.render('index/index', {livros: livros});
+    return res.render('index/index', {livros: livros});
 };
 

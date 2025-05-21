@@ -1,4 +1,4 @@
 //Página
 module.exports.getCadastro = (req, res) => {
-    res.render('cadastro');
+    return res.render('cadastro');
 };

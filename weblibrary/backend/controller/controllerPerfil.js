@@ -12,7 +12,7 @@ module.exports.getPerfil = async (req, res) => {
     const tipo = req.query.tipo;
 
 
-    res.render('perfil', {
+    return res.render('perfil', {
         retorno_pag: retorno_pag,
         cliente: cliente[0],
         cartoes: cartoes,
