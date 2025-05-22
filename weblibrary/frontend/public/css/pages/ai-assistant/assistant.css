@@ -1,3 +1,6 @@
+/*Cores*/
+@import url('../../colors.css');
+
 /*Global Settings*/
 
 *{
@@ -41,19 +44,19 @@ p{
     flex-basis: 22px;
     margin: 10px;
     padding: 18px;
-    background-color: #292929;
-    color: white;
+    background-color: var(--preto);
+    color: var(--branco);
     font-weight: bold;
     text-align: center;
     border-radius: 20px;
-    border: 1px solid white;
+    border: 1px solid var(--branco);
     box-shadow: 0px 0px 10px #00000054;
     transition: 0.2s;
 
     &:hover{
         border-radius: 100%;
         cursor: pointer;
-        background-color: #F4F440;
+        background-color: var(--amarelo);
         color: black;
     } 
 }
@@ -70,14 +73,13 @@ p{
 .selected span{
     border-radius: 100%;
     cursor: pointer;
-    background-color: #d1d1d1;
-    color: black;
+    background-color: var(--cinza);
+    color: var(--preto);
     box-shadow: 0px 0px 10px #0000007c;
     transition: 0.5s ease; 
 }
 
 /*ChatBot*/
-
 
 .chat{
     position: fixed;
@@ -89,9 +91,9 @@ p{
     width: 300px;
     border-radius: 20px;
     box-shadow: 0px 0px 15px #00000044;
-    border: 1px solid white;
+    border: 1px solid var(--branco);
     transition: bottom 0.25s ease;
-    background-color: white;
+    background-color: var(--cinza);
 }
 
 .chat .title-ai{
@@ -102,20 +104,20 @@ p{
     font-size: 0.9em;
     height: 40px;
     width: 100%;
-    background-color: #292929;
+    background-color: var(--preto);
     border-radius: 20px 20px 0px 0px;
     box-shadow: 0px 5px 5px #0000001a;
 }
 
 .chat .title-ai span{
-    color: white;
+    color: var(--branco);
     font-weight: bold;
 }
 
 .chat .screen{
     grid-row: 2;
     width: 100%;
-    background-color: #E8E8E8;
+    background-color: var(--branco);
     overflow-y: auto;
 }
 
@@ -123,9 +125,11 @@ p{
     font-size: 0.9em;
     margin: 30px 20px 30px 0px;
     padding: 15px;
-    color: white;
-    background-color: #29292994;
+    color: var(--preto);
+    background-color: var(--cinza);
     border-radius: 0px 20px 20px 0px; 
+    border: 1px dashed var(--preto);
+    border-left: none;
 }
 
 .chat .input{
@@ -157,9 +161,9 @@ p{
     width: 100%;
 
     &:hover{
-        background-color: #292929;
+        background-color: var(--preto);
         cursor: pointer;
-        color: white;
+        color: var(--branco);
         transition: 0.2s;
     }
 }
