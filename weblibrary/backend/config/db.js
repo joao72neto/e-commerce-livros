@@ -5,7 +5,6 @@ require('dotenv').config();
 const host = process.env.DB_HOST;
 const user = process.env.DB_USER;
 const password = process.env.DB_PASSWORD;
-const database = process.env.DB_NAME;
 
 //Pool do banco
 let db;
@@ -26,7 +25,7 @@ module.exports.getDb = async () => {
     });
 
     //Criando o banco se ele não existir
-    await poolSemBanco.query(`CREATE DATABASE IF NOT EXISTS ${database}`);
+    await poolSemBanco.query(`CREATE DATABASE IF NOT EXISTS e_commerce_books;`);
 
     
     // Criando uma pool definitiva com o banco
@@ -34,7 +33,7 @@ module.exports.getDb = async () => {
         host: host,
         user: user,
         password: password,
-        database: database,
+        database: 'e_commerce_books',
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0,
