@@ -1,6 +1,6 @@
-const pause = true;
-const standardSleep = 1500;
-const fastSleep = 300;
+const pause = false;
+const standardSleep = 200;
+const fastSleep = 200;
 
 before(() => {
     cy.wait(1000);
