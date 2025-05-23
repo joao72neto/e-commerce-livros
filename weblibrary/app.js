@@ -24,7 +24,7 @@ app.use(routes);
 //Rodando o servidor localmente na porta 3000
 verificarInicializarBanco().then(() => {
     app.listen(3000, () => {
-        console.log('Servidor rodando na porta 3000...');
+        console.log('Sistema rodando na porta 3000...');
     });
 });
 
