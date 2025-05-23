@@ -6,7 +6,8 @@
   "scripts": {
     "bd:reset": "node scripts/resetarBanco.js",
     "cypress": "npx cypress open",
-    "start": "npx nodemon app.js",
+    "start": "concurrently \"npx nodemon app.js\" \"npm:ai\"",
+    "ai": "cd ai-service && uvicorn main:app --host localhost --port 8000",
     "cy:clientes": "npx cypress run --spec cypress/e2e/fluxo-vendas/fluxoVariosClientes.cy.js",
     "cy:cliente": "npx cypress run --spec cypress/e2e/fluxo-vendas/fluxoUnicoCliente.cy.js",
     "cy:fluxo-vendas": "npx cypress run --spec cypress/e2e/fluxo-vendas/*"
@@ -22,6 +23,7 @@
     "mysql2": "^3.12.0"
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
     "cypress": "^14.2.0",
     "nodemon": "^3.1.10"
   }
