@@ -1,5 +1,6 @@
-#Importando FastAPI para criar o servdor da IA
+#Imports para lidar com o servidor
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 #Imports para lidar com a IA generativa
 from google import genai
@@ -7,8 +8,18 @@ from google.genai import types
 import os
 from dotenv import load_dotenv
 
+
 #Criando o app do FastAPI
 app = FastAPI()
+
+#Configurando o CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['http://localhost:3000'],
+    allow_credentials=True,
+    allow_methods=['*'],
+    allow_headers=['*']
+)
 
 #Criando um endpoint para teste
 @app.get('/ai')
@@ -38,4 +49,4 @@ def teste():
     )
     
     #Retornando o texto da IA
-    return {'Resposta Geminada': response.text}
+    return {'msg': response.text}

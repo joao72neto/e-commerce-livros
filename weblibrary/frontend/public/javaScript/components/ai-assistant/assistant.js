@@ -38,13 +38,13 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 //Enviando um texto para a IA
-function enviarMsg(){
+async function enviarMsg(){
 
     //Elementos
     let screen = document.querySelector('.screen');
     let button = document.querySelector('#ai-button');
 
-    button.addEventListener('click', (event) => {
+    button.addEventListener('click', async (event) => {
 
         event.preventDefault();
 
@@ -73,7 +73,7 @@ function enviarMsg(){
             screen.appendChild(p_cliente);
 
             //Limpando o input
-            const res = input.value
+            const res = await obterRespostaIa();
             input.value = ''
 
             //Rolando a tela para o fim
@@ -95,6 +95,24 @@ function enviarMsg(){
         alert('Digite algo antes de enviar');
     });
 
+}
+
+//Função que busca a resposta da IA com base em um texto
+async function obterRespostaIa(){
+
+    try{
+        const res = await fetch('http://localhost:8000/ai/',{
+            method: 'GET'
+        });
+
+        //Obtendo o msg
+        msg = await res.json();
+        return msg.msg;
+
+    }catch(err){
+        console.log(`Erro triste no assistent.js: ${err}`);
+        throw err;
+    }
 }
 
 //Abrindo o chat da IA
