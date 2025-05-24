@@ -72,13 +72,14 @@ async function enviarMsg(){
             p_cliente.innerHTML = input.value;
             screen.appendChild(p_cliente);
 
-            //Limpando o input
-            const res = await obterRespostaIa(input.value);
+            //Rolando a tela para o fim e limpando o input
+            screen.scrollTop = screen.scrollHeight;
+            const msg = input.value;
             input.value = ''
 
-            //Rolando a tela para o fim
-            screen.scrollTop = screen.scrollHeight;
-
+            //Buscando a resposta da IA
+            const res = await obterRespostaIa(msg);
+            
             //Respondendo o usuário
             p_ia.innerHTML = res;
             screen.appendChild(p_ia);   
