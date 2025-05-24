@@ -68,26 +68,23 @@ async function enviarMsg(){
 
         if(input.value){
 
-            //Adicionando o parágrafo
+            //Adicionando o parágrafo do usuário
             p_cliente.innerHTML = input.value;
             screen.appendChild(p_cliente);
 
             //Limpando o input
-            const res = await obterRespostaIa();
+            const res = await obterRespostaIa(input.value);
             input.value = ''
 
             //Rolando a tela para o fim
             screen.scrollTop = screen.scrollHeight;
 
-            setTimeout(() => {
-
-                //Respondendo o usuário
-                p_ia.innerHTML = res;
-                screen.appendChild(p_ia);   
-                                
-                //Rolando a tela para o fim
-                screen.scrollTop = screen.scrollHeight;
-            }, 600);
+            //Respondendo o usuário
+            p_ia.innerHTML = res;
+            screen.appendChild(p_ia);   
+                            
+            //Rolando a tela para o fim
+            screen.scrollTop = screen.scrollHeight;
 
             return;
         }
@@ -98,19 +95,21 @@ async function enviarMsg(){
 }
 
 //Função que busca a resposta da IA com base em um texto
-async function obterRespostaIa(){
+async function obterRespostaIa(msg){
 
     try{
         const res = await fetch('http://localhost:8000/ai/',{
-            method: 'GET'
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({msg: msg})
         });
 
         //Obtendo o msg
         msg = await res.json();
-        return msg.msg;
+        return msg.ai_res;
 
     }catch(err){
-        console.log(`Erro triste no assistent.js: ${err}`);
+        console.log(`Erro no assistent.js: ${err}`);
         throw err;
     }
 }

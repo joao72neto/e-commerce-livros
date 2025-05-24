@@ -1,6 +1,7 @@
 #Imports para lidar com o servidor
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 #Imports para lidar com a IA generativa
 from google import genai
@@ -21,32 +22,31 @@ app.add_middleware(
     allow_headers=['*']
 )
 
+#Criando um modelo para receber a msg do Cliente
+class Pergunta(BaseModel):
+    msg: str
+
 #Criando um endpoint para teste
-@app.get('/ai')
-def teste():
+@app.post('/ai')
+def chat(pergunta: Pergunta):
     
     #Testando a IA
     load_dotenv()
-    api_key = os.getenv('GOOGLE_API_KEY');
+    api_key = os.getenv('GOOGLE_API_KEY')
     
     #Configurando a minha api_key
     client = genai.Client(api_key=api_key)
     
     #Defininfo o meumodelo e o conteúdo que eu vou mostrar
     model = 'gemini-2.0-flash'
-    contents = 'Ola'
     
     #Configurando o conteúdo que deve ser gerado
     chat_config = types.GenerateContentConfig(
         system_instruction = "Você é um assistente pessoal de um e-commerce de livros chamado weblibrary e deve agir como tal, respondendo perguntas relacionadas a livros. Sue nome não é mais Gemini, você é IA do e-commerce WebLibrary. Você também responde as perguntas do usuário de forma concisa"
     )
     
-    #Gerando o texto com o Gemini
-    response = client.models.generate_content(
-        model=model,
-        contents=contents,
-        config=chat_config
-    )
+    #Criando um chat para conversar com a IA
+    chat = client.chats.create(model=model, config=chat_config)
     
-    #Retornando o texto da IA
-    return {'msg': response.text}
+    #Retornando a resposta da IA
+    return {'ai_res': chat.send_message(pergunta.msg).text}
