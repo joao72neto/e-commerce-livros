@@ -27,7 +27,7 @@ app.add_middleware(
     allow_headers=['*']
 )
 
-# #Dados fictícios dos livros
+#Dados fictícios dos livros
 livros = [
     {"titulo": "O Senhor dos Anéis", "descricao": "Uma aventura épica de fantasia."},
     {"titulo": "1984", "descricao": "Romance distópico sobre um futuro totalitário."},
