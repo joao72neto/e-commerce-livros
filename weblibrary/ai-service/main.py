@@ -1,6 +1,3 @@
-#importando o banco
-from database.connection import SessionLocal
-
 #Imports para lidar com o servidor
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,16 +14,8 @@ import faiss
 from sentence_transformers import SentenceTransformer
 import numpy as np
 
-
 #Criando o app do FastAPI
 app = FastAPI()
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 #Configurando o CORS
 app.add_middleware(
