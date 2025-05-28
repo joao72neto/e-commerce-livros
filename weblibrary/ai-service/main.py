@@ -1,5 +1,5 @@
 #Imports para lidar com o servidor
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -9,10 +9,10 @@ from google.genai import types
 import os
 from dotenv import load_dotenv
 
-#Importa para filtro de dados com FAISS
-import faiss
-from sentence_transformers import SentenceTransformer
-import numpy as np
+#importando funções própria
+from apis import livros as lvr
+from filtro import embeddings as ebd
+from filtro import faiss_index as fid
 
 #Criando o app do FastAPI
 app = FastAPI()
@@ -26,25 +26,6 @@ app.add_middleware(
     allow_headers=['*']
 )
 
-#Dados fictícios dos livros
-livros = [
-    {"titulo": "O Senhor dos Anéis", "descricao": "Uma aventura épica de fantasia."},
-    {"titulo": "1984", "descricao": "Romance distópico sobre um futuro totalitário."},
-    {"titulo": "Fundação", "descricao": "Série de ficção científica sobre o futuro da humanidade."},
-    {"titulo": "Neuromancer", "descricao": "Clássico cyberpunk que explora inteligência artificial."},
-]
-
-#Gerando embeddings dos livros ao iniciar o sistema
-model_embedding = SentenceTransformer('all-MiniLM-L6-v2');
-texts = [livro['titulo'] + " " + livro['descricao'] for livro in livros]
-embeddings = model_embedding.encode(texts, normalize_embeddings=True)
-embeddings = np.array(embeddings).astype('float32')
-
-#Criando o index FAISS
-dim = embeddings.shape[1]
-index = faiss.IndexFlatL2(dim)
-index.add(embeddings)
-
 #Criando um modelo para receber a msg do Cliente
 class Pergunta(BaseModel):
     msg: str
@@ -53,14 +34,17 @@ class Pergunta(BaseModel):
 @app.post('/ai')
 def chat(pergunta: Pergunta):
     
-    #FILTRANDO OS DADOS COM FAISS
+    #Gerando embedding dos livros
+    livros = lvr.buscar_todos_livros()
+    text = [livro['lvr_titulo'] + " " + livro['lvr_sinopse'] for livro in livros]
     
-    #Gerando a query da pergunta do usuário
-    query_embedding = model_embedding.encode(
-        [pergunta.msg],
-        normalize_embeddings=True
-    )
-    query_embedding = np.array(query_embedding).astype('float32')
+    books_embedding = ebd.gerar_embedding(text)
+    
+    #Gerando index faiss com base no embedding do livros
+    index = fid.criar_index_faiss(books_embedding)
+    
+    #Gerando embedding da pergunta do usuário
+    query_embedding = ebd.gerar_embedding([pergunta.msg])
     
     #Buscando os três livros mais próximos
     k = 3
@@ -70,7 +54,9 @@ def chat(pergunta: Pergunta):
     context = ''
     for i in indices[0]:
         livro = livros[i]
-        context += f'Título: {livro['titulo']}\nDescrição: {livro['descricao']}\n\n'
+        print(livro)
+        context += f'Título: {livro['lvr_titulo']}\nDescrição: {livro['lvr_sinopse']}\n\n'
+    
     
     #Preparando a intrução para a IA
     system_instruction = (

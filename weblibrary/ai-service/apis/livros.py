@@ -6,7 +6,7 @@ livros_cache = []
 def buscar_todos_livros(url='http://localhost:3000/api/books'):
     
     global livros_cache;
-    if not livros_cache:
+    if len(livros_cache) == 0:
     
         #Obtendo a resposta da API
         res = req.get(url)
