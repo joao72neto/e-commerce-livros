@@ -49,5 +49,10 @@ router.use('/', routeHistoricoVendas);
 router.use('/', routeLogs);
 router.use('/', routeEstoque);
 
+//Pegando as rotas dos livros
+const routeBooks = require('../routes/books/routeBooks');
+
+router.use('/', routeBooks);
+
 //Expotando as rotas pra o app
 module.exports = router;

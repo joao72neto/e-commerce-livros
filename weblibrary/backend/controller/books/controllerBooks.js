@@ -1,4 +1,4 @@
-const { buscarTodosLivros } = require('../../model/books');
+const { buscarTodosLivros } = require('../../model/books/modelBooks');
 
 //APIs 
 module.exports.getBuscarTodosLivros = async (req, res) => {
