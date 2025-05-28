@@ -4,5 +4,3 @@ faiss-cpu==1.11.0
 sentence-transformers==4.1.0
 python-dotenv==1.1.0
 google-genai==1.16.1
-sqlalchemy==2.0.41
-mysql-connector-python==9.3.0
