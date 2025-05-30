@@ -39,23 +39,24 @@ document.addEventListener('DOMContentLoaded', function(){
 
 });
 
-let clienteIdAtual = null;
-
 //Enviando um texto para a IA
 async function enviarMsg() {
     let screen = document.querySelector('.screen');
     let button = document.querySelector('#ai-button');
     let input = document.querySelector('.chat .input input');
+    const cliente = await buscarClienteLogadoService();
+
+    //Salvado o ID atual do cliente 
+    let clt_id_atual = JSON.parse(localStorage.getItem('clt_id_atual')) || null
+
+    //Verificando se o cliente logado foi alterado
+    if(clt_id_atual !== cliente[0].clt_id){
+        localStorage.removeItem('chatHistorico');
+        localStorage.setItem('clt_id_atual', JSON.parse(cliente[0].clt_id));
+    }
 
     //Carregando histórico salvo se existir
     let historico = JSON.parse(localStorage.getItem('chatHistorico')) || [];
-
-    //Verificando se o cliente logado foi alterado
-    const cliente = await buscarClienteLogadoService();
-    if(clienteIdAtual !== cliente[0].clt_id){
-        localStorage.removeItem('chatHistorico');
-        clienteIdAtual = cliente[0].clt_id;
-    }
 
     //Renderizando todas as mensagens salvas
     historico.forEach(msg => {
@@ -135,7 +136,7 @@ async function obterRespostaIa(msg){
 }
 
 //Abrindo o chat da IA
-function abrirChat(){
+async function abrirChat(){
     const chat_button = document.querySelector('.chat-button');
     const chat = document.querySelector('.chat');
     let screen = document.querySelector('.screen');
