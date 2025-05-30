@@ -17,9 +17,8 @@ app.add_middleware(
     allow_headers=['*']
 )
 
-#Obtendo chat da IA
-chat = c.ai_chat()
-clt_id_atual = None
+#Guardando os chats dos clientes
+chats_por_cliente = {}
 
 #Criando um modelo para receber a msg do Cliente
 class Pergunta(BaseModel):
@@ -28,17 +27,20 @@ class Pergunta(BaseModel):
 #Criando um endpoint para teste
 @app.post('/ai')
 def chatbot(pergunta: Pergunta):
-    global chat, clt_id_atual
+    global chats_por_cliente
     
     #Gerando msg para enviar para a IA
     user_message = pergunta.msg
     mensagem_chatbot = f'[MENSAGEM DO USUÁRIO]\n{user_message}\n'
         
     #Criando novo chat caso o cliente logado mude
-    if clt_id_atual != clt.clt_id_logado():
-        chat = c.ai_chat()
-        clt_id_atual = clt.clt_id_logado()
+    clt_id_logado = clt.clt_id_logado()
+    if clt_id_logado not in chats_por_cliente:
+        chats_por_cliente[clt_id_logado] = c.ai_chat()
         
+    #Definindo o char do cliente atual
+    chat = chats_por_cliente[clt_id_logado]
+    
     #Retornando a resposta da IA
     resposta = chat.send_message(mensagem_chatbot).text
     return {'ai_res': resposta}
