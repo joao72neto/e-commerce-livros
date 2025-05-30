@@ -1,11 +1,12 @@
 from apis import livros as lvr
 from apis import clientes as clt
-#Obtendo os dados para a IA
-livros_contexto = lvr.livros_contexto()
-cliente_contexto = clt.cliente_contexto()
 
 #Função que define as intruções para a IA
-def ai_intruction():
+def ai_instruction():
+    
+    #Obtendo os dados para a IA
+    livros_contexto = lvr.livros_contexto()
+    cliente_contexto = clt.cliente_contexto()
     
     system_instruction = (
         

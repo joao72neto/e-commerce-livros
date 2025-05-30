@@ -14,13 +14,15 @@ client = genai.Client(api_key=api_key)
 #Defininfo o meumodelo e o conteúdo que eu vou mostrar
 model = 'gemini-2.0-flash'
     
-#Configurando o conteúdo que deve ser gerado
-chat_config = types.GenerateContentConfig(
-    system_instruction = sys.ai_intruction()
-)
-
-#Criando um chat para conversar com a IA
+#Função que reseta as intruções do chat
 def ai_chat():
+     
+    #Configurando o conteúdo que deve ser gerado
+    chat_config = types.GenerateContentConfig(
+        system_instruction = sys.ai_instruction()
+    )
+    
+    #Criando e retornando chat
     chat = client.chats.create(model=model, config=chat_config)
     return chat
 
