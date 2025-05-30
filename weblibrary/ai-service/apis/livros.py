@@ -19,3 +19,19 @@ def buscar_todos_livros(url='http://localhost:3000/api/books'):
         livros_cache = res.json()
         
     return livros_cache
+
+#Função que retorna os livros organizados para a IA
+def livros_contexto():
+    
+    context = ''
+    livros = buscar_todos_livros()
+    for livro in livros:
+        context  += (
+            f'Título: {livro['lvr_titulo']}\n'
+            f'Sinopse: {livro['lvr_sinopse']}\n'
+            f'Preço: {livro['lvr_preco']}\n\n' 
+        )
+        
+    return str(context)
+        
+print(livros_contexto())
