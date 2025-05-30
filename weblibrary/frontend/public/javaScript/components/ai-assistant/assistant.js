@@ -46,17 +46,19 @@ async function enviarMsg() {
     let input = document.querySelector('.chat .input input');
     const cliente = await buscarClienteLogadoService();
 
-    //Salvado o ID atual do cliente 
-    let clt_id_atual = JSON.parse(localStorage.getItem('clt_id_atual')) || null
+    //Obtendo o ID atual e todos os outros IDs com chats
+    let clt_ids = JSON.parse(localStorage.getItem('clt_ids')) || [];
+    let idAtual = String(cliente[0].clt_id);
+    let chaveHistorico = `chatHistorico_${idAtual}`;
 
     //Verificando se o cliente logado foi alterado
-    if(clt_id_atual !== cliente[0].clt_id){
-        localStorage.removeItem('chatHistorico');
-        localStorage.setItem('clt_id_atual', JSON.parse(cliente[0].clt_id));
+    if (!clt_ids.includes(idAtual)) {
+        clt_ids.push(idAtual);
+        localStorage.setItem('clt_ids', JSON.stringify(clt_ids));
     }
 
     //Carregando histórico salvo se existir
-    let historico = JSON.parse(localStorage.getItem('chatHistorico')) || [];
+    let historico = JSON.parse(localStorage.getItem(chaveHistorico)) || [];
 
     //Renderizando todas as mensagens salvas
     historico.forEach(msg => {
@@ -65,8 +67,6 @@ async function enviarMsg() {
         p.style.cssText = msg.estilo;
         screen.appendChild(p);
     });
-
-    screen.scrollTop = screen.scrollHeight;
 
     //Enviando nova mensagem
     button.addEventListener('click', async (event) => {
@@ -108,12 +108,13 @@ async function enviarMsg() {
 
         historico.push({ texto: resposta, estilo: estilo_ia });
 
-        //Salva histórico no localStorage
-        localStorage.setItem('chatHistorico', JSON.stringify(historico));
+        //Salva histórico no localStorage com chave do cliente
+        localStorage.setItem(chaveHistorico, JSON.stringify(historico));
 
         screen.scrollTop = screen.scrollHeight;
     });
 }
+
 
 //Função que busca a resposta da IA com base em um texto
 async function obterRespostaIa(msg){
