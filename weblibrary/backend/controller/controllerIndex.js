@@ -16,3 +16,10 @@ module.exports.getIndex = async (req, res) => {
     return res.render('index/index', {livros: livros});
 };
 
+//Resetar histórico IA
+const BOOT_TIMESTAMP = Date.now();
+
+module.exports.getServerVersion = (req, res) => {
+    res.send(String(BOOT_TIMESTAMP));
+}
+

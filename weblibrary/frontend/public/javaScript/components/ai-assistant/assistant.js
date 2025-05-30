@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function(){
     enviarMsg();
     abrirChat();
     removerChatClicarFora();
+    resetarLocalStorage();
 
 });
 
@@ -115,6 +116,23 @@ async function enviarMsg() {
     });
 }
 
+async function resetarLocalStorage(){
+    const res = await fetch('/api/version');
+    const versaoServidor = await res.text(); 
+    const versaoAnterior = localStorage.getItem('server_version');
+
+    if (versaoAnterior && versaoAnterior !== versaoServidor) {
+
+        //Limpando histórico se o servidor reiniciou
+        const clt_ids = JSON.parse(localStorage.getItem('clt_ids')) || [];
+        clt_ids.forEach(id => {
+            localStorage.removeItem(`chatHistorico_${id}`);
+        });
+        localStorage.setItem('clt_ids', '[]');
+    }
+
+    localStorage.setItem('server_version', versaoServidor);
+}
 
 //Função que busca a resposta da IA com base em um texto
 async function obterRespostaIa(msg){
