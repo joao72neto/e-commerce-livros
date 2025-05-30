@@ -27,12 +27,14 @@ def livros_contexto():
     context = ''
     livros = buscar_todos_livros()
     for livro in livros:
+    
         context  += (
             f'Título: {livro['lvr_titulo']}\n'
             f'Sinopse: {livro['lvr_sinopse']}\n'
-            f'Preço: {livro['lvr_preco']}\n\n' 
+            f'Preço: {livro['lvr_preco']}\n'
+            f'Ano: {livro['lvr_ano']}\n'
+            f'Edição: {livro['lvr_edicao']}\n\n'
         )
         
     return str(context)
-        
-print(livros_contexto())
+

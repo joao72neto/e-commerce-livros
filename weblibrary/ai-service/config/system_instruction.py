@@ -1,7 +1,8 @@
 from apis import livros as lvr
-
+from apis import clientes as clt
 #Obtendo os dados para a IA
 livros_contexto = lvr.livros_contexto()
+cliente_contexto = clt.cliente_contexto()
 
 #Função que define as intruções para a IA
 def ai_intruction():
@@ -44,6 +45,12 @@ def ai_intruction():
             A seguir estão todos os dados disponíveis sobre os livros cadastrados no sistema da WebLibrary. Todas as respostas devem ser baseadas nesses dados:
 
             {livros_contexto}
+            
+            ##DADOS DO CLIENTE LOGADO
+            
+            Abaixo estão os dados do cliente que estará conversando com você. Você pode usar o nome dele ao decorrer da conversa:
+            
+            {cliente_contexto}
 
         """ 
     )

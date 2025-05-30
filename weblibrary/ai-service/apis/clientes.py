@@ -15,3 +15,21 @@ def buscar_cliente_logado(url='http://localhost:3000/api/clientes/logado'):
     return cliente
     
 
+#Função que retorna os livros organizados para a IA
+def cliente_contexto():
+    
+    context = ''
+    cliente = buscar_cliente_logado()
+    for clt in cliente:
+        context += (
+            f'Nome: {clt['clt_nome']}\n'
+            f'Genero: {clt['clt_genero']}\n'
+            f'Data de Nascimento: {clt['clt_dataNasc']}\n'
+            f'Telefone: {clt['clt_telefone']}'
+            f'E-mail: {clt['clt_email']}\n'
+            f'Ranking: {clt['clt_ranking']}\n'  
+        )
+        
+    return str(context)
+
+
