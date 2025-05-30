@@ -3,6 +3,7 @@ import requests as req
 #Criando cache para todos os livros
 livros_cache = []
 
+#Função que busca todos os livro do banco de dados
 def buscar_todos_livros(url='http://localhost:3000/api/books'):
     
     global livros_cache;
