@@ -1,3 +1,5 @@
+import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
+
 document.addEventListener('DOMContentLoaded', function(){
     
     //Fazendo com que o botão da IA não fique em cima do footer
@@ -37,23 +39,48 @@ document.addEventListener('DOMContentLoaded', function(){
 
 });
 
-//Enviando um texto para a IA
-async function enviarMsg(){
+let clienteIdAtual = null;
 
-    //Elementos
+//Enviando um texto para a IA
+async function enviarMsg() {
     let screen = document.querySelector('.screen');
     let button = document.querySelector('#ai-button');
+    let input = document.querySelector('.chat .input input');
 
+    //Carregando histórico salvo se existir
+    let historico = JSON.parse(localStorage.getItem('chatHistorico')) || [];
+
+    //Verificando se o cliente logado foi alterado
+    const cliente = await buscarClienteLogadoService();
+    if(clienteIdAtual !== cliente[0].clt_id){
+        localStorage.removeItem('chatHistorico');
+        clienteIdAtual = cliente[0].clt_id;
+    }
+
+    //Renderizando todas as mensagens salvas
+    historico.forEach(msg => {
+        const p = document.createElement('p');
+        p.innerHTML = msg.texto;
+        p.style.cssText = msg.estilo;
+        screen.appendChild(p);
+    });
+
+    screen.scrollTop = screen.scrollHeight;
+
+    //Enviando nova mensagem
     button.addEventListener('click', async (event) => {
-
         event.preventDefault();
 
-        //Obtendo o input da IA
-        let input = document.querySelector('.chat .input input');
-        
-        //Criando um parágrafo para exibir o texto do usuário
+        if (!input.value) {
+            alert('Digite algo antes de enviar');
+            return;
+        }
+
+        const msg = input.value;
+
+        //Cliente
         const p_cliente = document.createElement('p');
-        p_cliente.style.cssText = `
+        const estilo_cliente = `
             margin: 0 0 30px 20px; 
             border-radius: 20px 0px 0px 20px;
             background-color: #F4F440;
@@ -61,38 +88,30 @@ async function enviarMsg(){
             border: 1px dashed black;
             border-right: none;
         `;
+        p_cliente.style.cssText = estilo_cliente;
+        p_cliente.innerHTML = msg;
+        screen.appendChild(p_cliente);
 
-        //Criando um parágrafo para exibir a resposta da IA
+        historico.push({ texto: msg, estilo: estilo_cliente });
+
+        input.value = '';
+        screen.scrollTop = screen.scrollHeight;
+
+        //IA
+        const resposta = await obterRespostaIa(msg);
         const p_ia = document.createElement('p');
-        p_ia.style.margin = '0px 20px 30px 0;';
+        const estilo_ia = 'margin: 0px 20px 30px 0;';
+        p_ia.style.cssText = estilo_ia;
+        p_ia.innerHTML = resposta;
+        screen.appendChild(p_ia);
 
-        if(input.value){
+        historico.push({ texto: resposta, estilo: estilo_ia });
 
-            //Adicionando o parágrafo do usuário
-            p_cliente.innerHTML = input.value;
-            screen.appendChild(p_cliente);
+        //Salva histórico no localStorage
+        localStorage.setItem('chatHistorico', JSON.stringify(historico));
 
-            //Rolando a tela para o fim e limpando o input
-            screen.scrollTop = screen.scrollHeight;
-            const msg = input.value;
-            input.value = ''
-
-            //Buscando a resposta da IA
-            const res = await obterRespostaIa(msg);
-            
-            //Respondendo o usuário
-            p_ia.innerHTML = res;
-            screen.appendChild(p_ia);   
-                            
-            //Rolando a tela para o fim
-            screen.scrollTop = screen.scrollHeight;
-
-            return;
-        }
-
-        alert('Digite algo antes de enviar');
+        screen.scrollTop = screen.scrollHeight;
     });
-
 }
 
 //Função que busca a resposta da IA com base em um texto
@@ -119,6 +138,9 @@ async function obterRespostaIa(msg){
 function abrirChat(){
     const chat_button = document.querySelector('.chat-button');
     const chat = document.querySelector('.chat');
+    let screen = document.querySelector('.screen');
+
+    //Abrindo o chat
     chat_button.addEventListener('click', () => {
 
         if(chat_button.classList.contains('selected')){
@@ -129,6 +151,9 @@ function abrirChat(){
 
         chat.style.display = 'grid';
         chat_button.classList.toggle('selected');
+
+        //Rolando para o final do chat
+        screen.scrollTop = screen.scrollHeight;
     });
 }
 
