@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from config.chat import ai_chat
 from apis.clientes import clt_id_logado
+from apis.pedidos import pedidos_contexto
 
 #Criando o app do FastAPI
 app = FastAPI()
@@ -29,10 +30,15 @@ class Pergunta(BaseModel):
 def chatbot(pergunta: Pergunta):
     global chats_por_cliente
     
+    #Obtendo todos os pedidos que o cliente logado fez
+    pedidos = pedidos_contexto()
+    
     #Gerando msg para enviar para a IA
     user_message = pergunta.msg
-    mensagem_chatbot = f'[MENSAGEM DO CLIENTE]\n{user_message}\n'
+    mensagem_chatbot = f'[MENSAGEM DO CLIENTE]\n{user_message}\n[PEDIDOS DO CLIENTE]\n{pedidos}\n'
         
+    print(mensagem_chatbot)
+    
     #Criando novo chat caso o cliente logado mude
     cliente_id_logado = clt_id_logado()
     if cliente_id_logado not in chats_por_cliente:
