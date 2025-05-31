@@ -18,4 +18,7 @@ router.post('/clientes/card/:clt_id/add', validarCard, controllerCard.postCardAd
 //Deletando dados
 router.delete('/card/delete/:clt_id/:car_id', controllerCard.deleteCardId);
 
+//APIs
+router.get('/api/card/clt_id/:clt_id', controllerCard.getBuscarCartoesClienteId);
+
 module.exports = router;

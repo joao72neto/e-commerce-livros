@@ -1,5 +1,6 @@
 const { atualizarCard, buscarCartaoId, buscarCartoesClienteId, cadastrarCartao, deletarCardId } = require("../../model/clientes/modelCard");
 const { desativarCartoesClienteId } = require('../../model/clientes/modelCard');
+const { buscarCartoesClienteIdFiltrado } = require('../../model/clientes/modelCard');
 
 //Páginas
 module.exports.getCard = async (req, res) => {
@@ -82,4 +83,10 @@ module.exports.patchDesativarCartoesClienteId = async (req, res) => {
         console.error(`Erro no patchDesativarCartoesClienteId - controllerCard: ${err}`);
         return res.status(500).json({msg: 'Não foi possível desativar os cartões'});
     }
+};
+
+//APIs
+module.exports.getBuscarCartoesClienteId = async (req, res) => {
+    const cartoes = await buscarCartoesClienteIdFiltrado(req.params.clt_id);
+    return res.json(cartoes);
 };

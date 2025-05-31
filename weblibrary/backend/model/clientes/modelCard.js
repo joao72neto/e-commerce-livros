@@ -238,8 +238,7 @@ module.exports.buscarCartoesClienteId = async (id) => {
     //Criando query para buscar os dados do banco
     const sql = `
         select 
-            c.car_nome,
-            c.car_bandeira
+            *
         from
             cartoes c
         where
@@ -255,3 +254,31 @@ module.exports.buscarCartoesClienteId = async (id) => {
         throw err;
     }
 }
+
+//Função que pegar cartões de um determinado cliente sem expor dados sensíveis
+module.exports.buscarCartoesClienteIdFiltrado = async (id) => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+
+    //Criando query para buscar os dados do banco
+    const sql = `
+        select 
+            c.car_nome,
+            c.car_bandeira
+        from
+            cartoes c
+        where
+            c.car_clt_id = ?
+    `;
+
+    try{
+        const [cartoes] = await db.query(sql, id);
+        return cartoes;
+        
+    }catch(err){
+        console.error(`Erro no buscarCartoesClienteIdFiltrado - modelCard: ${err}`);
+        throw err;
+    }
+}
+
