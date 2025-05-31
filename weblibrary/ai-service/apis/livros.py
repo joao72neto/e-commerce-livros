@@ -14,8 +14,8 @@ def buscar_todos_livros(url='http://localhost:3000/api/books'):
         
         #Verificando a requisição
         if not res.status_code == 200:
-            print(f'Não foi possível obter os dados da API: {res.status_code}')
-            return;
+            print(f'Não foi possível obter os livros da API: {res.status_code}')
+            return
         
         livros_cache = res.json()
         
