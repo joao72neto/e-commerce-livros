@@ -20,7 +20,8 @@ def buscar_cliente_logado(url='http://localhost:3000/api/clientes/logado'):
 def clt_id_logado():
       cliente = buscar_cliente_logado()
       return cliente[0]['clt_id']
-
+  
+  
 #Função que retorna os livros organizados para a IA
 def cliente_contexto():
     
