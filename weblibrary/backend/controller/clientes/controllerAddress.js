@@ -97,3 +97,10 @@ module.exports.getApiEnderecoId = async(req, res) => {
     const endereco = await buscarEnderecoId(req.params.end_id);
     return res.json(endereco);
 };
+
+module.exports.getApiEnderecoClienteId = async(req, res) => {
+    const endereco = await buscarEnderecosClienteId(req.params.clt_id);
+    return res.json(endereco);
+};
+
+

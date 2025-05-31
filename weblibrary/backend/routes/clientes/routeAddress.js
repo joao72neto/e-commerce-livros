@@ -23,6 +23,7 @@ router.post('/clientes/address/:clt_id/add',
 
 //Rotas para apis
 router.get('/api/address/:end_id', controllerAddress.getApiEnderecoId);
+router.get('/api/address/clt_id/:clt_id', controllerAddress.getApiEnderecoClienteId);
 
 //Deletando dados
 router.delete('/address/delete/:clt_id/:end_id', controllerAddress.deleteAddressId);
