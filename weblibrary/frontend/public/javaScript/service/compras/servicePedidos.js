@@ -24,3 +24,5 @@ export async function adicionarPedidoService(dados) {
         throw err;
     }
 }
+
+//GET

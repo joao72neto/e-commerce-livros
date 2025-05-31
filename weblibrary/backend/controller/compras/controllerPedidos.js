@@ -26,3 +26,9 @@ module.exports.postPedido = async (req, res) => {
         return res.status(500).json({msg:'Erro ao adiciona pedido à lista de pedidos'});
     }
 };
+
+//APIs
+module.exports.getBuscarPedidosClienteId = async (req, res) => {
+    const pedidos = await buscarPedidosClienteId(req.params.clt_id);
+    return res.json(pedidos);
+}
