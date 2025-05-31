@@ -2,7 +2,7 @@ import os
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
-from config import system_instruction as sys
+from config.system_instruction import ai_instruction
 
 #Configurando a IA
 load_dotenv()
@@ -19,7 +19,7 @@ def ai_chat():
      
     #Configurando o conteúdo que deve ser gerado
     chat_config = types.GenerateContentConfig(
-        system_instruction = sys.ai_instruction()
+        system_instruction = ai_instruction()
     )
     
     #Criando e retornando chat
