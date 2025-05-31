@@ -156,7 +156,7 @@ module.exports.buscarTodosCartoes = async () => {
     
     //Obtendo o banco
     const db = await getDb();
-    
+
     try{
         const [cartoes] = await db.query('select * from cartoes');
         return cartoes;
@@ -235,8 +235,19 @@ module.exports.buscarCartoesClienteId = async (id) => {
     //Obtendo o banco
     const db = await getDb();
 
+    //Criando query para buscar os dados do banco
+    const sql = `
+        select 
+            c.car_nome,
+            c.car_bandeira
+        from
+            cartoes c
+        where
+            c.car_clt_id = ?
+    `;
+
     try{
-        const [cartoes] = await db.query(`select * from cartoes where car_clt_id = ?`, id);
+        const [cartoes] = await db.query(sql, id);
         return cartoes;
         
     }catch(err){
