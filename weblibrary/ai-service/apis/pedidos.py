@@ -23,6 +23,10 @@ def pedidos_contexto():
     
     context = ''
     pedidos = buscar_pedidos_clt_logado()
+
+    #Verificando se já pedidos para o cliente
+    if not pedidos: return 'O cliente ainda não fez nenhum pedido';
+    
     for pedido in pedidos:
     
         context  += (
@@ -39,3 +43,4 @@ def pedidos_contexto():
     return str(context)
 
 
+print(pedidos_contexto())

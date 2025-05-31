@@ -31,7 +31,7 @@ def chatbot(pergunta: Pergunta):
     
     #Gerando msg para enviar para a IA
     user_message = pergunta.msg
-    mensagem_chatbot = f'[MENSAGEM DO USUÁRIO]\n{user_message}\n'
+    mensagem_chatbot = f'[MENSAGEM DO CLIENTE]\n{user_message}\n'
         
     #Criando novo chat caso o cliente logado mude
     cliente_id_logado = clt_id_logado()
