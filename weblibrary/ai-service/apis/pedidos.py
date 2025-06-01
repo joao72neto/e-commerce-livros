@@ -1,11 +1,12 @@
 import requests as req
 from apis.clientes import clt_id_logado
 
-#Obtendo o id do cliente logado
-clt_logado = clt_id_logado()
-
 #Função que busca os pedidos do cliente logado
-def buscar_pedidos_clt_logado(url=f'http://localhost:3000/api/pedidos/{clt_logado}'):
+def buscar_pedidos_clt_logado():
+    
+    #Obtendo o id do cliente logado
+    clt_logado = clt_id_logado()
+    url=f'http://localhost:3000/api/pedidos/{clt_logado}'
     
     #Obtendo os pedidos do cliente logado
     res = req.get(url)
@@ -41,6 +42,3 @@ def pedidos_contexto():
         )
         
     return str(context)
-
-
-print(pedidos_contexto())

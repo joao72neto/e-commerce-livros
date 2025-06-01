@@ -30,15 +30,9 @@ class Pergunta(BaseModel):
 def chatbot(pergunta: Pergunta):
     global chats_por_cliente
     
-    #Obtendo todos os pedidos que o cliente logado fez
-    pedidos = pedidos_contexto()
-    
     #Gerando msg para enviar para a IA
     user_message = pergunta.msg
-    mensagem_chatbot = f'[MENSAGEM DO CLIENTE]\n{user_message}\n[PEDIDOS DO CLIENTE]\n{pedidos}\n'
-    
-    # #Visualzando os dados que a IA recebe
-    # print(mensagem_chatbot)
+    mensagem_chatbot = f'[MENSAGEM DO CLIENTE]\n{user_message}\n[PEDIDOS DO CLIENTE]\n{pedidos_contexto()}\n'
     
     #Criando novo chat caso o cliente logado mude
     cliente_id_logado = clt_id_logado()
