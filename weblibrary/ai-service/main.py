@@ -3,8 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from config.chat import create_ai_chat
 from apis.clientes import clt_id_logado
-from apis.pedidos import pedidos_contexto
 from build.context_builder import build_chat_context
+from utils.genai_retry import retry_api_call
 
 #Criando o app do FastAPI
 app = FastAPI()
@@ -31,8 +31,7 @@ def chatbot(pergunta: Pergunta):
     global chats_por_cliente
     
     #Gerando msg para enviar para a IA
-    user_message = pergunta.msg
-    mensagem_chatbot = f'[MENSAGEM DO CLIENTE]\n{user_message}\n[PEDIDOS DO CLIENTE]\n{pedidos_contexto()}\n'
+    mensagem_chatbot = build_chat_context(pergunta.msg)
     
     #Criando novo chat caso o cliente logado mude
     cliente_id_logado = clt_id_logado()
@@ -43,5 +42,5 @@ def chatbot(pergunta: Pergunta):
     chat = chats_por_cliente[cliente_id_logado]
     
     #Retornando a resposta da IA
-    resposta = chat.send_message(mensagem_chatbot).text
-    return {'ai_res': resposta}
+    resposta = retry_api_call(lambda: chat.send_message(mensagem_chatbot))
+    return {'ai_res': resposta.text}
