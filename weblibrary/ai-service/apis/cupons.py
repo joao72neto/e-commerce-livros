@@ -1,5 +1,5 @@
 import requests as req
-from clientes import clt_id_logado
+from apis.clientes import clt_id_logado
 
 #Obtendo os dados dos cupons
 def buscar_cupons_ativos_clt_logado():

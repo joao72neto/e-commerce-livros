@@ -15,7 +15,7 @@ client = genai.Client(api_key=api_key)
 model = 'gemini-2.0-flash'
     
 #Função que reseta as intruções do chat
-def ai_chat():
+def create_ai_chat():
      
     #Configurando o conteúdo que deve ser gerado
     chat_config = types.GenerateContentConfig(

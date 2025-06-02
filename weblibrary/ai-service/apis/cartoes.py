@@ -1,5 +1,5 @@
 import requests as req
-from clientes import clt_id_logado
+from apis.clientes import clt_id_logado
 
 def buscar_cartoes_clt_logado():
     
