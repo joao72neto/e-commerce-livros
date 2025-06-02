@@ -42,6 +42,10 @@ def cupons_inativos_contexto():
     
     context = 'CUPONS INATIVOS: \n\n'
     cupons = buscar_cupons_inativos_clt_logado()
+    
+    #Verificando se já pedidos para o cliente
+    if not cupons: return 'O cliente não possui nenhum cupom para uso (inativo)';
+    
     for cupom in cupons:
         context += (
             f'Código: {cupom['cup_codigo']}\n'
@@ -54,6 +58,10 @@ def cupons_ativos_contexto():
     
     context = 'CUPONS ATIVOS: \n\n'
     cupons = buscar_cupons_ativos_clt_logado()
+    
+    #Verificando se já pedidos para o cliente
+    if not cupons: return 'O cliente não possui nenhum cupom em uso (ativo)';
+    
     for cupom in cupons:
         context += (
             f'Código: {cupom['cup_codigo']}\n'

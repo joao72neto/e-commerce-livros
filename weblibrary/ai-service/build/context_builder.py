@@ -7,26 +7,26 @@ def build_chat_context(msg):
     
     mensagem_chatbot = f'''
     
-[MENSAGEM DO CLIENTE]
+    [MENSAGEM DO CLIENTE]
 
-{msg}
+    {msg}
 
-[PEDIDOS DO CLIENTE]
+    [PEDIDOS DO CLIENTE]
 
-{pedidos_contexto()}
+    {pedidos_contexto()}
 
-[ENDEREÇOS DO CLIENTE]
+    [ENDEREÇOS DO CLIENTE]
 
-{endereco_contexto()}
+    {endereco_contexto()}
 
-[CARTÕES DO CLIENTE]
+    [CARTÕES DO CLIENTE]
 
-{cartoes_contexto()}
+    {cartoes_contexto()}
 
-[CUPONS DO CLIENTE]
+    [CUPONS DO CLIENTE]
 
-{cupons_ativos_contexto()}
-{cupons_inativos_contexto()}
+    {cupons_ativos_contexto()}
+    {cupons_inativos_contexto()}
 
     '''
     
