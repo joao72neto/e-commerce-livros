@@ -15,8 +15,8 @@ def buscar_enderecos_clt_logado():
         return
     
     #Pegando os dados em json
-    cartoes = res.json()
-    return cartoes
+    enderecos = res.json()
+    return enderecos 
 
 
 def endereco_contexto():

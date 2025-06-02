@@ -4,8 +4,6 @@ const controllerPagamento = require('../../controller/compras/constrollerPagamen
 
 //Rotas para páginas
 router.get('/pagamento', controllerPagamento.getPagamento);
-router.get('/api/cupons/ativos/:clt_id', controllerPagamento.getApiCuponsAtivosClienteId);
-router.get('/api/cupons/inativos/:clt_id', controllerPagamento.getApiCuponsInativosClienteId);
 
 //Rotas para remoção de dados
 router.delete('/cupom/delete/:cup_id', controllerPagamento.deleteCupomId);
@@ -16,5 +14,10 @@ router.patch('/cupom/inativar/:cup_id', controllerPagamento.patchInativarCupom);
 
 //Rota para adição de dados
 router.post('/cupom/add', controllerPagamento.postAdicionarCupons);
+
+//APIs
+router.get('/api/cupons/ativos/:clt_id', controllerPagamento.getApiCuponsAtivosClienteId);
+router.get('/api/cupons/inativos/:clt_id', controllerPagamento.getApiCuponsInativosClienteId);
+
 
 module.exports = router;
