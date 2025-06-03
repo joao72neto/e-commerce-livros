@@ -1,19 +1,14 @@
 /*Cores*/
 @import url('/css/colors.css');
 
-/*Wrap*/
-/* 
-p{
-    -ms-word-break: break-all;
-    -ms-word-wrap: break-all;
-    -webkit-word-break: break-word;
-    -webkit-word-wrap: break-word;
-    word-break: break-word;
-    word-wrap: break-word;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    hyphens: auto;
-} */
+
+/*mensagens do chat*/
+.screen a{
+    display: inline-block;
+    margin: 10px 0px;
+    text-align: center;
+    font-size: 0.8em;
+}
 
 /*Chat Button*/
 
@@ -109,7 +104,7 @@ p{
     overflow-y: auto;
 }
 
-.chat .screen .resposta{
+.chat .screen .chat-msg{
     font-size: 1em;
     margin: 30px 20px 30px 0px;
     padding: 15px;

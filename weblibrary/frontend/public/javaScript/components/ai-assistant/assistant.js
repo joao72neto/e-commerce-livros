@@ -66,6 +66,7 @@ async function enviarMsg() {
         const p = document.createElement('p');
         p.innerHTML = msg.texto;
         p.style.cssText = msg.estilo;
+        p.classList.add('chat-msg');
         screen.appendChild(p);
     });
 
@@ -78,11 +79,11 @@ async function enviarMsg() {
             return;
         }
 
-        const msg = input.value;
+        const msg = marked.parse(input.value);
 
         //Cliente
         const p_cliente = document.createElement('p');
-        p_cliente.classList.add('resposta');
+        p_cliente.classList.add('chat-msg');
         const estilo_cliente = `
             margin: 0 0 30px 20px; 
             border-radius: 20px 0px 0px 20px;
@@ -104,7 +105,7 @@ async function enviarMsg() {
         let resposta = await obterRespostaIa(msg);
         resposta = marked.parse(resposta);
         const p_ia = document.createElement('p');
-        p_ia.classList.add('resposta');
+        p_ia.classList.add('chat-msg');
         const estilo_ia = 'margin: 0px 20px 30px 0;';
         p_ia.style.cssText = estilo_ia;
         p_ia.innerHTML = resposta;

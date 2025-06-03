@@ -34,7 +34,7 @@ def livros_contexto():
             f'Preço: {livro['lvr_preco']}\n'
             f'Ano: {livro['lvr_ano']}\n'
             f'Edição: {livro['lvr_edicao']}\n\n'
-            f'URL: http://localhost:3000/produto/{livro['lvr_id']}'
+            f'URL: [{livro['lvr_titulo']}](http://localhost:3000/produto/{livro['lvr_id']})'
         )
         
     return str(context)
