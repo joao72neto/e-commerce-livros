@@ -82,6 +82,7 @@ async function enviarMsg() {
 
         //Cliente
         const p_cliente = document.createElement('p');
+        p_cliente.classList.add('resposta');
         const estilo_cliente = `
             margin: 0 0 30px 20px; 
             border-radius: 20px 0px 0px 20px;
@@ -100,8 +101,10 @@ async function enviarMsg() {
         screen.scrollTop = screen.scrollHeight;
 
         //IA
-        const resposta = await obterRespostaIa(msg);
+        let resposta = await obterRespostaIa(msg);
+        resposta = marked.parse(resposta);
         const p_ia = document.createElement('p');
+        p_ia.classList.add('resposta');
         const estilo_ia = 'margin: 0px 20px 30px 0;';
         p_ia.style.cssText = estilo_ia;
         p_ia.innerHTML = resposta;
