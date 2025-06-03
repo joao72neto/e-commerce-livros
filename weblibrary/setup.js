@@ -14,9 +14,8 @@ function checkCommand(cmd) {
 function runCommand(command, args, options = {}) {
     const isWindows = process.platform === 'win32';
     
-    // Ajustes para Windows
     if (isWindows && command === 'npm') {
-        command = 'npm.cmd'; 
+        command = 'npm.cmd';
     }
 
     const spawnOptions = { 
@@ -30,6 +29,20 @@ function runCommand(command, args, options = {}) {
     if (result.error || result.status !== 0) {
         console.error(`Erro detalhado:`, result.error);
         throw new Error(`Erro ao executar: ${command} ${args.join(' ')}`);
+    }
+}
+
+function activateVirtualEnv(venvPath) {
+    const isWindows = process.platform === 'win32';
+    
+    if (isWindows) {
+        const activateScript = path.join(venvPath, 'Scripts', 'activate.bat');
+        console.log('Para ativar o ambiente virtual no Windows, execute:');
+        console.log(`${activateScript}`);
+    } else {
+        const activateScript = path.join(venvPath, 'bin', 'activate');
+        console.log('Para ativar o ambiente virtual no Linux/macOS, execute:');
+        console.log(`source ${activateScript}`);
     }
 }
 
@@ -75,7 +88,10 @@ function main() {
     console.log('Instalando dependências Node.js...');
     runCommand('npm', ['install']);
 
-    console.log('Setup concluído com sucesso!');
+    console.log('\n=== Ambiente Virtual ===');
+    activateVirtualEnv(venvPath);
+
+    console.log('\nSetup concluído com sucesso!');
 }
 
 main();
