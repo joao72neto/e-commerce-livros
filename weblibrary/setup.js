@@ -12,8 +12,23 @@ function checkCommand(cmd) {
 }
 
 function runCommand(command, args, options = {}) {
-    const result = spawnSync(command, args, { stdio: 'inherit', ...options });
+    const isWindows = process.platform === 'win32';
+    
+    // Ajustes para Windows
+    if (isWindows && command === 'npm') {
+        command = 'npm.cmd'; 
+    }
+
+    const spawnOptions = { 
+        stdio: 'inherit',
+        ...(isWindows ? { shell: true } : {}),
+        ...options 
+    };
+
+    const result = spawnSync(command, args, spawnOptions);
+    
     if (result.error || result.status !== 0) {
+        console.error(`Erro detalhado:`, result.error);
         throw new Error(`Erro ao executar: ${command} ${args.join(' ')}`);
     }
 }
@@ -38,7 +53,12 @@ function main() {
     }
     console.log(`Python encontrado (${pythonCmd})`);
 
+    const isWindows = process.platform === 'win32';
     const venvPath = path.join('ai-service', '.venv');
+    const pythonPath = isWindows
+        ? path.join(venvPath, 'Scripts', 'python.exe')
+        : path.join(venvPath, 'bin', 'python');
+
     if (!fs.existsSync(venvPath)) {
         console.log('Criando ambiente virtual Python...');
         runCommand(pythonCmd, ['-m', 'venv', venvPath]);
@@ -46,18 +66,11 @@ function main() {
         console.log('Ambiente virtual Python já existe.');
     }
 
-    // Atuvação do venv
-
-    const isWin = process.platform === 'win32';
-    const pipPath = isWin
-        ? path.join(venvPath, 'Scripts', 'pip.exe')
-        : path.join(venvPath, 'bin', 'pip');
-
     console.log('Atualizando pip...');
-    runCommand(pipPath, ['install', '--upgrade', 'pip']);
+    runCommand(pythonPath, ['-m', 'pip', 'install', '--upgrade', 'pip']);
 
     console.log('Instalando dependências Python...');
-    runCommand(pipPath, ['install', '-r', path.join('ai-service', 'requirements.txt')]);
+    runCommand(pythonPath, ['-m', 'pip', 'install', '-r', path.join('ai-service', 'requirements.txt')]);
 
     console.log('Instalando dependências Node.js...');
     runCommand('npm', ['install']);
