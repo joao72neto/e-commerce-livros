@@ -21,6 +21,12 @@ def buil_base_context():
 [CARTÕES DO CLIENTE]
 {cartoes_contexto()}
 
+[PÁGINA DE PEDIDOS DO CLIENTE]
+[Pedidos](http://localhost:3000/pedidos)
+
+[CARRINHO DO CLIENTE]
+[Carrinho](http://localhost:3000/pedidos)
+
 '''
     
 
