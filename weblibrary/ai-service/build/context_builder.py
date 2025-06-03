@@ -25,7 +25,7 @@ def buil_base_context():
 [Pedidos](http://localhost:3000/pedidos)
 
 [CARRINHO DO CLIENTE]
-[Carrinho](http://localhost:3000/pedidos)
+[Carrinho](http://localhost:3000/carrinho)
 
 '''
     
