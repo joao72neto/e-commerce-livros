@@ -14,7 +14,7 @@ api_key = os.getenv('GOOGLE_API_KEY')
 client = genai.Client(api_key=api_key)
 
 #Defininfo o meumodelo e o conteúdo que eu vou mostrar
-model = 'gemini-2.0-flash'
+model = 'gemini-1.5-flash'
     
 #Função que reseta as intruções do chat
 def create_ai_chat():
