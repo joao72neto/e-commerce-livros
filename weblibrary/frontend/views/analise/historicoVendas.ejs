@@ -44,7 +44,7 @@
             </div>
             <h2 class="title">Análise do Histórico de Vendas</h2>
             <div class="grafico">
-                <img src="/images/grafico.jpg" alt="">
+                <canvas id="historico-vendas"></canvas>
             </div>
         
         </main>
@@ -52,6 +52,9 @@
         <%- include('../components/footer')%>
 
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="/javaScript/pages/analise/historicoVendas.js"></script>
 
 </body>
 </html>
