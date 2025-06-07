@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function(){
 function montarSelectLivros(){
     const livros = document.querySelector('#livros-filtro');
     new Choices(livros, {
-        removeItemButton: true,            
-        placeholderValue: 'Livros',
+        removeItemButton: true,  
+        placeholderValue: 'Pesquisar...',          
         maxItemCount: 10 
     });
    
@@ -20,8 +20,8 @@ function montarSelectLivros(){
 function montarSelectCategorias(){
     const categorias = document.querySelector('#categorias-filtro');
     new Choices(categorias, {
-        removeItemButton: true,            
-        placeholderValue: 'Categorias',
+        removeItemButton: true,   
+        placeholderValue: 'Pesquisar...',           
         maxItemCount: 10 
     });
 }
