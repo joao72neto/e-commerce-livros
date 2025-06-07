@@ -3,50 +3,49 @@ main{
     margin: 0 auto;
 }
 
-input{
-    display: inline-block;
-}
-
-input[type="date"]{
-    width: 100%;
-}
-
-input[type="checkbox"]{
-    height: 15px;
-    padding: 0;
-    margin: 0;
-    transform: scale(2);
-
-    &:hover{
-        cursor: pointer;
-    }
-}
-
-p{
-    margin: 20px 0;
-}
-
-span{
-    margin: 0 10px;
+a{
+    display: block;
+    text-align: center;
 }
 
 .filtros{
-    padding: 30px;
     display: flex;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 0;
     align-items: center;
     justify-content: space-around;
 }
 
-.filtros h2{
-    text-align: center;
-}
-
 .box{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
     width: 300px;
+    height: 340px;
     padding: 30px;
     box-shadow: 0px 0px 20px #0000005b;
     border-radius: 20px;
     min-height: 300px;
+}
+
+.box h2{
+    margin: 0 0 5px 0;
+}
+
+.box .periodo{
+    justify-self: stretch;
+}
+
+.box p input{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.box select{
+    width: 80%;
+    margin: 0 auto;
 }
 
 .box .flex-prod{
@@ -56,6 +55,10 @@ span{
 .btn-filtro{
     margin: 50px 0;
     text-align: center;
+}
+
+.title{
+    margin: 50px 0 20px 0;
 }
 
 .grafico{
