@@ -11,7 +11,7 @@ function montarSelectLivros(){
     const livros = document.querySelector('#livros-filtro');
     new Choices(livros, {
         removeItemButton: true,            
-        placeholderValue: 'Selecione os livros',
+        placeholderValue: 'Livros',
         maxItemCount: 10 
     });
    
@@ -21,8 +21,7 @@ function montarSelectCategorias(){
     const categorias = document.querySelector('#categorias-filtro');
     new Choices(categorias, {
         removeItemButton: true,            
-        placeholderValue: 'Selecione as Categorias',
-        searchPlaceholderValue: 'Buscar Categoria...',
+        placeholderValue: 'Categorias',
         maxItemCount: 10 
     });
 }

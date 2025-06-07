@@ -18,48 +18,48 @@
         })%>
 
         <main>
-            <div class="filtros">
-                
-                <div class="box data">
-                    <h2 class="title-periodo">Período</h2>
-                    <p>Início: </p>
-                    <p class="periodo"><input type="date"></p>
-                    <p>Fim: </p>
-                    <p class="periodo"><input type="date"></p>
 
-                    <div class="btn-flt-data">
-                        <a href="">Filtrar</a>
-                    </div>
+            <div class="box data">
+                <h2 class="title-periodo">Período</h2>
+                <p>Início: </p>
+                <p class="periodo"><input type="date"></p>
+                <p>Fim: </p>
+                <p class="periodo"><input type="date"></p>
 
-                </div>
-                <div class="box categorias-livros">
-                    <h2 class="title-categorias-livros">Categorias e Livros</h2>
-                    <label for="categorias-filtro">Escolha as Categorias</label>
-                    <select name="categorias-filtro" id="categorias-filtro" multiple>
-                        <option value="">Ação</option>
-                        <option value="">Ficção</option>
-                        <option value="">Comédia</option>
-                        <option value="">Drama</option>
-                    </select>
-
-                    <label for="livros-filtro">Escolha os Livros</label>
-                    <select name="livros-filtro" id="livros-filtro" multiple>
-                        <option value="">GOT</option>
-                        <option value="">1984</option>
-                        <option value="">O Nome do Vento</option>
-                        <option value="">O Pequeno Príncipe</option>
-                        <option value="">O Pequeno Príncipe</option>
-                        <option value="">O Pequeno Príncipe</option>
-                        <option value="">O Pequeno Príncipe</option>
-                    </select>
-
-                    <div class="btn-flt-livros">
-                        <a href="">Filtrar</a>
-                    </div>
+                <div class="btn-flt-data">
+                    <a href="">Filtrar</a>
                 </div>
             </div>
-            <h2 class="title">Análise do Histórico de Vendas (Top 5 por padrão)</h2>
+
+            <div class="box categorias-livros">
+                <h2 class="title-categorias-livros">Categorias e Livros</h2>
+                <label for="categorias-filtro">Escolha as Categorias</label>
+                <select name="categorias-filtro" id="categorias-filtro" multiple>
+                    <option value="">Ação</option>
+                    <option value="">Ficção</option>
+                    <option value="">Comédia</option>
+                    <option value="">Drama</option>
+                </select>
+
+                <label for="livros-filtro">Escolha os Livros</label>
+                <select name="livros-filtro" id="livros-filtro" multiple>
+                    <option value="">GOT</option>
+                    <option value="">1984</option>
+                    <option value="">O Nome do Vento</option>
+                    <option value="">O Pequeno Príncipe</option>
+                    <option value="">O Pequeno Príncipe</option>
+                    <option value="">O Pequeno Príncipe</option>
+                    <option value="">O Pequeno Príncipe</option>
+                </select>
+
+                <div class="btn-flt-livros">
+                    <a href="">Filtrar</a>
+                </div>
+            </div>
+          
+            
             <div class="grafico">
+                <h2 class="title">Análise do Histórico de Vendas (Top 5 por padrão)</h2>
                 <canvas id="historico-vendas"></canvas>
             </div>
         
