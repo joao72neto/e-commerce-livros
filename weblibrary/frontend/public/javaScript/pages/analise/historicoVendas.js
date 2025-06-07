@@ -2,8 +2,30 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //Carregando todas as funções relacionadas ao histórico de vendas
     montarGrafico();
+    montarSelectLivros();
+    montarSelectCategorias();
 
 });
+
+function montarSelectLivros(){
+    const livros = document.querySelector('#livros-filtro');
+    new Choices(livros, {
+        removeItemButton: true,            
+        placeholderValue: 'Selecione os livros',
+        maxItemCount: 10 
+    });
+   
+}
+
+function montarSelectCategorias(){
+    const categorias = document.querySelector('#categorias-filtro');
+    new Choices(categorias, {
+        removeItemButton: true,            
+        placeholderValue: 'Selecione as Categorias',
+        searchPlaceholderValue: 'Buscar Categoria...',
+        maxItemCount: 10 
+    });
+}
 
 function montarGrafico() {
     const ctx = document.getElementById('historico-vendas');

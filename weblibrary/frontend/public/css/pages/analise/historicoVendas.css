@@ -9,12 +9,13 @@ a{
 }
 
 .filtros{
-    display: flex;
-    max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
     margin: 0 auto;
     padding: 30px 0;
     align-items: center;
-    justify-content: space-around;
+    justify-items: center;
 }
 
 .box{
@@ -30,6 +31,11 @@ a{
     min-height: 300px;
 }
 
+.categorias-livros{
+    grid-column: span 2;
+    width: 100%;
+}
+
 .box h2{
     margin: 0 0 5px 0;
 }
@@ -42,11 +48,31 @@ a{
     width: 80%;
     margin: 0 auto;
 }
-
-.box select{
-    width: 80%;
+/*Personalizando os selects*/
+.box .choices{
+    width: 100%;
     margin: 0 auto;
 }
+
+.box .choices__inner {
+    min-height: 44px;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.box .choices__list--multiple .choices__item {
+    background-color: #036672;
+    color: #fff;
+    border-radius: 9999px;
+    padding: 5px 10px;
+    margin: 3px 5px 3px 0;
+    font-size: 13px;
+}
+
+/*--------*/
 
 .box .flex-prod{
     display: flex;
