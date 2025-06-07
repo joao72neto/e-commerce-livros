@@ -36,7 +36,7 @@ function montarGrafico() {
             ]
         },
         options: {
-            responsive: true,
+            responsive: false,
             interaction: {
                 intersect: false,
                 mode: 'index'
