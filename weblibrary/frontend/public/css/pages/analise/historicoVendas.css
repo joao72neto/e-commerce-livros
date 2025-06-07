@@ -1,3 +1,5 @@
+@import url('/css/colors.css');
+
 main{
     max-width: 1200px;
     margin: 0 auto;
@@ -24,7 +26,6 @@ a{
     justify-items: center;
     align-items: center;
     width: 300px;
-    height: 340px;
     padding: 30px;
     box-shadow: 0px 0px 20px #0000005b;
     border-radius: 20px;
@@ -36,8 +37,12 @@ a{
     width: 100%;
 }
 
-.box h2{
+.box .title-periodo{
     margin: 0 0 5px 0;
+}
+
+.box .title-categorias-livros{
+    margin: 0 0 20px 0;
 }
 
 .box .periodo{
@@ -50,26 +55,31 @@ a{
 }
 /*Personalizando os selects*/
 .box .choices{
-    width: 100%;
-    margin: 0 auto;
+    display: block;
+    width: 90%;
+    margin: 20px auto;
+    border-radius: 20px;
 }
 
-.box .choices__inner {
-    min-height: 44px;
-    border-radius: 8px;
-    padding: 8px;
-    font-size: 14px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+ .box .choices__inner {
+    display: flex;
+    border-radius: 20px;
+    min-height: 40px;
+    align-items: center;
+    border: 1px solid var(--preto);
 }
 
-.box .choices__list--multiple .choices__item {
-    background-color: #036672;
-    color: #fff;
-    border-radius: 9999px;
-    padding: 5px 10px;
-    margin: 3px 5px 3px 0;
-    font-size: 13px;
+.choices__list--multiple .choices__item{
+    background-color: var(--preto);
+    color: white;
+    border-radius: 20px;
+}
+
+.choices__list--multiple .choices__item .choices__button:hover{
+    background-color: rgba(0, 0, 0, 0.295);
+    border-radius: 0px 20px 20px 0;
+    color: black;
+    transition: background-color 0.5s;
 }
 
 /*--------*/
