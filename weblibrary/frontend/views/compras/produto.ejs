@@ -41,9 +41,12 @@
             </div>
         </main>
 
-        <div class="assistant">
-            <%- include('../components/assistant')%>
-        </div>
+        <%
+            if(cliente.length !== 0){ %>
+                <div class="assistant">
+                    <%- include('../components/assistant')%>
+                </div>
+         <% } %>
 
         <%- include('../components/footer')%>
 
