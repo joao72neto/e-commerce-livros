@@ -282,22 +282,6 @@ CREATE TABLE IF NOT EXISTS `trocas` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `pagamento`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pagamento` (
-  `pag_id` INT NOT NULL AUTO_INCREMENT,
-  `pag_vnd_id` INT NOT NULL,
-  `pag_metodo` ENUM('cartao_credito', 'cupom_troca', 'cupom_promocional') NOT NULL,
-  `pag_valorPago` DECIMAL(10,2) NOT NULL,
-  PRIMARY KEY (`pag_id`),
-  CONSTRAINT `fk_pag_vnd`
-    FOREIGN KEY (`pag_vnd_id`)
-    REFERENCES `vendas` (`vnd_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
--- -----------------------------------------------------
 -- Table `transacoes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `transacoes` (
@@ -311,23 +295,6 @@ CREATE TABLE IF NOT EXISTS `transacoes` (
   CONSTRAINT `fk_trs_clt`
     FOREIGN KEY (`trs_clt_id`)
     REFERENCES `clientes` (`clt_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `historico_vendas`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `historico_vendas` (
-  `hvd_id` INT NOT NULL AUTO_INCREMENT,
-  `hvd_lvr_id` INT NOT NULL,
-  `hvd_qtd` INT NOT NULL,
-  `hvd_data` DATE NOT NULL,
-  `hvd_totalVendido` INT NOT NULL,
-  PRIMARY KEY (`hvd_id`),
-  CONSTRAINT `fk_hvd_lvr`
-    FOREIGN KEY (`hvd_lvr_id`)
-    REFERENCES `livros` (`lvr_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
