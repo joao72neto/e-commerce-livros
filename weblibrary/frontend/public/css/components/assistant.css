@@ -19,6 +19,7 @@
     justify-content: flex-end;
     bottom: 5px;
     right: 5px;
+    z-index: 2;
     transition: bottom 0.25s ease, right 0.25s ease;
 }
 
@@ -77,6 +78,7 @@
     border: 1px solid var(--branco);
     transition: bottom 0.25s ease;
     background-color: var(--cinza);
+    z-index: 2;
 }
 
 .chat .title-ai{
