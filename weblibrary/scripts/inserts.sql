@@ -138,3 +138,29 @@ INSERT INTO estoque (est_for_id, est_lvr_id, est_gpp_id, est_qtd, est_data, est_
 (2, 9, 5, 20, '2024-01-10', 47.67),
 (4, 10, 5, 35, '2023-11-20', 46.60),
 (2, 10, 5, 20, '2024-01-15', 47.67);
+
+-- Tabela de Categorias
+INSERT INTO categoria (cat_nome) VALUES 
+('Fantasia'),
+('Distopia'),
+('Clássico Brasileiro'),
+('Fábula'),
+('Romance Clássico'),
+('Literatura Estrangeira'),
+('Aventura');
+
+-- Tabela que relaciona a categoria com os livros
+INSERT INTO livros_categorias (lvc_lvr_id, lvc_cat_id) VALUES
+(1, 1),
+(1, 7),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 3),
+(8, 1),
+(9, 1),
+(9, 7),
+(10, 1),
+(10, 7);
