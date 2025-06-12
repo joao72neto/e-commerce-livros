@@ -172,7 +172,14 @@ header #logado{
     box-shadow: 0px 0px 20px #0000005b;
     border-radius: 20px;
     background-color: white;
+    transition: transform 0.3s ease;
+
+    &:hover{
+        transform: scale(1.08);
+        z-index: 1;
+    }
 }
+
 
 .book .imagem img{
     width: 200px;
