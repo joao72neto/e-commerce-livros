@@ -60,9 +60,13 @@ document.querySelector('button[type="submit"]').addEventListener('click', async 
             }
 
             //Atualizando o status do pedido
-            const updateStatus = {
+            let updateStatus = {
                 vnd_id: vnd_id,
                 vnd_status: 'Devolução Concluída'
+            }
+
+            if(trc_tipo === 'troca'){
+                updateStatus.vnd_status = 'Troca Concluída';
             }
 
             const resStatus = await atualizarStatusPedidoIdService(updateStatus);
