@@ -34,12 +34,14 @@ module.exports.buscarLivrosVendidos = async () => {
 
     sql = `
         select
+            lvr_id,
             lvr_titulo,
             sum(vnd_qtd) total_vendido,
             date(vnd_data) data_venda
         from 
             vw_historico_vendas
         group by
+            lvr_id,
             lvr_titulo,
             date(vnd_data)
         order by
