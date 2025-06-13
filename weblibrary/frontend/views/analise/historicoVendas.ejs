@@ -39,18 +39,16 @@
                     <% categorias.forEach(cat => { %>
                         <option value="<%=cat.cat_id%>"><%=cat.cat_nome%></option>
                     <% }); %>
-                    
+
                 </select>
 
                 <label for="livros-filtro">Escolha os Livros</label>
                 <select name="livros-filtro" id="livros-filtro" multiple>
-                    <option value="">GOT</option>
-                    <option value="">1984</option>
-                    <option value="">O Nome do Vento</option>
-                    <option value="">O Pequeno Príncipe</option>
-                    <option value="">O Pequeno Príncipe</option>
-                    <option value="">O Pequeno Príncipe</option>
-                    <option value="">O Pequeno Príncipe</option>
+
+                    <% livros.forEach(livro => { %>
+                        <option value="<%=livro.lvr_id%>"><%=livro.lvr_titulo%></option>
+                    <% }); %>
+
                 </select>
 
                 <div class="btn-flt-livros">
