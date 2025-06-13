@@ -164,3 +164,26 @@ INSERT INTO livros_categorias (lvc_lvr_id, lvc_cat_id) VALUES
 (9, 7),
 (10, 1),
 (10, 7);
+
+-- Inserindo inserts de pedidos hipotéticos
+INSERT INTO vendas 
+(vnd_clt_id, vnd_lvr_id, vnd_numPedido, vnd_data, vnd_status, vnd_valorTotal, vnd_frete, vnd_qtd) 
+VALUES 
+-- Livro 1: vendido em 3 datas diferentes
+(1, 1, 'PED001', '2025-06-01', 'Entregue', 59.90, 5.00, 1),
+(2, 1, 'PED002', '2025-06-05', 'Entregue', 59.90, 5.00, 2),
+(3, 1, 'PED003', '2025-06-10', 'Entregue', 59.90, 5.00, 1),
+
+-- Livro 2: vendido duas vezes no mesmo dia
+(1, 2, 'PED004', '2025-06-03', 'Entregue', 39.90, 5.00, 1),
+(2, 2, 'PED005', '2025-06-03', 'Entregue', 39.90, 5.00, 2),
+
+-- Livro 3: vendido em dias diferentes
+(2, 3, 'PED006', '2025-06-02', 'Entregue', 29.90, 5.00, 1),
+(3, 3, 'PED007', '2025-06-09', 'Entregue', 29.90, 5.00, 3),
+
+-- Livro 4: uma venda só
+(1, 4, 'PED008', '2025-06-07', 'Entregue', 49.90, 5.00, 1),
+
+-- Livro 5: vendido com quantidade maior
+(3, 5, 'PED009', '2025-06-11', 'Entregue', 69.90, 5.00, 4);
