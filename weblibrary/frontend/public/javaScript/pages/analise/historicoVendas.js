@@ -29,68 +29,65 @@ function montarSelectCategorias(){
 }
 
 async function montarGrafico() {
-    const ctx = document.getElementById('historico-vendas');
-    const livros_analise = await buscarLivrosVendidoService();
+    
+    // //Obtendo os dados para análise
+    // const livros_analise = await buscarLivrosVendidoService();
 
-    //Agrupando as datas
-    const datas = [...new Set(livros_analise.map(item => item.data_venda))].sort();
-    console.log(datas);
+    // //Agrupando as datas
+    // const datas = [...new Set(livros_analise.map(item => item.data_venda))].sort();
+    // console.log(datas);
 
-    //Agrupando os livros com as datas
-    const livrosMap = {};
-    livros_analise.forEach(item => {
+    // //Agrupando os livros com as datas
+    // const livrosMap = {};
+    // livros_analise.forEach(item => {
         
-        //Obtendo dados
-        const titulo = item.lvr_titulo;
-        const data = item.data_venda;
-        const qtd = parseInt(item.total_vendido);
+    //     //Obtendo dados
+    //     const titulo = item.lvr_titulo;
+    //     const data = item.data_venda;
+    //     const qtd = parseInt(item.total_vendido);
 
-        if(!livrosMap[titulo]){
-            livrosMap[titulo] = {};
-        }
+    //     if(!livrosMap[titulo]){
+    //         livrosMap[titulo] = {};
+    //     }
         
-        livrosMap[titulo][data] = qtd;
+    //     livrosMap[titulo][data] = qtd;
 
-    });
+    // });
 
-    //Montando o Dataset
-    const datasets = Object.entries(livrosMap).map(([titulo, vendasPorData]) => {
-        const data = datas.map(data => vendasPorData[data] || 0);
-        return {
-            label: titulo,
-            data: data,
-            borderColor: gerarCorAleatoria(),
-            borderWidth: 3,
-            tension: 0.3,
-            clip: false
-        }
-    });
+    // //Montando o Dataset
+    // const datasets = Object.entries(livrosMap).map(([titulo, vendasPorData]) => {
+    //     const data = datas.map(data => vendasPorData[data] || 0);
+    //     return {
+    //         label: titulo,
+    //         data: data,
+    //         borderColor: gerarCorAleatoria(),
+    //         borderWidth: 3,
+    //         tension: 0.3,
+    //         clip: false
+    //     }
+    // });
 
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: datas,
-            datasets: datasets
+    //Configurando o gráfico
+    const options = {
+        chart: {
+            type: 'line'
         },
-        options: {
-            responsive: true,
-            interaction: {
-                intersect: false,
-                mode: 'index'
-            },
-            plugins: {
-                legend: {
-                    position: 'top',
-                    onClick: null,
-                    labels: {
-                        usePointStyle: true,
-                        pointStyle: 'circle',
-                        padding: 20
-                    }
-                }
-            }
+        series: [{
+            name: 'sales',
+            data: [30,40,35,50,49,60,70,91,125]
+        }],
+        xaxis: {
+            categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
         }
-    });
+    }
+
+    //Renderizando o gráfico
+    const chart = new ApexCharts(
+        document.querySelector('#historico-vendas'), 
+        options
+    );
+
+    chart.render();
 }
 
 //Função que gera cores aleatórias
@@ -99,4 +96,4 @@ function gerarCorAleatoria() {
     const g = Math.floor(Math.random() * 156) + 100;
     const b = Math.floor(Math.random() * 156) + 100;
     return `rgb(${r}, ${g}, ${b})`;
-  }
+}
