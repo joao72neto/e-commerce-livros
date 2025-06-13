@@ -5,14 +5,13 @@ a{
     text-align: center;
 }
 
-/*Organizando os elementos na página*/
 
+/*Organizando os elementos na página*/
 main{
     max-width: 1600px;
     margin: 50px auto;
     display: grid;
-    grid-template-columns: 2fr 6fr;
-    gap: 50px;
+    grid-template-columns: 2fr 5fr;
 }
 
 main .data{
@@ -20,6 +19,8 @@ main .data{
     grid-column: 1;
     align-self: center;
     justify-self: center;
+    margin-bottom: 12%;
+    height: 100%;
     width: 100%;
 }
 
@@ -34,6 +35,7 @@ main .categorias-livros{
     grid-column: 1;
     justify-self: center;
     align-self: center;
+    height: 100%;
 }
 
 
@@ -91,7 +93,7 @@ main .categorias-livros{
     border-radius: 20px;
 }
 
- .box .choices__inner {
+.box .choices__inner {
     display: flex;
     border-radius: 20px;
     min-height: 40px;
@@ -124,7 +126,7 @@ main .categorias-livros{
 }
 
 .title{
-    margin: 50px 0 20px 0;
+    margin: 0px 0 25px 0;
 }
 
 .grafico{
@@ -132,16 +134,17 @@ main .categorias-livros{
     grid-template-columns: 1fr;
     align-items: center;
     justify-items: center;
-    margin: 30px 0 50px 0;
-    width: 100%;
+    width: 80%;
+    transform: scale(1.25);     
+    font-size: 0.8em;
 }
 
-.grafico canvas{
-    width: 90%;
+.grafico #historico-vendas{
+    width: 95%;
     background-color: white;
-    padding: 30px;
+    padding: 20px;
     border-radius: 20px;
     box-shadow: 0px 0px 20px #0000005b;
-    
+  
 }
 

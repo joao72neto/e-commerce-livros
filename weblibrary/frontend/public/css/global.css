@@ -107,6 +107,7 @@ table {
     margin-top: 20px;
     
 }
+
 th, td {
     padding: 15px;
     text-align: left;
@@ -114,12 +115,11 @@ th, td {
    
     text-align: center;
 }
+
 th {
     background-color: var(--preto);
     color: var(--branco);
 }
-
-
 
 ul{
     list-style: none;
