@@ -5,4 +5,6 @@ const controllerHistoricoVendas = require('../../controller/analise/controllerHi
 //Rotas para páginas
 router.get('/vendas/historico', controllerHistoricoVendas.getHistoricoVendas);
 
+//Rotas para APIS
+router.get('/api/vendas/historico', controllerHistoricoVendas.getApiLivrosVendidos);
 module.exports = router;
