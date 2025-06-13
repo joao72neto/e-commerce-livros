@@ -14,3 +14,20 @@ module.exports.getHistoricoVendas = async (req, res) => {
         livros: livros
     });
 };
+
+//Apis
+module.exports.getApiLivrosVendidos = async (req, res) => {
+    let livros = await buscarLivrosVendidos();
+
+    //Formatando a data
+    livros = livros.map(livro => {
+        const data = new Date(livro.data_venda).toISOString().split('T')[0];
+        return{
+            ...livro, 
+            data_venda: data
+        }
+    });
+
+    //Retornando dados json
+    res.json(livros);
+}
