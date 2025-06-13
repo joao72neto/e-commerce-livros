@@ -336,6 +336,26 @@ CREATE TABLE IF NOT EXISTS `livros_categorias` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- View `vw_historico_vendas`
+-- -----------------------------------------------------
+CREATE OR REPLACE VIEW vw_historico_vendas AS
+SELECT
+	l.lvr_id,
+	l.lvr_titulo,
+	c.cat_id,
+	c.cat_nome,
+	v.vnd_id,
+	v.vnd_data,
+	v.vnd_qtd
+FROM 
+	vendas v
+	JOIN livros l ON l.lvr_id = v.vnd_lvr_id
+	JOIN livros_categorias lc ON lc.lvc_lvr_id = l.lvr_id 
+	JOIN categoria  c ON c.cat_id = lc.lvc_cat_id
+WHERE
+	v.vnd_status = 'entregue';
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
