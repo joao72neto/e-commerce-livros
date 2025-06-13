@@ -10,6 +10,7 @@ module.exports.buscarCategoriasVendidas = async () => {
 
     sql = `
         select distinct 
+            cat_id,
             cat_nome 
         from 
             vw_historico_vendas;
