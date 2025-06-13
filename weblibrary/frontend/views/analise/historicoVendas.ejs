@@ -35,10 +35,11 @@
                 <h2 class="title-categorias-livros">Categorias e Livros</h2>
                 <label for="categorias-filtro">Escolha as Categorias</label>
                 <select name="categorias-filtro" id="categorias-filtro" multiple>
-                    <option value="">Ação</option>
-                    <option value="">Ficção</option>
-                    <option value="">Comédia</option>
-                    <option value="">Drama</option>
+
+                    <% categorias.forEach(cat => { %>
+                        <option value="<%=cat.cat_id%>"><%=cat.cat_nome%></option>
+                    <% }); %>
+                    
                 </select>
 
                 <label for="livros-filtro">Escolha os Livros</label>
