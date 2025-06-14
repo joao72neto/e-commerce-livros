@@ -42,21 +42,21 @@
 
                 </select>
 
-                <label for="livros-filtro">Escolha os Livros</label>
+                <!-- <label for="livros-filtro">Escolha os Livros</label>
                 <select name="livros-filtro" id="livros-filtro" multiple>
 
                     <% livros.forEach(livro => { %>
                         <option value="<%=livro.lvr_id%>"><%=livro.lvr_titulo%></option>
                     <% }); %>
 
-                </select>
+                </select> -->
 
                 <div class="btn-flt-livros">
                     <a href="">Filtrar</a>
                 </div>
             </div>
           
-            <h2 class="title">Análise do Histórico de Vendas (Top 5 por padrão)</h2>
+            <h2 class="title">Análise do Histórico de Vendas</h2>
             <div class="grafico">
                 <div id="historico-vendas"></div>
             </div>
