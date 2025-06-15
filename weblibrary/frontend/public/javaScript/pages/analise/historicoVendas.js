@@ -4,12 +4,27 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //Carregando todas as funções relacionadas ao histórico de vendas
     montarSelectCategorias();
+    montarInputPeriodo(); 
     filtrarPorCategora();
     montarGrafico();
 });
 
 let choicesInstance;
 let chart = null;
+
+function montarInputPeriodo(){
+    flatpickr('#data-range', {
+        mode: 'range',
+        dateFormat: 'Y-m-d',
+        locale: 'pt',
+        enable: [
+            {
+                from: '2025-06-01',
+                to: '2025-06-13'
+            }
+        ]
+    });
+}
 
 //Função que monta o select das categorias
 function montarSelectCategorias(){
