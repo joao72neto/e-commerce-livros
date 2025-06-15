@@ -5,18 +5,49 @@ document.addEventListener('DOMContentLoaded', function(){
     //Carregando todas as funções relacionadas ao histórico de vendas
     montarGrafico();
     montarSelectCategorias();
+    filtrarPorCategora();
 
 });
 
+let choicesInstance;
+
+//Função que monta o select das categorias
 function montarSelectCategorias(){
     const categorias = document.querySelector('#categorias-filtro');
-    new Choices(categorias, {
+    choicesInstance = new Choices(categorias, {
         removeItemButton: true,   
         placeholderValue: 'Pesquisar...',           
         maxItemCount: 10 
     });
 }
 
+//Função que pega as categorias selecionadas para filtro
+function filtrarPorCategora(){
+    document.querySelector('.btn-flt-cat').addEventListener('click', (event) => {
+        event.preventDefault();
+        
+        //Obetendo as categorias selecionadas
+        const categorias = choicesInstance.getValue(true);
+        console.log(categorias);
+
+        //Montando a url para o filtro
+        let url = '/vendas/historico?';
+        if (categorias.length !== 0){
+            const params = categorias.map(cat_id => `cat_id=${encodeURIComponent(cat_id)}`).join('&');
+            url += params;
+
+        }else{
+
+            //Retirnado o ? caso não haja parâmetros
+            url = url.slice(0, -1);
+        }
+
+        //Filtrando os dados
+        window.location.href = url;
+    });
+}
+
+//Função que monta o gráfico na página
 async function montarGrafico() {
     
     //Obtendo os dados para análise
@@ -24,7 +55,6 @@ async function montarGrafico() {
 
     //Agrupando as datas
     const datas = [...new Set(livros_analise.map(item => item.data_venda))].sort();
-    console.log(datas);
 
     //Agrupando os livros com as datas
     const livrosMap = {};
