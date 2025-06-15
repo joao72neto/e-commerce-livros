@@ -3,13 +3,13 @@ import { buscarLivrosVendidoService } from "/javaScript/service/analise/serviceH
 document.addEventListener('DOMContentLoaded', function(){
 
     //Carregando todas as funções relacionadas ao histórico de vendas
-    montarGrafico();
     montarSelectCategorias();
     filtrarPorCategora();
-
+    montarGrafico();
 });
 
 let choicesInstance;
+let chart = null;
 
 //Função que monta o select das categorias
 function montarSelectCategorias(){
@@ -46,16 +46,21 @@ function filtrarPorCategora(){
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                montarGrafico(data);
             });
     });
 }
 
 //Função que monta o gráfico na página
-async function montarGrafico() {
+async function montarGrafico(livros_analise) {
     
-    //Obtendo os dados para análise
-    const livros_analise = await buscarLivrosVendidoService();
+    if(chart){
+        chart.destroy(); 
+    }
+
+    if(!livros_analise){
+        livros_analise = await buscarLivrosVendidoService();
+    }
 
     //Agrupando as datas
     const datas = [...new Set(livros_analise.map(item => item.data_venda))].sort();
@@ -98,7 +103,7 @@ async function montarGrafico() {
     }
 
     //Renderizando o gráfico
-    const chart = new ApexCharts(
+    chart = new ApexCharts(
         document.querySelector('#historico-vendas'), 
         options
     );
