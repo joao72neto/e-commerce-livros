@@ -6,7 +6,7 @@ module.exports.getHistoricoVendas = async (req, res) => {
     
     //Obtendo as categorias
     const categorias = await buscarCategoriasVendidas();
-    
+
     //Renderizando a página
     return res.render('analise/historicoVendas', {
         categorias: categorias

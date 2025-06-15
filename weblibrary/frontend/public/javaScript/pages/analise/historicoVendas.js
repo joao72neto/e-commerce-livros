@@ -31,7 +31,7 @@ function filtrarPorCategora(){
         console.log(categorias);
 
         //Montando a url para o filtro
-        let url = '/vendas/historico?';
+        let url = '/api/vendas/historico?';
         if (categorias.length !== 0){
             const params = categorias.map(cat_id => `cat_id=${encodeURIComponent(cat_id)}`).join('&');
             url += params;
@@ -43,7 +43,11 @@ function filtrarPorCategora(){
         }
 
         //Filtrando os dados
-        window.location.href = url;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            });
     });
 }
 
