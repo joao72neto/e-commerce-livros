@@ -8,10 +8,35 @@ document.addEventListener('DOMContentLoaded', function(){
     filtrarPorCategora();
     filtroPorPeriodo();
     montarGrafico();
+
+    //Limpando os filtros
+    limparFiltroPeriodo();
+    limparFiltroCategorias();
 });
 
 let choicesInstance;
 let chart = null;
+
+function limparFiltroPeriodo(){
+    document.querySelectorAll('.btn-clean-periodo').forEach(btn => {
+        btn.addEventListener('click', function(event){
+            event.preventDefault();
+            const box = this.closest('.box');
+            const input = box.querySelector('input');
+            input.value = '';
+        });
+    });
+}
+
+function limparFiltroCategorias(){
+    document.querySelectorAll('.btn-clean-cat').forEach(btn => {
+        btn.addEventListener('click', function(event){
+            event.preventDefault();
+            choicesInstance.removeActiveItems();
+        });
+    });
+}
+
 
 function montarInputPeriodo(){
     flatpickr('#data-range', {
