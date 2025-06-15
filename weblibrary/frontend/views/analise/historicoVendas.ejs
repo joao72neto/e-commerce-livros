@@ -22,7 +22,8 @@
 
             <div class="box data">
                 <h2 class="title-periodo">Período</h2>
-                <input id="data-range" type="text" placeholder="Selecione o período" class="form-control">
+                <label for="data-range">Selecione um Período</label>
+                <input id="data-range" type="text" placeholder="Clique aqui..." class="form-control">
                 <div class="btn-flt-data">
                     <a href="">Filtrar</a>
                 </div>
@@ -30,7 +31,7 @@
 
             <div class="box categorias">
                 <h2 class="title-categorias">Categorias</h2>
-                <label for="categorias-filtro">Escolha as Categorias</label>
+                <label for="categorias-filtro">Selecione as Categorias</label>
                 <select name="categorias-filtro" id="categorias-filtro" multiple>
 
                     <% categorias.forEach(cat => { %>
