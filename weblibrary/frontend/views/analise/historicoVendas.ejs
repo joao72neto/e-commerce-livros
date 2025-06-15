@@ -31,8 +31,8 @@
                 </div>
             </div>
 
-            <div class="box categorias-livros">
-                <h2 class="title-categorias-livros">Categorias e Livros</h2>
+            <div class="box categorias">
+                <h2 class="title-categorias">Categorias</h2>
                 <label for="categorias-filtro">Escolha as Categorias</label>
                 <select name="categorias-filtro" id="categorias-filtro" multiple>
 
@@ -41,15 +41,6 @@
                     <% }); %>
 
                 </select>
-
-                <!-- <label for="livros-filtro">Escolha os Livros</label>
-                <select name="livros-filtro" id="livros-filtro" multiple>
-
-                    <% livros.forEach(livro => { %>
-                        <option value="<%=livro.lvr_id%>"><%=livro.lvr_titulo%></option>
-                    <% }); %>
-
-                </select> -->
 
                 <div class="btn-flt-livros">
                     <a href="">Filtrar</a>
