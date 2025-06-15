@@ -44,7 +44,7 @@ main .data{
     height: 35px;
 }
 
-main .categorias-livros{
+main .categorias{
     grid-row: 3;
     grid-column: 1;
     padding: 20px;

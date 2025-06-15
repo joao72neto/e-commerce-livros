@@ -4,20 +4,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //Carregando todas as funções relacionadas ao histórico de vendas
     montarGrafico();
-    // montarSelectLivros();
     montarSelectCategorias();
 
 });
-
-// function montarSelectLivros(){
-//     const livros = document.querySelector('#livros-filtro');
-//     new Choices(livros, {
-//         removeItemButton: true,  
-//         placeholderValue: 'Pesquisar...',          
-//         maxItemCount: 10 
-//     });
-   
-// }
 
 function montarSelectCategorias(){
     const categorias = document.querySelector('#categorias-filtro');
@@ -81,12 +70,4 @@ async function montarGrafico() {
     );
 
     chart.render();
-}
-
-//Função que gera cores aleatórias
-function gerarCorAleatoria() {
-    const r = Math.floor(Math.random() * 156) + 100;
-    const g = Math.floor(Math.random() * 156) + 100;
-    const b = Math.floor(Math.random() * 156) + 100;
-    return `rgb(${r}, ${g}, ${b})`;
 }

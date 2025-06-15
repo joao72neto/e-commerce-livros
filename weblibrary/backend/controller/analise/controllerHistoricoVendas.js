@@ -4,14 +4,12 @@ const { buscarLivrosVendidos } = require('../../model/analise/modelHistoricoVend
 //Página
 module.exports.getHistoricoVendas = async (req, res) => {
     
-    //Obtendo os dados
-    const livros = await buscarLivrosVendidos();
+    //Obtendo as categorias
     const categorias = await buscarCategoriasVendidas();
     
     //Renderizando a página
     return res.render('analise/historicoVendas', {
-        categorias: categorias,
-        livros: livros
+        categorias: categorias
     });
 };
 
