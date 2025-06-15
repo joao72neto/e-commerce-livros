@@ -36,6 +36,7 @@ module.exports.buscarLivrosVendidos = async () => {
         select
             lvr_id,
             lvr_titulo,
+            cat_nome,
             sum(vnd_qtd) total_vendido,
             date(vnd_data) data_venda
         from 
@@ -43,6 +44,7 @@ module.exports.buscarLivrosVendidos = async () => {
         group by
             lvr_id,
             lvr_titulo,
+            cat_nome,
             date(vnd_data)
         order by
             data_venda;
