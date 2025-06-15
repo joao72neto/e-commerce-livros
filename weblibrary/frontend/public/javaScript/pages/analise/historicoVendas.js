@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function(){
     montarSelectCategorias();
     montarInputPeriodo(); 
     filtrarPorCategora();
+    filtroPorPeriodo();
     montarGrafico();
 });
 
@@ -36,6 +37,35 @@ function montarSelectCategorias(){
     });
 }
 
+//Filtrando os dados por período
+function filtroPorPeriodo(){
+
+    document.querySelector('.btn-flt-data').addEventListener('click', (event) => {
+        event.preventDefault();
+        
+        //Obtendo o período desejado
+        let periodo = document.querySelector('#data-range').value;
+        
+        //Montando a URL
+        if(!periodo){
+            return;
+        }
+
+        periodo = periodo.split(' ');
+        const inicio = periodo[0] ? periodo[0] : null;
+        const fim = periodo[2] ? periodo[2]  : null
+        let url = `/api/vendas/historico?inicio=${inicio}&fim=${fim}`;
+
+        //Filtrando os dados
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data); 
+            });
+
+    });  
+}
+
 //Função que pega as categorias selecionadas para filtro
 function filtrarPorCategora(){
     document.querySelector('.btn-flt-cat').addEventListener('click', (event) => {
@@ -43,7 +73,6 @@ function filtrarPorCategora(){
         
         //Obetendo as categorias selecionadas
         const categorias = choicesInstance.getValue(true);
-        console.log(categorias);
 
         //Montando a url para o filtro
         let url = '/api/vendas/historico?';
