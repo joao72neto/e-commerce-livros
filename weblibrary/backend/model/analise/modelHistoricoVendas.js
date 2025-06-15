@@ -27,7 +27,7 @@ module.exports.buscarCategoriasVendidas = async () => {
 }
 
 //Obtendo os livros vendidos da vw_historico_vendas
-module.exports.buscarLivrosVendidos = async () => {
+module.exports.buscarLivrosVendidos = async (cat_ids) => {
     
     //Obtendo o banco
     const db = await getDb();
@@ -36,7 +36,7 @@ module.exports.buscarLivrosVendidos = async () => {
         select
             lvr_id,
             lvr_titulo,
-            cat_nome,
+            cat_id,
             sum(vnd_qtd) total_vendido,
             date(vnd_data) data_venda
         from 
@@ -44,7 +44,7 @@ module.exports.buscarLivrosVendidos = async () => {
         group by
             lvr_id,
             lvr_titulo,
-            cat_nome,
+            cat_id,
             date(vnd_data)
         order by
             data_venda;
