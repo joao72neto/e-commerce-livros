@@ -121,7 +121,7 @@ function filtroPorPeriodo(){
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                //Atualizar o gráfico
+                montarGrafico(data);
             });
 
     });  

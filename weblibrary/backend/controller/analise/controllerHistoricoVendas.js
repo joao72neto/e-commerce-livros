@@ -16,16 +16,15 @@ module.exports.getHistoricoVendas = async (req, res) => {
 //Apis
 module.exports.getApiLivrosVendidos = async (req, res) => {
     
-    //Preparando os dados
+    //Preparando os dados dos filtros
     const dados = {
         cat_ids: req.query.cat_id,
         inicio: req.query.inicio,
         fim: req.query.fim
     }
-
-    console.log(dados);
     
-    let livros = await buscarLivrosVendidos(req.query.cat_id);
+    //Buscando todos os dados dos livros para análise
+    let livros = await buscarLivrosVendidos(dados);
 
     //Formatando a data
     livros = livros.map(livro => {
