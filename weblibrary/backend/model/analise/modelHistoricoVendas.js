@@ -29,6 +29,9 @@ module.exports.buscarCategoriasVendidas = async () => {
 //Obetendo as datas com compras
 module.exports.buscarDatasVendas = async () => {
     
+    //Obtendo o banco
+    const db = await getDb();
+
     //Montando a query
     const sql = `
         select distinct
