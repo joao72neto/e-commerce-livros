@@ -1,5 +1,6 @@
 const { buscarCategoriasVendidas } = require('../../model/analise/modelHistoricoVendas');
 const { buscarLivrosVendidos } = require('../../model/analise/modelHistoricoVendas');
+const { buscarDatasVendas } = require('../../model/analise/modelHistoricoVendas');
 
 //Página
 module.exports.getHistoricoVendas = async (req, res) => {
@@ -36,5 +37,22 @@ module.exports.getApiLivrosVendidos = async (req, res) => {
     });
 
     //Retornando dados json
-    res.json(livros);
+    return res.json(livros);
 }
+
+module.exports.getApiDatasComVendas = async (req, res) => {
+    
+    //Obtendo as datas
+    let datas = await buscarDatasVendas();
+
+    //Formatando as datas
+    datas = datas.map(data => {
+        const dataFormatada = new Date(data.data_venda).toISOString().split('T')[0];
+        return{
+            data_venda: dataFormatada
+        }
+    })
+
+    //Retornando os dados
+    return res.json(datas);
+};
