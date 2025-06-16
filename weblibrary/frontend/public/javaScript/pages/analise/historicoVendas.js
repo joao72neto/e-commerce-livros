@@ -200,7 +200,10 @@ async function montarGrafico(livros_analise) {
     //Configurando o gráfico
     const options = {
         chart: {
-            type: 'line'
+            type: 'area',
+        },
+        stroke: {
+            curve: 'smooth'
         },
         series: datasets,
         xaxis: {
