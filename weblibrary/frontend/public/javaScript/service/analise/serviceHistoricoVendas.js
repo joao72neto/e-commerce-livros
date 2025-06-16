@@ -1,3 +1,5 @@
+//GET
+
 //Obtendo dados dos livros vendidos para análise
 export async function buscarLivrosVendidoService() {
     try{
@@ -11,3 +13,18 @@ export async function buscarLivrosVendidoService() {
         throw err;
     }
 }
+
+//Obtendo todas as datas com vendas
+export async function buscarDatasVendasService() {
+    try{
+
+        const res = await fetch(`/api/vendas/historico/datas`);
+        const datas = await res.json();
+        return datas;
+
+    }catch(err){
+        console.error(`Erro no buscarDatasVendasService - serviceHistoricoVendas: ${err}`);
+        throw err;
+    }
+}
+
