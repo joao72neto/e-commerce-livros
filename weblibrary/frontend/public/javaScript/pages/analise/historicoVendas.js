@@ -104,14 +104,17 @@ function filtroPorPeriodo(){
         //Obtendo o período desejado
         let periodo = document.querySelector('#data-range').value;
         
-        //Montando a URL
-        if(!periodo){
-            return;
+        //Obtendo os dados de início e fim
+        if(periodo){
+            periodo = periodo.split(' ');
+            filtros.inicio = periodo[0] || null;
+            filtros.fim = periodo[2] || null;
+        }else{
+            filtros.inicio = null;
+            filtros.fim = null;
         }
-
-        periodo = periodo.split(' ');
-        filtros.inicio = periodo[0] || null;
-        filtros.fim = periodo[2] || null;
+        
+        //Atualizando a URL
         let url = atualizarUrlFiltros();
 
         //Filtrando os dados
