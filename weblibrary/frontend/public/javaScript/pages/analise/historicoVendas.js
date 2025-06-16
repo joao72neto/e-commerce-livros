@@ -1,4 +1,5 @@
 import { buscarLivrosVendidoService } from "/javaScript/service/analise/serviceHistoricoVendas.js";
+import { buscarDatasVendaService } from "/javaScript/service/analise/serviceHistoricoVendas.js";
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -38,15 +39,24 @@ function limparFiltroCategorias(){
 }
 
 
-function montarInputPeriodo(){
+async function montarInputPeriodo(){
+
+    //Obtendo todas as datas dom vendas;
+    const datas = await buscarDatasVendaService();
+
+    //Pegando apenas as datas de início e fim
+    const inicio = datas[0].data_venda;
+    const fim = datas[datas.length-1].data_venda;
+
+    //Montando o input com as datas disponíveis
     flatpickr('#data-range', {
         mode: 'range',
         dateFormat: 'Y-m-d',
         locale: 'pt',
         enable: [
             {
-                from: '2025-06-01',
-                to: '2025-06-13'
+                from: inicio,
+                to: fim
             }
         ]
     });
