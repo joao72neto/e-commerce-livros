@@ -27,8 +27,13 @@ module.exports.buscarCategoriasVendidas = async () => {
 }
 
 //Obtendo os livros vendidos da vw_historico_vendas
-module.exports.buscarLivrosVendidos = async (cat_ids) => {
+module.exports.buscarLivrosVendidos = async (dados) => {
     
+
+    //Preparando os dados dos filtros
+    const cat_ids = dados.cat_ids;
+    const inicio = dados.inicio;
+    const fim = dados.fim;
 
     //Obtendo o banco
     const db = await getDb();
@@ -44,14 +49,36 @@ module.exports.buscarLivrosVendidos = async (cat_ids) => {
             vw_historico_vendas
     `;
 
-    //Filtrando os dados
+    const condicoes = [];
+    const valores = [];
+
+    //Filtrando os dados por categorias
     if(cat_ids){
-        let placeholders = []
-        for(let i=0; i < cat_ids.length; i++){
+        valores.push(...cat_ids);
+        let placeholders = []; 
+        for(let i=0; i < valores.length; i++){
             placeholders.push('?');
         }
         placeholders = placeholders.join(', ');
-        sql += `WHERE cat_id IN (${placeholders})`
+        condicoes.push(`cat_id IN (${placeholders})`);
+        
+    }
+
+    //Filtrando por data de início
+    if(inicio && !fim){
+        condicoes.push(`vnd_data = ?`);
+        valores.push(inicio);
+    }
+
+    if(inicio && fim){
+        condicoes.push(`vnd_data between ? and ?`);
+        valores.push(inicio);
+        valores.push(fim);
+    }
+
+    //Aplicando as condições
+    if(condicoes.length > 0){
+        sql += 'WHERE ' + condicoes.join(' AND ');
     }
 
     sql += `
@@ -65,7 +92,7 @@ module.exports.buscarLivrosVendidos = async (cat_ids) => {
     `;
 
     try{
-        const [livros] = await db.query(sql, cat_ids);
+        const [livros] = await db.query(sql, valores);
         return livros;
         
     }catch(err){
