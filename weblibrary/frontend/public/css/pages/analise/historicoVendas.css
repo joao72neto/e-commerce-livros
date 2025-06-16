@@ -11,7 +11,7 @@ main{
     max-width: 75%;
     margin: 120px auto;
     display: grid;
-    grid-template-columns: 2fr 5fr;
+    grid-template-columns: 26% 71%;
     font-size: 0.8em;
     gap: 30px;
     transform: scale(1.25);
@@ -19,13 +19,13 @@ main{
 
 main .title{
     grid-row: 1;
-    grid-column: span 4;
+    grid-column: 2;
     justify-self: right;
 }
 
 main .grafico{
     grid-row: 2 / 4;
-    grid-column: span 4;
+    grid-column: 2;
     width: 100%;
     align-self: top;
   
