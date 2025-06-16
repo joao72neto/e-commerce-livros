@@ -188,14 +188,18 @@ async function montarGrafico(livros_analise) {
 
     });
 
-    //Montando o Dataset
-    const datasets = Object.entries(livrosMap).map(([titulo, vendasPorData]) => {
-        const data = datas.map(data => vendasPorData[data] || 0);
-        return {
+    //Preparando os dados
+    const series = Object.entries(livrosMap).map(([titulo, datasDoLivro]) => {
+        return{
             name: titulo,
-            data: data,
+            data: datas.map(data => ({
+                x: data,
+                y: datasDoLivro[data] || 0
+            }))
         }
     });
+
+    console.log(series);
 
     //Configurando o gráfico
     const options = {
@@ -205,9 +209,15 @@ async function montarGrafico(livros_analise) {
         stroke: {
             curve: 'smooth'
         },
-        series: datasets,
+        series: series,
         xaxis: {
-            categories: datas
+            type: 'datetime',
+            labels: {
+                year: 'yyyy',
+                month: "MMM 'yy",
+                day: 'dd MMM',
+                hour: 'HH:mm'
+            }
         }
     }
 
