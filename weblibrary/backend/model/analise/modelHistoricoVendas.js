@@ -26,6 +26,28 @@ module.exports.buscarCategoriasVendidas = async () => {
     }
 }
 
+//Obetendo as datas com compras
+module.exports.buscarDatasVendas = async () => {
+    
+    //Montando a query
+    const sql = `
+        select distinct
+            date(vnd_data) data_venda
+        from 
+            vw_historico_vendas;
+    `;
+
+    //Buscando os dados no banco
+    try{
+        const [datas] = await db.query(sql);
+        return datas;
+        
+    }catch(err){
+        console.error(`Erro no buscarDatasVendas - modelHistoricoVendas: ${err}`);
+        throw err;
+    }
+}
+
 //Obtendo os livros vendidos da vw_historico_vendas
 module.exports.buscarLivrosVendidos = async (dados) => {
     
