@@ -199,8 +199,6 @@ async function montarGrafico(livros_analise) {
         }
     });
 
-    console.log(series);
-
     //Configurando o gráfico
     const options = {
         chart: {
