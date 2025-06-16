@@ -62,6 +62,39 @@ function montarSelectCategorias(){
     });
 }
 
+//Estados dos filtros
+const filtros = {
+    inicio: null,
+    fim: null,
+    categorias: []
+}
+
+//Atualizando a URL dos filtros
+function atualizarUrlFiltros(){
+
+    //Url base
+    let url = '/api/vendas/historico?';
+    const params = []
+
+    //Adicionando os filtros por data
+    if(filtros.inicio){
+        params.push(`inicio=${encodeURIComponent(filtros.inicio)}`);
+        if(filtros.fim){
+            params.push(`fim=${encodeURIComponent(filtros.fim)}`);
+        }
+    }
+
+    //Adicionando os filtros por categorias
+    if(filtros.categorias.length > 0){
+        filtros.categorias.forEach(cat => {
+            params.push(`cat_id=${encodeURIComponent(cat)}`);
+        });
+    }
+
+    //Retornando a url atualizada
+    return url + params.join('&');
+}
+
 //Filtrando os dados por período
 function filtroPorPeriodo(){
 
@@ -77,15 +110,15 @@ function filtroPorPeriodo(){
         }
 
         periodo = periodo.split(' ');
-        const inicio = periodo[0] ? periodo[0] : null;
-        const fim = periodo[2] ? periodo[2]  : null
-        let url = `/api/vendas/historico?inicio=${inicio}&fim=${fim}`;
+        filtros.inicio = periodo[0] || null;
+        filtros.fim = periodo[2] || null;
+        let url = atualizarUrlFiltros();
 
         //Filtrando os dados
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data); 
+                //Atualizar o gráfico
             });
 
     });  
@@ -97,20 +130,11 @@ function filtrarPorCategora(){
         event.preventDefault();
         
         //Obetendo as categorias selecionadas
-        const categorias = choicesInstance.getValue(true);
+        filtros.categorias = choicesInstance.getValue(true) || [];
 
-        //Montando a url para o filtro
-        let url = '/api/vendas/historico?';
-        if (categorias.length !== 0){
-            const params = categorias.map(cat_id => `cat_id=${encodeURIComponent(cat_id)}`).join('&');
-            url += params;
-
-        }else{
-
-            //Retirnado o ? caso não haja parâmetros
-            url = url.slice(0, -1);
-        }
-
+        //Atualizando a url
+        const url = atualizarUrlFiltros();
+    
         //Filtrando os dados
         fetch(url)
             .then(res => res.json())

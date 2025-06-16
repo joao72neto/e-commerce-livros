@@ -15,6 +15,16 @@ module.exports.getHistoricoVendas = async (req, res) => {
 
 //Apis
 module.exports.getApiLivrosVendidos = async (req, res) => {
+    
+    //Preparando os dados
+    const dados = {
+        cat_ids: req.query.cat_id,
+        inicio: req.query.inicio,
+        fim: req.query.fim
+    }
+
+    console.log(dados);
+    
     let livros = await buscarLivrosVendidos(req.query.cat_id);
 
     //Formatando a data
