@@ -37,7 +37,9 @@ module.exports.buscarDatasVendas = async () => {
         select distinct
             date(vnd_data) data_venda
         from 
-            vw_historico_vendas;
+            vw_historico_vendas
+        order by
+	        date(vnd_data);
     `;
 
     //Buscando os dados no banco
