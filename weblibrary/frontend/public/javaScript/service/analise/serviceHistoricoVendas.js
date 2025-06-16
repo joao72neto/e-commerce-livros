@@ -15,7 +15,7 @@ export async function buscarLivrosVendidoService() {
 }
 
 //Obtendo todas as datas com vendas
-export async function buscarDatasVendasService() {
+export async function buscarDatasVendaService() {
     try{
 
         const res = await fetch(`/api/vendas/historico/datas`);
