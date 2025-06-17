@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `vendas` (
   `vnd_clt_id` INT NOT NULL,
   `vnd_lvr_id` INT NOT NULL,
   `vnd_numPedido` VARCHAR(255) NULL,
-  `vnd_data` DATE NOT NULL,
+  `vnd_data` DATETIME NOT NULL,
   `vnd_status` ENUM('Em Processamento', 'Aprovado', 'Reprovado', 'Cancelado', 'Em Transporte', 'Entregue', 'Troca Solicitada', 'Troca Aceita', 'Troca Concluída', 'Troca Recusada', 'Devolução Solicitada', 'Devolução Aceita', 'Devolução Concluída', 'Devolução Recusada') NOT NULL DEFAULT 'em processamento',
   `vnd_valorTotal` DECIMAL(5,2) NOT NULL,
   `vnd_frete` DECIMAL(5,2) NULL,

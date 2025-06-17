@@ -35,11 +35,11 @@ module.exports.buscarDatasVendas = async () => {
     //Montando a query
     const sql = `
         select distinct
-            date(vnd_data) data_venda
+            vnd_data data_venda
         from 
             vw_historico_vendas
         order by
-	        date(vnd_data);
+	        vnd_data;
     `;
 
     //Buscando os dados no banco
@@ -71,7 +71,7 @@ module.exports.buscarLivrosVendidos = async (dados) => {
             lvr_titulo,
             cat_id,
             sum(vnd_qtd) total_vendido,
-            date(vnd_data) data_venda
+            vnd_data data_venda
         from 
             vw_historico_vendas
     `;
@@ -113,7 +113,7 @@ module.exports.buscarLivrosVendidos = async (dados) => {
             lvr_id,
             lvr_titulo,
             cat_id,
-            date(vnd_data)
+            vnd_data
         order by
             data_venda;
     `;

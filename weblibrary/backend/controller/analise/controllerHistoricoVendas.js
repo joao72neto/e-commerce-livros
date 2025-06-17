@@ -27,15 +27,6 @@ module.exports.getApiLivrosVendidos = async (req, res) => {
     //Buscando todos os dados dos livros para análise
     let livros = await buscarLivrosVendidos(dados);
 
-    //Formatando a data
-    livros = livros.map(livro => {
-        const data = new Date(livro.data_venda).toISOString().split('T')[0];
-        return{
-            ...livro, 
-            data_venda: data
-        }
-    });
-
     //Retornando dados json
     return res.json(livros);
 }
