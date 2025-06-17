@@ -39,7 +39,6 @@ function limparFiltroCategorias(){
     });
 }
 
-
 async function montarInputPeriodo(){
 
     //Obtendo todas as datas dom vendas;

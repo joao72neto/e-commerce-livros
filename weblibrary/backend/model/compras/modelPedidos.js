@@ -20,7 +20,7 @@ module.exports.adicionarPedido = async (dados) => {
             vnd_frete,
             vnd_qtd
         ) VALUES (
-            ?, ?, ?, CURDATE(), ?, ?, ?
+            ?, ?, ?, NOW(), ?, ?, ?
         );
 
     `;
