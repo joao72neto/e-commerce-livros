@@ -34,8 +34,13 @@
                     <a class="carrinho">Adicionar ao Carrinho</a>
                 </div>
             </div>
+            <div class="categorias">
+                <h2>Categoria(s)</h2>
+                <% categorias.forEach(cat => { %>
+                    <p><%=cat.cat_nome%></p>
+                <%})%>
+            </div>
             <div class="sinopse">
-        
                 <h2 class="title-desc">Descrição do Produto</h2>
                 <p class="sinopse-text"><%=livro.lvr_sinopse%></p>
             </div>

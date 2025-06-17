@@ -34,8 +34,8 @@ module.exports.buscarLivroId = async (lvr_id) => {
     }
 };
 
-//Buscando livros por id + categorias
-module.exports.buscarLivroCatId = async (lvr_id) => {
+//Buscando toda as categorias de um livro
+module.exports.buscarCategoriasLivroId = async (lvr_id) => {
     
     //Obtendo o banco
     const db = await getDb();
@@ -43,13 +43,14 @@ module.exports.buscarLivroCatId = async (lvr_id) => {
     //Query
     const sql = `
         select
-            *
+            c.cat_id,
+            c.cat_nome
         from 
             livros l
             join livros_categorias lc on lc.lvc_lvr_id = l.lvr_id
             join categoria c on lc.lvc_cat_id = c.cat_id
         where
-            l.lvr_id = ?
+            l.lvr_id = ?;
     `;
 
     try{
@@ -57,7 +58,7 @@ module.exports.buscarLivroCatId = async (lvr_id) => {
         return livro;
         
     }catch(err){
-        console.error(`Erro no buscarLivroCatId - modelBooks: ${err}`);
+        console.error(`Erro no buscarCategoriasLivroId - modelBooks: ${err}`);
         throw err;
     }
 };
