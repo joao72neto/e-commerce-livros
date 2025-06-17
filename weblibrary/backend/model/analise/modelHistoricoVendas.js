@@ -93,14 +93,15 @@ module.exports.buscarLivrosVendidos = async (dados) => {
 
     //Filtrando por data de início
     if(inicio && !fim){
-        condicoes.push(`vnd_data = ?`);
-        valores.push(inicio);
+        condicoes.push(`vnd_data between ? and ?`);
+        valores.push(inicio + ' 00:00:00');
+        valores.push(inicio + ' 23:59:59');
     }
 
     if(inicio && fim){
         condicoes.push(`vnd_data between ? and ?`);
-        valores.push(inicio);
-        valores.push(fim);
+        valores.push(inicio + ' 00:00:00');
+        valores.push(fim + ' 23:59:59');
     }
 
     //Aplicando as condições
