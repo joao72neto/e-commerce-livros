@@ -37,7 +37,9 @@
             <div class="categorias">
                 <h2>Categoria(s)</h2>
                 <% categorias.forEach(cat => { %>
-                    <p><%=cat.cat_nome%></p>
+                    <ul>
+                        <li><%=cat.cat_nome%></li>
+                    </ul>
                 <%})%>
             </div>
             <div class="sinopse">
