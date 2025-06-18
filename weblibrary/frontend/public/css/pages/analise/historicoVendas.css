@@ -27,7 +27,7 @@ main .grafico{
     grid-row: 2 / 4;
     grid-column: 2;
     width: 100%;
-    align-self: top;
+    align-self: center;
   
 }
 
