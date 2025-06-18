@@ -356,6 +356,31 @@ FROM
 WHERE
 	v.vnd_status = 'entregue';
 
+-- -----------------------------------------------------
+-- View `vw_historico_vendas`
+-- -----------------------------------------------------
+CREATE OR REPLACE VIEW vw_estoque AS
+SELECT
+	e.est_id,
+	f.for_id,
+	f.for_nome,
+	l.lvr_id,
+	l.lvr_titulo,
+	g.gpp_id,
+	g.gpp_nome,
+	g.gpp_margemLucro,
+	e.est_qtd,
+	e.est_data,
+	e.est_valorCompra,
+	e.est_origem,
+	round((((g.gpp_margemLucro / 100) + 1) * e.est_valorCompra), 2) valorVenda
+FROM 
+	estoque e
+	JOIN grupo_precificacao g ON g.gpp_id = e.est_gpp_id
+	JOIN fornecedor f ON f.for_id = e.est_for_id
+	JOIN livros l ON l.lvr_id = e.est_lvr_id
+ORDER BY e.est_id DESC;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
