@@ -19,6 +19,15 @@ main{
     text-align: center;
 }
 
+.compra .qtd-estoque{
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: var(--cinza);
+}
+
 .compra .title{
     font-size: 1.6em;
 }
@@ -66,6 +75,7 @@ main{
     grid-column: span 2;
     justify-self: left;
     align-self: center;
+    border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .categorias ul li{
@@ -81,6 +91,7 @@ main{
     padding: 30px;
     grid-column: span 2;
     justify-self: left;
+    border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .title-desc{
