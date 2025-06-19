@@ -73,6 +73,36 @@ module.exports.buscarEstoque = async () => {
     }
 }
 
+//Buscando o total de livros no estoque + preço
+module.exports.buscarLivrosQtdEstoque = async () => {
+    
+    //Obtendo o banco
+    const db = await getDb();
+
+    //Monstando a query
+    const sql = `
+        select
+            lvr_id,
+            lvr_titulo,
+            sum(est_qtd) tot_estoque,
+            round(avg((((gpp_margemLucro / 100) + 1) * est_valorCompra)), 2) valor_venda
+        from
+            vw_estoque
+        group by
+            lvr_id,
+            lvr_titulo;
+    `;
+
+    try{
+        const [livros] = await db.query(sql);
+        return livros;
+        
+    }catch(err){
+        console.error(`Erro no buscarLivrosQtdEstoque - modelEstoque: ${err}`);
+        throw err;
+    }
+}
+
 //Buscando todos os fornecedores cadastrados
 module.exports.buscarTodosFornecedores = async () => {
     
