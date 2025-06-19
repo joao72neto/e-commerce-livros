@@ -22,10 +22,10 @@
             </div>
             <div class="compra">
                 <div class="qtd-estoque">
-                    <p>Qtd. Estoque: <%=livroQtdEstoque[0].tot_estoque%></p>
+                    <p>Qtd. Estoque: <%=livroQtdEstoque.tot_estoque%></p>
                 </div>
                 <h2 class="title"><%=livro.lvr_titulo%></h2>
-                <p class="preco"><strong>R$<%=String(livro.lvr_preco).replace('.', ',')%></strong>
+                <p class="preco"><strong>R$<%=String(livroQtdEstoque.valor_venda).replace('.', ',')%></strong>
                 </p>
                 <div class="qtd">
                     <button class="diminuir">-</button>

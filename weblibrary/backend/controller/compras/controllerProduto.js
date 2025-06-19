@@ -12,7 +12,7 @@ module.exports.getProduto = async (req, res) => {
 
     return res.render('compras/produto', {
         livro: livro[0],
-        livroQtdEstoque: livroQtdEstoque,
+        livroQtdEstoque: livroQtdEstoque[0],
         cliente: clienteLogado,
         categorias: categorias
     });
