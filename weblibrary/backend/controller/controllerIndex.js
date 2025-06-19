@@ -1,9 +1,9 @@
 const { buscarClienteLogado } = require('../model/clientes/modelClientes');
-const { buscarTodosLivros } = require('../model/books/modelBooks');
+const { buscarLivrosIndex } = require('../model/books/modelBooks');
 
 //Página
 module.exports.getIndex = async (req, res) => {
-    const livros = await buscarTodosLivros();
+    const livros = await buscarLivrosIndex();
     const cliente = await buscarClienteLogado();
 
     if(cliente.length > 0){

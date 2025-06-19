@@ -24,7 +24,7 @@
                             </div>
                             <p><strong><%=livro.lvr_titulo%></strong></p>
                             <p class="invisible book-id"><%=livro.lvr_id%></p>
-                            <p class="preco">R$<%=String(livro.lvr_preco).replace('.', ',')%></p>
+                            <p class="preco">R$<%=String(livro.valor_venda).replace('.', ',')%></p>
                             <div class="compra"><a href="#">Comprar</a></div>
                         </div>
                     <% }); %>
