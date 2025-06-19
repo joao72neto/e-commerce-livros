@@ -74,7 +74,7 @@ module.exports.buscarEstoque = async () => {
 }
 
 //Buscando o total de livros no estoque + preço
-module.exports.buscarLivrosQtdEstoque = async () => {
+module.exports.buscarLivrosIdQtdEstoque = async (lvr_id) => {
     
     //Obtendo o banco
     const db = await getDb();
@@ -88,13 +88,15 @@ module.exports.buscarLivrosQtdEstoque = async () => {
             round(avg((((gpp_margemLucro / 100) + 1) * est_valorCompra)), 2) valor_venda
         from
             vw_estoque
+        where
+            lvr_id = ?
         group by
             lvr_id,
             lvr_titulo;
     `;
 
     try{
-        const [livros] = await db.query(sql);
+        const [livros] = await db.query(sql, lvr_id);
         return livros;
         
     }catch(err){
