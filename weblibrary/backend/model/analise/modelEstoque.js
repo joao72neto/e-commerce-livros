@@ -162,22 +162,25 @@ module.exports.atualizarEstoque = async (lvr_id, qtd_comprada) => {
     //Atualizando os dados do estoque
     try{
         //Obtendo todas as linhas do livro comprado
-        const linhasEstoque = await db.query(
+        const [linhasEstoque] = await db.query(
             `select
                 est_id,
-                est_qtd
+                est_qtd,
+                est_data
             from 
                 estoque
             where 
-                est_lvr_id = ?;
-        `, lvr_id);
+                est_lvr_id = ?
+            order by
+                est_data asc;
+        `, [lvr_id]);
 
         //Iterando as linhas do estoque para atualizar a qtd
         for (const linha of linhasEstoque){
 
             if(qtd_comprada <= 0) break;
 
-            if(linha.est_qtd >= qtd_comprada){
+            if(linha.est_qtd > qtd_comprada){
 
                 //Atualizando a linha com a qtd_comprada reduzida
                 await db.query(`
@@ -201,7 +204,7 @@ module.exports.atualizarEstoque = async (lvr_id, qtd_comprada) => {
                         where
                             est_id = ?
                 
-                `, linha.est_id);
+                `, [linha.est_id]);
 
                 //Atualizando a qtd_comprada
                 qtd_comprada -= linha.est_qtd;

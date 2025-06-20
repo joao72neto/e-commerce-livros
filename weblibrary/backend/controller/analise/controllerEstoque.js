@@ -82,7 +82,7 @@ module.exports.postAdicionarEstoque = async (req, res) => {
 module.exports.patchAtualizarEstoque = async (req, res) => {
     try{
         await atualizarEstoque(req.body.lvr_id, req.body.qtd_comprada);
-        return res.status.json(200).json({msg: 'Estoque atualizado com sucesso!'})
+        return res.status(200).json({msg: 'Estoque atualizado com sucesso!'})
 
     }catch(err){
         console.error(`Erro no patchAtualizarEstoque - controllerEstoque: ${err}`);

@@ -9,6 +9,9 @@ router.get('/estoque/entrada', controllerEstoque.getEstoqueEntrada);
 //Rota para adicionar item ao estoque
 router.post('/estoque/entrada/add', controllerEstoque.postAdicionarEstoque);
 
+//Rotas para atualizar dados
+router.patch('/estoque/update', controllerEstoque.patchAtualizarEstoque);
+
 //Rotas para APIs
 router.get('/api/fornecedores', controllerEstoque.getApiTodosFornecedores);
 router.get('/api/grpPrecificacao', controllerEstoque.getApiTodosGrpPrecificacao);
