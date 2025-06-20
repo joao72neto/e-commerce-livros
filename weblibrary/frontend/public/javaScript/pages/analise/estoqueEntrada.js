@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function(){
     addReturnItemEstoque();
     passarLivroId();
     desabilitarSelectInputs();
+    montarSelectLivros();
 });
 
 //Passando o ID do livro para o back
@@ -15,6 +16,16 @@ function passarLivroId(){
         let url = window.location.pathname + `?lvr_id=${this.value}`;
         window.location.href = url;
     })
+}
+
+function montarSelectLivros(){
+    const livros = document.querySelector('#livro');
+    new Choices(livros, {
+        searchEnabled: true,
+        removeItemButton: true,   
+        placeholderValue: 'Pesquisar...',           
+        maxItemCount: 10 
+    });
 }
 
 //Desabilitando selects e inputs ao retornar um item

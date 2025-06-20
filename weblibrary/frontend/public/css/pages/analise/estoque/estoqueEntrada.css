@@ -12,6 +12,10 @@ label{
     display: block;
 }
 
+input{
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
 input[type="number"]{
     width: 110px;
 }
@@ -21,8 +25,21 @@ select, input[type="text"]{
     height: 40px;
 }
 
+.choices__inner {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
 #valor_custo{
     width: 100%;
+}
+
+#qtd:focus, #valor_custo:focus{
+    outline: none;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    transition: 0.5s;
 }
 
 .forms{
@@ -32,8 +49,6 @@ select, input[type="text"]{
     box-shadow: 0px 0px 20px #0000005b;
     margin: 30px 0;
 }
-
-
 
 .submit{
     text-align: center;
