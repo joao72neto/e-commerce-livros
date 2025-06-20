@@ -5,7 +5,7 @@ const { buscarTodosGrpPrecificacao } = require('../../model/analise/modelEstoque
 const { buscarTodosLivros } = require('../../model/books/modelBooks');
 const { buscarDevolvidosTrocados } = require('../../model/analise/modelGerenciarPedidos');
 const { buscarPedidosClienteId } = require('../../model/compras/modelPedidos');
-
+const { atualizarEstoque } = require('../../model/analise/modelEstoque');
 
 //Página
 module.exports.getEstoque = async (req, res) => {
@@ -77,6 +77,18 @@ module.exports.postAdicionarEstoque = async (req, res) => {
         return res.status(500).json({msg:'Erro adicionar item ao estoque'});
     }
 };
+
+//Update
+module.exports.patchAtualizarEstoque = async (req, res) => {
+    try{
+        await atualizarEstoque(req.body.lvr_id, req.body.qtd_comprada);
+        return res.status.json(200).json({msg: 'Estoque atualizado com sucesso!'})
+
+    }catch(err){
+        console.error(`Erro no patchAtualizarEstoque - controllerEstoque: ${err}`);
+        return res.status(500).json({msg: 'Não foi possível atualizar o estoque'})
+    }
+}
 
 //Apis 
 module.exports.getApiTodosFornecedores = async (req, res) => {
