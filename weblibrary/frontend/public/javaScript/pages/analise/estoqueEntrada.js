@@ -5,7 +5,16 @@ import { adicionarCupomService } from "/javaScript/service/compras/servicePagame
 
 document.addEventListener('DOMContentLoaded', function(){
     addReturnItemEstoque();
+    passarLivroId();
 });
+
+
+function passarLivroId(){
+    document.querySelector('#livro').addEventListener('change', function(){
+        let url = window.location.pathname + `?lvr_id=${this.value}`;
+        console.log(url);
+    })
+}
 
 //Adicionando nova entrada no estoque ou retornando um item para o estoque
 function addReturnItemEstoque(){
