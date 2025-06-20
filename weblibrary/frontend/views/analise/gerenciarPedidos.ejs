@@ -80,7 +80,13 @@
             <% clientes.forEach(cliente => { %>
 
                 <div class="pedidos">
-                    <h2><%=cliente.clt_nome%> - <%=cliente.clt_cpf%></h2>
+
+                    <%
+                        let cpf = cliente.clt_cpf;
+                        cpf = cpf.slice(0, 3) + '.***.***' + cpf.slice(11, 14)
+                    %>
+
+                    <h2><%=cliente.clt_nome%> - <%=cpf%></h2>
 
                     <% 
                    
