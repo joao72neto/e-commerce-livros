@@ -154,38 +154,61 @@ module.exports.buscarTodosGrpPrecificacao = async () => {
 }
 
 //UPDATE
-module.exports.atualizarQtdEstoque = async (dados) => {
-    
-    //Query para atualizar a qtd do 
-    const sql_update = `
-        update 
-            estoque e
-        set
-            e.est_qtd = ?
-        where 
-            e.est_lvr_id = ?
-        limit 1;
-    `;
+module.exports.atualizarEstoque = async (lvr_id, qtd_comprada) => {
 
-    //Preparando os dados
-    const valores = Object.values(dados);
+    //Obtendo o banco
+    const db = await getDb();
 
-    //Deletando valores que atingem 0 no estoque
-    const sql_delete = `
-    
-        delete from 
-            estoque e
-        where
-            e.est_qtd = 0
-        limit 1;
-    `;
-
-    //Atualizando os dados no banco
+    //Atualizando os dados do estoque
     try{
-        await db.query(sql_update, valores);
-        await db.query(sql_delete);
+        //Obtendo todas as linhas do livro comprado
+        const linhasEstoque = await db.query(
+            `select
+                est_id,
+                est_qtd
+            from 
+                estoque
+            where 
+                est_lvr_id = ?;
+        `, lvr_id);
+
+        //Iterando as linhas do estoque para atualizar a qtd
+        for (const linha of linhasEstoque){
+
+            if(qtd_comprada <= 0) break;
+
+            if(linha.est_qtd >= qtd_comprada){
+
+                //Atualizando a linha com a qtd_comprada reduzida
+                await db.query(`
+                    update
+                        estoque
+                    set
+                        est_qtd = est_qtd - ?
+                    where 
+                        est_id = ?
+                    
+                `, [qtd_comprada, linha.est_id]);
+
+                qtd_comprada = 0;
+
+            }else{
+
+                //Deletando a linha (consumindo tudo)
+                await db.query(`
+                    delete from 
+                            estoque
+                        where
+                            est_id = ?
+                
+                `, linha.est_id);
+
+                //Atualizando a qtd_comprada
+                qtd_comprada -= linha.est_qtd;
+            }
+        }        
     }catch(err){
-        console.error(`Erro no atualizarQtdEstoque - modelEstoque: ${err}`);
+        console.error(`Erro no atualizarEstoque - modelEstoque: ${err}`);
         throw err;
     }
 }
