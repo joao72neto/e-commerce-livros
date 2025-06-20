@@ -31,9 +31,13 @@ body, html{
 
 header #logado{
     display: grid;
-    grid-template-columns: 50px 100px 90px;
+    grid-template-columns: 50px 100px 100px 90px;
     align-items: center;
     justify-items: center;
+}
+
+header #logado .clt-nome{
+    font-weight: bold;
 }
 
 .acoes .header-btn{

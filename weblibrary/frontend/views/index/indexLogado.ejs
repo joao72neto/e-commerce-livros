@@ -12,7 +12,9 @@
     <div class="main-container">
 
         <div class="conteudo">
-            <%- include('../components/headerIndexLogado') %>
+            <%- include('../components/headerIndexLogado', {
+                clt_nome: cliente[0].clt_nome
+            }) %>
             
             <main>
                 <div class="banner"></div>
