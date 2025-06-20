@@ -152,3 +152,40 @@ module.exports.buscarTodosGrpPrecificacao = async () => {
         throw err;
     }
 }
+
+//UPDATE
+module.exports.atualizarQtdEstoque = async (dados) => {
+    
+    //Query para atualizar a qtd do 
+    const sql_update = `
+        update 
+            estoque e
+        set
+            e.est_qtd = ?
+        where 
+            e.est_lvr_id = ?
+        limit 1;
+    `;
+
+    //Preparando os dados
+    const valores = Object.values(dados);
+
+    //Deletando valores que atingem 0 no estoque
+    const sql_delete = `
+    
+        delete from 
+            estoque e
+        where
+            e.est_qtd = 0
+        limit 1;
+    `;
+
+    //Atualizando os dados no banco
+    try{
+        await db.query(sql_update, valores);
+        await db.query(sql_delete);
+    }catch(err){
+        console.error(`Erro no atualizarQtdEstoque - modelEstoque: ${err}`);
+        throw err;
+    }
+}
