@@ -195,11 +195,16 @@ header #logado{
 .book p{
     width: 100%;
     text-align: center;
-    margin: 10px 0;
+    margin-top: 10px;
 }
 
 .book .preco{
-    color: green;
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.book .preco span{
+    color: rgb(1, 90, 1);
 }
 
 .compra{

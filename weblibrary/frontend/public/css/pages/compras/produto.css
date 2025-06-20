@@ -33,9 +33,13 @@ main{
 }
 
 .compra .preco{
-    margin: 20px 0 50px 0;
-    font-size: 1.2em;
-    color: green;
+    margin: 30px 0 50px 0;
+    font-size: 1.6em;
+    color: var(--preto);
+}
+
+.compra .preco span{
+    color: rgb(1, 90, 1);
 }
 
 .compra .qtd{

@@ -25,7 +25,7 @@
                     <p>Qtd. Estoque: <%=livroQtdEstoque.tot_estoque%></p>
                 </div>
                 <h2 class="title"><%=livro.lvr_titulo%></h2>
-                <p class="preco"><strong>R$<%=String(livroQtdEstoque.valor_venda).replace('.', ',')%></strong>
+                <p class="preco"><strong>R<span>$</span> <%=String(livroQtdEstoque.valor_venda).replace('.', ',')%></strong>
                 </p>
                 <div class="qtd">
                     <button class="diminuir">-</button>
