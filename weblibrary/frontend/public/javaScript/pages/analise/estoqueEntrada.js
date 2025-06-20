@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function(){
 function passarLivroId(){
     document.querySelector('#livro').addEventListener('change', function(){
         let url = window.location.pathname + `?lvr_id=${this.value}`;
-        console.log(url);
+        window.location.href = url;
     })
 }
 

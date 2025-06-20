@@ -23,7 +23,35 @@ module.exports.getEstoqueEntrada = async (req, res) => {
     const trocas = await buscarDevolvidosTrocados();
     const query = req.query;
 
-    if(Object.keys(query).length !== 0){
+    if([0, 1].includes(Object.keys(query).length)){
+
+        let fornecedor = '';
+        let livro = '';
+        let grpPre = '';
+
+        if(Object.keys(query).length === 1){
+            const estoqueFiltrado = estoque.find(est => est.lvr_id == req.query.lvr_id);
+            fornecedor = fornecedores.find(f => f.for_id == estoqueFiltrado.for_id);
+            grpPre = grpPrecificacao.find(grp => grp.gpp_id == estoqueFiltrado.gpp_id);
+            livro = livros.find(lvr => lvr.lvr_id == req.query.lvr_id);
+        }
+        
+        //Renderizando a página de entrada de item para o estoque
+        return res.render('analise/estoque/estoqueEntrada', {
+            livros: livros,
+            livro: livro ,
+            fornecedor: fornecedor,
+            grpPre: grpPre,
+            troca: '',
+            fornecedores: fornecedores,
+            grpPrecificacao: grpPrecificacao,
+            query: query,
+            estoque: estoque,
+            pedido: ''
+        });
+    }
+
+    if(Object.keys(query).length > 2){
 
         //Buscando o número do pedido
         const pedidos = await buscarPedidosClienteId(req.query.clt_id);
@@ -50,20 +78,6 @@ module.exports.getEstoqueEntrada = async (req, res) => {
             pedido: pedido
         });
     }
-
-    //Renderizando a página de entrada de item para o estoque
-    return res.render('analise/estoque/estoqueEntrada', {
-        livros: livros,
-        livro: '',
-        fornecedor: '',
-        grpPre: '',
-        troca: '',
-        fornecedores: fornecedores,
-        grpPrecificacao: grpPrecificacao,
-        query: query,
-        estoque: estoque,
-        pedido: ''
-    });
 };
 
 //Inserção de dados

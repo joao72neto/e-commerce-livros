@@ -13,7 +13,7 @@
        
         <%- include('../../components/header', {
             titulo: 'Nova Entrada no Estoque',
-            path: Object.keys(query).length !== 0 ? query.retorno : '/estoque'
+            path: Object.keys(query).length > 2 ? query.retorno : '/estoque'
         })%>
 
         <main>
