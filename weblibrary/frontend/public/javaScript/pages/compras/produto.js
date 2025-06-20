@@ -1,10 +1,13 @@
 import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
 import { adicionarCarrinhoService, buscarCarrinhoClienteIdService } from "/javaScript/service/compras/serviceCarrinho.js";
 
+//Obtendo a quantidade disponíveel no estoque
+const qtdEstoque = Number(document.querySelector('.qtd-estoque p').textContent.split(' ')[2]);
 
 //Verifica se o item já está no carrinho ou se o cliente está logado
 document.addEventListener('DOMContentLoaded', async function(){
 
+    //Verificando se o Item já está no carrinho
     const cliente = await buscarClienteLogadoService();  
 
     if(cliente.length === 0){
@@ -19,10 +22,26 @@ document.addEventListener('DOMContentLoaded', async function(){
     if(carrinho.length > 0){
         this.querySelector('.carrinho').textContent = 'No Carrinho';
     }
+
+    //Verificando a disponibilidade do estoque
+    disponibilidadeEstoque();
 });
 
-//Obtendo a quantidade disponíveel no estoque
-const qtdEstoque = Number(document.querySelector('.qtd-estoque p').textContent.split(' ')[2]);
+//Função que verifica se ainda há itens no estoque
+function disponibilidadeEstoque(){
+    if(qtdEstoque === 0){
+
+        //Personalizando a msg do estoque
+        const estoque = document.querySelector('.qtd-estoque p');
+        estoque.textContent = 'Indisponível';
+        estoque.style.color = 'var(--preto)';
+
+        //Desabilidatando os botões
+        document.querySelector('.preco').remove();
+        document.querySelector('.qtd').remove();
+        document.querySelector('.opcoes').remove();
+    }
+}
 
 //Aumentado a quatidado do item
 document.querySelector('.aumentar').addEventListener('click', function(){

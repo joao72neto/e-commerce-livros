@@ -180,7 +180,7 @@ module.exports.atualizarEstoque = async (lvr_id, qtd_comprada) => {
 
             if(qtd_comprada <= 0) break;
 
-            if(linha.est_qtd > qtd_comprada){
+            if(linha.est_qtd >= qtd_comprada){
 
                 //Atualizando a linha com a qtd_comprada reduzida
                 await db.query(`
