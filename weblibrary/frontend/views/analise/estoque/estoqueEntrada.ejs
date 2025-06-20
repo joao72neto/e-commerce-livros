@@ -33,8 +33,8 @@
             
                 <label for="fornecedor">Fornecedor</label>
 
-                <select name="fornecedor" id="fornecedor" required>
-                    <option value="<%=Object.keys(query).length !== 0?fornecedor.for_id:''%>" disabled selected><%=Object.keys(query).length !== 0?fornecedor.for_nome:"Selecione um Fornecedor"%></option>
+                <select name="fornecedor" id="fornecedor" required disabled>
+                    <option value="<%=Object.keys(query).length !== 0?fornecedor.for_id:''%>" disabled selected><%=Object.keys(query).length !== 0?fornecedor.for_nome:"Fornecedor"%></option>
 
                     <% fornecedores.forEach(fornecedor => { %>
                         <option value="<%=fornecedor.for_id%>"><%=fornecedor.for_nome%></option>
@@ -49,8 +49,8 @@
                 <input type="number" id="valor_custo" name="valor_custo" step="0.01" min="0" placeholder="Ex: 45.00" required value="<%=query?troca.trc_preco:''%>">
             
                 <label for="grupo_precificacao">Grupo de Precificação</label>
-                <select name="grupo_precificacao" id="grupo_precificacao" required>
-                    <option value="<%=Object.keys(query).length !== 0?grpPre.gpp_id:''%>" disabled selected><%=Object.keys(query).length !== 0?grpPre.gpp_nome:"Selecione um Grupo"%></option>
+                <select name="grupo_precificacao" id="grupo_precificacao" required disabled>
+                    <option value="<%=Object.keys(query).length !== 0?grpPre.gpp_id:''%>" disabled selected><%=Object.keys(query).length !== 0?grpPre.gpp_nome:"Grupo Precificação"%></option>
                     
                     <% grpPrecificacao.forEach(grp => { %>
                         <option value="<%=grp.gpp_id%>"><%=grp.gpp_nome%> (<%=grp.gpp_margemLucro%100%>%)</option>

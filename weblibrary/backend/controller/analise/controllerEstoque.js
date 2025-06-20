@@ -48,7 +48,6 @@ module.exports.getEstoqueEntrada = async (req, res) => {
             query: query,
             estoque: estoque,
             pedido: pedido
-    
         });
     }
 
