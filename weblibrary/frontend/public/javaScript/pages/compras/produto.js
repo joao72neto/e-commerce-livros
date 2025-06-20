@@ -21,10 +21,21 @@ document.addEventListener('DOMContentLoaded', async function(){
     }
 });
 
+//Obtendo a quantidade disponíveel no estoque
+const qtdEstoque = Number(document.querySelector('.qtd-estoque p').textContent.split(' ')[2]);
+
 //Aumentado a quatidado do item
 document.querySelector('.aumentar').addEventListener('click', function(){
-        
+    
+    //Obtendo os dados
     const contador = document.querySelector('#contador');
+    const qtdContador = Number(contador.textContent);
+
+    if((qtdContador + 1) > qtdEstoque){
+        alert('Quantidade maior do que disponível no estoque');
+        return;
+    }
+
     contador.textContent = Number(contador.textContent) + 1;
 
 });
@@ -114,6 +125,13 @@ document.querySelector('.comprar').addEventListener('click', async (event) => {
         }
 
         window.location.href = '/clientes/signup?retorno=';
+    }
+
+    //Verificando a qtd do contador
+    const qtdContador = Number(document.querySelector('#contador').textContent);
+    if(qtdContador > qtdEstoque){
+        alert('Qtd selecionada acima da disponível no estoque');
+        return;
     }
 
     //Obtendo dados
