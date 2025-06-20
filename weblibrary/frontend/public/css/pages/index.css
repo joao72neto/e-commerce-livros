@@ -38,6 +38,10 @@ header #logado{
 
 header #logado .clt-nome{
     font-weight: bold;
+    
+    &:hover{
+        cursor: pointer;
+    }
 }
 
 .acoes .header-btn{

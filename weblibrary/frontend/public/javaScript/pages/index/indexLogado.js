@@ -1,6 +1,10 @@
 import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
 import { adicionarCarrinhoService, buscarCarrinhoClienteIdService } from "/javaScript/service/compras/serviceCarrinho.js";
 
+//Redirecionando para perfil do usuário
+document.querySelector('.clt-nome').addEventListener('click', function(){
+    window.location.href = '/perfil';
+});
 
 //Mostrando o menu lateral
 document.querySelector('#btn-sidebar').addEventListener('click', function(){
