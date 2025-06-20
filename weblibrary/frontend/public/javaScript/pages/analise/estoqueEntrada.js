@@ -6,14 +6,35 @@ import { adicionarCupomService } from "/javaScript/service/compras/servicePagame
 document.addEventListener('DOMContentLoaded', function(){
     addReturnItemEstoque();
     passarLivroId();
+    desabilitarSelectInputs();
 });
 
-
+//Passando o ID do livro para o back
 function passarLivroId(){
     document.querySelector('#livro').addEventListener('change', function(){
         let url = window.location.pathname + `?lvr_id=${this.value}`;
         window.location.href = url;
     })
+}
+
+//Desabilitando selects e inputs ao retornar um item
+function desabilitarSelectInputs(){
+
+    //Verificando em qual página estou
+    let params = new URLSearchParams(window.location.search);
+    const retorno = params.get('retorno');
+
+    if(retorno){
+        //Obtendo os elementos
+        const selectLivro = document.querySelector('#livro');
+        const qtd = document.querySelector('#qtd');
+        const valor_custo = document.querySelector('#valor_custo'); 
+
+        //Desabilitando os elementos
+        selectLivro.disabled = true;
+        qtd.disabled = true;
+        valor_custo.disabled = true;
+    }
 }
 
 //Adicionando nova entrada no estoque ou retornando um item para o estoque
@@ -23,14 +44,12 @@ function addReturnItemEstoque(){
         
         event.preventDefault();
 
-        
         //Obtendo os dados
         const lvr_id = Number(document.querySelector('#livro').value);
         const for_id = Number(document.querySelector('#fornecedor').value);
         const est_valorCompra = Number(document.querySelector('#valor_custo').value);
         const est_qtd = Number(document.querySelector('#qtd').value);
         const gpp_id = Number(document.querySelector('#grupo_precificacao').value);
-
 
         //Preparando os dados
         const urlParams = new URLSearchParams(window.location.search);
@@ -63,7 +82,6 @@ function addReturnItemEstoque(){
             const preco = document.querySelector('#valor_custo').value;
             const qtd = document.querySelector('#qtd').value;
 
-
             if(retorno){
 
                 const res = await deletarDevolvidoTrocadoService(vnd_id);
@@ -89,7 +107,6 @@ function addReturnItemEstoque(){
                     alert('Não foi possível atualizar o status');
                     return;
                 }
-
 
                 //Preparando os dados do cupom, caso a solicitação tenha sido troca
                 if(trc_tipo === 'troca'){
