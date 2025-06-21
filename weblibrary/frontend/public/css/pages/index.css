@@ -102,7 +102,7 @@ header #logado .clt-nome{
     border-radius: 10px;
     position: absolute;
     top: 50px;
-    right: 200px;
+    right: 300px;
     left: -150px;
     background-color: var(--preto);
     z-index: 2;
