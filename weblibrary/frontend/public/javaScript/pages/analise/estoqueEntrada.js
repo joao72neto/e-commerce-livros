@@ -18,6 +18,21 @@ function passarLivroId(){
     })
 }
 
+function validarDados(){
+
+    //Obtendo os objetos
+    const selectValue = document.querySelector('#livro').value;
+    const qtd = document.querySelector('#qtd').value;
+    const valorVenda = document.querySelector('#valor_custo').value;
+
+    //Validando
+    if(!selectValue || !qtd || !valorVenda){
+        return false;
+    }
+
+    return true;
+}
+
 function montarSelectLivros(){
     const livros = document.querySelector('#livro');
     new Choices(livros, {
@@ -54,6 +69,12 @@ function addReturnItemEstoque(){
     document.querySelector('button[type="submit"]').addEventListener('click', async function(event){
         
         event.preventDefault();
+
+        //Verificando se todos os campos foram preenchidos
+        if(!validarDados()){
+            alert('Preencha todos os campos');
+            return;
+        }
 
         //Obtendo os dados
         const lvr_id = Number(document.querySelector('#livro').value);
