@@ -29,7 +29,7 @@ module.exports.buscarLivrosIndex = async (lvr_id) => {
         with precificacao as (
             select
                 lvr_id,
-                round(avg((((gpp_margemLucro / 100) + 1) * est_valorCompra)), 2) valor_venda
+                round(sum(((gpp_margemLucro / 100) + 1) * est_valorCompra * est_qtd) / nullif(sum(est_qtd), 0), 2) valor_venda
             from
                 vw_estoque
             group by

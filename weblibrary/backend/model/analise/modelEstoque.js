@@ -85,7 +85,7 @@ module.exports.buscarLivrosIdQtdEstoque = async (lvr_id) => {
             lvr_id,
             lvr_titulo,
             sum(est_qtd) tot_estoque,
-            round(avg((((gpp_margemLucro / 100) + 1) * est_valorCompra)), 2) valor_venda
+	        round(sum(((gpp_margemLucro / 100) + 1) * est_valorCompra * est_qtd) / nullif(sum(est_qtd), 0), 2) valor_venda
         from
             vw_estoque
         where
