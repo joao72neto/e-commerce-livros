@@ -9,11 +9,13 @@ module.exports.getProduto = async (req, res) => {
     const livroQtdEstoque = await buscarLivrosIdQtdEstoque(req.params.lvr_id);
     const clienteLogado = await buscarClienteLogado();
     const categorias = await buscarCategoriasLivroId(req.params.lvr_id);
+    const page = req.query.page;
 
     return res.render('compras/produto', {
         livro: livro[0],
         livroQtdEstoque: livroQtdEstoque[0],
         cliente: clienteLogado,
-        categorias: categorias
+        categorias: categorias,
+        page: page
     });
 };

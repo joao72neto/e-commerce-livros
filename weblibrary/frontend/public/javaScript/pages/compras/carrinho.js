@@ -93,8 +93,7 @@ document.querySelectorAll('.imagem').forEach(function(button){
         const wrapper = this.closest('.wrapper');
         const lvr_id = wrapper.querySelector('.book-id').textContent;
 
-
-        window.location.href = `/produto/${lvr_id}`;
+        window.location.href = `/produto/${lvr_id}?page=/carrinho`;
     });
 });
 
