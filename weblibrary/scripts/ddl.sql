@@ -354,7 +354,17 @@ FROM
 	JOIN livros_categorias lc ON lc.lvc_lvr_id = l.lvr_id 
 	JOIN categoria  c ON c.cat_id = lc.lvc_cat_id
 WHERE
-	v.vnd_status = 'entregue';
+	v.vnd_status in (
+		'entregue',
+    'troca solicitada',
+    'troca recusada',
+    'troca aceita',
+    'troca concluída',
+    'devolução solicitada',
+    'devolução recusada',
+    'devolução aceita',
+    'devoluçao concluída'
+  );
 
 -- -----------------------------------------------------
 -- View `vw_historico_vendas`
