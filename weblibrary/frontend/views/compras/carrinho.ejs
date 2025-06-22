@@ -27,7 +27,7 @@
                         <div class="livro-title">
                             <p class="invisible book-id"><%=item.lvr_id%></p>
                             <p><h2><%=item.lvr_titulo%></h2></p>
-                            <p><strong>R$<%=String(item.lvr_preco).replace('.', ',')%></strong></p>
+                            <p class="price"><strong>R<span>$</span> <%=String(item.lvr_preco).replace('.', ',')%></strong></p>
                         </div>
                         <div class="qtd">
                             <button class="diminuir">-</button>
