@@ -36,11 +36,6 @@
 
                 <select name="fornecedor" id="fornecedor" required disabled>
                     <option value="<%=Object.keys(query).length !== 0?fornecedor.for_id:''%>" disabled selected><%=Object.keys(query).length !== 0?fornecedor.for_nome:"Fornecedor"%></option>
-
-                    <% fornecedores.forEach(fornecedor => { %>
-                        <option value="<%=fornecedor.for_id%>"><%=fornecedor.for_nome%></option>
-                    <% }); %>
-
                 </select>
             
                 <label for="qtd">Quantidade do Item</label>
@@ -51,16 +46,9 @@
             
                 <label for="grupo_precificacao">Grupo de Precificação</label>
                 <select name="grupo_precificacao" id="grupo_precificacao" required disabled>
-                    <option value="<%=Object.keys(query).length !== 0?grpPre.gpp_id:''%>" disabled selected><%=Object.keys(query).length !== 0?grpPre.gpp_nome:"Grupo Precificação"%></option>
-                    
-                    <% grpPrecificacao.forEach(grp => { %>
-                        <option value="<%=grp.gpp_id%>"><%=grp.gpp_nome%> (<%=grp.gpp_margemLucro%100%>%)</option>
-                    <% }); %>
-                    
+                    <option value="<%=Object.keys(query).length !== 0?grpPre.gpp_id:''%>" disabled selected><%=Object.keys(query).length !== 0?grpPre.gpp_nome + ` (${grpPre.gpp_margemLucro%100}%)`:"Grupo Precificação"%></option>
                 </select>
                 
-                <p class="invisible vnd-id"><%=pedido.vnd_id%></p>
-
                 <div class="submit">
                     <button type="submit">Confirmar</button>
                 </div>
