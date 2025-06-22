@@ -26,15 +26,6 @@ module.exports.buscarLivrosIndex = async (lvr_id) => {
 
     //Monstando a query
     const sql = `
-        with precificacao as (
-            select
-                lvr_id,
-                round(sum(((gpp_margemLucro / 100) + 1) * est_valorCompra * est_qtd) / nullif(sum(est_qtd), 0), 2) valor_venda
-            from
-                vw_estoque
-            group by
-                lvr_id
-        )
         select
             l.lvr_id,
             l.lvr_titulo,
@@ -42,7 +33,15 @@ module.exports.buscarLivrosIndex = async (lvr_id) => {
             p.valor_venda
         from 
             livros l
-            join precificacao as p on p.lvr_id = l.lvr_id;
+            join (
+                select
+                    lvr_id,
+                    round(sum(((gpp_margemLucro / 100) + 1) * est_valorCompra * est_qtd) / nullif(sum(est_qtd), 0), 2) valor_venda
+                from
+                    vw_estoque
+                group by
+                    lvr_id
+            ) as p on p.lvr_id = l.lvr_id;
     `;
 
     try{

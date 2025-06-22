@@ -67,7 +67,10 @@ document.addEventListener('DOMContentLoaded', async function(){
 
 function editAddressBtn(){
 
-    document.querySelector('#btn-edit-address').addEventListener('click', function(){
+    const btn_address = document.querySelector('#btn-edit-address');
+    if(!btn_address) return;
+
+    btn_address.addEventListener('click', function(){
         const params = new URLSearchParams(window.location.search);
         const compra = params.get('compra');
         const page = params.get('page');
@@ -86,7 +89,11 @@ function editAddressBtn(){
 }
 
 function editCardBtn(){
-    document.querySelector('#btn-edit-card').addEventListener('click', function(){
+
+    const btn_card = document.querySelector('#btn-edit-card');
+    if(!btn_card) return;
+
+    btn_card.addEventListener('click', function(){
         const params = new URLSearchParams(window.location.search);
         const compra = params.get('compra');
         const page = params.get('page');
