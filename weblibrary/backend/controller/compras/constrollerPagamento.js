@@ -37,6 +37,8 @@ module.exports.getPagamento = async (req, res) => {
     const enderecosAtivo = await buscarEnderecosAtivosClienteId(cliente[0].clt_id);
     const enderecosInativos = await buscarEnderecosInativosClienteId(cliente[0].clt_id);
 
+    //Getting the returing page
+    const page = req.query.page;
 
     //Obtendo o frete do endereço específico
     let frete;
@@ -64,7 +66,6 @@ module.exports.getPagamento = async (req, res) => {
         }
     }   
 
-
     if(idCompra){
 
         carrinho = carrinho.filter(car => car.lvr_id === Number(idCompra));
@@ -78,7 +79,8 @@ module.exports.getPagamento = async (req, res) => {
             carrinho: carrinho,
             cuponsInativos: cuponsInativos,
             cuponsAtivos: cuponsAtivos, 
-            frete: frete?frete:0
+            frete: frete?frete:0,
+            page: ''
         }); 
     }
 
@@ -91,7 +93,8 @@ module.exports.getPagamento = async (req, res) => {
         carrinho: carrinho,
         cuponsInativos: cuponsInativos,
         cuponsAtivos: cuponsAtivos,
-        frete: frete?frete:0
+        frete: frete?frete:0,
+        page: page
     });
 };
 

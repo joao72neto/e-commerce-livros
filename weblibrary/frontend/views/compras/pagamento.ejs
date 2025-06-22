@@ -13,7 +13,7 @@
         
         <%- include('../components/header', {
             titulo: 'Pagamento',
-            path: '/'
+            path: page ? page : '/'
         })%>
 
         <main>
@@ -42,7 +42,7 @@
             <section class="informacoes">
                 <div class="enderecos">
 
-                    <h2 class="title">Escolha um Endereço: </h2>
+                    <h2 class="title">Escolha um Endereço</h2>
 
                     <div class="container">
                         <div class="wrapper select">
@@ -81,7 +81,7 @@
                       
                 </div>
                 <div>
-                    <h2 class="title">Escolha um Método de Pagamento: </h2>
+                    <h2 class="title">Escolha um Método de Pagamento</h2>
                     <div class="container">
 
                         <div class="wrapper">
@@ -119,7 +119,7 @@
                         </div>
                     </div>
                     <div class="center">
-                        <h3>Cupom:</h3>
+                        <h3>Cupom</h3>
                         <select name="cupons" id="cupons">
                                 
                             <% cuponsInativos.forEach(cupom => { %>
