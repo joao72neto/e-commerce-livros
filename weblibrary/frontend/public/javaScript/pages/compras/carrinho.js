@@ -1,7 +1,35 @@
 import { removerCarrinhoIdService } from "/javaScript/service/compras/serviceCarrinho.js";
 import { atualizarQtdPrecoCarrinhoService } from "/javaScript/service/compras/serviceCarrinho.js";
-import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js"
 
+document.addEventListener('DOMContentLoaded', function(){
+    emptyCartMsg();
+});
+
+//Personalized msg for an empty cart
+function emptyCartMsg(){
+
+    //Getting necessary elements
+    const wrapper = document.querySelector('.wrapper');
+    const cartContainer = document.querySelector('.cart-container');
+
+    //Exiting the function
+    if(wrapper) return;
+
+    //HTML
+    const html = `
+    
+        <div class="empty">
+            <p>
+                Adicione Livros ao Carrinho
+            </p>
+
+            <a href="/">Livros</a>
+        </div>
+    `;
+
+    //HTML code injection
+    cartContainer.innerHTML = html;  
+}
 
 //Atualizando a qtd do livro no banco de dados
 async function atualizarQtdPreco(lvr_id, qtd) {

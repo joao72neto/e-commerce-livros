@@ -17,48 +17,42 @@
         })%>
 
         <main>
-
-            <div class="btn-add">
-                <a href="/">Continuar Comprando</a>
-            </div>
-
-            <h2 class="title">Itens Adicionados: </h2>
-
-            <% carrinho.forEach(item => { %>
-
-                <div class="wrapper">
-                    <div class="imagem">
-                        <img src="<%=item.lvr_capa%>" alt="">
-                    </div>
-                    <div class="livro-title">
-                        <p class="invisible book-id"><%=item.lvr_id%></p>
-                        <p><h2><%=item.lvr_titulo%></h2></p>
-                        <p><strong>R$<%=String(item.lvr_preco).replace('.', ',')%></strong></p>
-                    </div>
-                    <div class="qtd">
-                        <button class="diminuir">-</button>
-                        <span id="contador"><%=item.crr_qtd%></span>
-                        <button class="aumentar">+</button>
-                    </div>
-                    <div class="acoes">
-                        <button class="delete" >Remover</button>
-                        <button>Alterar</button>
-                    </div>
+            <div class="cart-container">
+                <div class="btn-add">
+                    <a href="/">Continuar Comprando</a>
                 </div>
-
-            <% }); %>
-
-            <% 
-            
-            let total = 0;
-            carrinho.forEach(item => { 
-                total += Number(item.crr_total);
-
-            }); %>
-
-            <h2 class="total">Total de R$<%=String(total.toFixed(2)).replace('.', ',')%></h2>
-            <div class="pagamento">
-                <a href="/pagamento">Ir para Pagamento</a>
+                <h2 class="title">Itens Adicionados: </h2>
+                <% carrinho.forEach(item => { %>
+                    <div class="wrapper">
+                        <div class="imagem">
+                            <img src="<%=item.lvr_capa%>" alt="">
+                        </div>
+                        <div class="livro-title">
+                            <p class="invisible book-id"><%=item.lvr_id%></p>
+                            <p><h2><%=item.lvr_titulo%></h2></p>
+                            <p><strong>R$<%=String(item.lvr_preco).replace('.', ',')%></strong></p>
+                        </div>
+                        <div class="qtd">
+                            <button class="diminuir">-</button>
+                            <span id="contador"><%=item.crr_qtd%></span>
+                            <button class="aumentar">+</button>
+                        </div>
+                        <div class="acoes">
+                            <button class="delete" >Remover</button>
+                            <button>Alterar</button>
+                        </div>
+                    </div>
+                <% }); %>
+                <%
+                
+                let total = 0;
+                carrinho.forEach(item => {
+                    total += Number(item.crr_total);
+                }); %>
+                <h2 class="total">Total de R$<%=String(total.toFixed(2)).replace('.', ',')%></h2>
+                <div class="pagamento">
+                    <a href="/pagamento">Ir para Pagamento</a>
+                </div>
             </div>
         </main>
 

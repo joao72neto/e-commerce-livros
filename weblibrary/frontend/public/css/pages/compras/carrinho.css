@@ -1,5 +1,9 @@
 main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 1000px;
+    min-height: 100vh;
     margin: 0 auto;
 }
 
