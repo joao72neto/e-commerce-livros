@@ -20,7 +20,9 @@ h2{
 }
 
 .wrapper{
-    display: flex;
+    width: 800px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
     align-items: center;
 }
 
@@ -31,7 +33,6 @@ h2{
 
 .wrapper .imagem img{
     width: 100px;
-    background-color: gray;
     border-radius: 20px;
 
     &:hover{
@@ -39,13 +40,10 @@ h2{
     }
 }
 
-.wrapper .livro-title{
-    width: 400px;
-}
-
-.wrapper .qtd{
-    width: 200px;
-    text-align: center;
+.wrapper .acoes, .wrapper .qtd{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*Botões*/
@@ -55,18 +53,20 @@ h2{
 }
 
 .wrapper #contador{
-    margin: 0 5px;
+    margin: 0 10px;
 }
-
-.wrapper .acoes{
-    width: 300px;
-    text-align: center;
-}
-
 
 .total{
-    margin: 50px 0;
+    max-width: 300px;
+    background-color: var(--cinza);
+    padding: 20px;
+    border-radius: 20px;
+    margin: 50px auto;
     text-align: center;
+}
+
+.total span{
+    color: rgb(1, 90, 1);
 }
 
 .pagamento{

@@ -20,10 +20,10 @@ function emptyCartMsg(){
     
         <div class="empty">
             <p>
-                Adicione Livros ao Carrinho
+                Nenhum Livro no Carrinho
             </p>
 
-            <a href="/">Livros</a>
+            <a href="/">Ver Livros</a>
         </div>
     `;
 

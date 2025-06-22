@@ -18,10 +18,7 @@
 
         <main>
             <div class="cart-container">
-                <div class="btn-add">
-                    <a href="/">Continuar Comprando</a>
-                </div>
-                <h2 class="title">Itens Adicionados: </h2>
+                <h2 class="title">Itens no Carrinho 🛒</h2>
                 <% carrinho.forEach(item => { %>
                     <div class="wrapper">
                         <div class="imagem">
@@ -39,7 +36,6 @@
                         </div>
                         <div class="acoes">
                             <button class="delete" >Remover</button>
-                            <button>Alterar</button>
                         </div>
                     </div>
                 <% }); %>
@@ -49,7 +45,7 @@
                 carrinho.forEach(item => {
                     total += Number(item.crr_total);
                 }); %>
-                <h2 class="total">Total de R$<%=String(total.toFixed(2)).replace('.', ',')%></h2>
+                <h2 class="total">Total de R<span>$</span> <%=String(total.toFixed(2)).replace('.', ',')%></h2>
                 <div class="pagamento">
                     <a href="/pagamento">Ir para Pagamento</a>
                 </div>
