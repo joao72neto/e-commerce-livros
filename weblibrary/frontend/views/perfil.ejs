@@ -11,9 +11,22 @@
     
     <div class="main-container">
         
+        <%
+            let url;
+          
+            if(retorno_pag && compra && !page){
+                url = `/${retorno_pag}?compra=${compra}`;
+            }else if(retorno_pag && !compra && page){
+                url = `/${retorno_pag}?page=${page}`;
+            }else{
+                url = '/';
+            }
+            
+        %>
+
         <%- include('components/header', {
             titulo: `Perfil de ${cliente.clt_nome.split(' ')[0]}`,
-            path: retorno_pag ? `/${retorno_pag}` : '/'
+            path: url
         })%>
 
         <main>

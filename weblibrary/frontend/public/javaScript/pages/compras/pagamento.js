@@ -70,10 +70,14 @@ function editAddressBtn(){
     document.querySelector('#btn-edit-address').addEventListener('click', function(){
         const params = new URLSearchParams(window.location.search);
         const compra = params.get('compra');
+        const page = params.get('page');
         let url = '/perfil?retorno_pag=pagamento&tipo=endereco';
 
         if(compra){
             url += `&compra=${compra}`; 
+        }
+        if(page){
+            url += `&page=${page}`;
         }
 
         //Redirecting to profile page
@@ -85,10 +89,14 @@ function editCardBtn(){
     document.querySelector('#btn-edit-card').addEventListener('click', function(){
         const params = new URLSearchParams(window.location.search);
         const compra = params.get('compra');
+        const page = params.get('page');
         let url = '/perfil?retorno_pag=pagamento&tipo=cartao';
 
         if(compra){
             url += `&compra=${compra}`; 
+        }
+        if(page){
+            url += `&page=${page}`;
         }
 
         //Redirecting to profile page
