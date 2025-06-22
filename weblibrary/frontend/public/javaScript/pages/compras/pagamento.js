@@ -59,7 +59,42 @@ document.addEventListener('DOMContentLoaded', async function(){
         frete.classList.remove('invisible');
     }
 
+    //Calling functions
+    editAddressBtn();
+    editCardBtn();
+
 });
+
+function editAddressBtn(){
+
+    document.querySelector('#btn-edit-address').addEventListener('click', function(){
+        const params = new URLSearchParams(window.location.search);
+        const compra = params.get('compra');
+        let url = '/perfil?retorno_pag=pagamento&tipo=endereco';
+
+        if(compra){
+            url += `&compra=${compra}`; 
+        }
+
+        //Redirecting to profile page
+        window.location.href = url;
+    });
+}
+
+function editCardBtn(){
+    document.querySelector('#btn-edit-card').addEventListener('click', function(){
+        const params = new URLSearchParams(window.location.search);
+        const compra = params.get('compra');
+        let url = '/perfil?retorno_pag=pagamento&tipo=cartao';
+
+        if(compra){
+            url += `&compra=${compra}`; 
+        }
+
+        //Redirecting to profile page
+        window.location.href = url;
+    });
+}
 
 // Dividindo o valor a ser pago em cada cartão
 document.addEventListener('DOMContentLoaded', function(){
