@@ -1,4 +1,5 @@
 const { getDb } = require('../../config/db');
+const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
 
 //SELECT
 
@@ -10,12 +11,15 @@ module.exports.buscarTodosLogs = async () => {
 
     let sql = `
         select 
+            log_id,
             log_dataHora,
             log_usuario,
             log_operacao,
             log_desc
         from 
-            log;
+            log
+        order by
+            log_id desc;
     `;
 
     try{
@@ -41,6 +45,11 @@ module.exports.registerLog = async (dados) => {
     //Setting up db
     const db = await getDb();
 
+    //Getting the logged in user
+    const client = await buscarClienteLogado();
+    dados.log_clt_id = client[0].clt_id;
+    dados.log_usuario += client[0].clt_nome;
+
     //Preparing sql query
     const sql = `
         INSERT INTO log (
@@ -61,7 +70,7 @@ module.exports.registerLog = async (dados) => {
     try{
         await db.query(sql, valores);
     }catch(err){
-        console.error(`Erro no adicionarEstoque - modelEstoque: ${err}`);
+        console.error(`Erro no registerLog - modelLogs: ${err}`);
         throw err;
     }
 }

@@ -6,6 +6,7 @@ const { buscarTodosLivros } = require('../../model/books/modelBooks');
 const { buscarDevolvidosTrocados } = require('../../model/analise/modelGerenciarPedidos');
 const { buscarPedidosClienteId } = require('../../model/compras/modelPedidos');
 const { atualizarEstoque } = require('../../model/analise/modelEstoque');
+const { registerLog } = require('../../model/analise/modelLogs');
 
 //Página
 module.exports.getEstoque = async (req, res) => {
@@ -80,11 +81,30 @@ module.exports.getEstoqueEntrada = async (req, res) => {
     }
 };
 
+//Log model
+let logData = {
+    log_clt_id: '',
+    log_usuario: '',
+    log_operacao: '',
+    log_desc: ''
+}
+
 //Inserção de dados
 module.exports.postAdicionarEstoque = async (req, res) => {
     try{
+
+        //Adding new entry to stock
         await adicionarEstoque(req.body);
+
+        //Registering log
+        logData.log_usuario = '(Admin) ';
+        logData.log_operacao = 'INSERT';
+        logData.log_desc = 'Adicionando nova entrada ao estoque';
+        await registerLog(logData);
+
+        //Server response
         return res.status(201).json({msg: 'Nova entrada adicionada ao estoque'});
+
     }catch(err){
         console.error(`Erro no postAdicionarEstoque - controllerEstoque: ${err}`);
         return res.status(500).json({msg:'Erro adicionar item ao estoque'});
