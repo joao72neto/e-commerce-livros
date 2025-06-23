@@ -24,27 +24,21 @@
                     <tr>
                         <th>Data</th>
                         <th>Usuário</th>
-                        <th>Ação</th>
+                        <th>Operação</th>
                         <th>Descição</th>
                     </tr>
-                    <tr>
-                        <td>20-20-2020</td>
-                        <td>João Neto</td>
-                        <td>Inserção</td>
-                        <td>Cadastro de Usuário</td>
-                    </tr>
-                    <tr>
-                        <td>20-20-2021</td>
-                        <td>Arnaldo</td>
-                        <td>Alteração</td>
-                        <td>Alteração de e-mail de usuário</td>
-                    </tr>
-                    <tr>
-                        <td>20-22-2021</td>
-                        <td>Elias</td>
-                        <td>Exclusão</td>
-                        <td>Exclusão de usuário</td>
-                    </tr>
+
+                    <% logs.forEach(log => { %>
+
+                        <tr>
+                            <td><%=log.log_dataHora%></td>
+                            <td><%=log.log_usuario%></td>
+                            <td><%=log.log_operacao%></td>
+                            <td><%=log.log_desc%></td>
+                        </tr>
+
+                    <% }); %>
+                    
                 </table>
             </div>
         </main>
