@@ -20,7 +20,7 @@ body, html{
 .busca-header{
     width: 50%;
     display: grid;
-    grid-template-columns: 168px 80px 490px;
+    grid-template-columns: 168px 150px 65%;
     align-items: center;
 }
 
