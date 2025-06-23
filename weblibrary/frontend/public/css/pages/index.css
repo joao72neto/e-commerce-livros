@@ -19,14 +19,17 @@ body, html{
 
 .busca-header{
     width: 50%;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 168px 80px 490px;
     align-items: center;
 }
 
 #title-index{
-    flex-grow: 1;
-    margin-left: 20px;
+    padding-left: 20px;
+}
+
+#book-header {
+    width: 25px;
 }
 
 header #logado{
