@@ -307,7 +307,8 @@ CREATE TABLE IF NOT EXISTS `log` (
   `log_clt_id` INT NOT NULL,
   `log_dataHora` DATETIME NOT NULL,
   `log_usuario` VARCHAR(45) NOT NULL,
-  `log_operacao` ENUM('insercao', 'escrita') NOT NULL,
+  `log_operacao` VARCHAR(45) NOT NULL,
+  `log_desc` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`log_id`),
   CONSTRAINT `fk_log_clt`
     FOREIGN KEY (`log_clt_id`)
