@@ -18,19 +18,18 @@
         })%>
 
         <main>
-            <h2 class="title">Todos os Logs do Sistema</h2>
             <div class="container">
                 <table>
-                    <tr>
-                        <th>Data</th>
+                    <tr class="tb-header">
+                        <th class="top-left">Data</th>
                         <th>Usuário</th>
                         <th>Operação</th>
-                        <th>Descição</th>
+                        <th class="top-right">Descrição</th>
                     </tr>
 
                     <% logs.forEach(log => { %>
 
-                        <tr>
+                        <tr class="tb-body">
                             <td><%=log.log_dataHora%></td>
                             <td><%=log.log_usuario%></td>
                             <td><%=log.log_operacao%></td>

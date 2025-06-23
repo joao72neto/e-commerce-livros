@@ -5,12 +5,30 @@ body{
     background-color: var(--cinza);
 }
 
-.title{
-    margin: 20px 0;
-}
-
 main{
     max-width: 1200px;
-    margin: 0 auto;
-    height: 104.2vh;
+    margin: 50px auto;
+}
+
+.top-left{
+    border-radius: 20px 0 0 0;
+}
+
+.top-right{
+    border-radius: 0 20px 0 0;
+}
+
+table{
+    border-radius: 20px;
+    margin-bottom: 50px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.199);
+}
+
+td{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tb-body:hover{
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.200);
 }
