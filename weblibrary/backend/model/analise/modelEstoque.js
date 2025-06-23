@@ -19,7 +19,7 @@ module.exports.adicionarEstoque = async (dados) => {
             est_valorCompra,
             est_origem
         ) VALUES (
-            ?, ?, ?, ?, CURDATE(), ?, ?
+            ?, ?, ?, ?, NOW(), ?, ?
         )
     `;
 

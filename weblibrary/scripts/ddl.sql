@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `estoque` (
   `est_lvr_id` INT NOT NULL,
   `est_gpp_id` INT NOT NULL,
   `est_qtd` INT NOT NULL,
-  `est_data` DATE NOT NULL,
+  `est_data` DATETIME NOT NULL,
   `est_valorCompra` DECIMAL(10,2) NOT NULL,
   `est_origem` VARCHAR(45) NOT NULL DEFAULT 'COMPRA',
   PRIMARY KEY (`est_id`),
