@@ -22,7 +22,7 @@
             </div>
             <table class="estoque">
 
-                <tr>
+                <tr class="tb-header">
                     <th class="top-left">Data de Entrada</th>
                     <th>Livro</th>
                     <th>Fornecedor</th>
@@ -34,7 +34,7 @@
                 </tr>
 
                 <% estoque.forEach(row => { %>
-                    <tr>
+                    <tr class="tb-body">
                         <td><%=row.est_data%></td>
                         <td><%=row.lvr_titulo%></td>
                         <td><%=row.for_nome%></td>

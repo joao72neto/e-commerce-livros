@@ -64,7 +64,11 @@ module.exports.buscarEstoque = async () => {
     `;
     
     try{
-        const [estoque] = await db.query(sql);
+        let [estoque] = await db.query(sql);
+        estoque = estoque.map(est => ({
+            ...est,
+            est_data: new Date(est.est_data).toLocaleString('pt-BR')
+        }));
         return estoque;
         
     }catch(err){
