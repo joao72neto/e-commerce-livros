@@ -99,7 +99,7 @@ module.exports.postAdicionarEstoque = async (req, res) => {
         //Registering log
         logData.log_usuario = '(Admin) ';
         logData.log_operacao = 'INSERT';
-        logData.log_desc = 'Adicionando nova entrada ao estoque';
+        logData.log_desc = 'Nova entrada adicionada ao estoque';
         await registerLog(logData);
 
         //Server response
