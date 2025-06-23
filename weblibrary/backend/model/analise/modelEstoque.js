@@ -2,13 +2,13 @@ const { getDb } = require('../../config/db');
 
 // INSERT
 
-// Adicionando uma nova entrada no estoque
+//Adicionando uma nova entrada no estoque
 module.exports.adicionarEstoque = async (dados) => {
 
     //Obtendo o banco
     const db = await getDb();
 
-    // Insert na tabela de estoque
+    //Insert na tabela de estoque
     const sql = `
         INSERT INTO estoque (
             est_for_id,
@@ -42,8 +42,6 @@ module.exports.adicionarEstoque = async (dados) => {
         console.error(`Erro no adicionarEstoque - modelEstoque: ${err}`);
         throw err;
     }
-        
-    
 }
 
 //SELECT
