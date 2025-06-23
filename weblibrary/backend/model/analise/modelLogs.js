@@ -10,13 +10,21 @@ module.exports.buscarTodosLogs = async () => {
 
     let sql = `
         select 
-            * 
+            log_dataHora,
+            log_usuario,
+            log_operacao,
+            log_desc
         from 
             log;
     `;
 
     try{
-        const [logs] = await db.query(sql);
+        let [logs] = await db.query(sql);
+        logs = logs.map(log => ({
+            ...log,
+            log_dataHora: new Date(log.log_dataHora).toLocaleString('pt-BR')
+        }));
+        
         return logs;
         
     }catch(err){
