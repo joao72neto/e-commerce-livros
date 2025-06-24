@@ -1,6 +1,7 @@
 const { buscarEnderecosClienteId, buscarEnderecoId, atualizarAddress, cadastrarAddress, deletarAddressId } = require("../../model/clientes/modelAddress");
 const { desativarEnderecosClienteId } = require('../../model/clientes/modelAddress');
 const { calcularFreteFicticio } = require('../../model/compras/modelPagamento');
+const { registerLog } = require('../../model/analise/modelLogs');
 
 //Paginas
 module.exports.getAddress = async (req, res) => {
@@ -36,10 +37,24 @@ module.exports.getAddressAdd = async (req, res) => {
     });
 };
 
+//Log model
+let logData = {
+    log_clt_id: '',
+    log_usuario: '',
+    log_operacao: '',
+    log_desc: ''
+}
 
 //Alteração de dados
 module.exports.putAddressAlt = async (req, res) => {
     const endereco = await atualizarAddress(req.body, req.params.end_id);
+
+    //Registering log
+    logData.log_usuario = '';
+    logData.log_operacao = 'UPDATE';
+    logData.log_desc = 'Endereço atualizado';
+    await registerLog(logData);
+
     return res.json(endereco);
 };
 
