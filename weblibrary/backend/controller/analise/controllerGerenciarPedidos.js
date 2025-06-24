@@ -103,6 +103,13 @@ module.exports.postDevolverTrocarProduto = async (req, res) => {
 module.exports.deleteDevolvidoTrocado = async (req, res) => {
     try{
         await deletarDevolvidoTrocado(req.params.vnd_id);
+
+        //Registering log
+        logData.log_operacao = 'DELETE';
+        logData.log_usuario = 'System';
+        logData.log_desc = `Itens devolvidos/trocados removidos`;
+        await registerLog(logData);
+       
         return res.status(204).json({msg: 'Produto removido com sucesso!'});
     }catch(err){
         console.error(`Erro no deleteClienteId - controllerClientes: ${err}`);

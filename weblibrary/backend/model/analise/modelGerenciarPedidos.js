@@ -72,7 +72,10 @@ module.exports.buscarDevolvidosTrocados = async () => {
         from 
             trocas t
             join clientes c on c.clt_id = t.trc_clt_id
-            join livros l on l.lvr_id = trc_lvr_id;
+            join livros l on l.lvr_id = t.trc_lvr_id
+            join vendas v on v.vnd_id = t.trc_vnd_id
+        order by
+            t.trc_id;
     `;
 
     try{

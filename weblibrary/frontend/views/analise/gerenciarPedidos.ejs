@@ -42,11 +42,12 @@
                             <h2><%=dev.lvr_titulo%></h2>
                             <p><strong>Comprador(a): </strong><%=dev.clt_nome%></p>
                             <p><strong>Qtd:</strong> <%=dev.trc_qtd%></p>
+                            <p id="ped-number"><%=dev.vnd_numPedido%></p>
                             <p>R$ <%=String(dev.trc_preco).replace('.', ',')%></p>
                             <p class="invisible vnd-id"><%=dev.trc_vnd_id%></p>
                         </div>
                         <div class="acoes">
-                            <a href="/estoque/entrada?retorno=/pedidos/gerenciar&trc_id=<%=dev.trc_id%>&lvr_id=<%=dev.lvr_id%>&clt_id=<%=dev.clt_id%>&vnd_id=<%=dev.trc_vnd_id%>&trc_tipo=<%=dev.trc_tipo%>">Retornar ao Estoque</a>
+                            <a href="/estoque/entrada?retorno=/pedidos/gerenciar&trc_id=<%=dev.trc_id%>&lvr_id=<%=dev.lvr_id%>&clt_id=<%=dev.clt_id%>&vnd_id=<%=dev.trc_vnd_id%>&trc_tipo=<%=dev.trc_tipo%>&ped_number=<%=dev.vnd_numPedido%>">Retornar ao Estoque</a>
                         </div>
                     </div>
                 <% }); %>
@@ -65,11 +66,12 @@
                             <h2><%=trc.lvr_titulo%></h2>
                             <p><strong>Comprador(a): </strong><%=trc.clt_nome%></p>
                             <p><strong>Qtd:</strong> <%=trc.trc_qtd%></p>
+                            <p id="ped-number"><%=trc.vnd_numPedido%></p>
                             <p>R$ <%=String(trc.trc_preco).replace('.', ',')%></p>
                             <p class="invisible vnd-id"><%=trc.trc_vnd_id%></p>
                         </div>
                         <div class="acoes">
-                            <a href="/estoque/entrada?retorno=/pedidos/gerenciar&trc_id=<%=trc.trc_id%>&lvr_id=<%=trc.lvr_id%>&clt_id=<%=trc.clt_id%>&vnd_id=<%=trc.trc_vnd_id%>&trc_tipo=<%=trc.trc_tipo%>">Retornar ao Estoque</a>
+                            <a href="/estoque/entrada?retorno=/pedidos/gerenciar&trc_id=<%=trc.trc_id%>&lvr_id=<%=trc.lvr_id%>&clt_id=<%=trc.clt_id%>&vnd_id=<%=trc.trc_vnd_id%>&trc_tipo=<%=trc.trc_tipo%>&ped_number=<%=trc.vnd_numPedido%>">Retornar ao Estoque</a>
                         </div>
                     </div>
 

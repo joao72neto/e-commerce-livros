@@ -107,6 +107,7 @@ function addReturnItemEstoque(){
             const retorno = urlParams.get('retorno');
             const clt_id = urlParams.get('clt_id');
             const vnd_id = urlParams.get('vnd_id');
+            const ped_number = urlParams.get('ped_number');
             const preco = document.querySelector('#valor_custo').value;
             const qtd = document.querySelector('#qtd').value;
 
@@ -122,7 +123,9 @@ function addReturnItemEstoque(){
                 //Atualizando o status do pedido
                 let updateStatus = {
                     vnd_id: vnd_id,
-                    vnd_status: 'Devolução Concluída'
+                    ped_number: ped_number,
+                    vnd_status: 'Devolução Concluída',
+                    system: true
                 }
 
                 if(trc_tipo === 'troca'){
