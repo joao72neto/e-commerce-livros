@@ -57,7 +57,8 @@ module.exports.patchAtualizarStatusPedidoId = async (req, res) => {
         await atualizarStatusPedidoId(req.body);
 
         //Registering log
-        logData.log_usuario = '(Admin) ';
+        const system = req.body.system;
+        logData.log_usuario = system ? 'System' : '(Admin) ';
         logData.log_operacao = 'UPDATE';
         logData.log_desc = `Status do pedido "${req.body.ped_number}" atualizado para "${req.body.vnd_status}"`;
         await registerLog(logData);
@@ -80,6 +81,14 @@ module.exports.postDevolverTrocarProduto = async (req, res) => {
             vnd_qtd_trocada: Number(req.body.trc_qtd),
             vnd_id: Number(req.body.trc_vnd_id)
         }
+
+        //Registering log
+        logData.log_operacao = 'INSERT';
+        logData.log_usuario = '';
+        const type = req.body.trc_tipo;
+        const capitalizedType = type.charAt(0).toUpperCase() + type.slice(1);
+        logData.log_desc = `${capitalizedType} do pedido "${req.body.ped_number}" solicitada`;
+        await registerLog(logData);
        
         await atualizarQtdTrocadaPedidoId(dados);
 

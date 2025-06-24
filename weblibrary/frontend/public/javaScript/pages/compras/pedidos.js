@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         //Atualizando o status dos pedidos
         const wrapper = btn.closest('.wrapper');
+        const ped_number = wrapper.querySelector('.numPedido p').textContent;
         const vnd_id = wrapper.querySelector('.vnd-id').textContent;
         const lvr_id = wrapper.querySelector('.book-id').textContent;
         let qtd = Number(wrapper.querySelector('#qtd').textContent);
@@ -94,7 +95,9 @@ document.addEventListener('DOMContentLoaded', function(){
         //Preparando os dados para atualizar o status
         let status = {
             vnd_id: vnd_id,
-            vnd_status: 'Devolução Solicitada'
+            ped_number: ped_number,
+            vnd_status: 'Devolução Solicitada',
+            system: true
         }
 
         //Mudando o status caso o usuário escolha troca
@@ -108,10 +111,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
         //Preparando os dados para colocar na tabela de troca
         let trocaDev = {
-            trc_clt_id: cliente[0].clt_id,
-            trc_vnd_id: vnd_id,
+            trc_clt_id: Number(cliente[0].clt_id),
+            ped_number: ped_number,
+            trc_vnd_id: Number(vnd_id),
             trc_lvr_id: Number(lvr_id),
-            trc_qtd: qtd,
+            trc_qtd: Number(qtd),
             trc_preco: Number(wrapper.querySelector('#preco').textContent),
             trc_tipo: tipo
         }
