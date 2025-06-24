@@ -96,12 +96,8 @@ function addReturnItemEstoque(){
             est_origem: trc_tipo ? trc_tipo.toUpperCase() : 'COMPRA'
         }
 
-        console.log(entrada);
-
         //Cadastrando os dados no banco de dados
         const res = await adicionarEstoqueService(entrada);
-
-        console.log(res);
 
         if(res.status === 201){
             alert('Entrada adicionada com sucesso!');
