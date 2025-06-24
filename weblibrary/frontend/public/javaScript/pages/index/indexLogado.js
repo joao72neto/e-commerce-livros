@@ -15,9 +15,6 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
     const chat = document.querySelector('.chat');
     const chatButton = document.querySelector('.chat-button');
 
-    console.log(chat);
-
-
     if(!sidebar.classList.contains('aberta')){
         sidebar.classList.add('aberta');
         header.style.position = 'sticky';
