@@ -55,6 +55,13 @@ module.exports.patchAtualizarStatusPedidoId = async (req, res) => {
     try{
         
         await atualizarStatusPedidoId(req.body);
+
+        //Registering log
+        logData.log_usuario = '(Admin) ';
+        logData.log_operacao = 'UPDATE';
+        logData.log_desc = `Status do pedido ${req.body.ped_number} atualizado para "${req.body.vnd_status}"`;
+        await registerLog(logData);
+        
         return res.status(200).json({msg: 'Status atualizdo com sucesso!'});
 
     }catch(err){
