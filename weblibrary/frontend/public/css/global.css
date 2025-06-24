@@ -205,6 +205,7 @@ ul{
 .empty{
     padding: 50px;
     border-radius: 20px;
+    font-weight: bold;
     box-shadow: 0px 0px 10px #0000005b;
 }
 
@@ -218,7 +219,6 @@ ul{
     text-align: center;
     width: 120px;
     margin: 0 auto;
-
 }
 
 /*Scroll Bar*/

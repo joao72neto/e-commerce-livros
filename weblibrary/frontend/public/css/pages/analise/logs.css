@@ -6,8 +6,18 @@ body{
 }
 
 main{
+    display: grid;
+    align-items: center;
+    min-height: 100vh;
     max-width: 1200px;
-    margin: 50px auto;
+    margin: 0px auto;
+}
+
+.empty{
+    text-align: center;
+    width: 50%;
+    padding: 30px;
+    margin: 0 auto;
 }
 
 .top-left{
