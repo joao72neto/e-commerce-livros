@@ -222,10 +222,12 @@ async function atualizarStatus(select){
     //Obtendo os dados para atualizar o select de entrega
     const wrapper = select.closest('.wrapper');
     const vnd_id = Number(wrapper.querySelector('.vnd-id').textContent);
+    const ped_number = wrapper.querySelector('#ped-number').textContent;
 
     const dados = {
         vnd_id: vnd_id,
-        vnd_status: select.value
+        vnd_status: select.value,
+        ped_number: ped_number
     };
 
     //Atualizando o status no banco de dados

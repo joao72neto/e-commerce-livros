@@ -105,8 +105,10 @@
                                 <p class="invisible vnd-id"><%=pedido.vnd_id%></p>
                                 <p class="invisible clt-id"><%=pedido.clt_id%></p>
                                 <p class="invisible lvr-id"><%=pedido.lvr_id%></p>
-                                <p><%=pedido.vnd_data%></p>
-                                <p><strong>Comprador: </strong><%=pedido.clt_nome%></p>
+                                <p id="ped-qtd"><strong>Qtd: <%=pedido.vnd_qtd%></strong></p>
+                                <p id="ped-date"><%=pedido.vnd_data%></p>
+                                <p id="ped-number"><%=pedido.vnd_numPedido%></p>
+                                <p id="ped-buyer"><%=pedido.clt_nome%></p>
                             </div>
                             <div class="status">
                                 

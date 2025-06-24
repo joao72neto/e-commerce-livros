@@ -4,6 +4,8 @@ const { devolverTrocarProduto } = require('../../model/analise/modelGerenciarPed
 const { buscarDevolvidosTrocados } = require('../../model/analise/modelGerenciarPedidos');
 const { deletarDevolvidoTrocado } = require('../../model/analise/modelGerenciarPedidos');
 const { atualizarQtdTrocadaPedidoId } = require('../../model/analise/modelGerenciarPedidos');
+const { registerLog } = require('../../model/analise/modelLogs');
+
 
 //Página
 module.exports.getGerenciarPedidos = async (req, res) => {
@@ -40,6 +42,13 @@ module.exports.getGerenciarPedidos = async (req, res) => {
     });
 };
 
+//Log model
+let logData = {
+    log_clt_id: '',
+    log_usuario: '',
+    log_operacao: '',
+    log_desc: ''
+}
 
 //Atualizando os status dos pedidos
 module.exports.patchAtualizarStatusPedidoId = async (req, res) => {
