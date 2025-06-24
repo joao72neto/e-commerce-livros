@@ -115,6 +115,13 @@ module.exports.postAdicionarEstoque = async (req, res) => {
 module.exports.patchAtualizarEstoque = async (req, res) => {
     try{
         await atualizarEstoque(req.body.lvr_id, req.body.qtd_comprada);
+
+        //Registering log
+        logData.log_usuario = 'System';
+        logData.log_operacao = 'UPDATE';
+        logData.log_desc = `Qtd do livro "${req.body.lvr_title}" atualizada no estoque`;
+        await registerLog(logData);
+
         return res.status(200).json({msg: 'Estoque atualizado com sucesso!'});
 
     }catch(err){

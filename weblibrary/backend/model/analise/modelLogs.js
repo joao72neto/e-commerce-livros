@@ -48,7 +48,7 @@ module.exports.registerLog = async (dados) => {
     //Getting the logged in user
     const client = await buscarClienteLogado();
     dados.log_clt_id = client[0].clt_id;
-    dados.log_usuario += client[0].clt_nome;
+    dados.log_usuario += dados.log_usuario === 'System' ? '' : client[0].clt_nome;
 
     //Preparing sql query
     const sql = `

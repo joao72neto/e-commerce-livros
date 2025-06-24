@@ -371,7 +371,8 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
         //Atualizando o estoque
         const dadosEstoque = {
             lvr_id: valores.lvr_id,
-            qtd_comprada: valores.vnd_qtd
+            qtd_comprada: valores.vnd_qtd,
+            lvr_title: carrinho.lvr_titulo
         }
         const resEstoque = await atualizarEstoqueService(dadosEstoque);
 
@@ -413,7 +414,20 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
             const resAdd = await adicionarPedidoService(valores);
             const resRem = await removerCarrinhoIdService(item.crr_lvr_id);
 
+            //Atualizando o estoque
+            const dadosEstoque = {
+                lvr_id: valores.lvr_id,
+                qtd_comprada: valores.vnd_qtd,
+                lvr_title: item.lvr_titulo
+            }
+            const resEstoque = await atualizarEstoqueService(dadosEstoque);
+
             //Vericando erros
+            if(!resEstoque === 200){
+                alert('Não foi possível atualizar o estoque');
+                return;
+            }
+
             if(!resAdd === 201){
                 alert('Não foi possível finalizar a compra');
                 return; 
