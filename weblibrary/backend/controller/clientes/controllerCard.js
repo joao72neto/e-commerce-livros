@@ -1,6 +1,8 @@
 const { atualizarCard, buscarCartaoId, buscarCartoesClienteId, cadastrarCartao, deletarCardId } = require("../../model/clientes/modelCard");
 const { desativarCartoesClienteId } = require('../../model/clientes/modelCard');
 const { buscarCartoesClienteIdFiltrado } = require('../../model/clientes/modelCard');
+const { registerLog } = require('../../model/analise/modelLogs');
+const { buscarClienteId } = require('../../model/clientes/modelClientes');
 
 //Páginas
 module.exports.getCard = async (req, res) => {
@@ -36,10 +38,27 @@ module.exports.getCardAlt = async (req, res) => {
     });
 };
 
+//Log model
+let logData = {
+    log_clt_id: '',
+    log_usuario: '',
+    log_operacao: '',
+    log_desc: ''
+}
+
 //Inserção de dados
 module.exports.postCardAdd = async (req, res) => {
     try{
-        await cadastrarCartao(req.body)
+        await cadastrarCartao(req.body);
+
+        //Registering log
+        const client = await buscarClienteId(req.body.car_clt_id);
+        const userName = client[0].clt_nome;
+        logData.log_usuario = req.body.user;
+        logData.log_operacao = 'INSERT';
+        logData.log_desc = `Novo cartão adicionado para "${userName}"`;
+        await registerLog(logData);
+
         return res.sendStatus(200);
         
     }catch(err){

@@ -18,15 +18,21 @@ document.querySelector('form').addEventListener('submit', async function(event){
     //Pegando o id do cliente e do cartão
     const clt_id = window.location.pathname.split('/')[3];
 
-    const card = {
+    let card = {
         car_clt_id: clt_id,
         car_numero: dados.numero_cartao,
         car_nome: dados.nome_cartao,
         car_bandeira: dados.bandeira_cartao,
         car_cvv: dados.codigo_seguranca,
+        user: '(Admin) '
     }
 
-  
+    //Getting URL params
+    const params = new URLSearchParams(window.location.search);
+    if(params.get('retorno')){
+        card.user = ''
+    }
+
     //Passando os dados para o back
     let result = await cadastrarCardService(card, clt_id);
     
