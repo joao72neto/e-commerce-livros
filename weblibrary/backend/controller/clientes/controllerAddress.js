@@ -48,12 +48,14 @@ let logData = {
 
 //Alteração de dados
 module.exports.putAddressAlt = async (req, res) => {
-    const endereco = await atualizarAddress(req.body, req.params.end_id);
+    const endereco = await atualizarAddress(req.body.address, req.params.end_id);
 
     //Registering log
-    logData.log_usuario = '';
+    const client = await buscarClienteId(req.body.user.clt_id);
+    const userName = client[0].clt_nome;
+    logData.log_usuario = req.body.user.user_type;
     logData.log_operacao = 'UPDATE';
-    logData.log_desc = 'Endereço atualizado';
+    logData.log_desc = `Endereço de "${userName}" foi atualizado`;
     await registerLog(logData);
 
     return res.json(endereco);

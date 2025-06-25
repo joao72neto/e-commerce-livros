@@ -36,8 +36,19 @@ document.querySelector('form').addEventListener('submit', async function(event){
         end_tipoResidencia: dados.tipo_residencia
     }
 
+    let user = {
+        user_type: '(Admin) ',
+        clt_id: clt_id
+    }
+
+    //Getting URL params
+    const params = new URLSearchParams(window.location.search);
+    if(params.get('retorno')){
+        user.user_type = '';
+    }
+
     //Passando os dados para o back
-    let result = await atualizarAddressService(address, clt_id, end_id);
+    let result = await atualizarAddressService(address, user, clt_id, end_id);
     
     if(result.status === 200){
         alert('Endereço foi atualizado com sucesso!');

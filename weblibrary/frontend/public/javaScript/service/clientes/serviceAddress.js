@@ -40,16 +40,19 @@ export async function cadastrarAddressService(dados, clt_id) {
     }
 }
 
-
 //PUT
 
 //Atualizando os endereço no banco de dados
-export async function atualizarAddressService(dados, clt_id, end_id) {
+export async function atualizarAddressService(address, user, clt_id, end_id) {
     try{
+        const data = {
+            user: user,
+            address: address
+        }
         const result = await fetch(`/clientes/address/${clt_id}/alt/${end_id}`, {
            method: 'PUT',
            headers: {'Content-Type':'application/json'},
-           body: JSON.stringify(dados) 
+           body: JSON.stringify(data)
         });
 
         return result;

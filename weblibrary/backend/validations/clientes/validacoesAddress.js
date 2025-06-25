@@ -11,39 +11,39 @@ const arrayEstados = [
 
 module.exports.validarAddress = [
 
-    body('end_nome')
+    body('address.end_nome')
         .matches(textoApenas)
         .withMessage('O compo (end_nome) não pode conter valores numéricos'),
 
-    body('end_tipoResidencia')
+    body('address.end_tipoResidencia')
         .matches(textoApenas)
         .withMessage('O campo (end_tipoResidencia) não pode conter valores numéricos'),
 
-    body('end_tipoLogradouro')
+    body('address.end_tipoLogradouro')
         .matches(textoApenas)
         .withMessage('O campo (end_tipoLogradouro) não pode conter valores numéricos'),
 
-    body('end_logradouro')
+    body('address.end_logradouro')
         .matches(textoApenas)
         .withMessage('O campo (end_logradouro) não pode conter valores numéricos'),
 
-    body('end_numero')
+    body('address.end_numero')
         .isNumeric()
         .withMessage('O campo (end_numero) precisa conter valores numéricos'),
 
-    body('end_bairro')
+    body('address.end_bairro')
         .matches(textoApenas)
         .withMessage('O campo (end_bairro) não pode conter valores numéricos'),
 
-    body('end_cep')
+    body('address.end_cep')
         .matches(/^\d{5}-\d{3}$/)
         .withMessage('O campo (end_cep) precisa estar no formato XXXXX-XXX'),
 
-    body('end_cidade')
+    body('address.end_cidade')
         .matches(textoApenas)
         .withMessage('O campo (end_cidade) não pode conter valores numéricos'),
 
-    body('end_estado')
+    body('address.end_estado')
         .custom(value => {
 
             if(!arrayEstados.includes(value)){
@@ -55,7 +55,7 @@ module.exports.validarAddress = [
         })
         .withMessage('O estado deve ser válido e pertencente ao Brasil'),
 
-    body('end_pais')
+    body('address.end_pais')
         .matches(textoApenas)
         .withMessage('O campo (end_pais) não pode conter valores numéricos'),
 

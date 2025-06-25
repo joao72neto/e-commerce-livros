@@ -1,7 +1,6 @@
 import { atualizarCardService } from "/javaScript/service/clientes/serviceCard.js";
 import { validarCard } from "/javaScript/validations/clientes/validacoesCard.js";
 
-
 //Enviando os dados para o backend
 document.querySelector('form').addEventListener('submit', async function(event){
     
