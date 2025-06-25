@@ -33,7 +33,7 @@ document.querySelectorAll('.delete').forEach(button => {
         const car_id = enderecoWrapper.querySelector('.card-id').textContent;
         const clt_id = window.location.pathname.split('/').splice(-1)[0];
 
-        const res = await deletarCardIdService(clt_id, car_id);
+        const res = await deletarCardIdService(clt_id, car_id, '(Admin) ');
 
         if(res.status === 204){
             location.reload();

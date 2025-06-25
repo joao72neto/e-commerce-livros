@@ -79,7 +79,17 @@ module.exports.deleteCardId = async (req, res) => {
         }
 
         await deletarCardId(req.params.car_id);
+
+        //Registering log
+        const client = await buscarClienteId(req.params.clt_id);
+        const userName = client[0].clt_nome;
+        logData.log_usuario = req.body.user;
+        logData.log_operacao = 'DELETE';
+        logData.log_desc = `Cartão de "${userName}" deletado`;
+        await registerLog(logData);
+
         return res.sendStatus(204);
+
     } catch (err) {
         console.error(`Erro no deleteCardId - controllerCard: ${err}`);
         return res.sendStatus(500);

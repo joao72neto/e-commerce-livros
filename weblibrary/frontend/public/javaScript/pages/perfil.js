@@ -37,7 +37,7 @@ document.querySelectorAll('.delete-card').forEach(button => {
         const car_id = enderecoWrapper.querySelector('.card-id').textContent;
         const clt_id = enderecoWrapper.querySelector('.cliente-id').textContent;
 
-        const res = await deletarCardIdService(clt_id, car_id);
+        const res = await deletarCardIdService(clt_id, car_id, '');
 
         if(res.status === 204){
             location.reload();

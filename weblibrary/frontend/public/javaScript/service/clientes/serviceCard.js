@@ -1,10 +1,12 @@
 //DELETE
 
 //Deletando um cartão por ID do banco de dados
-export async function deletarCardIdService(clt_id, car_id) {
+export async function deletarCardIdService(clt_id, car_id, user) {
     try{
         const result = await fetch(`/card/delete/${clt_id}/${car_id}`, {
-           method: 'DELETE'
+           method: 'DELETE',
+           headers: {'Content-Type':'application/json'},
+           body: JSON.stringify({user: user})
         });
 
         if(result.status === 400){
