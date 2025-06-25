@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `enderecos` (
   CONSTRAINT `fk_end_clt`
     FOREIGN KEY (`end_clt_id`)
     REFERENCES `clientes` (`clt_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `cartoes` (
   CONSTRAINT `fk_car_clt`
     FOREIGN KEY (`car_clt_id`)
     REFERENCES `clientes` (`clt_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -201,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `vendas` (
   CONSTRAINT `fk_vnd_clt`
     FOREIGN KEY (`vnd_clt_id`)
     REFERENCES `clientes` (`clt_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_vnd_lvr`
     FOREIGN KEY (`vnd_lvr_id`)
@@ -225,12 +225,12 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   CONSTRAINT `fk_crr_clt`
     FOREIGN KEY (`crr_clt_id`)
     REFERENCES `clientes` (`clt_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_crr_lvr`
     FOREIGN KEY (`crr_lvr_id`)
     REFERENCES `livros` (`lvr_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `cupons` (
   CONSTRAINT `fk_cup_clt`
     FOREIGN KEY (`cup_clt_id`)
     REFERENCES `clientes` (`clt_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -267,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `trocas` (
   CONSTRAINT `fk_trc_clt`
     FOREIGN KEY (`trc_clt_id`)
     REFERENCES `clientes` (`clt_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_trc_lvr`
     FOREIGN KEY (`trc_lvr_id`)
@@ -295,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `transacoes` (
   CONSTRAINT `fk_trs_clt`
     FOREIGN KEY (`trs_clt_id`)
     REFERENCES `clientes` (`clt_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -313,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   CONSTRAINT `fk_log_clt`
     FOREIGN KEY (`log_clt_id`)
     REFERENCES `clientes` (`clt_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 

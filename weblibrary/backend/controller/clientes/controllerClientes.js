@@ -103,17 +103,13 @@ module.exports.patchAtivarCliente = async (req, res) => {
 module.exports.deleteClienteId = async(req, res) => {
     try{
 
-        //Alterando os dados no banco
-        await deletarAddressClienteId(req.params.clt_id);
-        await deletarCardsClienteId(req.params.clt_id);
+        //Deleting a client
         await deletarClienteId(req.params.clt_id);
-
         return res.sendStatus(204);
     }catch(err){
         console.error(`Erro no deleteClienteId - controllerClientes: ${err}`);
         return res.sendStatus(500);
     }
-    
 };
 
 
