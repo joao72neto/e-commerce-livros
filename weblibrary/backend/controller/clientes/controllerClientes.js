@@ -103,15 +103,23 @@ module.exports.patchAtivarCliente = async (req, res) => {
 module.exports.deleteClienteId = async(req, res) => {
     try{
 
-        //Deleting a client
+        //Registering log
+        const client = await buscarClienteId(req.params.clt_id);
+        const userName = client[0].clt_nome;
+        logData.log_usuario = '(Admin) ';
+        logData.log_operacao = 'DELETE';
+        logData.log_desc = `Cliente "${userName}" foi deletado`;
+        await registerLog(logData);
+
+        //Deleting client
         await deletarClienteId(req.params.clt_id);
         return res.sendStatus(204);
+
     }catch(err){
         console.error(`Erro no deleteClienteId - controllerClientes: ${err}`);
         return res.sendStatus(500);
     }
 };
-
 
 //Apis para acessar os dados dos clientes
 module.exports.getApiClienteLogado = async (req, res) => {
