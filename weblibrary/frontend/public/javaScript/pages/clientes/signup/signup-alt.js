@@ -56,7 +56,18 @@ document.querySelector('form').addEventListener('submit', async function (event)
         car_cvv: dados.codigo_seguranca
     }
 
-    const signupDados = {cliente, address, card}
+    let user = {
+        user_type: '(Admin) ',
+    }
+
+    //Getting params
+    const params = new URLSearchParams(window.location.search);
+    const page = params.get('retorno');
+    if(page === 'perfil'){
+        user.user_type = '';
+    }
+
+    const signupDados = {cliente, address, card, user}
 
     const res = await signupAltService(signupDados, clt_id);
 

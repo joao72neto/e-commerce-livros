@@ -2,6 +2,7 @@ const { cadastrarAddress, buscarEnderecosClienteId, atualizarAddress } = require
 const { cadastrarCartao, buscarCartoesClienteId, atualizarCard} = require("../../model/clientes/modelCard");
 const { cadastrarCliente, buscarClienteId, atualizarCliente } = require("../../model/clientes/modelClientes");
 const { calcularFreteFicticio } = require('../../model/compras/modelPagamento');
+const { registerLog } = require('../../model/analise/modelLogs');
 
 //Páginas
 module.exports.getSignup = (req, res) => {
@@ -25,6 +26,14 @@ module.exports.getSignupAlt = async (req, res) =>{
     });
 };
 
+//Log model
+let logData = {
+    log_clt_id: '',
+    log_usuario: '',
+    log_operacao: '',
+    log_desc: ''
+}
+
 //Atualizando os dados do banco
 module.exports.putSignupAlt = async (req, res) => {
 
@@ -35,6 +44,14 @@ module.exports.putSignupAlt = async (req, res) => {
         await atualizarCard(req.body.card, req.body.card.car_id);
         await atualizarCliente(req.body.cliente, req.params.clt_id);
         
+        //Registering log
+        const client = await buscarClienteId(req.params.clt_id);
+        const userName = client[0].clt_nome;
+        logData.log_usuario = req.body.user.user_type;
+        logData.log_operacao = 'UPDATE';
+        logData.log_desc = `Cliente "${userName}" foi alterado(a)`;
+        await registerLog(logData);
+
         return res.sendStatus(200);
     }catch(err){
         console.error(`Erro no putSignupAlt - controllerSignup: ${err}`);
