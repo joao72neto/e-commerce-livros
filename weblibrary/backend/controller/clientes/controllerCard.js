@@ -99,7 +99,17 @@ module.exports.deleteCardId = async (req, res) => {
 
 //Atualizando os dados dos cartões
 module.exports.putCardAlt = async (req, res) => {
-    const cartao = await atualizarCard(req.body, req.params.car_id);
+
+    const cartao = await atualizarCard(req.body.card, req.params.car_id);
+
+    //Registering log
+    const client = await buscarClienteId(req.body.user.clt_id);
+    const userName = client[0].clt_nome;
+    logData.log_usuario = req.body.user.user_type;
+    logData.log_operacao = 'UPDATE';
+    logData.log_desc = `Cartão de "${userName}" foi atualizado`;
+    await registerLog(logData);
+
     return res.json(cartao);
 };
 

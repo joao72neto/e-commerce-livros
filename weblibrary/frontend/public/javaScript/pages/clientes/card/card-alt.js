@@ -23,12 +23,22 @@ document.querySelector('form').addEventListener('submit', async function(event){
         car_numero: dados.numero_cartao,
         car_nome: dados.nome_cartao,
         car_bandeira: dados.bandeira_cartao,
-        car_cvv: dados.codigo_seguranca,
+        car_cvv: dados.codigo_seguranca
     }
 
+    let user = {
+        user_type: '(Admin) ',
+        clt_id: clt_id
+    }
   
+    //Getting URL params
+    const params = new URLSearchParams(window.location.search);
+    if(params.get('retorno')){
+        user.user_type = '';
+    }
+
     //Passando os dados para o back
-    let result = await atualizarCardService(card, clt_id, car_id);
+    let result = await atualizarCardService(card, user, clt_id, car_id);
     
     if(result.status === 200){
         alert('Cartão foi atualizado com sucesso!');
