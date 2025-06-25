@@ -63,6 +63,15 @@ module.exports.patchInativarCliente = async (req, res) => {
 
     try{
         await inativarCliente(req.params.clt_id);
+
+        //Registering log
+        const client = await buscarClienteId(req.params.clt_id);
+        const userName = client[0].clt_nome;
+        logData.log_usuario = '(Admin) ';
+        logData.log_operacao = 'INACTIVATE';
+        logData.log_desc = `Cliente "${userName}" foi inativado`;
+        await registerLog(logData);
+
         return res.sendStatus(204);
     }catch(err){
         console.error(`Erro no patchInativarCliente - controllerCliente: ${err}`);
@@ -74,12 +83,20 @@ module.exports.patchAtivarCliente = async (req, res) => {
 
     try{
         await ativarCliente(req.params.clt_id);
+
+        //Registering log
+        const client = await buscarClienteId(req.params.clt_id);
+        const userName = client[0].clt_nome;
+        logData.log_usuario = '(Admin) ';
+        logData.log_operacao = 'ACTIVATE';
+        logData.log_desc = `Cliente "${userName}" foi ativado`;
+        await registerLog(logData);
+
         return res.sendStatus(204)
     }catch(err){
         console.error(`Erro no patchAtivarCliente - controllerCliente: ${err}`);
         return res.sendStatus(500);
     }
-    
 };
 
 //Deletando dados
