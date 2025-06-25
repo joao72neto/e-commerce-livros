@@ -2,7 +2,7 @@ const { buscarEnderecosClienteId, buscarEnderecoId, atualizarAddress, cadastrarA
 const { desativarEnderecosClienteId } = require('../../model/clientes/modelAddress');
 const { calcularFreteFicticio } = require('../../model/compras/modelPagamento');
 const { registerLog } = require('../../model/analise/modelLogs');
-const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
+const { buscarClienteLogado, buscarClienteId } = require('../../model/clientes/modelClientes');
 
 //Paginas
 module.exports.getAddress = async (req, res) => {
@@ -91,6 +91,15 @@ module.exports.postAddressAdd = async (req, res) => {
 
         //Cadastrando o novo endereço
         await cadastrarAddress(dados);
+
+        //Registering log
+        const client = await buscarClienteId(req.body.end_clt_id);
+        const userName = client[0].clt_nome;
+        logData.log_usuario = req.body.user;
+        logData.log_operacao = 'INSERT';
+        logData.log_desc = `Novo enderço adicionado para "${userName}"`;
+        await registerLog(logData);
+
         return res.sendStatus(200);
         
     }catch(err){

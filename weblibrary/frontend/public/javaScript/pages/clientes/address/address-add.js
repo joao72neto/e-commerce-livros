@@ -19,10 +19,8 @@ document.querySelector('form').addEventListener('submit', async function(event){
     const formDados = new FormData(event.target);
     let dados = Object.fromEntries(formDados.entries());
 
-
     //Pegando o id do cliente
     const clt_id = window.location.pathname.split('/')[3];
-
 
     const address = {
         end_clt_id: clt_id,
@@ -35,7 +33,14 @@ document.querySelector('form').addEventListener('submit', async function(event){
         end_numero: dados.numero,
         end_pais: dados.pais,
         end_tipoLogradouro: dados.tipo_logradouro,
-        end_tipoResidencia: dados.tipo_residencia
+        end_tipoResidencia: dados.tipo_residencia,
+        user: '(Admin) '
+    }
+
+    //Getting URL params
+    const params = new URLSearchParams(window.location.search);
+    if(params.get('retorno')){
+        address.user = ''
     }
 
     //Passando os dados para o back
