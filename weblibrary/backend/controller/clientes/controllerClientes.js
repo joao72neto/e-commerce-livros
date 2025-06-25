@@ -1,13 +1,21 @@
 const { deletarAddressClienteId } = require("../../model/clientes/modelAddress");
 const { deletarCardsClienteId } = require("../../model/clientes/modelCard");
 const {buscarClienteId, buscarClientesAtivos, buscarClientesInativos, inativarCliente, ativarCliente, deletarClienteId, filtrarClientesAtivos, buscarClienteLogado, logarClienteId, deslogarCliente} = require("../../model/clientes/modelClientes");
-
+const { registerLog } = require('../../model/analise/modelLogs');
 
 //Páginas
 module.exports.getClientes = async (req, res) => {
     const clientes = await filtrarClientesAtivos(req.query);
     return res.render('clientes/clientes', {clientes: clientes});
 };
+
+//Log model
+let logData = {
+    log_clt_id: '',
+    log_usuario: '',
+    log_operacao: '',
+    log_desc: ''
+}
 
 //Alterando dados
 module.exports.patchLogarClienteId = async (req, res) => {
@@ -19,6 +27,12 @@ module.exports.patchLogarClienteId = async (req, res) => {
             return;
         }
 
+        //Registering log
+        logData.log_usuario = '';
+        logData.log_operacao = 'LOGIN';
+        logData.log_desc = 'Usuário entrou no sistema';
+        await registerLog(logData);
+
         return res.sendStatus(204);
 
     }catch(err){
@@ -29,8 +43,16 @@ module.exports.patchLogarClienteId = async (req, res) => {
 
 module.exports.patchDeslogarCliente = async (req, res) => {
     try{
+
+        //Registering log
+        logData.log_usuario = '';
+        logData.log_operacao = 'LOGOUT';
+        logData.log_desc = 'Usuário saiu do sistema';
+        await registerLog(logData);
+
         await deslogarCliente();
         return res.sendStatus(204);
+
     }catch(err){
         console.error(`Erro no patchDeslogarCliente - controllerCliente: ${err}`);
         return res.sendStatus(500);
