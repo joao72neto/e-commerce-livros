@@ -3,6 +3,7 @@ const { desativarCartoesClienteId } = require('../../model/clientes/modelCard');
 const { buscarCartoesClienteIdFiltrado } = require('../../model/clientes/modelCard');
 const { registerLog } = require('../../model/analise/modelLogs');
 const { buscarClienteId } = require('../../model/clientes/modelClientes');
+const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
 
 //Páginas
 module.exports.getCard = async (req, res) => {
@@ -106,6 +107,15 @@ module.exports.patchDesativarCartoesClienteId = async (req, res) => {
     try{
         
         await desativarCartoesClienteId(req.params.clt_id);
+
+        //Registering log
+        const client = await buscarClienteLogado();
+        const userName = client[0].clt_nome;
+        logData.log_usuario = 'System';
+        logData.log_operacao = 'UPDATE';
+        logData.log_desc = `Cartões de "${userName}" desativados`;
+        await registerLog(logData);
+
         return res.status(200).json({msg: 'Cartões desativados com sucesso!'});
 
     }catch(err){
