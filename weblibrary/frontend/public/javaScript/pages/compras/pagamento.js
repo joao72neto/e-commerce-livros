@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', async function(){
         option.disabled = true;
         option.selected = true;
 
-
         selectCartao.appendChild(option);
     }
 

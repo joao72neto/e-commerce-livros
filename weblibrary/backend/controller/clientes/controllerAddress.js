@@ -2,6 +2,7 @@ const { buscarEnderecosClienteId, buscarEnderecoId, atualizarAddress, cadastrarA
 const { desativarEnderecosClienteId } = require('../../model/clientes/modelAddress');
 const { calcularFreteFicticio } = require('../../model/compras/modelPagamento');
 const { registerLog } = require('../../model/analise/modelLogs');
+const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
 
 //Paginas
 module.exports.getAddress = async (req, res) => {
@@ -62,6 +63,15 @@ module.exports.patchDesativarEnderecosClienteId = async (req, res) => {
     try{
         
         await desativarEnderecosClienteId(req.params.clt_id);
+
+        //Registering log
+        const client = await buscarClienteLogado();
+        const userName = client[0].clt_nome;
+        logData.log_usuario = 'System';
+        logData.log_operacao = 'UPDATE';
+        logData.log_desc = `Endereço de "${userName}" desativado`;
+        await registerLog(logData);
+
         return res.status(200).json({msg: 'Endereço desativado com sucesso!'});
 
     }catch(err){
