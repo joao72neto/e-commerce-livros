@@ -1,10 +1,12 @@
 //DELETE
 
 //Deletando um endereço por ID do banco de dados
-export async function deletarAddressIdService(clt_id, end_id) {
+export async function deletarAddressIdService(clt_id, end_id, user) {
     try{
         const result = await fetch(`/address/delete/${clt_id}/${end_id}`, {
-           method: 'DELETE'
+           method: 'DELETE',
+           headers: {'Content-Type':'application/json'},
+           body: JSON.stringify({user: user})
         });
 
         if(result.status === 400){

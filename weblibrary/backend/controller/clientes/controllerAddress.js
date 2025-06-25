@@ -118,7 +118,17 @@ module.exports.deleteAddressId = async (req, res) => {
         }
 
         await deletarAddressId(req.params.end_id);
+
+        //Registering log
+        const client = await buscarClienteId(req.params.clt_id);
+        const userName = client[0].clt_nome;
+        logData.log_usuario = req.body.user;
+        logData.log_operacao = 'DELETE';
+        logData.log_desc = `Endereço de "${userName}" deletado`;
+        await registerLog(logData);
+
         return res.sendStatus(204);
+
     } catch (err) {
         console.error(`Erro no deleteAddressId - controllerAddress: ${err}`);
         return res.sendStatus(500);

@@ -32,8 +32,7 @@ document.querySelectorAll('.delete').forEach(button => {
         const end_id = enderecoWrapper.querySelector('.address-id').textContent;
         const clt_id = window.location.pathname.split('/').splice(-1)[0];
 
-
-        const res = await deletarAddressIdService(clt_id, end_id);
+        const res = await deletarAddressIdService(clt_id, end_id, '(Admin) ');
 
         if(res.status === 204){
             location.reload();

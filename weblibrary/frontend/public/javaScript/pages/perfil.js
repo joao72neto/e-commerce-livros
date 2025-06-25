@@ -1,5 +1,4 @@
 import { deletarCardIdService } from "/javaScript/service/clientes/serviceCard.js";
-
 import { deletarAddressIdService } from "/javaScript/service/clientes/serviceAddress.js"
 
 //Verificando o tipo de operação
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.cartoes').remove();
         }
     }
-    
 });
 
 //deletando um cartão
@@ -46,10 +44,8 @@ document.querySelectorAll('.delete-card').forEach(button => {
         }
 
         alert(res.msg.msg);
-
     });
 });
-
 
 //deletando um endereço
 document.querySelectorAll('.delete-address').forEach(button => {
@@ -68,14 +64,12 @@ document.querySelectorAll('.delete-address').forEach(button => {
         const end_id = enderecoWrapper.querySelector('.address-id').textContent;
         const clt_id = enderecoWrapper.querySelector('.cliente-id').textContent;
 
-
-        const res = await deletarAddressIdService(clt_id, end_id);
+        const res = await deletarAddressIdService(clt_id, end_id, '');
 
         if(res.status === 204){
             location.reload();
         }
 
         alert(res.msg.msg);
-
     });
 });
