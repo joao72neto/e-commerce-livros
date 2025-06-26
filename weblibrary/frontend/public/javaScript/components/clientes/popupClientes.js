@@ -12,7 +12,7 @@ function showPopup() {
         cliente.addEventListener('click', async function (event) {
             event.stopPropagation();
 
-            const existingPopup = this.querySelector('.popup');
+            const existingPopup = document.body.querySelector('.popup');
             if (existingPopup) {
                 existingPopup.remove();
                 return;
@@ -41,7 +41,7 @@ function showPopup() {
                 <p><strong>Ranking: </strong>${cliente.clt_ranking}</p>
             `;
 
-            this.appendChild(popup);
+            document.body.appendChild(popup);
         });
     });
 }
@@ -49,9 +49,10 @@ function showPopup() {
 function removePopup() {
     document.addEventListener('click', (event) => {
         const isClickInsideCliente = event.target.closest('.cliente');
+        const isClickInsidePopup = event.target.closest('.popup');
         const popup = document.querySelector('.popup');
 
-        if (!isClickInsideCliente && popup) {
+        if (!isClickInsideCliente && popup && !isClickInsidePopup) {
             popup.remove();
         }
     });
