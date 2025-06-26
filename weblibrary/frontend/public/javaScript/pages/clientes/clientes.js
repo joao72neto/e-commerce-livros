@@ -6,18 +6,36 @@ import { buscarClienteLogadoService } from "/javaScript/service/clientes/service
 import { logarClienteIdService } from "/javaScript/service/clientes/serviceClientes.js";
 import { deslogarClienteService } from "/javaScript/service/clientes/serviceClientes.js";
 
-document.addEventListener('DOMContentLoaded', function(){
-
-    //Calling functions
-    mascarasFiltro();
-    isLoggedIn();
-});
-
-//Logged in or not
-async function isLoggedIn(){
+document.addEventListener('DOMContentLoaded', async function(){
 
     //Getting the logged in client
     const client = await buscarClienteLogadoService();
+
+    //Calling functions
+    deactivateInactiveBtn(client);
+    isLoggedIn(client);
+    mascarasFiltro();
+});
+
+//Inactivating inactive btn
+async function deactivateInactiveBtn(client) {
+
+    //Deactivating inactivate button
+    document.querySelectorAll('.inat').forEach(button => {
+        const wrapper = button.closest('.wrapper');
+        const clt_id = wrapper.querySelector('.cliente-id').textContent;
+
+        if (client.length > 0 && clt_id === client[0].clt_id.toString()) {
+            button.classList.add('disabled-link');
+            return;
+        }
+
+        button.classList.remove('disabled-link');
+    });
+}
+
+//Logged in or not
+async function isLoggedIn(client){
 
     //Getting all BTNs
     const btn_inat = document.querySelectorAll('.inat');

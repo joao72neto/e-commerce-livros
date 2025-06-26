@@ -12,6 +12,13 @@
     }
 }
 
+.disabled-link {
+    pointer-events: none;
+    color: gray;
+    text-decoration: none;
+    cursor: not-allowed;
+}
+
 /*CRUD Settings - index*/
 .flex-container{
     display: grid;
