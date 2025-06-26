@@ -5,15 +5,13 @@
 .popup{
 
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 0 20px 20px 0;
     box-shadow: 0px 0px 10px #0000005b;
-
-    min-width: 400px;
-
-    position:fixed;
+    min-width: 25%;
+    position: fixed;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 0%;
+    transform: translate(0, -50%);
     background-color: var(--branco);
     z-index: 1;
 }
@@ -22,15 +20,11 @@
     text-align: center;
 }
 
-.popup .button-popup button{
-   width: 50px;
-}
-
 .popup h2{
     padding: 30px;
     text-align: center;
     background-color: var(--cinza);
-    margin: 20px 0 10px 0;
+    margin: 20px 0;
     border-radius: 20px;
 }
 

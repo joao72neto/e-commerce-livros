@@ -116,7 +116,8 @@ a.signup{
     border: 1px solid var(--preto);
     border-radius: 10px;
     position: absolute;
-    top: 40px;
+    left: 0px;
+    top: 50px;
     background-color: var(--branco);
     z-index: 2;
 
@@ -124,10 +125,11 @@ a.signup{
 
 .alt_submenu a{
     display: block;
+    text-align: left;
     background-color: var(--branco);
     border: none;
     color: black;
-    padding: 20px;
+    padding: 15px;
 
     &:hover{
         background-color: var(--amarelo-claro);
