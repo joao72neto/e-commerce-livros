@@ -5,8 +5,12 @@ const { registerLog } = require('../../model/analise/modelLogs');
 
 //Páginas
 module.exports.getClientes = async (req, res) => {
+    const loggedinClient = await buscarClienteLogado();
     const clientes = await filtrarClientesAtivos(req.query);
-    return res.render('clientes/clientes', {clientes: clientes});
+    return res.render('clientes/clientes', {
+        clientes: clientes,
+        loggedinClient: loggedinClient
+    });
 };
 
 //Log model

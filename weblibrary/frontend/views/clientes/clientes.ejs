@@ -41,9 +41,22 @@
                     clientes.forEach(cliente => { %>
                         <div class="wrapper">
                             <div class="cliente">
-                                <p class="invisible cliente-id"><%=cliente.clt_id%></p>
-                                <p><%=cliente.clt_nome%></p>
-                                <p><%=cliente.clt_email%></p>
+                                <div class="clt-info">
+
+                                    <%
+                                        const date = new Date(cliente.clt_dataNasc).toLocaleDateString('pt-BR');
+                                    %>
+
+                                    <p class="invisible cliente-id"><%=cliente.clt_id%></p>
+                                    <h3><%=cliente.clt_nome%></h3>
+                                    <p><%=cliente.clt_email%></p>
+
+                                    <% if(loggedinClient.length > 0){ %>
+                                        <p><%=date%></p>
+                                    <% } %>
+
+                                    <p>...</p>
+                                </div>
                             </div>
                             <div class="acoes">
                                 <a class="alt">Alterar</a>

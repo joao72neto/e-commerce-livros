@@ -78,19 +78,22 @@ h1{
 }
 
 .cliente{
+    display: grid;
+    align-items: center;
+
     &:hover{
         cursor: pointer;
     }
 }
 
 .acoes{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: stretch;
+    gap: 10px;
+    text-align: center;
     position: relative;
     align-self: center;
-}
-
-.acoes button{
-    padding: 10px;
-    text-align: center;
 }
 
 /*Submenu*/
