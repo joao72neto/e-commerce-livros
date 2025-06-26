@@ -79,6 +79,14 @@ module.exports.postSignup = async (req, res) => {
         //Cadastrando os cartão e o endereço no banco
         await cadastrarCartao(req.body.card);
         await cadastrarAddress(req.body.address);
+
+        //Registering log
+        const client = await buscarClienteId(clt_id);
+        const userName = client[0].clt_nome;
+        logData.log_usuario = req.body.user.user_type;
+        logData.log_operacao = 'INSERT';
+        logData.log_desc = `Cliente "${userName}" foi cadastrado(a)`;
+        await registerLog(logData);
         
         return res.sendStatus(200);
     }catch(err){

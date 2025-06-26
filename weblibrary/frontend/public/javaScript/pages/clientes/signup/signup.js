@@ -60,7 +60,15 @@ document.querySelector('form').addEventListener('submit', async function(event){
         car_cvv: dados.codigo_seguranca
     }
 
-    const signupDados = {cliente, address, card};
+    let user = {
+        user_type: '(Admin) ',
+    }
+
+    if(!retorno){
+        user.user_type = '';
+    }
+
+    const signupDados = {cliente, address, card, user};
 
     const res = await signupService(signupDados);
 
