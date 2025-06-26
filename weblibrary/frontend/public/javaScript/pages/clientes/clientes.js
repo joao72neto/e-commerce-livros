@@ -14,8 +14,24 @@ document.addEventListener('DOMContentLoaded', async function(){
     //Calling functions
     deactivateInactiveBtn(client);
     isLoggedIn(client);
+    filterNotFoundMsg();
     mascarasFiltro();
 });
+
+//Filter Msg when no results were found
+function filterNotFoundMsg(){
+    const container = document.querySelector('.container-index');
+    const wrapper = document.querySelector('.container-index .wrapper');
+
+    //Preparing HTML with not found msg
+    const html = `
+        <h2 style="text-align: center;">Nenhum Resultado Encontrado</h2>
+    `;
+
+    if(!wrapper) {
+        container.innerHTML = html;
+    }
+}
 
 //Inactivating inactive btn
 async function deactivateInactiveBtn(client) {
