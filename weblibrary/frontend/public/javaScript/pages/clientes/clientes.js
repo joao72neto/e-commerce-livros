@@ -22,7 +22,7 @@ async function isLoggedIn(){
     //Getting all BTNs
     const btn_inat = document.querySelectorAll('.inat');
     const btn_alt = document.querySelectorAll('.alt');
-    const btn_signup = document.querySelectorAll('.signup');
+    const btn_signup = document.querySelectorAll('.button');
 
     if(client.length > 0) return;
 
@@ -31,33 +31,6 @@ async function isLoggedIn(){
     if(btn_alt) btn_alt.forEach(btn => btn.style.display = 'None');
     if(btn_signup) btn_signup.forEach(btn => btn.style.display = 'None');
 }
-
-// Mantendo o filtro aberto
-window.addEventListener('load', () => {
-    if (window.location.search.includes('?')) {
-
-        document.querySelector('.filtro_clientes').style.display = 'grid';
-
-    } else {
-        document.querySelector('.filtro_clientes').style.display = 'none';
-    }
-});
-
-
-//Abrindo e fechandoo filtro 
-document.querySelector('#flt').addEventListener('click', () => {
-
-    const filtro = document.querySelector('.filtro_clientes');
-
-    //Alterando a visibilidade do filtro
-    if(filtro.style.display === 'none' || filtro.style.display === ''){
-        filtro.style.display = 'grid';
-        return;
-    }
-
-    filtro.style.display = 'none';
-
-});
 
 //Adicionando funcionamendo do filtro
 document.querySelector('#btn-filtro').addEventListener('click', (event) => {
@@ -164,15 +137,12 @@ document.querySelectorAll('.login').forEach(button => {
     });
 });
 
-
-
 //ALTERALÇÃO DE USUÁRIO
 document.querySelectorAll('.alt').forEach(botao => {
     botao.addEventListener('click', function (event) {
 
         event.stopPropagation();
       
-        
         //Obetendo o id
         let clienteWrapper = this.closest('.wrapper');
         let id = clienteWrapper.querySelector('.cliente-id').textContent;
@@ -204,12 +174,10 @@ document.querySelectorAll('.alt').forEach(botao => {
     });
 });
 
-
 //Removendo o submenu ao clicar fora da tela
 document.addEventListener('click', () => {
     document.querySelectorAll('.alt_submenu').forEach(menu => menu.remove());
 });
-
 
 //DESATIVANDO CLIENTES
 document.querySelectorAll('.inat').forEach(button => {
@@ -225,7 +193,6 @@ document.querySelectorAll('.inat').forEach(button => {
         }
     });
 });
-
 
 //Função que cria um botão dinânimo para a tela de inativos
 export function criarBotaoInativados() {
@@ -250,7 +217,6 @@ let clientesInativos = await buscarClientesInativosService();
 if (clientesInativos.length > 0) {
     criarBotaoInativados();
 }
-
 
 //TRANSAÇÕES
 document.querySelectorAll('.tran').forEach(button => {

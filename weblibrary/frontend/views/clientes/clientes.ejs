@@ -18,24 +18,23 @@
         })%>
 
         <div class="flex-container">
+
+            <div class="flt-container">
+                <form class="filtro_clientes">
+                    <input id="nome" type="text" placeholder="Nome">
+                    <input id="email" type="email" placeholder="E-mail">
+                    <input id="telefone" type="text" placeholder="Telefone">
+                    <input id="cpf" type="text" placeholder="CPF ">
+                    <input id="dataNasc" type="date" placeholder="Data de Nascimento">
+                    <input id="genero" type="text" placeholder="Gênero">
+                    <button type="submit" id="btn-filtro">Filtrar</button>
+                </form>
+            </div>
+
             <div class="container-index">
-                <div class="msg-clientes">
-        
-                    <div class="filtro">
-                        <span id="flt"><img src="images/clientes/filtro.png" alt="filtro"></span>
-                    </div>
-                    <form class="filtro_clientes">
-                        <input id="nome" type="text" placeholder="Nome">
-                        <input id="email" type="email" placeholder="E-mail">
-                        <input id="telefone" type="text" placeholder="Telefone">
-                        <input id="cpf" type="text" placeholder="CPF ">
-                        <input id="dataNasc" type="date" placeholder="Data de Nascimento">
-                        <input id="genero" type="text" placeholder="Gênero">
-                        <button type="submit" id="btn-filtro">Filtrar</button>
-                    </form>
-                </div>
+
                 <div class="button">
-                    <a class="signup" href="/clientes/signup?retorno=clientes">Cadastrar Cliente</a>
+                    <a class="signup" href="/clientes/signup?retorno=clientes">+</a>
                 </div>
                 <%
                     clientes.forEach(cliente => { %>
