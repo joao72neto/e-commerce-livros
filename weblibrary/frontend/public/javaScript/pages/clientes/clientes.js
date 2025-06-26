@@ -6,10 +6,31 @@ import { buscarClienteLogadoService } from "/javaScript/service/clientes/service
 import { logarClienteIdService } from "/javaScript/service/clientes/serviceClientes.js";
 import { deslogarClienteService } from "/javaScript/service/clientes/serviceClientes.js";
 
+document.addEventListener('DOMContentLoaded', function(){
 
-mascarasFiltro();
+    //Calling functions
+    mascarasFiltro();
+    isLoggedIn();
+});
 
-//FILTRO
+//Logged in or not
+async function isLoggedIn(){
+
+    //Getting the logged in client
+    const client = await buscarClienteLogadoService();
+
+    //Getting all BTNs
+    const btn_inat = document.querySelectorAll('.inat');
+    const btn_alt = document.querySelectorAll('.alt');
+    const btn_signup = document.querySelectorAll('.signup');
+
+    if(client.length > 0) return;
+
+    //Removing BTNS
+    if(btn_inat) btn_inat.forEach(btn => btn.style.display = 'None');
+    if(btn_alt) btn_alt.forEach(btn => btn.style.display = 'None');
+    if(btn_signup) btn_signup.forEach(btn => btn.style.display = 'None');
+}
 
 // Mantendo o filtro aberto
 window.addEventListener('load', () => {
