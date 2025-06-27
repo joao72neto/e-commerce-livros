@@ -338,6 +338,36 @@ CREATE TABLE IF NOT EXISTS `livros_categorias` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
+-- Table `log_history`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `log_history` (
+  `hlog_id` INT NOT NULL AUTO_INCREMENT,
+  `hlog_clt_id` INT NOT NULL,
+  `hlog_dataHora` DATETIME NOT NULL,
+  `hlog_usuario` VARCHAR(45) NOT NULL,
+  `hlog_operacao` VARCHAR(45) NOT NULL,
+  `hlog_desc` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`hlog_id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `vendas_history`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vendas_history` (
+  `hvnd_id` INT NOT NULL AUTO_INCREMENT,
+  `hvnd_clt_id` INT NOT NULL,
+  `hvnd_lvr_id` INT NOT NULL,
+  `hvnd_numPedido` VARCHAR(255) NULL,
+  `hvnd_data` DATETIME NOT NULL,
+  `hvnd_status` ENUM('Em Processamento', 'Aprovado', 'Reprovado', 'Cancelado', 'Em Transporte', 'Entregue', 'Troca Solicitada', 'Troca Aceita', 'Troca Concluída', 'Troca Recusada', 'Devolução Solicitada', 'Devolução Aceita', 'Devolução Concluída', 'Devolução Recusada') NOT NULL DEFAULT 'em processamento',
+  `hvnd_valorTotal` DECIMAL(5,2) NOT NULL,
+  `hvnd_frete` DECIMAL(5,2) NULL,
+  `hvnd_qtd` SMALLINT NULL,
+  `hvnd_qtd_trocada` SMALLINT NULL DEFAULT NULL,
+  PRIMARY KEY (`hvnd_id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
 -- View `vw_historico_vendas`
 -- -----------------------------------------------------
 CREATE OR REPLACE VIEW vw_historico_vendas AS
