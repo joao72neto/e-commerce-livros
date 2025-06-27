@@ -1,6 +1,15 @@
 const { adicionarPedido } = require('../../model/compras/modelPedidos');
 const { buscarPedidosClienteId } = require('../../model/compras/modelPedidos');
 const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
+const { registerLog } = require('../../model/analise/modelLogs');
+
+//Log model
+let logData = {
+    log_clt_id: '',
+    log_usuario: '',
+    log_operacao: '',
+    log_desc: ''
+}
 
 //Página
 module.exports.getPedidos = async (req, res) => {
@@ -19,6 +28,13 @@ module.exports.postPedido = async (req, res) => {
     try{
     
         await adicionarPedido(req.body);
+
+        //Registering log
+        logData.log_usuario = ''
+        logData.log_operacao = 'ORDER';
+        logData.log_desc = `Pedido "${req.body.lvr_numPedido}" solicitado`;
+        await registerLog(logData);
+
         return res.status(201).json({msg: 'Pedido adicionado a lista de pedidos'})
 
     }catch(err){
