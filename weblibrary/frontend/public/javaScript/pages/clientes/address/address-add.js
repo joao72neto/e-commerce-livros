@@ -33,7 +33,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
         end_numero: dados.numero,
         end_pais: dados.pais,
         end_tipoLogradouro: dados.tipo_logradouro,
-        end_tipoResidencia: dados.tipo_residencia,
+        end_tipoResidencia: dados.tipo_residencia
     }
 
     let user = {

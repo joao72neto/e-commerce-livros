@@ -23,18 +23,21 @@ document.querySelector('form').addEventListener('submit', async function(event){
         car_numero: dados.numero_cartao,
         car_nome: dados.nome_cartao,
         car_bandeira: dados.bandeira_cartao,
-        car_cvv: dados.codigo_seguranca,
-        user: '(Admin) '
+        car_cvv: dados.codigo_seguranca
+    }
+
+    let user = {
+        user_type: '(Admin) '
     }
 
     //Getting URL params
     const params = new URLSearchParams(window.location.search);
     if(params.get('retorno')){
-        card.user = ''
+        user.user_type = ''
     }
 
     //Passando os dados para o back
-    let result = await cadastrarCardService(card, clt_id);
+    let result = await cadastrarCardService(card, user, clt_id);
     
     if(result.status === 200){
         alert('Cartão foi cadastrado com sucesso!');
@@ -50,7 +53,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
         }else if(retorno && !retorno_pag){
             retorno_atual = `/${retorno}`;
         }else{
-            retorno_atual = `/clientes/card/${cartoes[0].car_clt_id}`;
+            retorno_atual = `/clientes/card/${clt_id}`;
         }
 
         window.location.href = retorno_atual;

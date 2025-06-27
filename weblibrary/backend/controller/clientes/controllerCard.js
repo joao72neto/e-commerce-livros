@@ -50,12 +50,12 @@ let logData = {
 //Inserção de dados
 module.exports.postCardAdd = async (req, res) => {
     try{
-        await cadastrarCartao(req.body);
+        await cadastrarCartao(req.body.card);
 
         //Registering log
-        const client = await buscarClienteId(req.body.car_clt_id);
+        const client = await buscarClienteId(req.body.card.car_clt_id);
         const userName = client[0].clt_nome;
-        logData.log_usuario = req.body.user;
+        logData.log_usuario = req.body.user.user_type;
         logData.log_operacao = 'INSERT';
         logData.log_desc = `Novo cartão adicionado para "${userName}"`;
         await registerLog(logData);

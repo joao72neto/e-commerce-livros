@@ -24,12 +24,16 @@ export async function deletarCardIdService(clt_id, car_id, user) {
 //POST
 
 //Cadastrando um cartão no banco de dados
-export async function cadastrarCardService(dados, clt_id) {
+export async function cadastrarCardService(dados, user, clt_id) {
     try{
+        const data = {
+            card: dados,
+            user: user
+        }
         const result = await fetch(`/clientes/card/${clt_id}/add`, {
            method: 'POST',
            headers: {'Content-Type':'application/json'},
-           body: JSON.stringify(dados) 
+           body: JSON.stringify(data)
         });
 
         return result;

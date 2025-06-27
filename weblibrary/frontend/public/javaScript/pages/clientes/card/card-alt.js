@@ -55,7 +55,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
         }else if(retorno && !retorno_pag){
             retorno_atual = `/${retorno}`;
         }else{
-            retorno_atual = `/clientes/card/${cartoes[0].car_clt_id}`;
+            retorno_atual = `/clientes/card/${clt_id}`;
         }
 
         window.location.href = retorno_atual;
