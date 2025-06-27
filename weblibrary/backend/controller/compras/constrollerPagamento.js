@@ -137,6 +137,14 @@ module.exports.deleteCupomId = async (req, res) => {
     try{
     
         await deletarCupomId(req.params.cup_id);
+
+        //Registering log
+        const client = await buscarClienteLogado();
+        logData.log_usuario = 'System'
+        logData.log_operacao = 'DELETE';
+        logData.log_desc = `Cupons de "${client[0].clt_nome}" removidos`;
+        await registerLog(logData);
+
         return res.status(204).json({msg: 'Cupom removido com sucesso'});
 
     }catch(err){

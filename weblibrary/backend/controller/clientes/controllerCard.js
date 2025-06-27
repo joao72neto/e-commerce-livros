@@ -123,7 +123,7 @@ module.exports.patchDesativarCartoesClienteId = async (req, res) => {
         const userName = client[0].clt_nome;
         logData.log_usuario = 'System';
         logData.log_operacao = 'UPDATE';
-        logData.log_desc = `Cartões de "${userName}" desativados`;
+        logData.log_desc = `Cartões ativos de "${userName}" desativados`;
         await registerLog(logData);
 
         return res.status(200).json({msg: 'Cartões desativados com sucesso!'});
