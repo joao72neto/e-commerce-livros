@@ -66,7 +66,7 @@ module.exports.deleteCarrinhoId = async (req, res) => {
         //Registering log
         const book =  await buscarLivroId(req.params.lvr_id);
         const book_title = book[0].lvr_titulo;
-        logData.log_usuario = ''
+        logData.log_usuario = req.body.user_type;
         logData.log_operacao = 'DELETE';
         logData.log_desc = `Livro "${book_title}" removido do carrinho`;
         await registerLog(logData);

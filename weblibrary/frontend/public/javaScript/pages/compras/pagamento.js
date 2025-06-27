@@ -341,6 +341,11 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
     const urlParams = new URLSearchParams(window.location.search);
     const compra = urlParams.get('compra'); 
 
+    //User type
+    const user = {
+        user_type: 'System'
+    }
+
     //Obtendo o frete do endereço
     const end_frete = Number(document.querySelector('#frete').textContent.split(' ')[2].replace(',', '.'));
 
@@ -365,7 +370,7 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
 
         // Adicionando os itens na tabela de vendas
         const resAdd = await adicionarPedidoService(valores);
-        const resRem = await removerCarrinhoIdService(carrinho.crr_lvr_id);
+        const resRem = await removerCarrinhoIdService(carrinho.crr_lvr_id,  user);
 
         //Atualizando o estoque
         const dadosEstoque = {
@@ -411,7 +416,7 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
 
             //Adicionando os itens na tabela de vendas 
             const resAdd = await adicionarPedidoService(valores);
-            const resRem = await removerCarrinhoIdService(item.crr_lvr_id);
+            const resRem = await removerCarrinhoIdService(item.crr_lvr_id, user);
 
             //Atualizando o estoque
             const dadosEstoque = {

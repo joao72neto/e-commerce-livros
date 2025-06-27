@@ -44,10 +44,12 @@ export async function adicionarCarrinhoService(dados) {
 //DELETE
 
 //Removendo do carrinho
-export async function removerCarrinhoIdService(lvr_id) {
+export async function removerCarrinhoIdService(lvr_id, user) {
     try{
         const result = await fetch(`/carrinho/delete/${lvr_id}`, {
-           method: 'DELETE'
+            method: 'DELETE',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(user)
         });
 
         if(!result.ok){

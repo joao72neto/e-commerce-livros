@@ -32,7 +32,7 @@ module.exports.postPedido = async (req, res) => {
         //Registering log
         logData.log_usuario = ''
         logData.log_operacao = 'ORDER';
-        logData.log_desc = `Pedido "${req.body.lvr_numPedido}" solicitado`;
+        logData.log_desc = `Pedido "${req.body.lvr_numPedido}" criado`;
         await registerLog(logData);
 
         return res.status(201).json({msg: 'Pedido adicionado a lista de pedidos'})

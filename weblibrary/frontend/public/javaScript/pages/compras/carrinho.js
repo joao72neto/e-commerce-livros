@@ -108,7 +108,12 @@ document.querySelectorAll('.delete').forEach(button => {
         const wrapper = this.closest('.wrapper');
         const lvr_id = wrapper.querySelector('.book-id').textContent;
 
-        const res = await removerCarrinhoIdService(lvr_id);
+        //User type
+        const user = {
+            user_type: ''
+        }
+
+        const res = await removerCarrinhoIdService(lvr_id, user);
 
         if(res.status === 204){
             window.location.reload();
