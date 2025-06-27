@@ -195,6 +195,15 @@ module.exports.postAdicionarCupons = async (req, res) => {
     try{
 
         await adicionarCupom(req.body);
+
+        //Registering log
+        const client = await buscarClienteLogado();
+        const cup_value = String(req.body.cup_valor).replace('.', ',');
+        logData.log_usuario = 'System'
+        logData.log_operacao = 'INSERT';
+        logData.log_desc = `Cupom de "R$ ${cup_value}" adicionado a "${client[0].clt_nome}"`;
+        await registerLog(logData);
+
         return res.status(201).json({msg: 'Cupom adicionado com sucesso!'})
 
     }catch(err){
