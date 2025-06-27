@@ -438,46 +438,39 @@ ORDER BY e.est_id DESC;
 -- Procedure `seed_sales_history`
 -- -----------------------------------------------------
 DROP PROCEDURE IF EXISTS seed_sales_history;
-
-DELIMITER $$
-
 CREATE PROCEDURE seed_sales_history()
 BEGIN
-
 	DELETE FROM vendas_history
-    WHERE hvnd_vnd_id IN (
+  WHERE hvnd_vnd_id IN (
 		SELECT vnd_id from vendas
 	);
 
 	INSERT INTO vendas_history (
 		hvnd_vnd_id,
-        hvnd_clt_id,
-        hvnd_lvr_id,
-        hvnd_numPedido,
-        hvnd_data,
-        hvnd_status,
-        hvnd_valorTotal,
-        hvnd_frete,
-        hvnd_qtd,
-        hvnd_qtd_trocada
-    )
-    SELECT
-		vnd_id,
-        vnd_clt_id,
-        vnd_lvr_id,
-        vnd_numPedido,
-        vnd_data,
-        vnd_status,
-        vnd_valorTotal,
-        vnd_frete,
-        vnd_qtd,
-        vnd_qtd_trocada
-	FROM
-		vendas;
-
-END $$
-
-DELIMITER ;
+    hvnd_clt_id,
+    hvnd_lvr_id,
+    hvnd_numPedido,
+    hvnd_data,
+    hvnd_status,
+    hvnd_valorTotal,
+    hvnd_frete,
+    hvnd_qtd,
+    hvnd_qtd_trocada
+  )
+  SELECT
+    vnd_id,
+    vnd_clt_id,
+    vnd_lvr_id,
+    vnd_numPedido,
+    vnd_data,
+    vnd_status,
+    vnd_valorTotal,
+    vnd_frete,
+    vnd_qtd,
+    vnd_qtd_trocada
+  FROM
+    vendas;
+END;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
