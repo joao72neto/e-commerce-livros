@@ -3,6 +3,15 @@ const { adicionarCarrinho } = require('../../model/compras/modelCarrinho');
 const { removerCarrinhoId } = require('../../model/compras/modelCarrinho');
 const { buscarClienteLogado } = require('../../model/clientes/modelClientes')
 const { atualizarQtdPrecoCarrinho } = require('../../model/compras/modelCarrinho');
+const { registerLog } = require('../../model/analise/modelLogs');
+
+//Log model
+let logData = {
+    log_clt_id: '',
+    log_usuario: '',
+    log_operacao: '',
+    log_desc: ''
+}
 
 //Página
 module.exports.getCarrinho = async (req, res) => {
@@ -26,6 +35,14 @@ module.exports.postCarrinho = async (req, res) => {
     try{
 
         const result = await adicionarCarrinho(req.body);
+
+        //Registering log
+        const cart =  await buscarCarrinhoClienteId(req.body.clt_id);
+        const book_title = cart[0].lvr_titulo;
+        logData.log_usuario = ''
+        logData.log_operacao = 'INSERT';
+        logData.log_desc = `Livro "${book_title}" adicionado ao carrinho`;
+        await registerLog(logData);
 
         if(result === 409){
             return res.status(409).json({msg: 'Item já está no carrinho'});
