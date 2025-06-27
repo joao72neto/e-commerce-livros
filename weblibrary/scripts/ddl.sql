@@ -342,12 +342,18 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `log_history` (
   `hlog_id` INT NOT NULL AUTO_INCREMENT,
+  `hlog_log_id` INT NULL,
   `hlog_clt_id` INT NOT NULL,
   `hlog_dataHora` DATETIME NOT NULL,
   `hlog_usuario` VARCHAR(45) NOT NULL,
   `hlog_operacao` VARCHAR(45) NOT NULL,
   `hlog_desc` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`hlog_id`))
+  PRIMARY KEY (`hlog_id`),
+  CONSTRAINT `fk_hlog_log`
+    FOREIGN KEY (`hlog_log_id`)
+    REFERENCES `log` (`log_id`)
+    ON DELETE SET NULL
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -355,6 +361,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `vendas_history` (
   `hvnd_id` INT NOT NULL AUTO_INCREMENT,
+  `hvnd_vnd_id` INT NULL,
   `hvnd_clt_id` INT NOT NULL,
   `hvnd_lvr_id` INT NOT NULL,
   `hvnd_numPedido` VARCHAR(255) NULL,
@@ -364,7 +371,12 @@ CREATE TABLE IF NOT EXISTS `vendas_history` (
   `hvnd_frete` DECIMAL(5,2) NULL,
   `hvnd_qtd` SMALLINT NULL,
   `hvnd_qtd_trocada` SMALLINT NULL DEFAULT NULL,
-  PRIMARY KEY (`hvnd_id`))
+  PRIMARY KEY (`hvnd_id`),
+  CONSTRAINT `fk_hvnd_vnd`
+    FOREIGN KEY (`hvnd_vnd_id`)
+    REFERENCES `vendas` (`vnd_id`)
+    ON DELETE SET NULL
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -421,6 +433,51 @@ FROM
 	JOIN fornecedor f ON f.for_id = e.est_for_id
 	JOIN livros l ON l.lvr_id = e.est_lvr_id
 ORDER BY e.est_id DESC;
+
+-- -----------------------------------------------------
+-- Procedure `seed_sales_history`
+-- -----------------------------------------------------
+DROP PROCEDURE IF EXISTS seed_sales_history;
+
+DELIMITER $$
+
+CREATE PROCEDURE seed_sales_history()
+BEGIN
+
+	DELETE FROM vendas_history
+    WHERE hvnd_vnd_id IN (
+		SELECT vnd_id from vendas
+	);
+
+	INSERT INTO vendas_history (
+		hvnd_vnd_id,
+        hvnd_clt_id,
+        hvnd_lvr_id,
+        hvnd_numPedido,
+        hvnd_data,
+        hvnd_status,
+        hvnd_valorTotal,
+        hvnd_frete,
+        hvnd_qtd,
+        hvnd_qtd_trocada
+    )
+    SELECT
+		vnd_id,
+        vnd_clt_id,
+        vnd_lvr_id,
+        vnd_numPedido,
+        vnd_data,
+        vnd_status,
+        vnd_valorTotal,
+        vnd_frete,
+        vnd_qtd,
+        vnd_qtd_trocada
+	FROM
+		vendas;
+
+END $$
+
+DELIMITER ;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
