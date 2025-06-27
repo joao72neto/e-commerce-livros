@@ -165,9 +165,9 @@ INSERT INTO livros_categorias (lvc_lvr_id, lvc_cat_id) VALUES
 (10, 1),
 (10, 7);
 
--- Inserindo inserts de pedidos hipotéticos
-INSERT INTO vendas 
-(vnd_clt_id, vnd_lvr_id, vnd_numPedido, vnd_data, vnd_status, vnd_valorTotal, vnd_frete, vnd_qtd) 
+-- Inserting into vendas_history table
+INSERT INTO vendas_history
+(hvnd_clt_id, hvnd_lvr_id, hvnd_numPedido, hvnd_data, hvnd_status, hvnd_valorTotal, hvnd_frete, hvnd_qtd)
 VALUES 
 -- Livro 1: vendido em 3 datas diferentes
 (5, 1, 'PED-20250601-19283', '2025-06-01 14:30:45', 'Entregue', 59.90, 5.00, 1),
