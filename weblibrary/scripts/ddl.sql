@@ -376,17 +376,17 @@ SELECT
 	l.lvr_titulo,
 	c.cat_id,
 	c.cat_nome,
-	v.vnd_id,
-	v.vnd_data,
-	v.vnd_qtd
+	vh.hvnd_id,
+	vh.hvnd_data,
+	vh.hvnd_qtd
 FROM 
-	vendas v
-	JOIN livros l ON l.lvr_id = v.vnd_lvr_id
+	vendas_history vh
+	JOIN livros l ON l.lvr_id = vh.hvnd_lvr_id
 	JOIN livros_categorias lc ON lc.lvc_lvr_id = l.lvr_id 
 	JOIN categoria  c ON c.cat_id = lc.lvc_cat_id
 WHERE
-	v.vnd_status in (
-		'entregue',
+	vh.hvnd_status in (
+	'entregue',
     'troca solicitada',
     'troca recusada',
     'troca aceita',

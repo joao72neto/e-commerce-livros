@@ -35,11 +35,11 @@ module.exports.buscarDatasVendas = async () => {
     //Montando a query
     const sql = `
         select distinct
-            vnd_data data_venda
+            hvnd_data data_venda
         from 
             vw_historico_vendas
         order by
-	        vnd_data;
+	        hvnd_data;
     `;
 
     //Buscando os dados no banco
@@ -70,8 +70,8 @@ module.exports.buscarLivrosVendidos = async (dados) => {
             lvr_id,
             lvr_titulo,
             cat_id,
-            sum(vnd_qtd) total_vendido,
-            vnd_data data_venda
+            sum(hvnd_qtd) total_vendido,
+            hvnd_data data_venda
         from 
             vw_historico_vendas
     `;
@@ -93,13 +93,13 @@ module.exports.buscarLivrosVendidos = async (dados) => {
 
     //Filtrando por data de início
     if(inicio && !fim){
-        condicoes.push(`vnd_data between ? and ?`);
+        condicoes.push(`hvnd_data between ? and ?`);
         valores.push(inicio + ' 00:00:00');
         valores.push(inicio + ' 23:59:59');
     }
 
     if(inicio && fim){
-        condicoes.push(`vnd_data between ? and ?`);
+        condicoes.push(`hvnd_data between ? and ?`);
         valores.push(inicio + ' 00:00:00');
         valores.push(fim + ' 23:59:59');
     }
@@ -114,7 +114,7 @@ module.exports.buscarLivrosVendidos = async (dados) => {
             lvr_id,
             lvr_titulo,
             cat_id,
-            vnd_data
+            hvnd_data
         order by
             data_venda;
     `;
