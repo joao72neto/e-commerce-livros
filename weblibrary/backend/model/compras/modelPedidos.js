@@ -23,6 +23,7 @@ module.exports.adicionarPedido = async (dados) => {
             ?, ?, ?, NOW(), ?, ?, ?
         );
 
+        CALL seed_sales_history();
     `;
 
     //Pegando os valores para insert

@@ -395,19 +395,7 @@ FROM
 	vendas_history vh
 	JOIN livros l ON l.lvr_id = vh.hvnd_lvr_id
 	JOIN livros_categorias lc ON lc.lvc_lvr_id = l.lvr_id 
-	JOIN categoria  c ON c.cat_id = lc.lvc_cat_id
-WHERE
-	vh.hvnd_status in (
-	'entregue',
-    'troca solicitada',
-    'troca recusada',
-    'troca aceita',
-    'troca concluída',
-    'devolução solicitada',
-    'devolução recusada',
-    'devolução aceita',
-    'devoluçao concluída'
-  );
+	JOIN categoria  c ON c.cat_id = lc.lvc_cat_id;
 
 -- -----------------------------------------------------
 -- View `vw_historico_vendas`
