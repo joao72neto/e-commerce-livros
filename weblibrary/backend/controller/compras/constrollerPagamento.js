@@ -12,6 +12,15 @@ const { buscarCartoesInativosClienteId } = require('../../model/clientes/modelCa
 const { buscarEnderecosInativosClienteId } = require('../../model/clientes/modelAddress');
 const { buscarEnderecosAtivosClienteId } = require('../../model/clientes/modelAddress');
 const { atualizarEnderecoIdStatus } = require('../../model/clientes/modelAddress');
+const { registerLog } = require('../../model/analise/modelLogs');
+
+//Log model
+let logData = {
+    log_clt_id: '',
+    log_usuario: '',
+    log_operacao: '',
+    log_desc: ''
+}
 
 //Página
 module.exports.getPagamento = async (req, res) => {
@@ -50,6 +59,13 @@ module.exports.getPagamento = async (req, res) => {
     if(car_id){
         try{
             await atualizarCardIdStatus(car_id);
+
+            //Registering log
+            logData.log_usuario = ''
+            logData.log_operacao = 'UPDATE';
+            logData.log_desc = `Cartão adicionado/removido da tela de pagamento`;
+            await registerLog(logData);
+
         }catch(err){
             console.error(`Erro no atualizarCardIdStatus - controllerPagamento: ${err}`);
             throw err;
@@ -60,6 +76,13 @@ module.exports.getPagamento = async (req, res) => {
     if(end_id){
         try{
             await atualizarEnderecoIdStatus(end_id);
+
+            //Registering log
+            logData.log_usuario = ''
+            logData.log_operacao = 'UPDATE';
+            logData.log_desc = `Endereço confimado/removido da tela de pagamento`;
+            await registerLog(logData);
+
         }catch(err){
             console.error(`Erro no atualizarEnderecoIdStatus - controllerPagamento: ${err}`);
             throw err;
