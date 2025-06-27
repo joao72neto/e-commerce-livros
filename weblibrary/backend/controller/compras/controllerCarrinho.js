@@ -87,6 +87,15 @@ module.exports.patchQtdPrecoCarrinho = async (req, res) => {
         const crr_qtd = req.body.crr_qtd;
 
         await atualizarQtdPrecoCarrinho(crr_qtd, lvr_id);
+
+        //Registering log
+        const book =  await buscarLivroId(lvr_id);
+        const book_title = book[0].lvr_titulo;
+        logData.log_usuario = ''
+        logData.log_operacao = 'UPDATE';
+        logData.log_desc = `Qtd do Livro "${book_title}" atualizada para ${crr_qtd}`;
+        await registerLog(logData);
+
         return res.status(204).json({msg: 'Item atualizado com sucesso!'})
 
     }catch(err){
