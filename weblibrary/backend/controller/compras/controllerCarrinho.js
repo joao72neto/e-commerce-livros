@@ -4,6 +4,7 @@ const { removerCarrinhoId } = require('../../model/compras/modelCarrinho');
 const { buscarClienteLogado } = require('../../model/clientes/modelClientes')
 const { atualizarQtdPrecoCarrinho } = require('../../model/compras/modelCarrinho');
 const { registerLog } = require('../../model/analise/modelLogs');
+const { buscarLivroId } = require('../../model/books/modelBooks');
 
 //Log model
 let logData = {
@@ -61,6 +62,15 @@ module.exports.deleteCarrinhoId = async (req, res) => {
     try{
 
         await removerCarrinhoId(req.params.lvr_id);
+
+        //Registering log
+        const book =  await buscarLivroId(req.params.lvr_id);
+        const book_title = book[0].lvr_titulo;
+        logData.log_usuario = ''
+        logData.log_operacao = 'DELETE';
+        logData.log_desc = `Livro "${book_title}" removido do carrinho`;
+        await registerLog(logData);
+
         return res.status(204).json({msg: 'Item removido do carrinho'})
 
     }catch(err){
