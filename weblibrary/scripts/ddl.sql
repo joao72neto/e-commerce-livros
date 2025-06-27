@@ -460,6 +460,31 @@ BEGIN
     vendas;
 END;
 
+-- -----------------------------------------------------
+-- Procedure `seed_log_history`
+-- -----------------------------------------------------
+DROP PROCEDURE IF EXISTS seed_log_history;
+CREATE PROCEDURE seed_log_history()
+BEGIN
+	INSERT INTO log_history (
+		hlog_log_id,
+    hlog_clt_id,
+    hlog_dataHora,
+    hlog_usuario,
+    hlog_operacao,
+    hlog_desc
+  )
+  SELECT
+		log_id,
+		log_clt_id,
+    log_dataHora,
+    log_usuario,
+    log_operacao,
+    log_desc
+	FROM
+		log;
+END;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

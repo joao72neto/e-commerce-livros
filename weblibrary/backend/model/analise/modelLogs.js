@@ -63,25 +63,12 @@ module.exports.registerLog = async (dados) => {
         )
     `;
 
-    const sql_log_history = `
-        INSERT INTO log_history (
-            hlog_clt_id,
-            hlog_dataHora,
-            hlog_usuario,
-            hlog_operacao,
-            hlog_desc
-        ) VALUES (
-            ?, NOW(), ?, ?, ?
-        )
-    `;
-
     //Preparing values to be inserted
     const valores = Object.values(dados);
 
     //Inserting the data into the db
     try{
         await db.query(sql_log, valores);
-        await db.query(sql_log_history, valores);
     }catch(err){
         console.error(`Erro no registerLog - modelLogs: ${err}`);
         throw err;
