@@ -142,7 +142,7 @@ module.exports.deleteCupomId = async (req, res) => {
         const client = await buscarClienteLogado();
         logData.log_usuario = 'System'
         logData.log_operacao = 'DELETE';
-        logData.log_desc = `Cupons de "${client[0].clt_nome}" removidos`;
+        logData.log_desc = `Cupons de "${client[0].clt_nome}" deletados`;
         await registerLog(logData);
 
         return res.status(204).json({msg: 'Cupom removido com sucesso'});
@@ -159,6 +159,13 @@ module.exports.patchAtivarCupom = async (req, res) => {
 
     try{
         await ativarCupom(req.params.cup_id);
+
+        //Registering log
+        logData.log_usuario = ''
+        logData.log_operacao = 'UPDATE';
+        logData.log_desc = `Cupom ativado para uso em pagamento`;
+        await registerLog(logData);
+
         return res.sendStatus(200)
     }catch(err){
         console.error(`Erro no patchAtivarCupom - controllerPagamento: ${err}`);
@@ -169,6 +176,13 @@ module.exports.patchAtivarCupom = async (req, res) => {
 module.exports.patchInativarCupom = async (req, res) => {
     try{
         await inativarCupom(req.params.cup_id);
+
+        //Registering log
+        logData.log_usuario = ''
+        logData.log_operacao = 'UPDATE';
+        logData.log_desc = `Cupom ativo desativado em pagamento`;
+        await registerLog(logData);
+
         return res.sendStatus(200)
     }catch(err){
         console.error(`Erro no patchInativarCupom - controllerPagamento: ${err}`);
