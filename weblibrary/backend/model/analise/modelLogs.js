@@ -11,22 +11,22 @@ module.exports.buscarTodosLogs = async () => {
 
     let sql = `
         select 
-            log_id,
-            log_dataHora,
-            log_usuario,
-            log_operacao,
-            log_desc
+            hlog_id,
+            hlog_dataHora,
+            hlog_usuario,
+            hlog_operacao,
+            hlog_desc
         from 
-            log
+            log_history
         order by
-            log_id desc;
+            hlog_id desc;
     `;
 
     try{
         let [logs] = await db.query(sql);
         logs = logs.map(log => ({
             ...log,
-            log_dataHora: new Date(log.log_dataHora).toLocaleString('pt-BR')
+            hlog_dataHora: new Date(log.hlog_dataHora).toLocaleString('pt-BR')
         }));
         
         return logs;
@@ -51,7 +51,7 @@ module.exports.registerLog = async (dados) => {
     dados.log_usuario += dados.log_usuario === 'System' ? '' : client[0].clt_nome;
 
     //Preparing sql query
-    const sql = `
+    const sql_log = `
         INSERT INTO log (
             log_clt_id,
             log_dataHora,
@@ -63,12 +63,25 @@ module.exports.registerLog = async (dados) => {
         )
     `;
 
+    const sql_log_history = `
+        INSERT INTO log_history (
+            hlog_clt_id,
+            hlog_dataHora,
+            hlog_usuario,
+            hlog_operacao,
+            hlog_desc
+        ) VALUES (
+            ?, NOW(), ?, ?, ?
+        )
+    `;
+
     //Preparing values to be inserted
     const valores = Object.values(dados);
 
     //Inserting the data into the db
     try{
-        await db.query(sql, valores);
+        await db.query(sql_log, valores);
+        await db.query(sql_log_history, valores);
     }catch(err){
         console.error(`Erro no registerLog - modelLogs: ${err}`);
         throw err;
