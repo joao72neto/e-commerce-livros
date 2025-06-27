@@ -72,7 +72,7 @@ module.exports.patchInativarCliente = async (req, res) => {
         const client = await buscarClienteId(req.params.clt_id);
         const userName = client[0].clt_nome;
         logData.log_usuario = '(Admin) ';
-        logData.log_operacao = 'INACTIVATE';
+        logData.log_operacao = 'INACTIVE';
         logData.log_desc = `Cliente "${userName}" foi inativado`;
         await registerLog(logData);
 
@@ -92,7 +92,7 @@ module.exports.patchAtivarCliente = async (req, res) => {
         const client = await buscarClienteId(req.params.clt_id);
         const userName = client[0].clt_nome;
         logData.log_usuario = '(Admin) ';
-        logData.log_operacao = 'ACTIVATE';
+        logData.log_operacao = 'ACTIVE';
         logData.log_desc = `Cliente "${userName}" foi ativado`;
         await registerLog(logData);
 

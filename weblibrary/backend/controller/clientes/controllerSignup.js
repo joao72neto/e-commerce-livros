@@ -84,7 +84,7 @@ module.exports.postSignup = async (req, res) => {
         const client = await buscarClienteId(clt_id);
         const userName = client[0].clt_nome;
         logData.log_usuario = req.body.user.user_type;
-        logData.log_operacao = 'INSERT';
+        logData.log_operacao = 'SIGNUP';
         logData.log_desc = `Cliente "${userName}" foi cadastrado(a)`;
         await registerLog(logData);
         
