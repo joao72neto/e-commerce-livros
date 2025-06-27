@@ -88,16 +88,16 @@ module.exports.postAddressAdd = async (req, res) => {
     try{
         
         //Calculando o frete para o endereço com base no cep
-        let dados = req.body;
+        let dados = req.body.address;
         dados.end_frete = calcularFreteFicticio(dados.end_cep);
 
         //Cadastrando o novo endereço
         await cadastrarAddress(dados);
 
         //Registering log
-        const client = await buscarClienteId(req.body.end_clt_id);
+        const client = await buscarClienteId(req.body.address.end_clt_id);
         const userName = client[0].clt_nome;
-        logData.log_usuario = req.body.user;
+        logData.log_usuario = req.body.user.user_type;
         logData.log_operacao = 'INSERT';
         logData.log_desc = `Novo enderço adicionado para "${userName}"`;
         await registerLog(logData);
@@ -105,7 +105,7 @@ module.exports.postAddressAdd = async (req, res) => {
         return res.sendStatus(200);
         
     }catch(err){
-        console.err(`Erro no postAddressAdd - controllerAddress: ${err}`);
+        console.error(`Erro no postAddressAdd - controllerAddress: ${err}`);
         return res.sendStatus(500);
     }
 };

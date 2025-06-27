@@ -24,12 +24,16 @@ export async function deletarAddressIdService(clt_id, end_id, user) {
 //POST
 
 //Cadastro de novos endereço no banco
-export async function cadastrarAddressService(dados, clt_id) {
+export async function cadastrarAddressService(address, user, clt_id) {
     try{
+        const data = {
+            user: user,
+            address: address
+        }
         const result = await fetch(`/clientes/address/${clt_id}/add`, {
            method: 'POST',
            headers: {'Content-Type':'application/json'},
-           body: JSON.stringify(dados) 
+           body: JSON.stringify(data)
         });
 
         return result;

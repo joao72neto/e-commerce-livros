@@ -34,17 +34,20 @@ document.querySelector('form').addEventListener('submit', async function(event){
         end_pais: dados.pais,
         end_tipoLogradouro: dados.tipo_logradouro,
         end_tipoResidencia: dados.tipo_residencia,
-        user: '(Admin) '
+    }
+
+    let user = {
+        user_type: '(Admin) '
     }
 
     //Getting URL params
     const params = new URLSearchParams(window.location.search);
     if(params.get('retorno')){
-        address.user = ''
+        user.user_type = ''
     }
 
     //Passando os dados para o back
-    let result = await cadastrarAddressService(address, clt_id);
+    let result = await cadastrarAddressService(address, user, clt_id);
     
     if(result.status === 200){
         alert('Endereço foi cadastrado com sucesso!');
