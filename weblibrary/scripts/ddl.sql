@@ -380,6 +380,24 @@ CREATE TABLE IF NOT EXISTS `vendas_history` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
+-- Table `notifications`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `not_id` INT NOT NULL AUTO_INCREMENT,
+  `not_clt_id` INT NOT NULL,
+  `not_datetime` DATETIME NOT NULL,
+  `not_title` VARCHAR(45) NOT NULL,
+  `not_msg` VARCHAR(255) NOT NULL,
+  `not_status` TINYINT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`not_id`),
+  CONSTRAINT `fk_not_clt`
+    FOREIGN KEY (`not_clt_id`)
+    REFERENCES `clientes` (`clt_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
 -- View `vw_historico_vendas`
 -- -----------------------------------------------------
 CREATE OR REPLACE VIEW vw_historico_vendas AS
