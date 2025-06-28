@@ -395,7 +395,9 @@ FROM
 	vendas_history vh
 	JOIN livros l ON l.lvr_id = vh.hvnd_lvr_id
 	JOIN livros_categorias lc ON lc.lvc_lvr_id = l.lvr_id 
-	JOIN categoria  c ON c.cat_id = lc.lvc_cat_id;
+	JOIN categoria  c ON c.cat_id = lc.lvc_cat_id
+WHERE
+  vh.hvnd_status = 'entregue';
 
 -- -----------------------------------------------------
 -- View `vw_historico_vendas`
@@ -464,7 +466,7 @@ END;
 -- Procedure `seed_log_history`
 -- -----------------------------------------------------
 DROP PROCEDURE IF EXISTS seed_log_history;
-CREATE PROCEDURE seed_log_history()
+CREATE PROCEDURE seed_log_history(IN p_log_id INT)
 BEGIN
 	INSERT INTO log_history (
 		hlog_log_id,
@@ -481,8 +483,8 @@ BEGIN
     log_usuario,
     log_operacao,
     log_desc
-	FROM
-		log;
+	FROM log
+  WHERE log_id = p_log_id;
 END;
 
 SET SQL_MODE=@OLD_SQL_MODE;

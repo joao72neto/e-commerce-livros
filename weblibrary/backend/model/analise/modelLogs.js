@@ -60,7 +60,7 @@ module.exports.registerLog = async (dados) => {
             log_desc
         ) VALUES (
             ?, NOW(), ?, ?, ?
-        )
+        );
     `;
 
     //Preparing values to be inserted
@@ -68,7 +68,10 @@ module.exports.registerLog = async (dados) => {
 
     //Inserting the data into the db
     try{
-        await db.query(sql_log, valores);
+        const [result] = await db.query(sql_log, valores);
+        const lastId = result.insertId;
+        await db.query('CALL seed_log_history(?)', [lastId]);
+
     }catch(err){
         console.error(`Erro no registerLog - modelLogs: ${err}`);
         throw err;
