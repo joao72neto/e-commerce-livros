@@ -389,7 +389,7 @@ SELECT
 	c.cat_id,
 	c.cat_nome,
 	vh.hvnd_id,
-	vh.hvnd_data,
+	CONVERT_TZ(vh.hvnd_data, '+00:00', '-03:00') hvnd_data,
 	vh.hvnd_qtd
 FROM 
 	vendas_history vh

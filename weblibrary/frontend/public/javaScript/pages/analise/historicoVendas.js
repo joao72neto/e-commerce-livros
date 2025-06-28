@@ -193,7 +193,7 @@ async function montarGrafico(livros_analise) {
         return{
             name: titulo,
             data: datas.map(data => ({
-                x: parseFusoBr(data),
+                x: data,
                 y: datasDoLivro[data] || 0
             }))
         }
@@ -230,19 +230,3 @@ async function montarGrafico(livros_analise) {
 
     chart.render();
 }
-
-//Funções que ajustam o fuso horário para BR
-function parseFusoBr(data){
-    const dataBr = new Date(data).toLocaleString('pt');
-    return brParaIsoString(dataBr);
-}
-
-function brParaIsoString(dataBr){
-
-    let dataHora = dataBr.split(', ');
-    let dataInversa = dataHora[0].split('/').reverse().join('-')
-    let timeIso = `T${dataHora[1]}.000Z`;
-
-    return dataInversa + timeIso;
-}
-
