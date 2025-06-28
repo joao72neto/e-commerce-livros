@@ -65,6 +65,8 @@ a.signup{
 .flt-container{
     position: fixed;
     left: 0;
+    bottom: 50%;
+    transform: translateY(50%);
     width: 25%;
     background-color: var(--branco);
     border-radius: 0 20px 20px 0;
