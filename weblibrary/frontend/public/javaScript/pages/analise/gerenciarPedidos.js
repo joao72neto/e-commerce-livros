@@ -1,5 +1,6 @@
 import { atualizarStatusPedidoIdService } from "/javaScript/service/analise/serviceGerenciarPedidos.js";
 import { deletarDevolvidoTrocadoService } from "/javaScript/service/analise/serviceGerenciarPedidos.js";
+import  { atualizarEstoqueService } from "/javaScript/service/analise/serviceEstoque.js";
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -160,6 +161,11 @@ document.addEventListener('DOMContentLoaded', function(){
     //Alterando status do select de processamento do pedido
     this.querySelectorAll('#processamento').forEach(select => {
         select.addEventListener('change', async function(){
+
+            if(select.value === 'Aprovado'){
+                await updateStock(this);
+            }
+
             await atualizarStatus(this);
         });
     });
@@ -203,8 +209,32 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     });
 
+    //Calling functions
     emptyOrderMsg();
 });
+
+//Updating stock
+async function updateStock(select){
+
+    const wrapper = select.closest('.wrapper');
+    const lvr_id = Number(wrapper.querySelector('.lvr-id').textContent);
+    const lvr_title = document.querySelector('.book-name').textContent;
+    const lvr_qtd = Number(document.querySelector('#ped-qtd').textContent.split(' ')[1]);
+
+    const data = {
+        lvr_id: lvr_id ,
+        qtd_comprada: lvr_qtd,
+        lvr_title: lvr_title
+    }
+
+    //Atualizando o status no banco de dados
+    const res = await atualizarEstoqueService(data);
+
+    if(!res === 200){
+        alert('Não foi possível dar baixa no estoque');
+        return;
+    }
+}
 
 //Personalized msg for an empty cart
 function emptyOrderMsg(){

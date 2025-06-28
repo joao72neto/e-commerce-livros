@@ -9,7 +9,6 @@ import { adicionarPedidoService } from "/javaScript/service/compras/servicePedid
 import { removerCarrinhoIdService } from "/javaScript/service/compras/serviceCarrinho.js";
 import { desativarCartoesClienteIdService } from "/javaScript/service/clientes/serviceCard.js";
 import { desativarEnderecosClienteIdService } from "/javaScript/service/clientes/serviceAddress.js"
-import  { atualizarEstoqueService } from "/javaScript/service/analise/serviceEstoque.js";
 
 //Verficado se há cupons disponíveis ou não
 document.addEventListener('DOMContentLoaded', async function(){
@@ -372,20 +371,6 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
         const resAdd = await adicionarPedidoService(valores);
         const resRem = await removerCarrinhoIdService(carrinho.crr_lvr_id,  user);
 
-        //Atualizando o estoque
-        const dadosEstoque = {
-            lvr_id: valores.lvr_id,
-            qtd_comprada: valores.vnd_qtd,
-            lvr_title: carrinho.lvr_titulo
-        }
-        const resEstoque = await atualizarEstoqueService(dadosEstoque);
-
-        //Verificando erros
-        if(!resEstoque === 200){
-            alert('Não foi possível atualizar o estoque');
-            return;
-        }
-        
         if(!resAdd === 201){
             alert('Não foi possível finalizar a compra');
             return; 
@@ -417,20 +402,6 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
             //Adicionando os itens na tabela de vendas 
             const resAdd = await adicionarPedidoService(valores);
             const resRem = await removerCarrinhoIdService(item.crr_lvr_id, user);
-
-            //Atualizando o estoque
-            const dadosEstoque = {
-                lvr_id: valores.lvr_id,
-                qtd_comprada: valores.vnd_qtd,
-                lvr_title: item.lvr_titulo
-            }
-            const resEstoque = await atualizarEstoqueService(dadosEstoque);
-
-            //Vericando erros
-            if(!resEstoque === 200){
-                alert('Não foi possível atualizar o estoque');
-                return;
-            }
 
             if(!resAdd === 201){
                 alert('Não foi possível finalizar a compra');
