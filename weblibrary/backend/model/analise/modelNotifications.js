@@ -1,6 +1,40 @@
 const { getDb } = require('../../config/db');
 const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
 
+//SELECT
+
+//Getting unread notifications from db
+module.exports.buscarUnreadNotifications = async () => {
+
+    //Setting up the db
+    const db = await getDb();
+
+    let sql = `
+        select
+            *
+        from
+            notifications
+        where
+            not_status = 0
+        order by
+            not_datetime desc;
+    `;
+
+    try{
+        let [nots] = await db.query(sql);
+        nots = nots.map(ntf => ({
+            ...ntf,
+            hlog_dataHora: new Date(ntf.not_datetime).toLocaleString('pt-BR')
+        }));
+
+        return nots;
+
+    }catch(err){
+        console.error(`Erro no buscarUnreadNotifications - modelNotifications: ${err}`);
+        throw err;
+    }
+}
+
 //INSERT
 
 //Registering notifications
