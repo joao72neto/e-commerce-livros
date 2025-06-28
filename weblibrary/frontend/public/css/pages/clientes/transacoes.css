@@ -11,6 +11,7 @@
 
 .transaction{
     background-color: var(--branco);
+    margin: 50px 0;
     padding: 30px 60px;
     text-align: center;
     border-radius: 20px;
@@ -19,4 +20,17 @@
 
 .transaction h2{
     margin: 20px 0;
+}
+
+.top-left{
+    border-radius: 20px 0 0 0;
+}
+
+.top-right{
+    border-radius: 0 20px 0 0;
+}
+
+.tb-body:hover{
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.200);
 }

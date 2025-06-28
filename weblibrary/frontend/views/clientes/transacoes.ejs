@@ -25,23 +25,20 @@
                 <table id="lista-transacoes">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Data e Hora</th>
+                            <th class="top-left">Data e Hora</th>
+                            <th>Usuário</th>
                             <th>Tipo de Ação</th>
-                            <th>Ações</th>
-                            <th>Status</th>
+                            <th class="top-right">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         <% transacoes.forEach(transacao => { %>
-                            <tr>
-                                <td><%=transacao.trs_id%></td>
+                            <tr class="tb-body">
                                 <td><%=transacao.trs_dataHora%></td>
+                                <td><%=transacao.trs_user_type%></td>
                                 <td><%=transacao.trs_tipo%></td>
                                 <td><%=transacao.trs_acao%></td>
-                                <td><%=transacao.trs_status%></td>
                             </tr>
-        
                         <% }); %>
                     </tbody>
                 </table>
