@@ -205,8 +205,34 @@ document.addEventListener('DOMContentLoaded', function(){
             `
         }
     });
+
+    //Calling functions
+    emptyOrderMsg();
 });
 
+//Personalized msg for an empty cart
+function emptyOrderMsg(){
+
+    //Getting necessary elements
+    const wrapper = document.querySelector('.wrapper');
+    const cartContainer = document.querySelector('.container-orders');
+
+    //Exiting the function
+    if(wrapper) return;
+
+    //HTML
+    const html = `
+
+        <div class="empty">
+            <p>
+                Nenhum Pedido Realizado
+            </p>
+        </div>
+    `;
+
+    //HTML code injection
+    cartContainer.innerHTML = html;
+}
 
 async function devolverLivro(troca, status, tipo) {
 

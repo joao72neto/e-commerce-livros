@@ -17,57 +17,52 @@
             path: '/'
         })%>
 
-        <h2 class="title">Todos os Pedidos</h2>
         <main>
 
-            <% pedidos.forEach(pedido => { %>
-
-                <div class="wrapper">
-                    <div class="imagem">
-                        <img src="<%=pedido.lvr_capa%>" alt="">
-                    </div>
-                    <div class="book-title">
-                        <p class="invisible vnd-id"><%=pedido.vnd_id%></p>
-                        <p class="invisible book-id"><%=pedido.vnd_lvr_id%></p>
-
-                        <%
-
-                            const status = pedido.vnd_status;
-                            const qtdTrocada = pedido.vnd_qtd_trocada;
-                            let stringTrocada;
-
-                            if(status.split(' ')[0] === 'Troca'){
-                                stringTrocada = ` / Troca: ${qtdTrocada}`;
-                            }else{
-                                stringTrocada = ` / Devolução: ${qtdTrocada}`;
-                            }
-
-                        %>
-
-                        <p><strong>Qtd: <%=pedido.vnd_qtd%><%=qtdTrocada?stringTrocada:""%></strong></p>
-                        <p><%=pedido.lvr_titulo%></p>
-                        <p><strong>R$ <%=String(pedido.vnd_valorTotal).replace('.', ',')%></strong></p>
-                        <p class="invisible" id="preco"><%=pedido.lvr_preco%></p>
-                        <p class="invisible" id="qtd"><%=pedido.vnd_qtd%></p>
-                    </div>
-                    <div class="status-pedido">
-                        <div class="status">
-                            <p><strong><%=pedido.vnd_status%></strong></p>
+            <div class="container-orders">
+                <h2 class="title">Todos os Pedidos</h2>
+                <% pedidos.forEach(pedido => { %>
+                    <div class="wrapper">
+                        <div class="imagem">
+                            <img src="<%=pedido.lvr_capa%>" alt="">
                         </div>
-                        <div class="numPedido">
-                            <p><strong><%=pedido.vnd_numPedido%></strong></p>
+                        <div class="book-title">
+                            <p class="invisible vnd-id"><%=pedido.vnd_id%></p>
+                            <p class="invisible book-id"><%=pedido.vnd_lvr_id%></p>
+                            <%
+                                const status = pedido.vnd_status;
+                                const qtdTrocada = pedido.vnd_qtd_trocada;
+                                let stringTrocada;
+                                if(status.split(' ')[0] === 'Troca'){
+                                    stringTrocada = ` / Troca: ${qtdTrocada}`;
+                                }else{
+                                    stringTrocada = ` / Devolução: ${qtdTrocada}`;
+                                }
+                            %>
+                            <p><strong>Qtd: <%=pedido.vnd_qtd%><%=qtdTrocada?stringTrocada:""%></strong></p>
+                            <p><%=pedido.lvr_titulo%></p>
+                            <p><strong>R$ <%=String(pedido.vnd_valorTotal).replace('.', ',')%></strong></p>
+                            <p class="invisible" id="preco"><%=pedido.lvr_preco%></p>
+                            <p class="invisible" id="qtd"><%=pedido.vnd_qtd%></p>
                         </div>
-                    </div>
-                    <div class="acoes">
-                        <input id="qtd-troca" class="invisible" type="number" placeholder="Qtd:" min="1" max="<%=pedido.vnd_qtd%>" value="1">
-                        <div class="btns">
-                            <span id="submenu-dev"><a class="devolucao">Devolver</a></span>
-                            <span id="submenu-tro"><a class="troca">Trocar</a></span>
+                        <div class="status-pedido">
+                            <div class="status">
+                                <p><strong><%=pedido.vnd_status%></strong></p>
+                            </div>
+                            <div class="numPedido">
+                                <p><strong><%=pedido.vnd_numPedido%></strong></p>
+                            </div>
+                        </div>
+                        <div class="acoes">
+                            <input id="qtd-troca" class="invisible" type="number" placeholder="Qtd:" min="1" max="<%=pedido.vnd_qtd%>" value="1">
+                            <div class="btns">
+                                <span id="submenu-dev"><a class="devolucao">Devolver</a></span>
+                                <span id="submenu-tro"><a class="troca">Trocar</a></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-            <% }); %>
+                <% }); %>
+            </div>
         </main>
 
         <div class="assistant">
