@@ -15,10 +15,12 @@
         <% 
             let retorno_atual = '';
 
-            if(retorno_pag){
-                retorno_atual = `/${retorno}?retorno_pag=${retorno_pag}&tipo=${tipo}`; 
-            }else if(retorno && !retorno_pag){
-                retorno_atual = `/${retorno}`;
+            if(retorno_pag && page){
+                retorno_atual = `/${retorno}?retorno_pag=${retorno_pag}&tipo=${tipo}&page=${page}`;
+
+            }else if(retorno_pag && compra){
+                retorno_atual = `/${retorno}?retorno_pag=${retorno_pag}&tipo=${tipo}&compra=${compra}`;
+
             }else{
                 retorno_atual = `/clientes/address/${enderecos[0].end_clt_id}`;
             }

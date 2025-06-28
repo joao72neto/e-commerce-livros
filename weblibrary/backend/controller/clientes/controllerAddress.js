@@ -15,12 +15,16 @@ module.exports.getAddressAlt = async (req, res) => {
     const enderecos = await buscarEnderecoId(req.params.end_id);
     const retorno_pag = req.query.retorno_pag;
     const tipo = req.query.tipo;
+    const compra = req.query.compra;
+    const page = req.query.page;
 
     return res.render('clientes/address/address-alt', {
         enderecos: enderecos,
         retorno: retorno,
         retorno_pag: retorno_pag, 
-        tipo: tipo
+        tipo: tipo,
+        page: page,
+        compra: compra
     });
 };
 
@@ -29,12 +33,16 @@ module.exports.getAddressAdd = async (req, res) => {
     const enderecos = await buscarEnderecosClienteId(req.params.clt_id);
     const retorno_pag = req.query.retorno_pag;
     const tipo = req.query.tipo;
+    const compra = req.query.compra;
+    const page = req.query.page;
 
     return res.render('clientes/address/address-add', {
         enderecos: enderecos,
         retorno: retorno,
         retorno_pag: retorno_pag, 
-        tipo: tipo
+        tipo: tipo,
+        page: page,
+        compra: compra
     });
 };
 
