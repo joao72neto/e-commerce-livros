@@ -218,9 +218,25 @@ header #logado .clt-nome{
     color: rgb(1, 90, 1);
 }
 
+.book .btn-cart{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.book .btn-cart img{
+    width: 25px;
+}
+
+.book .btn-cart:hover{
+    transform: scale(1.2);
+}
+
 .compra{
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
 }
 

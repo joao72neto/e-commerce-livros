@@ -55,6 +55,27 @@ h2{
     align-items: center;
 }
 
+.add-book {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.add-book a{
+    display: block;
+    font-size: 2em;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: transparent;
+    color: black;
+    border: none;
+}
+
+.add-book a:hover{
+    transform: scale(1.2);
+}
+
 /*Botões*/
 .diminuir, .aumentar{
     width: 40px;

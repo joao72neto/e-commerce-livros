@@ -97,7 +97,6 @@ async function addCarrinho(lvr_id){
 
 
     if(carrinhoCliente){
-        window.location.href = `/pagamento?compra=${lvr_id}`;
         return;
     }
 
@@ -122,7 +121,6 @@ async function addCarrinho(lvr_id){
     const res = await adicionarCarrinhoService(carrinho);
     
     if(res.status === 201){
-        window.location.href = `/pagamento?compra=${lvr_id}`;
         return;
     }
 
@@ -130,7 +128,7 @@ async function addCarrinho(lvr_id){
 }
 
 //Adicionando funcionalidade para o botão de compra
-document.querySelectorAll('.compra').forEach(button => {
+document.querySelectorAll('.btn-compra').forEach(button => {
     button.addEventListener('click', async function(){
 
         //Obtendo o id do livro clicado
@@ -138,6 +136,23 @@ document.querySelectorAll('.compra').forEach(button => {
         const lvr_id = wrapper.querySelector('.book-id').textContent;
 
         await addCarrinho(lvr_id);
+
+        window.location.href = `/pagamento?compra=${lvr_id}`;
+
+    });
+});
+
+//Adicionando funcionalidade para o botão de compra
+document.querySelectorAll('.btn-cart').forEach(button => {
+    button.addEventListener('click', async function(){
+
+        //Obtendo o id do livro clicado
+        const wrapper = this.closest('.book');
+        const lvr_id = wrapper.querySelector('.book-id').textContent;
+
+        await addCarrinho(lvr_id);
+
+        window.location.href = '/carrinho';
  
     });
 });

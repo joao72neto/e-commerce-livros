@@ -28,7 +28,10 @@
                             <p><strong><%=livro.lvr_titulo%></strong></p>
                             <p class="invisible book-id"><%=livro.lvr_id%></p>
                             <p class="preco">R<span>$</span> <%=String(livro.valor_venda).replace('.', ',')%></p>
-                            <div class="compra"><a>Comprar</a></div>
+                            <div class="compra">
+                                <a class="btn-compra">Comprar</a>
+                                <a class="btn-cart"> <img src="/images/car.png" alt="cart"></a>
+                            </div>
                         </div>
                     <% }); %>
             </main>
