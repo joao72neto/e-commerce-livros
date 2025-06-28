@@ -70,7 +70,7 @@
                                 <p><strong>Final: </strong><%=cartao.car_numero.slice(-4)%></p>
                             </div>
                             <div class="acoes">
-                                <a class="alt" href="/clientes/card/<%=cliente.clt_id%>/alt/<%=cartao.car_id%>?retorno_pag=<%=retorno_pag%>&tipo=<%=tipo%>&retorno=perfil">Alterar</a>
+                                <a class="alt" href="/clientes/card/<%=cliente.clt_id%>/alt/<%=cartao.car_id%>?retorno_pag=<%=retorno_pag%>&tipo=<%=tipo%>&retorno=perfil&compra=<%=compra%>&page=<%=page%>">Alterar</a>
                                 <a class="delete-card">Excluir</a>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                                 <p><strong>Número: </strong><%=endereco.end_numero%></p>
                             </div>
                             <div class="acoes">
-                                <a class="alt" href="/clientes/address/<%=cliente.clt_id%>/alt/<%=endereco.end_id%>?retorno_pag=<%=retorno_pag%>&tipo=<%=tipo%>&retorno=perfil">Alterar</a>
+                                <a class="alt" href="/clientes/address/<%=cliente.clt_id%>/alt/<%=endereco.end_id%>?retorno_pag=<%=retorno_pag%>&tipo=<%=tipo%>&retorno=perfil&compra=<%=compra%>&page=<%=page%>">Alterar</a>
                                 <a class="delete-address" >Excluir</a>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                         %>
 
 
-                        <a href="<%=url_add_address%>">Adiconar Novo Endereço</a>
+                        <a href="<%=url_add_address%>&compra=<%=compra%>&page=<%=page%>">Adiconar Novo Endereço</a>
                     </div>
                 </div>
             </div>

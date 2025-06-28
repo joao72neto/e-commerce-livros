@@ -57,14 +57,19 @@ document.querySelector('form').addEventListener('submit', async function(event){
         const urlParams = new URLSearchParams(window.location.search);
         const retorno = urlParams.get('retorno');
         const retorno_pag = urlParams.get('retorno_pag');
+        const compra = urlParams.get('compra');
+        const page = urlParams.get('page');
+        const tipo = urlParams.get('tipo');
 
         //Definindo o retorno
         let retorno_atual =  '';
 
-        if(retorno_pag){
-            retorno_atual = `/pagamento`; 
-        }else if(retorno && !retorno_pag){
-            retorno_atual = `/${retorno}`;
+        if(retorno_pag && retorno && page){
+            retorno_atual = `/perfil?retorno_pag=${retorno_pag}&tipo=${tipo}&page=${page}`;
+
+        }else if(retorno_pag && retorno && compra){
+            retorno_atual = `/perfil?retorno_pag=${retorno_pag}&tipo=${tipo}&compra=${compra}`;
+
         }else{
             retorno_atual = `/clientes/address/${clt_id}`;
         }
