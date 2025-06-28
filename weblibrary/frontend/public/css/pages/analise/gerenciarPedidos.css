@@ -88,6 +88,10 @@ div.empty{
     width: 250px;
 }
 
+.imagem{
+    cursor: pointer;
+}
+
 .imagem img{
     width: 100px;
     background-color: gray;

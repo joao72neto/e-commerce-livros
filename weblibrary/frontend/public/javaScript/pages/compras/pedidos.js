@@ -208,7 +208,23 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //Calling functions
     emptyOrderMsg();
+    openProduct();
 });
+
+function openProduct(){
+
+    //Redirecionando para a página do livro
+    document.querySelectorAll('.imagem').forEach(function(button){
+        button.addEventListener('click', function(){
+
+            //Obtendo o id do livro
+            const wrapper = this.closest('.wrapper');
+            const lvr_id = wrapper.querySelector('.book-id').textContent;
+
+            window.location.href = `/produto/${lvr_id}?page=/pedidos`;
+        });
+    });
+}
 
 //Personalized msg for an empty cart
 function emptyOrderMsg(){
