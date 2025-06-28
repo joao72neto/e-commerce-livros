@@ -289,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `transacoes` (
   `trs_clt_id` INT NOT NULL,
   `trs_dataHora` DATETIME NOT NULL,
   `trs_tipo` VARCHAR(45) NOT NULL,
-  `trs_status` ENUM('confirmado', 'pendente') NOT NULL,
+  `trs_user_type` VARCHAR(45) NOT NULL,
   `trs_acao` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`trs_id`),
   CONSTRAINT `fk_trs_clt`
@@ -468,6 +468,8 @@ END;
 DROP PROCEDURE IF EXISTS seed_log_history;
 CREATE PROCEDURE seed_log_history(IN p_log_id INT)
 BEGIN
+
+  -- Inserting on log_history table
 	INSERT INTO log_history (
 		hlog_log_id,
     hlog_clt_id,
@@ -485,6 +487,24 @@ BEGIN
     log_desc
 	FROM log
   WHERE log_id = p_log_id;
+
+  -- Inserting on transaction table
+  INSERT INTO transacoes (
+    trs_clt_id,
+    trs_dataHora,
+    trs_tipo,
+    trs_user_type,
+    trs_acao
+  )
+  SELECT
+    log_clt_id,
+    log_dataHora,
+    log_operacao,
+    log_usuario,
+    log_desc
+  FROM log
+  WHERE log_id = p_log_id;
+
 END;
 
 SET SQL_MODE=@OLD_SQL_MODE;
