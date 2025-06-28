@@ -1,9 +1,22 @@
 main{
+    display: grid;
+    align-items: center;
     max-width: 1000px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.container-orders{
+    margin: 20px 0;
+}
+
+div.empty{
+    text-align: center;
+    width: 60%;
     margin: 0 auto;
 }
 
-.title{
+/* .title{
     margin: 20px 0;
 }
 
@@ -32,8 +45,15 @@ main{
 .filtro_clientes button{
     grid-column: span 2;
     justify-self: center;
+} */
+
+.book-info h2{
+    margin-bottom: 10px;
 }
 
+.book-info p{
+    line-height: 1.4em;
+}
 
 .pedidos, .troca, .devolucao{
     padding: 20px;

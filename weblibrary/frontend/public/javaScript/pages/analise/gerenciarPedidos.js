@@ -94,7 +94,8 @@ document.addEventListener('DOMContentLoaded', function(){
                     }
                     
                 });
-                
+
+                troca.disabled = true;
                 return;
             }
 
@@ -141,6 +142,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     
                 });
 
+                devolucao.disabled = true;
                 return;
             }
 
@@ -200,7 +202,33 @@ document.addEventListener('DOMContentLoaded', function(){
             });
         }
     });
+
+    emptyOrderMsg();
 });
+
+//Personalized msg for an empty cart
+function emptyOrderMsg(){
+
+    //Getting necessary elements
+    const wrapper = document.querySelector('.wrapper');
+    const cartContainer = document.querySelector('.container-orders');
+
+    //Exiting the function
+    if(wrapper) return;
+
+    //HTML
+    const html = `
+
+        <div class="empty">
+            <p>
+                Nenhum Pedido a Ser Gerenciado
+            </p>
+        </div>
+    `;
+
+    //HTML code injection
+    cartContainer.innerHTML = html;
+}
 
 //Função para retirar um livro da tabela de troca
 async function removerDevolvidoTrocado(select) {

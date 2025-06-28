@@ -6,10 +6,19 @@
 main{
     display: grid;
     align-items: center;
-    justify-items: center;
     max-width: 800px;
     min-height: 100vh;
     margin: 0 auto;
+}
+
+div.empty{
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.container-orders{
+    margin: 20px 0;
 }
 
 .wrapper{

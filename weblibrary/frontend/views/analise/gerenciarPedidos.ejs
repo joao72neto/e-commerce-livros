@@ -19,131 +19,116 @@
 
         <main>
 
-            <div class="devolucao">
+            <div class="container-orders">
+                <div class="devolucao">
+                    <h2>Itens em Devolução</h2>
+                    <% devolvidos.forEach(dev => { %>
+                        <div class="wrapper" style="display: none;">
+                            <div class="imagem">
+                                <img src="<%=dev.lvr_capa%>" alt="">
+                            </div>
+                            <div class="book-info">
+                                <h2><%=dev.lvr_titulo%></h2>
+                                <p><strong>Qtd: <%=dev.trc_qtd%></strong></p>
+                                <p id="ped-number"><%=dev.vnd_numPedido%></p>
+                                <p><%=dev.clt_nome%></p>
+                                <p>R$ <%=String(dev.trc_preco).replace('.', ',')%></p>
+                                <p class="invisible vnd-id"><%=dev.trc_vnd_id%></p>
+                            </div>
+                            <div class="acoes">
+                                <a href="/estoque/entrada?retorno=/pedidos/gerenciar&trc_id=<%=dev.trc_id%>&lvr_id=<%=dev.lvr_id%>&clt_id=<%=dev.clt_id%>&vnd_id=<%=dev.trc_vnd_id%>&trc_tipo=<%=dev.trc_tipo%>&ped_number=<%=dev.vnd_numPedido%>">Retornar ao Estoque</a>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+                <div class="troca">
+                    <h2>Itens em Troca</h2>
+                
+                    <% trocados.forEach(trc => { %>
+                        <div class="wrapper" style="display: none;">
+                            <div class="imagem">
+                                <img src="<%=trc.lvr_capa%>" alt="">
+                            </div>
+                            <div class="book-info">
+                                <h2><%=trc.lvr_titulo%></h2>
+                                <p><strong>Qtd: <%=trc.trc_qtd%></strong></p>
+                                <p id="ped-number"><%=trc.vnd_numPedido%></p>
+                                <p><%=trc.clt_nome%></p>
+                                <p>R$ <%=String(trc.trc_preco).replace('.', ',')%></p>
+                                <p class="invisible vnd-id"><%=trc.trc_vnd_id%></p>
+                            </div>
+                            <div class="acoes">
+                                <a href="/estoque/entrada?retorno=/pedidos/gerenciar&trc_id=<%=trc.trc_id%>&lvr_id=<%=trc.lvr_id%>&clt_id=<%=trc.clt_id%>&vnd_id=<%=trc.trc_vnd_id%>&trc_tipo=<%=trc.trc_tipo%>&ped_number=<%=trc.vnd_numPedido%>">Retornar ao Estoque</a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+                
+                <% clientes.forEach(cliente => { %>
+                    <div class="pedidos">
+                        <%
+                            let cpf = cliente.clt_cpf;
+                            cpf = cpf.slice(0, 3) + '.***.***' + cpf.slice(11, 14)
+                        %>
+                        <h2><%=cliente.clt_nome%> - <%=cpf%></h2>
+                        <%
 
-                <h2>Itens em Devolução</h2>
+                        pedidos.filter(ped => ped.clt_id === cliente.clt_id).forEach(pedido => {
+                        pedido.vnd_data = new Date(pedido.vnd_data).toLocaleDateString('pt-BR');
+                        %>
+                            <div class="wrapper">
+                                <div class="imagem">
+                                    <img src="<%=pedido.lvr_capa%>" alt="">
+                                </div>
+                                <div class="book-info">
+                                    <h2><%=pedido.lvr_titulo%></h2>
+                                    <p class="invisible vnd-id"><%=pedido.vnd_id%></p>
+                                    <p class="invisible clt-id"><%=pedido.clt_id%></p>
+                                    <p class="invisible lvr-id"><%=pedido.lvr_id%></p>
+                                    <p id="ped-qtd"><strong>Qtd: <%=pedido.vnd_qtd%></strong></p>
+                                    <p id="ped-number"><%=pedido.vnd_numPedido%></p>
+                                    <p id="ped-buyer"><%=pedido.clt_nome%></p>
+                                    <p>R$ <%=String(pedido.vnd_valorTotal).replace('.', ',')%></p>
+                                </div>
+                                <div class="status">
 
-                <% devolvidos.forEach(dev => { %>
-                    <div class="wrapper" style="display: none;">
-                        <div class="imagem">
-                            <img src="<%=dev.lvr_capa%>" alt="">
-                        </div>
-                        <div>
-                            <h2><%=dev.lvr_titulo%></h2>
-                            <p><strong>Comprador(a): </strong><%=dev.clt_nome%></p>
-                            <p><strong>Qtd:</strong> <%=dev.trc_qtd%></p>
-                            <p id="ped-number"><%=dev.vnd_numPedido%></p>
-                            <p>R$ <%=String(dev.trc_preco).replace('.', ',')%></p>
-                            <p class="invisible vnd-id"><%=dev.trc_vnd_id%></p>
-                        </div>
-                        <div class="acoes">
-                            <a href="/estoque/entrada?retorno=/pedidos/gerenciar&trc_id=<%=dev.trc_id%>&lvr_id=<%=dev.lvr_id%>&clt_id=<%=dev.clt_id%>&vnd_id=<%=dev.trc_vnd_id%>&trc_tipo=<%=dev.trc_tipo%>&ped_number=<%=dev.vnd_numPedido%>">Retornar ao Estoque</a>
-                        </div>
+                                    <div>
+                                        <p class="invisible status-atual"><%=pedido.vnd_status%></p>
+                                    </div>
+                                    <select name="processamento" id="processamento">
+                                        <option value="Em Processamento" <%= pedido.vnd_status === 'Em Processamento' ? 'selected' : '' %>>Em Processamento</option>
+                                        <option value="Reprovado" <%= pedido.vnd_status === 'Reprovado' ? 'selected' : '' %>>Reprovado</option>
+                                        <option value="Aprovado" <%= pedido.vnd_status === 'Aprovado' ? 'selected' : '' %>>Aprovado</option>
+                                        <option value="Cancelado" <%= pedido.vnd_status === 'Cancelado' ? 'selected' : '' %>>Cancelado</option>
+                                    </select>
+
+                                    <select name="entrega" id="entrega">
+                                        <option class="empty" value="" <%= pedido.vnd_status === '' ? 'selected' : '' %>>Gerenciar Entrega</option>
+                                        <option value="Em Transporte" <%= pedido.vnd_status === 'Em Transporte' ? 'selected' : '' %>>Em Transporte</option>
+                                        <option class="rm" value="Entregue" <%= pedido.vnd_status === 'Entregue' ? 'selected' : '' %>>Entregue</option>
+                                    </select>
+
+                                    <select name="troca" id="troca">
+                                        <option class="rm" value="Troca Solicitada" <%= pedido.vnd_status === 'Troca Solicitada' ? 'selected' : '' %>>Troca Solicitada</option>
+                                        <option value="Troca Aceita" <%= pedido.vnd_status === 'Troca Aceita' ? 'selected' : '' %>>Troca Aceita</option>
+                                        <option class="con rm" value="Troca Concluída" <%= pedido.vnd_status === 'Troca Concluída' ? 'selected' : '' %>>Troca Concluída</option>
+                                        <option class="rm" value="Troca Recusada" <%= pedido.vnd_status === 'Troca Recusada' ? 'selected' : '' %>>Troca Recusada</option>
+                                    </select>
+
+                                    <select name="devolucao" id="devolucao">
+
+                                        <option class="rm" value="Devolução Solicitada" <%= pedido.vnd_status === 'Devolução Solicitada' ? 'selected' : '' %>>Devolução Solicitada</option>
+                                        <option value="Devolução Aceita" <%= pedido.vnd_status === 'Devolução Aceita' ? 'selected' : '' %>>Devolução Aceita</option>
+                                        <option class="con rm" value="Devolução Concluída" <%= pedido.vnd_status === 'Devolução Concluída' ? 'selected' : '' %>>Devolução Concluída</option>
+                                        <option class="rm" value="Devolução Recusada" <%= pedido.vnd_status === 'Devolução Recusada' ? 'selected' : '' %>>Devolução Recusada</option>
+                                    </select>
+                                </div>
+                            </div>
+                        <% }); %>
                     </div>
                 <% }); %>
             </div>
 
-            <div class="troca">
-                <h2>Itens em Troca</h2>
-                
-                <% trocados.forEach(trc => { %>
-
-                    <div class="wrapper" style="display: none;">
-                        <div class="imagem">
-                            <img src="<%=trc.lvr_capa%>" alt="">
-                        </div>
-                        <div>
-                            <h2><%=trc.lvr_titulo%></h2>
-                            <p><strong>Comprador(a): </strong><%=trc.clt_nome%></p>
-                            <p><strong>Qtd:</strong> <%=trc.trc_qtd%></p>
-                            <p id="ped-number"><%=trc.vnd_numPedido%></p>
-                            <p>R$ <%=String(trc.trc_preco).replace('.', ',')%></p>
-                            <p class="invisible vnd-id"><%=trc.trc_vnd_id%></p>
-                        </div>
-                        <div class="acoes">
-                            <a href="/estoque/entrada?retorno=/pedidos/gerenciar&trc_id=<%=trc.trc_id%>&lvr_id=<%=trc.lvr_id%>&clt_id=<%=trc.clt_id%>&vnd_id=<%=trc.trc_vnd_id%>&trc_tipo=<%=trc.trc_tipo%>&ped_number=<%=trc.vnd_numPedido%>">Retornar ao Estoque</a>
-                        </div>
-                    </div>
-
-                <% }) %>
-
-            </div>
-
-            
-            <% clientes.forEach(cliente => { %>
-
-                <div class="pedidos">
-
-                    <%
-                        let cpf = cliente.clt_cpf;
-                        cpf = cpf.slice(0, 3) + '.***.***' + cpf.slice(11, 14)
-                    %>
-
-                    <h2><%=cliente.clt_nome%> - <%=cpf%></h2>
-
-                    <% 
-                   
-                    pedidos.filter(ped => ped.clt_id === cliente.clt_id).forEach(pedido => { 
-                    pedido.vnd_data = new Date(pedido.vnd_data).toLocaleDateString('pt-BR');
-
-                    %>
-
-                        <div class="wrapper">
-                            <div class="imagem">
-                                <img src="<%=pedido.lvr_capa%>" alt="">
-                            </div>
-                            <div>
-                                <h2><%=pedido.lvr_titulo%></h2>
-                                <p class="invisible vnd-id"><%=pedido.vnd_id%></p>
-                                <p class="invisible clt-id"><%=pedido.clt_id%></p>
-                                <p class="invisible lvr-id"><%=pedido.lvr_id%></p>
-                                <p id="ped-qtd"><strong>Qtd: <%=pedido.vnd_qtd%></strong></p>
-                                <p id="ped-date"><%=pedido.vnd_data%></p>
-                                <p id="ped-number"><%=pedido.vnd_numPedido%></p>
-                                <p id="ped-buyer"><%=pedido.clt_nome%></p>
-                            </div>
-                            <div class="status">
-                                
-                                <div>
-                                    <p class="invisible status-atual"><%=pedido.vnd_status%></p>
-                                </div>
-
-                                <select name="processamento" id="processamento">
-                                    <option value="Em Processamento" <%= pedido.vnd_status === 'Em Processamento' ? 'selected' : '' %>>Em Processamento</option>
-                                    <option value="Reprovado" <%= pedido.vnd_status === 'Reprovado' ? 'selected' : '' %>>Reprovado</option>
-                                    <option value="Aprovado" <%= pedido.vnd_status === 'Aprovado' ? 'selected' : '' %>>Aprovado</option>
-                                    <option value="Cancelado" <%= pedido.vnd_status === 'Cancelado' ? 'selected' : '' %>>Cancelado</option>
-                                </select>
-                                
-                                <select name="entrega" id="entrega">
-                                    <option class="empty" value="" <%= pedido.vnd_status === '' ? 'selected' : '' %>>Gerenciar Entrega</option>
-                                    <option value="Em Transporte" <%= pedido.vnd_status === 'Em Transporte' ? 'selected' : '' %>>Em Transporte</option>
-                                    <option class="rm" value="Entregue" <%= pedido.vnd_status === 'Entregue' ? 'selected' : '' %>>Entregue</option>
-                                </select>
-                                
-                                <select name="troca" id="troca">
-                                    <option class="rm" value="Troca Solicitada" <%= pedido.vnd_status === 'Troca Solicitada' ? 'selected' : '' %>>Troca Solicitada</option>
-                                    <option value="Troca Aceita" <%= pedido.vnd_status === 'Troca Aceita' ? 'selected' : '' %>>Troca Aceita</option>
-                                    <option class="con rm" value="Troca Concluída" <%= pedido.vnd_status === 'Troca Concluída' ? 'selected' : '' %>>Troca Concluída</option>
-                                    <option class="rm" value="Troca Recusada" <%= pedido.vnd_status === 'Troca Recusada' ? 'selected' : '' %>>Troca Recusada</option>
-                                </select>
-                                
-                                <select name="devolucao" id="devolucao">
-                                
-                                    <option class="rm" value="Devolução Solicitada" <%= pedido.vnd_status === 'Devolução Solicitada' ? 'selected' : '' %>>Devolução Solicitada</option>
-                                    <option value="Devolução Aceita" <%= pedido.vnd_status === 'Devolução Aceita' ? 'selected' : '' %>>Devolução Aceita</option>
-                                    <option class="con rm" value="Devolução Concluída" <%= pedido.vnd_status === 'Devolução Concluída' ? 'selected' : '' %>>Devolução Concluída</option>
-                                    <option class="rm" value="Devolução Recusada" <%= pedido.vnd_status === 'Devolução Recusada' ? 'selected' : '' %>>Devolução Recusada</option>
-                                </select>
-                            </div>
-                        </div>
-
-                    <% }); %>
-
-                </div>
-
-            <% }); %>
-            
         </main>
 
         <%- include('../components/footer')%>
