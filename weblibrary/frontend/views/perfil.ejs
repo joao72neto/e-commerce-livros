@@ -87,7 +87,7 @@
                             }
                         %>
 
-                        <a href="<%=url_add_card%>">Adicionar Novo Cartão</a>
+                        <a href="<%=url_add_card%>&compra=<%=compra%>&page=<%=page%>">Adicionar Novo Cartão</a>
                     </div>
                 </div>
                 <div class="enderecos box">
@@ -121,7 +121,6 @@
                                 url_add_address = `/clientes/address/${cliente.clt_id}/add?retorno_pag=${retorno_pag}&tipo=${tipo}&retorno=perfil`
                             }
                         %>
-
 
                         <a href="<%=url_add_address%>&compra=<%=compra%>&page=<%=page%>">Adiconar Novo Endereço</a>
                     </div>

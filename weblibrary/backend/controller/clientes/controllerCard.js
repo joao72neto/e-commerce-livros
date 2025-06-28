@@ -16,12 +16,16 @@ module.exports.getCardAdd = async (req, res) => {
     const retorno = req.query.retorno;
     const retorno_pag = req.query.retorno_pag;
     const tipo = req.query.tipo;
+    const compra = req.query.compra;
+    const page = req.query.page;
 
     return res.render('clientes/card/card-add', {
         cartoes: cartoes,
         retorno: retorno,
         retorno_pag: retorno_pag,
-        tipo: tipo
+        tipo: tipo,
+        page: page,
+        compra: compra
     });
 };
 
@@ -30,12 +34,16 @@ module.exports.getCardAlt = async (req, res) => {
     const retorno = req.query.retorno;
     const retorno_pag = req.query.retorno_pag;
     const tipo = req.query.tipo;
+    const compra = req.query.compra;
+    const page = req.query.page;
 
     return res.render('clientes/card/card-alt', {
         cartoes: cartoes,
         retorno: retorno,
         retorno_pag: retorno_pag,
-        tipo: tipo
+        tipo: tipo,
+        page: page,
+        compra: compra
     });
 };
 
