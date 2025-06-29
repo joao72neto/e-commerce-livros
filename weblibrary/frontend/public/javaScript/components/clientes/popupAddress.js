@@ -15,9 +15,6 @@ document.querySelectorAll('.endereco-wrapper .endereco').forEach(endereco => {
 
         //Mostrando todos os dados
         popup.innerHTML = `
-            <div class="button-popup">
-                <button>X</button>
-            </div>
             <h2>${endereco.end_logradouro}</h2>
             <p><strong>Nome: </strong>${endereco.end_nome}<p/>
             <p><strong>Tipo de Residência: </strong>${endereco.end_tipoResidencia}<p/>
