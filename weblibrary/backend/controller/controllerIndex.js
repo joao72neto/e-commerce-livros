@@ -5,7 +5,7 @@ const { markNotificationAsRead } = require('../model/clientes/modelNotifications
 
 //Página
 module.exports.getIndex = async (req, res) => {
-    const livros = await buscarLivrosIndex();
+    const livros = await buscarLivrosIndex(req.query.book);
     const cliente = await buscarClienteLogado();
 
     if(cliente.length > 0){

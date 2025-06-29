@@ -19,13 +19,13 @@ module.exports.buscarTodosLivros = async () => {
 }
 
 //Buscando o total de livros no estoque + preço
-module.exports.buscarLivrosIndex = async (lvr_id) => {
+module.exports.buscarLivrosIndex = async (book_name) => {
     
     //Obtendo o banco
     const db = await getDb();
 
     //Monstando a query
-    const sql = `
+    let sql = `
         select
             l.lvr_id,
             l.lvr_titulo,
@@ -41,11 +41,17 @@ module.exports.buscarLivrosIndex = async (lvr_id) => {
                     vw_estoque
                 group by
                     lvr_id
-            ) as p on p.lvr_id = l.lvr_id;
+            ) as p on p.lvr_id = l.lvr_id
     `;
 
+    let params = [];
+    if(book_name) {
+        sql += 'WHERE l.lvr_titulo LIKE ?';
+        params.push(`%${book_name}%`);
+    };
+
     try{
-        const [livros] = await db.query(sql, lvr_id);
+        const [livros] = await db.query(sql, params);
         return livros;
         
     }catch(err){
