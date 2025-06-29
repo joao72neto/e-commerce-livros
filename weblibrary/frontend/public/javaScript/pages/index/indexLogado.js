@@ -1,6 +1,8 @@
 import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
 import { adicionarCarrinhoService, buscarCarrinhoClienteIdService } from "/javaScript/service/compras/serviceCarrinho.js";
 import { buscarUnreadNotificationsService } from "/javaScript/service/serviceIndex.js";
+import { markNotificationAsReadService } from "/javaScript/service/serviceIndex.js";
+
 
 //Redirecionando para perfil do usuário
 document.querySelector('.clt-nome').addEventListener('click', function(){
@@ -57,7 +59,7 @@ document.querySelector('#notificacao-index').addEventListener('click', async fun
     if(notifications.length > 0){
         notifications.forEach(not => {
             html += `
-                <div class="not-item" data-id="${not.not_id}}">
+                <div class="not-item" data-id="${not.not_id}">
                     <h3>${not.not_title}</h3>
                     <p>${not.not_msg}</p>
                     <a class="mark-as-read">✔️</a>
@@ -79,7 +81,7 @@ document.querySelector('#notificacao-index').addEventListener('click', async fun
     this.appendChild(submenu);
 
     //Marking notifications as read
-    submenu.addEventListener('click', function(event) {
+    submenu.addEventListener('click', async function(event) {
         event.stopPropagation();
 
         if(event.target.matches('.mark-as-read')){
@@ -91,6 +93,7 @@ document.querySelector('#notificacao-index').addEventListener('click', async fun
             item.remove();
 
             //Marking as read on server
+            await markNotificationAsReadService(not_id);
         }
     });
 });

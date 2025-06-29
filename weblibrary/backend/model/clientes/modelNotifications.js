@@ -36,6 +36,30 @@ module.exports.buscarUnreadNotifications = async () => {
     }
 }
 
+//UPDATE
+
+//Getting unread notifications from db
+module.exports.markNotificationAsRead = async (not_id) => {
+
+    //Setting up the db
+    const db = await getDb();
+
+    let sql = `
+        update
+            notifications
+            set not_status = 1
+        where
+            not_id = ?;
+    `;
+
+    try{
+        await db.query(sql, not_id);
+    }catch(err){
+        console.error(`Erro no markNotificationAsRead - modelNotifications: ${err}`);
+        throw err;
+    }
+}
+
 //INSERT
 
 //Registering notifications

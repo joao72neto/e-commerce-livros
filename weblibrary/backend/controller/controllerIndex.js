@@ -2,6 +2,7 @@ const { buscarClienteLogado } = require('../model/clientes/modelClientes');
 const { buscarLivrosIndex } = require('../model/books/modelBooks');
 const { registerNotification } = require('../model/clientes/modelNotifications');
 const { buscarUnreadNotifications } = require('../model/clientes/modelNotifications');
+const { markNotificationAsRead } = require('../model/clientes/modelNotifications');
 
 //Página
 module.exports.getIndex = async (req, res) => {
@@ -22,8 +23,18 @@ module.exports.getIndex = async (req, res) => {
             cliente: cliente
         });
     }
-
     return res.render('index/index', {livros: livros});
+};
+
+//Update
+module.exports.patchMarkNotificationAsRead = async (req, res) => {
+    try{
+        await markNotificationAsRead(req.params.not_id);
+        return res.json({msg: 'Msg marcada como lida'});
+    }catch(err){
+        console.error(`Erro no patchMarkNotificationAsRead - controllerIndex: ${err}`);
+        return res.status(500).json({msg: 'Não foi possível marcar notificação como lida'});
+    }
 };
 
 //APIs

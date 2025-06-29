@@ -13,3 +13,19 @@ export async function buscarUnreadNotificationsService() {
         throw err;
     }
 }
+
+//PATCH
+
+//Markng notification as read
+export async function markNotificationAsReadService(not_id) {
+    try{
+        let res = await fetch(`/notifications/markAsRead/${not_id}`, {
+            method: 'PATCH'
+        });
+        return res.status;
+
+    }catch(err){
+        console.error(`Erro no markNotificationAsReadService - serviceIndex: ${err}`);
+        return 500;
+    }
+}
