@@ -8,7 +8,42 @@ document.addEventListener('DOMContentLoaded', async function(){
     updateCartCounter();
     searchfilter();
     removeBanner();
+    emptySearchResult();
 });
+
+function emptySearchResult(){
+
+    //Getting necessary elements
+    const wrapper = document.querySelector('.book');
+    const container = document.querySelector('.books-container');
+
+    //Exiting the function
+    if(wrapper) {
+        container.style.cssText = '';
+        return;
+    };
+
+    container.style.cssText = `
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    `
+
+    //HTML
+    const html = `
+
+        <div class="empty">
+            <p>
+                Nenhum Resultado Encontrado
+            </p>
+            <a href="/">Voltar</a>
+        </div>
+    `;
+
+    //HTML code injection
+    container.innerHTML = html;
+}
 
 function searchfilter(){
 

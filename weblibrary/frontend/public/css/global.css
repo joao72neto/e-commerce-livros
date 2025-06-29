@@ -203,21 +203,20 @@ ul{
 }
 
 div.empty{
-    padding: 50px;
+    padding: 30px;
     border-radius: 20px;
-    font-weight: bold;
-    box-shadow: 0px 0px 10px #0000005b;
+    background-color: var(--cinza);
 }
 
 .empty p{
-    padding: 35px;
+    padding: 20px;
     font-size: 1.5em;
 }
 
 .empty a{
     display: block;
     text-align: center;
-    width: 120px;
+    width: 100px;
     margin: 0 auto;
 }
 

@@ -241,15 +241,18 @@ div.empty-notification p{
 }
 
 /*livros*/
+div.empty{
+    width: 500px;
+    text-align: center;
+}
+
 .books{
-    
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
     grid-gap: 50px;
     max-width: 1500px;
     margin: 50px auto 0 auto;
     justify-content: center; 
-
 }
 
 .book{
