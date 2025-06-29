@@ -104,24 +104,38 @@ header #logado .clt-nome{
     border: 3px solid var(--branco);
     border-radius: 10px;
     position: absolute;
-    top: 50px;
+    top: 60px;
     right: 300px;
-    left: -150px;
+    left: -300px;
     background-color: var(--preto);
     z-index: 2;
 }
 
-.notificacao a{
-    display: block;
-    background-color: var(--preto);
-    border: none;
-    color: var(--branco);
+.notificacao div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 20px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    transition: 0.2s;
+}
 
-    &:hover{
-        background-color: var(--amarelo-claro);
-        color: var(--preto);
-    }
+.notificacao div:hover{
+    background-color: rgba(128, 128, 128, 0.1);
+}
+
+.notificacao div p{
+    flex-basis: 250px;
+    line-height: 25px;
+}
+
+.notificacao a{
+    all: unset;
+    transform: scale(1.2);
+}
+
+.notificacao a:hover{
+    transform: scale(1.5);
 }
 
 /*Menu Lateral*/

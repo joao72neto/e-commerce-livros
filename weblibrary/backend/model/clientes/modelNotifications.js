@@ -17,14 +17,15 @@ module.exports.buscarUnreadNotifications = async () => {
         where
             not_status = 0
         order by
-            not_datetime desc;
+            not_datetime desc
+        limit 5;
     `;
 
     try{
         let [nots] = await db.query(sql);
         nots = nots.map(ntf => ({
             ...ntf,
-            hlog_dataHora: new Date(ntf.not_datetime).toLocaleString('pt-BR')
+            not_datetime: new Date(ntf.not_datetime).toLocaleString('pt-BR')
         }));
 
         return nots;

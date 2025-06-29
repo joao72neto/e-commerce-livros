@@ -1,5 +1,6 @@
 import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
 import { adicionarCarrinhoService, buscarCarrinhoClienteIdService } from "/javaScript/service/compras/serviceCarrinho.js";
+import { buscarUnreadNotificationsService } from "/javaScript/service/serviceIndex.js";
 
 //Redirecionando para perfil do usuário
 document.querySelector('.clt-nome').addEventListener('click', function(){
@@ -50,13 +51,19 @@ document.querySelector('#notificacao-index').addEventListener('click', async fun
     let submenu = document.createElement('div');
     submenu.classList.add('notificacao');
 
+    //Creating HTML
+    let html = '';
+    const notifications = await buscarUnreadNotificationsService();
+    notifications.forEach(not => {
+        html += `
+            <div>
+                <p>${not.not_msg}</p>
+                <a>✔️</a>
+            </div>
+        `
+    })
 
-    submenu.innerHTML = `
-        <a href="#">Troca do produto Aceita</a>
-        <a href="#">Item adicionado ao carrinho</a>
-        <a href="#">Item retirado do carrinho</a>
-
-    `;
+    submenu.innerHTML = html;
 
     // Adicionando submenu ao lado do botão clicado
     this.appendChild(submenu);

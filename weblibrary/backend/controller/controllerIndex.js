@@ -1,6 +1,7 @@
 const { buscarClienteLogado } = require('../model/clientes/modelClientes');
 const { buscarLivrosIndex } = require('../model/books/modelBooks');
 const { registerNotification } = require('../model/clientes/modelNotifications');
+const { buscarUnreadNotifications } = require('../model/clientes/modelNotifications');
 
 //Página
 module.exports.getIndex = async (req, res) => {
@@ -26,8 +27,9 @@ module.exports.getIndex = async (req, res) => {
 };
 
 //APIs
-module.exports.getApiNotifications = async () => {
-
+module.exports.getApiNotifications = async (req, res) => {
+    const notifications = await buscarUnreadNotifications();
+    return res.json(notifications);
 };
 
 //Resetar histórico IA
