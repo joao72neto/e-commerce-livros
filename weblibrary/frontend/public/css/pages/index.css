@@ -101,7 +101,7 @@ header #logado .clt-nome{
 
 /*Notificações*/
 .notificacao{
-    border: 3px solid var(--preto);
+    border: 1px solid rgba(128, 128, 128, 0.4);
     border-radius: 10px;
     position: absolute;
     top: 60px;
@@ -154,16 +154,20 @@ header #logado .clt-nome{
 
 .contador {
     position: absolute;
-    top: 0.6px;
+    top: 0.9px;
     right: 295px;
-    background-color: red;
-    color: white;
+    background-color: var(--amarelo);
+    color: var(--preto);
     font-size: 12px;
     padding: 2px 6px;
     border-radius: 50%;
     display: none;
     font-weight: bold;
     z-index: 10;
+}
+
+#carrinho-contador{
+    right: 220px;
 }
 
 div.empty-notification{

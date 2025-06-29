@@ -3,9 +3,25 @@ import { adicionarCarrinhoService, buscarCarrinhoClienteIdService } from "/javaS
 import { buscarUnreadNotificationsService } from "/javaScript/service/serviceIndex.js";
 import { markNotificationAsReadService } from "/javaScript/service/serviceIndex.js";
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', async function(){
+
+    const client = await buscarClienteLogadoService();
     updateNotificationCounter();
+    updateCartCounter(client)
 });
+
+async function updateCartCounter(client) {
+    const cart = await buscarCarrinhoClienteIdService(client[0].clt_id);
+    const contador = document.getElementById('carrinho-contador');
+    const total = cart.length;
+
+    if (total > 0) {
+        contador.textContent = total > 99 ? '99+' : total;
+        contador.style.display = 'block';
+    } else {
+        contador.style.display = 'none';
+    }
+}
 
 async function updateNotificationCounter() {
     const notifications = await buscarUnreadNotificationsService();
@@ -19,7 +35,6 @@ async function updateNotificationCounter() {
         contador.style.display = 'none';
     }
 }
-
 
 //Redirecionando para perfil do usuário
 document.querySelector('.clt-nome').addEventListener('click', function(){
