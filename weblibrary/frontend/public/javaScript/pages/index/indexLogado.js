@@ -37,22 +37,7 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
     conteudo.style.width = '';
 });
 
-
-//Exibindo notificações
-document.querySelector('#notificacao-index').addEventListener('click', async function(event){
-    event.stopPropagation();
-        
-    //Retirando o menu ao clicar de novo
-    let notificacao = this.querySelector('.notificacao');
-
-    if(notificacao){
-        notificacao.remove();
-        return;
-    }
-
-    let submenu = document.createElement('div');
-    submenu.classList.add('notificacao');
-
+async function loadNotifications(){
     //Creating HTML
     let html = '';
     const notifications = await buscarUnreadNotificationsService();
@@ -69,13 +54,30 @@ document.querySelector('#notificacao-index').addEventListener('click', async fun
     }else{
         html = `
             <div class="empty-notification">
-                <p>Tudo certo por aqui!</p>
+                <p>Tudo certo por aqui! 🙂</p>
                 <small>Você não tem novas notificações.</small>
             </div>
         `;
     }
 
-    submenu.innerHTML = html;
+    return html;
+}
+
+//Exibindo notificações
+document.querySelector('#notificacao-index').addEventListener('click', async function(event){
+    event.stopPropagation();
+
+    //Retirando o menu ao clicar de novo
+    let notificacao = this.querySelector('.notificacao');
+
+    if(notificacao){
+        notificacao.remove();
+        return;
+    }
+
+    let submenu = document.createElement('div');
+    submenu.classList.add('notificacao');
+    submenu.innerHTML = await loadNotifications();
 
     // Adicionando submenu ao lado do botão clicado
     this.appendChild(submenu);
@@ -89,11 +91,11 @@ document.querySelector('#notificacao-index').addEventListener('click', async fun
             const item = event.target.closest('.not-item');
             const not_id = item.dataset.id;
 
-            //Removing from DOM
-            item.remove();
-
             //Marking as read on server
             await markNotificationAsReadService(not_id);
+
+            //Updating notifications
+            this.innerHTML = await loadNotifications();
         }
     });
 });

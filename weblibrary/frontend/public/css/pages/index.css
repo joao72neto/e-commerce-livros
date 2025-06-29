@@ -149,6 +149,17 @@ header #logado .clt-nome{
     transform: scale(1.5);
 }
 
+div.empty-notification{
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+div.empty-notification p{
+    justify-self: center;
+    padding: 10px;
+}
+
 /*Menu Lateral*/
 .sidebar{
     position: fixed;
