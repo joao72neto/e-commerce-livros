@@ -230,7 +230,7 @@ module.exports.buscarEnderecosInativosClienteId = async (clt_id) => {
         from
             enderecos
         where 
-            end_status = 0 and end_clt_id = ?;
+            end_status = 0 and end_clt_id = ? and end_entrega = 1;
     `;
     
     try{

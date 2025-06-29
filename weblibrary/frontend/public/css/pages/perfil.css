@@ -71,3 +71,12 @@ p{
 .add{
     padding: 20px;
 }
+
+.enderecos .wrapper{
+    display: grid;
+    grid-template-columns: 4fr 3fr 2fr;
+}
+
+.enderecos .types{
+    font-weight: bold;
+}

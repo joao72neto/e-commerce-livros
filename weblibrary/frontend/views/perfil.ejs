@@ -104,6 +104,11 @@
                                 <p><%=endereco.end_bairro%></p>
                                 <p><strong>Número: </strong><%=endereco.end_numero%></p>
                             </div>
+                            <div class="types">
+                                <p class="<%=endereco.end_entrega == '1'? '' : 'invisible'%>">Entrega</p>
+                                <p class="<%=endereco.end_residencia == '1'? '' : 'invisible'%>">Residência</p>
+                                <p class="<%=endereco.end_cobranca == '1'? '' : 'invisible'%>">Cobrança</p>
+                            </div>
                             <div class="acoes">
                                 <a class="alt" href="/clientes/address/<%=cliente.clt_id%>/alt/<%=endereco.end_id%>?retorno_pag=<%=retorno_pag%>&tipo=<%=tipo%>&retorno=perfil&compra=<%=compra%>&page=<%=page%>">Alterar</a>
                                 <a class="delete-address" >Excluir</a>
