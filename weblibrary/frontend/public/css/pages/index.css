@@ -101,13 +101,16 @@ header #logado .clt-nome{
 
 /*Notificações*/
 .notificacao{
-    border: 3px solid var(--branco);
+    border: 3px solid var(--preto);
     border-radius: 10px;
     position: absolute;
     top: 60px;
     right: 300px;
     left: -300px;
     background-color: var(--preto);
+    overflow: auto;
+    max-height: 550px;
+    box-shadow: 0px 0px 20px #0000005b;
     z-index: 2;
 }
 
@@ -147,6 +150,20 @@ header #logado .clt-nome{
 
 .notificacao a:hover{
     transform: scale(1.5);
+}
+
+.contador {
+    position: absolute;
+    top: 0.6px;
+    right: 295px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    display: none;
+    font-weight: bold;
+    z-index: 10;
 }
 
 div.empty-notification{

@@ -17,8 +17,7 @@ module.exports.buscarUnreadNotifications = async () => {
         where
             not_status = 0
         order by
-            not_datetime desc
-        limit 5;
+            not_datetime desc;
     `;
 
     try{

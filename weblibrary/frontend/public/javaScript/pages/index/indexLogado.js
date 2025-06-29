@@ -3,6 +3,23 @@ import { adicionarCarrinhoService, buscarCarrinhoClienteIdService } from "/javaS
 import { buscarUnreadNotificationsService } from "/javaScript/service/serviceIndex.js";
 import { markNotificationAsReadService } from "/javaScript/service/serviceIndex.js";
 
+document.addEventListener('DOMContentLoaded', function(){
+    updateNotificationCounter();
+});
+
+async function updateNotificationCounter() {
+    const notifications = await buscarUnreadNotificationsService();
+    const contador = document.getElementById('notificacao-contador');
+    const total = notifications.length;
+
+    if (total > 0) {
+        contador.textContent = total > 99 ? '99+' : total;
+        contador.style.display = 'block';
+    } else {
+        contador.style.display = 'none';
+    }
+}
+
 
 //Redirecionando para perfil do usuário
 document.querySelector('.clt-nome').addEventListener('click', function(){
@@ -96,6 +113,7 @@ document.querySelector('#notificacao-index').addEventListener('click', async fun
 
             //Updating notifications
             this.innerHTML = await loadNotifications();
+            updateNotificationCounter();
         }
     });
 });
