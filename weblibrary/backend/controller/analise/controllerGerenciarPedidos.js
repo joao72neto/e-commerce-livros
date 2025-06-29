@@ -5,7 +5,7 @@ const { buscarDevolvidosTrocados } = require('../../model/analise/modelGerenciar
 const { deletarDevolvidoTrocado } = require('../../model/analise/modelGerenciarPedidos');
 const { atualizarQtdTrocadaPedidoId } = require('../../model/analise/modelGerenciarPedidos');
 const { registerLog } = require('../../model/analise/modelLogs');
-
+const { sendNotifcation } = require('../../model/clientes/modelNotifications');
 
 //Página
 module.exports.getGerenciarPedidos = async (req, res) => {
@@ -62,7 +62,10 @@ module.exports.patchAtualizarStatusPedidoId = async (req, res) => {
         logData.log_operacao = 'STATUS_CHANGE';
         logData.log_desc = `Status do pedido "${req.body.ped_number}" atualizado para "${req.body.vnd_status}"`;
         await registerLog(logData);
-        
+
+        //Sending notifications
+        await sendNotifcation(req.body.vnd_status);
+
         return res.status(200).json({msg: 'Status atualizdo com sucesso!'});
 
     }catch(err){

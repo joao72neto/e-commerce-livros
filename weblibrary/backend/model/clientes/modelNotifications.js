@@ -95,3 +95,49 @@ module.exports.registerNotification = async (dados) => {
         throw err;
     }
 }
+
+//Function to update notification status
+module.exports.sendNotifcation = async (status) => {
+
+    //Sending notification
+    let notData = {
+        not_clt_id: '',
+        not_title: '',
+        not_msg: '',
+        not_status: 0
+    }
+
+    switch(status){
+        case 'Em Processamento':
+            notData.not_title = 'Test';
+            notData.not_msg = 'This is the best notification'
+            break;
+        case 'Reprovado':
+            break;
+        case 'Cancelado':
+            break;
+        case 'Aprovado':
+            break;
+        case 'Em Transporte':
+            break;
+        case 'Entregue':
+            break;
+        case 'Devolução Solicitada':
+            break;
+        case 'Devoluçlão Recusada':
+            break;
+        case 'Devolução Aceita':
+            break;
+        case 'Devolução Concluída':
+            break;
+        case 'Troca Solicitada':
+            break;
+        case 'Troca Recusada':
+            break;
+        case 'Troca Aceita':
+            break;
+        case 'Troca Concluída':
+    }
+
+    module.exports.registerNotification(notData);
+}

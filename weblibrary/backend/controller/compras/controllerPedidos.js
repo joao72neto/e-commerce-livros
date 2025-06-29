@@ -2,6 +2,8 @@ const { adicionarPedido } = require('../../model/compras/modelPedidos');
 const { buscarPedidosClienteId } = require('../../model/compras/modelPedidos');
 const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
 const { registerLog } = require('../../model/analise/modelLogs');
+const { sendNotifcation } = require('../../model/clientes/modelNotifications');
+
 
 //Log model
 let logData = {
@@ -34,6 +36,9 @@ module.exports.postPedido = async (req, res) => {
         logData.log_operacao = 'ORDER';
         logData.log_desc = `Pedido "${req.body.lvr_numPedido}" criado`;
         await registerLog(logData);
+
+        //Sending notification
+        await sendNotifcation('Em Processamento');
 
         return res.status(201).json({msg: 'Pedido adicionado a lista de pedidos'})
 
