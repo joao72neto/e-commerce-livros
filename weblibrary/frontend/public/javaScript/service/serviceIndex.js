@@ -1,10 +1,10 @@
 //GET
 
 //Getting unread notifications
-export async function buscarUnreadNotificationsService() {
+export async function buscarUnreadNotificationsService(clt_id) {
     try{
 
-        const res = await fetch(`/api/notifications/unread`);
+        const res = await fetch(`/api/notifications/unread/${clt_id}`);
         const nots = await res.json();
         return nots;
 

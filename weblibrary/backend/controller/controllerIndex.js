@@ -39,7 +39,7 @@ module.exports.patchMarkNotificationAsRead = async (req, res) => {
 
 //APIs
 module.exports.getApiNotifications = async (req, res) => {
-    const notifications = await buscarUnreadNotifications();
+    const notifications = await buscarUnreadNotifications(req.params.clt_id);
     return res.json(notifications);
 };
 

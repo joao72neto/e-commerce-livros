@@ -4,13 +4,12 @@ import { buscarUnreadNotificationsService } from "/javaScript/service/serviceInd
 import { markNotificationAsReadService } from "/javaScript/service/serviceIndex.js";
 
 document.addEventListener('DOMContentLoaded', async function(){
-
-    const client = await buscarClienteLogadoService();
     updateNotificationCounter();
-    updateCartCounter(client)
+    updateCartCounter();
 });
 
-async function updateCartCounter(client) {
+async function updateCartCounter() {
+    const client = await buscarClienteLogadoService();
     const cart = await buscarCarrinhoClienteIdService(client[0].clt_id);
     const contador = document.getElementById('carrinho-contador');
     const total = cart.length;
@@ -24,7 +23,8 @@ async function updateCartCounter(client) {
 }
 
 async function updateNotificationCounter() {
-    const notifications = await buscarUnreadNotificationsService();
+    const client = await buscarClienteLogadoService();
+    const notifications = await buscarUnreadNotificationsService(client[0].clt_id);
     const contador = document.getElementById('notificacao-contador');
     const total = notifications.length;
 
@@ -70,9 +70,13 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
 });
 
 async function loadNotifications(){
+
+    const client = await buscarClienteLogadoService()
+    const clt_id = client[0].clt_id;
+
     //Creating HTML
     let html = '';
-    const notifications = await buscarUnreadNotificationsService();
+    const notifications = await buscarUnreadNotificationsService(clt_id);
     if(notifications.length > 0){
         notifications.forEach(not => {
             html += `

@@ -9,7 +9,7 @@ router.get('/', controllerIndex.getIndex);
 router.patch('/notifications/markAsRead/:not_id', controllerIndex.patchMarkNotificationAsRead);
 
 //APIs
-router.get('/api/notifications/unread', controllerIndex.getApiNotifications);
+router.get('/api/notifications/unread/:clt_id', controllerIndex.getApiNotifications);
 
 //Outras
 router.get('/api/version', controllerIndex.getServerVersion);

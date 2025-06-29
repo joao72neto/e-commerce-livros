@@ -4,7 +4,7 @@ const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
 //SELECT
 
 //Getting unread notifications from db
-module.exports.buscarUnreadNotifications = async () => {
+module.exports.buscarUnreadNotifications = async (clt_id) => {
 
     //Setting up the db
     const db = await getDb();
@@ -15,13 +15,13 @@ module.exports.buscarUnreadNotifications = async () => {
         from
             notifications
         where
-            not_status = 0
+            not_status = 0 and not_clt_id = ?
         order by
             not_datetime desc;
     `;
 
     try{
-        let [nots] = await db.query(sql);
+        let [nots] = await db.query(sql, clt_id);
         nots = nots.map(ntf => ({
             ...ntf,
             not_datetime: new Date(ntf.not_datetime).toLocaleString('pt-BR')
