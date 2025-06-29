@@ -25,9 +25,9 @@ body, html{
 }
 
 #busca-index {
-    background-color: #3f3f3f;
+    background-color: var(--preto);
     color:white;
-    border: 1px solid #444;
+    border: 1px solid #ffffff5d;
     border-radius: 8px;
     padding: 10px 15px;
     font-size: 16px;
@@ -41,8 +41,8 @@ body, html{
 }
 
 #busca-index:focus {
-    border-color: rgba(255, 255, 0, 0.4);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.267);
+    border-color: rgba(255, 255, 0, 0.5);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 

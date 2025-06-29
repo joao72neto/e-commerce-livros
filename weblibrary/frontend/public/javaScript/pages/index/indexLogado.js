@@ -6,7 +6,38 @@ import { markNotificationAsReadService } from "/javaScript/service/serviceIndex.
 document.addEventListener('DOMContentLoaded', async function(){
     updateNotificationCounter();
     updateCartCounter();
+    searchfilter();
+    removeBanner();
 });
+
+function searchfilter(){
+
+    //Getting forms
+    const form = document.querySelector('.form-search');
+    let url = '/';
+
+    //Submitting response
+    form.addEventListener('submit', function(event){
+        event.preventDefault();
+        const inputValue = this.querySelector('#busca-index').value;
+        console.log(inputValue);
+
+        //Setting url
+        if(inputValue)  url = `/?book=${inputValue}`;
+
+        //Filtering page
+        window.location.href = url;
+
+    });
+}
+
+function removeBanner(){
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.get('book')){
+        const banner = document.querySelector('.banner');
+        if(banner) banner.remove();
+    }
+}
 
 async function updateCartCounter() {
     const client = await buscarClienteLogadoService();
