@@ -36,10 +36,9 @@ document.querySelector('#btn-sidebar').addEventListener('click', function(){
 
 
 //Exibindo notificações
-document.querySelector('#notificacao-index').addEventListener('click', function(event){
+document.querySelector('#notificacao-index').addEventListener('click', async function(event){
     event.stopPropagation();
         
-
     //Retirando o menu ao clicar de novo
     let notificacao = this.querySelector('.notificacao');
 

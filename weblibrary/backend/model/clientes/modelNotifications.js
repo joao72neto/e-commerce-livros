@@ -45,7 +45,7 @@ module.exports.registerNotification = async (dados) => {
 
     //Getting the logged in user
     const client = await buscarClienteLogado();
-    dados.log_clt_id = client[0].clt_id;
+    dados.not_clt_id = client[0].clt_id;
 
     //Preparing sql query
     const sql = `
