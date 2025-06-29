@@ -112,8 +112,9 @@ header #logado .clt-nome{
 }
 
 .notificacao div{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    justify-items: center;
     align-items: center;
     padding: 20px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.1);
@@ -124,14 +125,24 @@ header #logado .clt-nome{
     background-color: rgba(128, 128, 128, 0.1);
 }
 
+.notificacao div h3{
+    grid-row: 1;
+    justify-self: left;
+    margin-bottom: 5px;
+}
+
 .notificacao div p{
-    flex-basis: 250px;
+    grid-row: 2;
+    justify-self: left;
     line-height: 25px;
 }
 
 .notificacao a{
     all: unset;
+    grid-column: 2;
+    grid-row: 1 / 3;
     transform: scale(1.2);
+    transition: 0.1s;
 }
 
 .notificacao a:hover{

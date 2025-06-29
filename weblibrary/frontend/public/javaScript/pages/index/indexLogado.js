@@ -57,6 +57,7 @@ document.querySelector('#notificacao-index').addEventListener('click', async fun
     notifications.forEach(not => {
         html += `
             <div>
+                <h3>${not.not_title}</h3>
                 <p>${not.not_msg}</p>
                 <a>✔️</a>
             </div>
