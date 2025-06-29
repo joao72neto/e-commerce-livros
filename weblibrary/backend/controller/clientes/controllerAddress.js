@@ -103,7 +103,7 @@ module.exports.postAddressAdd = async (req, res) => {
         await cadastrarAddress(dados);
 
         //Registering log
-        const client = await buscarClienteId(req.body.address.end_clt_id);
+        const client = await buscarClienteId(dados.end_clt_id);
         const userName = client[0].clt_nome;
         logData.log_usuario = req.body.user.user_type;
         logData.log_operacao = 'INSERT';

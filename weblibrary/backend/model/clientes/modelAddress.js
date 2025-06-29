@@ -55,9 +55,12 @@ module.exports.cadastrarAddress = async (dados) => {
             end_cidade, 
             end_estado, 
             end_pais, 
-            end_frete
+            end_frete,
+            end_residencia,
+            end_entrega,
+            end_cobranca
         ) VALUES (
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
         )    
     `;
 
@@ -74,7 +77,10 @@ module.exports.cadastrarAddress = async (dados) => {
         dados.end_cidade,
         dados.end_estado,
         dados.end_pais, 
-        dados.end_frete
+        dados.end_frete,
+        dados.end_residencia,
+        dados.end_entrega,
+        dados.end_cobranca
     ]
 
     await db.query(sql, valores)

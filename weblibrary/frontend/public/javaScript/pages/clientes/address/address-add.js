@@ -19,6 +19,11 @@ document.querySelector('form').addEventListener('submit', async function(event){
     const formDados = new FormData(event.target);
     let dados = Object.fromEntries(formDados.entries());
 
+    //Getting selects
+    const residencia = document.querySelector('#residencia').value;
+    const entrega = document.querySelector('#entrega').value;
+    const cobranca = document.querySelector('#cobranca').value;
+
     //Pegando o id do cliente
     const clt_id = window.location.pathname.split('/')[3];
 
@@ -33,7 +38,10 @@ document.querySelector('form').addEventListener('submit', async function(event){
         end_numero: dados.numero,
         end_pais: dados.pais,
         end_tipoLogradouro: dados.tipo_logradouro,
-        end_tipoResidencia: dados.tipo_residencia
+        end_tipoResidencia: dados.tipo_residencia,
+        end_cobranca: cobranca,
+        end_residencia: residencia,
+        end_entrega: entrega
     }
 
     let user = {
