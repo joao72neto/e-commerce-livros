@@ -54,28 +54,53 @@ document.querySelector('#notificacao-index').addEventListener('click', async fun
     //Creating HTML
     let html = '';
     const notifications = await buscarUnreadNotificationsService();
-    notifications.forEach(not => {
-        html += `
-            <div>
-                <h3>${not.not_title}</h3>
-                <p>${not.not_msg}</p>
-                <a>✔️</a>
+    if(notifications.length > 0){
+        notifications.forEach(not => {
+            html += `
+                <div class="not-item" data-id="${not.not_id}}">
+                    <h3>${not.not_title}</h3>
+                    <p>${not.not_msg}</p>
+                    <a class="mark-as-read">✔️</a>
+                </div>
+            `
+        });
+    }else{
+        html = `
+            <div class="empty-notification">
+                <p>Tudo certo por aqui!</p>
+                <small>Você não tem novas notificações.</small>
             </div>
-        `
-    })
+        `;
+    }
 
     submenu.innerHTML = html;
 
     // Adicionando submenu ao lado do botão clicado
     this.appendChild(submenu);
 
+    //Marking notifications as read
+    submenu.addEventListener('click', function(event) {
+        event.stopPropagation();
+
+        if(event.target.matches('.mark-as-read')){
+
+            const item = event.target.closest('.not-item');
+            const not_id = item.dataset.id;
+
+            //Removing from DOM
+            item.remove();
+
+            //Marking as read on server
+        }
+    });
 });
 
 //Removendo notificação ao clicar fora da tela
-document.addEventListener('click', function(){
+document.addEventListener('click', function(event){
     const notificacao = document.querySelector('.notificacao');
+    const isClickInsideNotification = event.target.closest('.notificacao');
 
-    if(notificacao){
+    if(notificacao && !isClickInsideNotification){
         notificacao.remove();
     }
 });
