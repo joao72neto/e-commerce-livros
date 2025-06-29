@@ -68,22 +68,22 @@
                         <div>
                             <label for="residencia">Residência: </label>
                             <select name="residencia" id="residencia">
-                                <option value="1">Sim</option>
-                                <option value="0">Não</option>
+                                <option value="1" <%= enderecos[0].end_residencia == '1' ? 'selected' : '' %>>Sim</option>
+                                <option value="0" <%= enderecos[0].end_residencia == '0' ? 'selected' : '' %>>Não</option>
                             </select>
                         </div>
                         <div>
                             <label for="entrega">Entrega: </label>
                             <select name="entrega" id="entrega">
-                                <option value="1">Sim</option>
-                                <option value="0">Não</option>
+                                <option value="1" <%= enderecos[0].end_entrega == '1' ? 'selected' : '' %>>Sim</option>
+                                <option value="0" <%= enderecos[0].end_entrega == '0' ? 'selected' : '' %>>Não</option>
                             </select>
                         </div>
                         <div>
                             <label for="cobranca">Cobrança: </label>
                             <select name="cobranca" id="cobranca">
-                                <option value="1">Sim</option>
-                                <option value="0">Não</option>
+                                <option value="1" <%= enderecos[0].end_cobranca == '1' ? 'selected' : '' %>>Sim</option>
+                                <option value="0" <%= enderecos[0].end_cobranca == '0' ? 'selected' : '' %>>Não</option>
                             </select>
                         </div>
                     </div>
