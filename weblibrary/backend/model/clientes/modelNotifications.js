@@ -97,7 +97,7 @@ module.exports.registerNotification = async (dados) => {
 }
 
 //Function to update notification status
-module.exports.sendNotifcation = async (status) => {
+module.exports.sendNotifcation = async (data) => {
 
     //Sending notification
     let notData = {
@@ -107,36 +107,65 @@ module.exports.sendNotifcation = async (status) => {
         not_status: 0
     }
 
-    switch(status){
+    const pedido = `Pedido nº ${data.ped_number}`;
+
+    switch(data.vnd_status){
         case 'Em Processamento':
-            notData.not_title = 'Test';
-            notData.not_msg = 'This is the best notification'
+            notData.not_title = 'Estamos cuidando do seu pedido 🛠️';
+            notData.not_msg = `${pedido} está em processamento. Estamos preparando tudo com carinho!`;
             break;
         case 'Reprovado':
+            notData.not_title = 'Ops! Problema no pedido ❌';
+            notData.not_msg = `${pedido} não foi aprovado. Verifique os dados ou entre em contato para mais informações.`;
             break;
         case 'Cancelado':
+            notData.not_title = 'Pedido cancelado 🛑';
+            notData.not_msg = `${pedido} foi cancelado. Caso queira refazer a compra, estamos por aqui!`;
             break;
         case 'Aprovado':
+            notData.not_title = 'Pedido aprovado! 🎉';
+            notData.not_msg = `${pedido} foi aprovado com sucesso. Logo ele será enviado!`;
             break;
         case 'Em Transporte':
+            notData.not_title = 'Seu pedido está a caminho 🚚';
+            notData.not_msg = `${pedido} já foi enviado e está em rota de entrega. Fique atento!`;
             break;
         case 'Entregue':
+            notData.not_title = 'Pedido entregue 📦';
+            notData.not_msg = `${pedido} foi entregue com sucesso. Esperamos que esteja satisfeito!`;
             break;
         case 'Devolução Solicitada':
+            notData.not_title = 'Solicitação de devolução recebida 🔁';
+            notData.not_msg = `Recebemos sua solicitação de devolução para o ${pedido}. Estamos analisando o pedido.`;
             break;
-        case 'Devoluçlão Recusada':
+        case 'Devolução Recusada':
+            notData.not_title = 'Devolução recusada ❗';
+            notData.not_msg = `Infelizmente, a devolução do ${pedido} foi recusada. Entre em contato para mais detalhes.`;
             break;
         case 'Devolução Aceita':
+            notData.not_title = 'Devolução aprovada ✅';
+            notData.not_msg = `Sua devolução referente ao ${pedido} foi aprovada. Em breve você receberá as instruções.`;
             break;
         case 'Devolução Concluída':
+            notData.not_title = 'Devolução concluída 🔄';
+            notData.not_msg = `Processo de devolução do ${pedido} finalizado com sucesso.`;
             break;
         case 'Troca Solicitada':
+            notData.not_title = 'Solicitação de troca recebida 🔃';
+            notData.not_msg = `Recebemos a solicitação de troca do ${pedido}. Analisaremos e avisaremos você!`;
             break;
         case 'Troca Recusada':
+            notData.not_title = 'Troca recusada ❌';
+            notData.not_msg = `Sua troca do ${pedido} foi recusada. Caso necessário, entre em contato com nosso suporte.`;
             break;
         case 'Troca Aceita':
+            notData.not_title = 'Troca aprovada! 🆗';
+            notData.not_msg = `A troca do ${pedido} foi aprovada. Preparando tudo para enviar o novo produto!`;
             break;
         case 'Troca Concluída':
+            notData.not_title = 'Troca concluída com sucesso 🔁';
+            notData.not_msg = `A troca do ${pedido} foi finalizada. Esperamos que esteja satisfeito com o novo item!`;
+            break;
     }
 
     module.exports.registerNotification(notData);

@@ -38,7 +38,11 @@ module.exports.postPedido = async (req, res) => {
         await registerLog(logData);
 
         //Sending notification
-        await sendNotifcation('Em Processamento');
+        const notData = {
+            vnd_status: 'Em Processamento',
+            ped_number: req.body.lvr_numPedido
+        }
+        await sendNotifcation(notData);
 
         return res.status(201).json({msg: 'Pedido adicionado a lista de pedidos'})
 

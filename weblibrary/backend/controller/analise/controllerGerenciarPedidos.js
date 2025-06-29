@@ -64,7 +64,7 @@ module.exports.patchAtualizarStatusPedidoId = async (req, res) => {
         await registerLog(logData);
 
         //Sending notifications
-        await sendNotifcation(req.body.vnd_status);
+        await sendNotifcation(req.body);
 
         return res.status(200).json({msg: 'Status atualizdo com sucesso!'});
 
