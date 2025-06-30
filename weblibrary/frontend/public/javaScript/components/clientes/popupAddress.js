@@ -1,49 +1,69 @@
 import { buscarEnderecoIdService } from '/javaScript/service/clientes/serviceAddress.js';
 
-//Gerando um popup para os endereços
-document.querySelectorAll('.endereco-wrapper .endereco').forEach(endereco => {
-    endereco.addEventListener('click', async function(){
+document.addEventListener('DOMContentLoaded', function(){
+    
+    //Calling functions
+    showPopup();
+    removePopup();
 
-        let container = document.querySelector('.container-address');
-        let id = Number(this.querySelector('.address-id').textContent);
+});
 
-        // Criando o popup
-        let popup = document.createElement('div');
-        popup.classList.add('popup');
+function showPopup(){
+    document.querySelectorAll('.endereco-wrapper .endereco').forEach(endereco => {
+        endereco.addEventListener('click', async function(event){
+            event.stopPropagation();
 
-        let endereco = await buscarEnderecoIdService(id);
+            const existingPopup = document.body.querySelector('.popup');
+            if (existingPopup) {
 
-        //Mostrando todos os dados
-        popup.innerHTML = `
-            <h2>${endereco.end_logradouro}</h2>
-            <p><strong>Nome: </strong>${endereco.end_nome}<p/>
-            <p><strong>Tipo de Residência: </strong>${endereco.end_tipoResidencia}<p/>
-            <p><strong>Tipo de Logradouro: </strong>${endereco.end_tipoLogradouro}<p/>
-            <p><strong>Logradouro: </strong>${endereco.end_logradouro}<p/>
-            <p><strong>Número: </strong>${endereco.end_numero}<p/>
-            <p><strong>Bairro: </strong>${endereco.end_bairro}<p/>
-            <p><strong>CEP: </strong>${endereco.end_cep}<p/>
-            <p><strong>Cidade: </strong>${endereco.end_cidade}<p/>
-            <p><strong>Estado: </strong>${endereco.end_estado}<p/>
-            <p><strong>País: </strong>${endereco.end_pais}<p/>
-        `;
+                const popupId = existingPopup.querySelector('#popup-id').textContent;
+                const clientId = this.querySelector('.address-id').textContent;
 
-        container.appendChild(popup);
+                if(clientId === popupId){
+                    existingPopup.remove();
+                    return;
+                }
+            }
+            // Fecha qualquer outro popup aberto
+            document.querySelectorAll('.popup').forEach(p => p.remove());
 
-        // Evento para fechar o popup ao clicar no botão "X"
-        document.querySelector('.button-popup').addEventListener('click', () => {
-            popup.remove();
+            let id = Number(this.querySelector('.address-id').textContent);
+
+            // Criando o popup
+            let popup = document.createElement('div');
+            popup.classList.add('popup');
+
+            let endereco = await buscarEnderecoIdService(id);
+
+            //Mostrando todos os dados
+            popup.innerHTML = `
+                <h2>${endereco.end_logradouro}</h2>
+                <p class="invisible" id="popup-id">${endereco.end_id}<p/>
+                <p><strong>Nome: </strong>${endereco.end_nome}<p/>
+                <p><strong>Tipo de Residência: </strong>${endereco.end_tipoResidencia}<p/>
+                <p><strong>Tipo de Logradouro: </strong>${endereco.end_tipoLogradouro}<p/>
+                <p><strong>Logradouro: </strong>${endereco.end_logradouro}<p/>
+                <p><strong>Número: </strong>${endereco.end_numero}<p/>
+                <p><strong>Bairro: </strong>${endereco.end_bairro}<p/>
+                <p><strong>CEP: </strong>${endereco.end_cep}<p/>
+                <p><strong>Cidade: </strong>${endereco.end_cidade}<p/>
+                <p><strong>Estado: </strong>${endereco.end_estado}<p/>
+                <p><strong>País: </strong>${endereco.end_pais}<p/>
+            `;
+
+            //Adding popup to body
+            document.body.appendChild(popup);
         });
     });
-});
+};
 
-//Removendo o submenu ao clicar fora da tela
-document.addEventListener('click', (event) => {
-    const popup = document.querySelector('.popup');
-    
-    if (popup && !popup.contains(event.target)) {
-        popup.remove();
-    }
-});
+function removePopup(){
+    //Removendo o submenu ao clicar fora da tela
+    document.addEventListener('click', (event) => {
+        const popup = document.querySelector('.popup');
 
-
+        if (popup && !popup.contains(event.target)) {
+            popup.remove();
+        }
+    });
+}

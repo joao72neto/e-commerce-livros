@@ -59,12 +59,10 @@ function showPopup() {
 
 function removePopup() {
     document.addEventListener('click', (event) => {
-        const isClickInsideCliente = event.target.closest('.cliente');
-        const isClickInsidePopup = event.target.closest('.popup');
         const popup = document.querySelector('.popup');
         const filter = document.body.querySelector('.filtro_clientes');
 
-        if (!isClickInsideCliente && popup && !isClickInsidePopup) {
+        if (popup && !popup.contains(event.target)) {
             filter.classList.remove('invisible');
             popup.remove();
         }
