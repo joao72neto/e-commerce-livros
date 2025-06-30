@@ -1,6 +1,14 @@
+const pause = false;
+const standardSleep = 200;
+const fastSleep = 200;
+
+
 describe('Testes Relacionados a Alteração de Senha', () => {
-    beforeEach(() => {
-        cy.visit('/clientes'); 
+    
+    before(() => {
+        cy.wait(1000);
+        cy.task('resetarBanco'); 
+        cy.wait(1000);
     });
 
 
