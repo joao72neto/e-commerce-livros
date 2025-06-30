@@ -124,3 +124,26 @@ Cypress.Commands.add('inativarReativarClienteId', (clt_id, sleep=time) => {
     cy.visit('/clientes');
     cy.wait(sleep);
 });
+
+//Show client popup
+Cypress.Commands.add('showPopup', (clt_id, sleep=time) => {
+
+    cy.visit('/clientes');
+
+    //Clicking on client
+    cy.wait(sleep);
+    cy.get('.wrapper .cliente-id').each($id => {
+        if($id.text().trim() === String(clt_id)){
+            cy.wrap($id).closest('.wrapper').then($wrapper => {
+                cy.wrap($wrapper).find('.cliente').click();
+            });
+        }
+    });
+
+    //Fechando o popup caso ele seja exibido
+    cy.get('.popup').should('exist').click();
+
+    cy.wait(sleep);
+    cy.visit('/clientes');
+    cy.wait(sleep);
+});
