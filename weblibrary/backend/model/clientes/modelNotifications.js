@@ -101,10 +101,15 @@ module.exports.checkCartAndNotify = async () => {
 
     //Setting up db
     const db = await getDb();
+    let clt_id = 0;
 
-    //Getting logged in client
-    const client = await buscarClienteLogado();
-    const clt_id = client[0].clt_id;
+    try{
+        //Getting logged in client
+        const client = await buscarClienteLogado();
+        clt_id = client[0].clt_id;
+    }catch(err){
+        return;
+    }
 
     //Preparing my query
     const sql = `
