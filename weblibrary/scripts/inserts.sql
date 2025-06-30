@@ -10,18 +10,18 @@ VALUES
 
 -- Endereços
 INSERT INTO enderecos
-(end_clt_id, end_nome, end_tipoResidencia, end_tipoLogradouro, end_logradouro, end_numero, end_bairro, end_cep, end_cidade, end_estado, end_pais, end_frete)
+(end_clt_id, end_nome, end_tipoResidencia, end_tipoLogradouro, end_logradouro, end_numero, end_bairro, end_cep, end_cidade, end_estado, end_pais, end_frete, end_residencia, end_cobranca, end_entrega)
 VALUES
-(1, 'Residência Principal', 'Apartamento', 'Rua', 'das Flores', 123, 'Jardim Primavera', '01234-567', 'São Paulo', 'SP', 'Brasil', 15.50),
-(1, 'Trabalho', 'Comercial', 'Avenida', 'Paulista', 1000, 'Bela Vista', '01311-200', 'São Paulo', 'SP', 'Brasil', 25.00),
-(2, 'Casa dos Pais', 'Casa', 'Avenida', 'Brasil', 456, 'Centro', '22345-678', 'Rio de Janeiro', 'RJ', 'Brasil', 12.75),
-(2, 'Apartamento Temporário', 'Apartamento', 'Rua', 'das Laranjeiras', 78, 'Laranjeiras', '22240-003', 'Rio de Janeiro', 'RJ', 'Brasil', 18.30),
-(3, 'Residência Carla', 'Apartamento', 'Travessa', 'das Oliveiras', 789, 'Bela Vista', '33456-789', 'Belo Horizonte', 'MG', 'Brasil', 22.40),
-(3, 'Casa da Mãe', 'Casa', 'Rua', 'dos Jasmins', 321, 'Santa Efigênia', '30130-110', 'Belo Horizonte', 'MG', 'Brasil', 10.00),
-(4, 'Endereço Principal', 'Casa', 'Rua', 'do Sol', 321, 'Vila Nova', '44567-890', 'Curitiba', 'PR', 'Brasil', 19.90),
-(4, 'Trabalho', 'Comercial', 'Avenida', 'Sete de Setembro', 999, 'Centro', '80060-070', 'Curitiba', 'PR', 'Brasil', 30.00),
-(5, 'Apartamento Eduarda', 'Apartamento', 'Alameda', 'das Palmeiras', 654, 'Parque Verde', '55678-901', 'Brasília', 'DF', 'Brasil', 27.50),
-(5, 'Casa da Avó', 'Casa', 'Rua', 'dos Ipês', 88, 'Taguatinga', '72000-000', 'Brasília', 'DF', 'Brasil', 14.25);
+(1, 'Residência Principal', 'Apartamento', 'Rua', 'das Flores', 123, 'Jardim Primavera', '01234-567', 'São Paulo', 'SP', 'Brasil', 15.50, 1, 0, 1),
+(1, 'Trabalho', 'Comercial', 'Avenida', 'Paulista', 1000, 'Bela Vista', '01311-200', 'São Paulo', 'SP', 'Brasil', 25.00, 0, 1, 1),
+(2, 'Casa dos Pais', 'Casa', 'Avenida', 'Brasil', 456, 'Centro', '22345-678', 'Rio de Janeiro', 'RJ', 'Brasil', 12.75, 0, 1, 1),
+(2, 'Apartamento Temporário', 'Apartamento', 'Rua', 'das Laranjeiras', 78, 'Laranjeiras', '22240-003', 'Rio de Janeiro', 'RJ', 'Brasil', 18.30, 1, 0, 1),
+(3, 'Residência Carla', 'Apartamento', 'Travessa', 'das Oliveiras', 789, 'Bela Vista', '33456-789', 'Belo Horizonte', 'MG', 'Brasil', 22.40, 1, 1, 1),
+(3, 'Casa da Mãe', 'Casa', 'Rua', 'dos Jasmins', 321, 'Santa Efigênia', '30130-110', 'Belo Horizonte', 'MG', 'Brasil', 10.00, 0, 0, 1),
+(4, 'Endereço Principal', 'Casa', 'Rua', 'do Sol', 321, 'Vila Nova', '44567-890', 'Curitiba', 'PR', 'Brasil', 19.90, 1, 1, 1),
+(4, 'Trabalho', 'Comercial', 'Avenida', 'Sete de Setembro', 999, 'Centro', '80060-070', 'Curitiba', 'PR', 'Brasil', 30.00, 0, 0, 1),
+(5, 'Apartamento Eduarda', 'Apartamento', 'Alameda', 'das Palmeiras', 654, 'Parque Verde', '55678-901', 'Brasília', 'DF', 'Brasil', 27.50, 1, 0, 1),
+(5, 'Casa da Avó', 'Casa', 'Rua', 'dos Ipês', 88, 'Taguatinga', '72000-000', 'Brasília', 'DF', 'Brasil', 14.25, 0, 1, 1);
 
 -- Cartões
 INSERT INTO cartoes
