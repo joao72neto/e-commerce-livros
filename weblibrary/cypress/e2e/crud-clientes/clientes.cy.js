@@ -11,14 +11,18 @@ describe('Testes Relacionados a Operações com Clientes', () => {
     });
   
     it('Deve Preenche e envia o formulário de cadastro de clientes', () => {
+        cy.logarUsuario(1);
         cy.cadastrarCliente(fastSleep);
-        cy.visit('/clientes');
         cy.wait(standardSleep);
     });
 
     it('Deve preencher e submeter o formulário de alteração', () => {
         cy.alterarClienteId(6);
-        cy.visit('/clientes');
+        cy.wait(standardSleep);
+    });
+
+    it('Deve inativar e reativar um usuário corretamente', () => {
+        cy.inativarReativarClienteId(2, fastSleep);
         cy.wait(standardSleep);
     });
 });

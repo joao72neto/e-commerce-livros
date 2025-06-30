@@ -43,6 +43,8 @@ Cypress.Commands.add('cadastrarCliente', (sleep=time) => {
     });
 
     cy.wait(sleep);
+    cy.visit('/clientes');
+    cy.wait(sleep);
 });
 
 //Updating client
@@ -84,5 +86,41 @@ Cypress.Commands.add('alterarClienteId', (clt_id, sleep=time) => {
         expect(alertText).to.contains('Cliente foi atualizado com sucesso!');
     });
 
+    cy.wait(sleep);
+    cy.visit('/clientes');
+    cy.wait(sleep);
+});
+
+//Inactivating client
+Cypress.Commands.add('inativarReativarClienteId', (clt_id, sleep=time) => {
+
+    cy.visit('/clientes');
+
+    //Inactivatiing client by id
+    cy.wait(sleep);
+    cy.get('.wrapper .cliente-id').each($id => {
+        if($id.text().trim() === String(clt_id)){
+            cy.wrap($id).closest('.wrapper').then($wrapper => {
+                cy.wrap($wrapper).find('.inat').click();
+            });
+        }
+    });
+
+    // Indo para a página de inativos
+    cy.wait(sleep);
+    cy.get('#btn-inativados').should('exist').click();
+
+    //Activating client by id
+    cy.wait(sleep);
+    cy.get('.wrapper .cliente-inat-id').each($id => {
+        if($id.text().trim() === String(clt_id)){
+            cy.wrap($id).closest('.wrapper').then($wrapper => {
+                cy.wrap($wrapper).find('.btn-inat').click();
+            });
+        }
+    });
+
+    cy.wait(sleep);
+    cy.visit('/clientes');
     cy.wait(sleep);
 });
