@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', async function(){
     //Obtendo o select
     const selectCupom = this.querySelector('#cupons');
     const selectCartao = this.querySelector('#cartao');
+    const selectAddress = this.querySelector('#endereco');
 
     if(!selectCupom.value){
-        selectCupom.innerHTML = '';
 
         // Cria uma nova option com valor padrão
         const option = document.createElement('option');
@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', async function(){
     }    
 
     if(!selectCartao.value){
-        selectCartao.innerHTML = '';
 
         // Cria uma nova option com valor padrão
         const option = document.createElement('option');
@@ -41,6 +40,18 @@ document.addEventListener('DOMContentLoaded', async function(){
         option.selected = true;
 
         selectCartao.appendChild(option);
+    }
+
+    if(!selectAddress.value){
+
+        // Cria uma nova option com valor padrão
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = 'Nenhum Endereço de Entrega Disponível';
+        option.disabled = true;
+        option.selected = true;
+
+        selectAddress.appendChild(option);
     }
 
     //Verificando se já existe um endereço cadastrado
@@ -175,7 +186,6 @@ document.querySelector('.add-card').addEventListener('click', async function(eve
 
 });
 
-
 //Removendo o endereço que o cliente adicionou no pagamento
 document.querySelectorAll('.rm-endereco').forEach(endereco => {
     endereco.addEventListener('click', async function(){
@@ -255,7 +265,6 @@ document.querySelector('.add-cupom').addEventListener('click', async function(){
             window.location.reload();
             return;
         }
-
     }
 });
 
@@ -332,7 +341,6 @@ document.querySelector('.finalizar-compra').addEventListener('click', async func
         alert('O valor a ser pago no cartão precisa ser igual ao valor total da compra.');
         return;
     }
-
 
     //Pegando os itens do carrinho
     const cliente = await buscarClienteLogadoService();
