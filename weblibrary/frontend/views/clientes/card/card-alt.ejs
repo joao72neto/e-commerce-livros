@@ -15,7 +15,10 @@
         <% 
             let retorno_atual = '';
 
-            if(retorno_pag && page){
+            if(retorno){
+                retorno_atual = `/perfil`;
+
+            }else if(retorno_pag && page){
                 retorno_atual = `/${retorno}?retorno_pag=${retorno_pag}&tipo=${tipo}&page=${page}`;
 
             }else if(retorno_pag && compra){

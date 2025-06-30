@@ -15,7 +15,6 @@
     padding: 30px 60px;
     text-align: center;
     border-radius: 20px;
-    box-shadow: 0px 0px 20px #0000005b;
 }
 
 .transaction h2{
@@ -33,4 +32,10 @@
 .tb-body:hover{
     cursor: pointer;
     background-color: rgba(128, 128, 128, 0.200);
+}
+
+table{
+    background-color: white;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0px 0px 20px #0000005b;
 }

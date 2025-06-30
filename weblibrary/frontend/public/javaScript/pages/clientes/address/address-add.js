@@ -71,7 +71,10 @@ document.querySelector('form').addEventListener('submit', async function(event){
         //Definindo o retorno
         let retorno_atual =  '';
 
-        if(retorno_pag && retorno && page){
+        if(retorno){
+            retorno_atual = `/perfil`;
+
+        }else if(retorno_pag && retorno && page){
             retorno_atual = `/perfil?retorno_pag=${retorno_pag}&tipo=${tipo}&page=${page}`;
 
         }else if(retorno_pag && retorno && compra){

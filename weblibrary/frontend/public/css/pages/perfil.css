@@ -74,9 +74,11 @@ p{
 
 .enderecos .wrapper{
     display: grid;
-    grid-template-columns: 4fr 3fr 2fr;
+    grid-template-columns: 40% 30% 22%;
 }
 
 .enderecos .types{
     font-weight: bold;
+    align-self: center;
+    justify-self: center;
 }

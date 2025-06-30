@@ -5,9 +5,8 @@
 .container-signup{
     background-color: var(--branco);
     max-width: 1000px;
-    margin: 20px auto;
-    padding: 25px;
-    box-shadow: 0px 0px 20px #0000005b;
+    margin: 30px auto;
+    padding: 50px 30px;
     border-radius: 20px;
 }
 
