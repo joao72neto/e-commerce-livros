@@ -142,6 +142,10 @@ a.signup{
     }
 }
 
+.invisible{
+    display: none !important;
+}
+
 /*Media queries*/
 @media screen and (max-width: 1200px) {
 

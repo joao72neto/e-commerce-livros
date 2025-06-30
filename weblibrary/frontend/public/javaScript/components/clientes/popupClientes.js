@@ -12,10 +12,19 @@ function showPopup() {
         cliente.addEventListener('click', async function (event) {
             event.stopPropagation();
 
+            const filter = document.body.querySelector('.filtro_clientes')
             const existingPopup = document.body.querySelector('.popup');
+
             if (existingPopup) {
-                existingPopup.remove();
-                return;
+
+                const popupId = existingPopup.querySelector('#popup-id').textContent;
+                const clientId = this.querySelector('.cliente-id').textContent;
+
+                if(clientId === popupId){
+                    filter.classList.remove('invisible');
+                    existingPopup.remove();
+                    return;
+                }
             }
 
             // Fecha qualquer outro popup aberto
@@ -32,6 +41,7 @@ function showPopup() {
 
             popup.innerHTML = `
                 <h2>Dados de ${cliente.clt_nome.split(' ')[0]}</h2>
+                <p class="invisible" id="popup-id">${cliente.clt_id}</p>
                 <p><strong>Nome Completo: </strong>${cliente.clt_nome}</p>
                 <p><strong>E-mail: </strong>${cliente.clt_email}</p>
                 <p><strong>Telefone: </strong>${cliente.clt_telefone}</p>
@@ -41,6 +51,7 @@ function showPopup() {
                 <p><strong>Ranking: </strong>${cliente.clt_ranking}</p>
             `;
 
+            filter.classList.add('invisible');
             document.body.appendChild(popup);
         });
     });
@@ -51,8 +62,10 @@ function removePopup() {
         const isClickInsideCliente = event.target.closest('.cliente');
         const isClickInsidePopup = event.target.closest('.popup');
         const popup = document.querySelector('.popup');
+        const filter = document.body.querySelector('.filtro_clientes');
 
         if (!isClickInsideCliente && popup && !isClickInsidePopup) {
+            filter.classList.remove('invisible');
             popup.remove();
         }
     });
