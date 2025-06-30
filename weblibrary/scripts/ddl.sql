@@ -224,6 +224,8 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   `crr_adicao` DATE NULL,
   `crr_status` ENUM('adicionado', 'removido', 'comprado') NULL DEFAULT 'adicionado',
   `crr_total` DECIMAL(10,2) NOT NULL,
+  `crr_expiration` DATETIME NOT NULL,
+  `crr_warned` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`crr_id`),
   CONSTRAINT `fk_crr_clt`
     FOREIGN KEY (`crr_clt_id`)
