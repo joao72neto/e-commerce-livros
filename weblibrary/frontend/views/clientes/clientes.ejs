@@ -36,37 +36,35 @@
                 <div class="button">
                     <a class="signup" href="/clientes/signup?retorno=clientes">+</a>
                 </div>
-                <%
-                    clientes.forEach(cliente => { %>
-                        <div class="wrapper">
-                            <div class="cliente">
-                                <div class="clt-info">
-
-                                    <%
-                                        const date = new Date(cliente.clt_dataNasc).toLocaleDateString('pt-BR');
-                                    %>
-
-                                    <p class="invisible cliente-id"><%=cliente.clt_id%></p>
-                                    <h3><%=cliente.clt_nome%></h3>
-                                    <p><%=cliente.clt_email%></p>
-
-                                    <% if(loggedinClient.length > 0){ %>
-                                        <p><%=date%></p>
-                                    <% } %>
-
-                                    <p>...</p>
+                <div class="container-clients">
+                    <%
+                        clientes.forEach(cliente => { %>
+                            <div class="wrapper">
+                                <div class="cliente">
+                                    <div class="clt-info">
+                                        <%
+                                            const date = new Date(cliente.clt_dataNasc).toLocaleDateString('pt-BR');
+                                        %>
+                                        <p class="invisible cliente-id"><%=cliente.clt_id%></p>
+                                        <h3><%=cliente.clt_nome%></h3>
+                                        <p><%=cliente.clt_email%></p>
+                                        <% if(loggedinClient.length > 0){ %>
+                                            <p><%=date%></p>
+                                        <% } %>
+                                        <p>...</p>
+                                    </div>
+                                </div>
+                                <div class="acoes">
+                                    <a class="alt">Alterar</a>
+                                    <a class="inat">Inativar</a>
+                                    <a class="tran">Transações</a>
+                                    <a class="login">Logar</a>
                                 </div>
                             </div>
-                            <div class="acoes">
-                                <a class="alt">Alterar</a>
-                                <a class="inat">Inativar</a>
-                                <a class="tran">Transações</a>
-                                <a class="login">Logar</a>
-                            </div>
-                        </div>
-                        <%
-                    });
-                %>
+                            <%
+                        });
+                    %>
+                </div>
             </div>
         </div>
 

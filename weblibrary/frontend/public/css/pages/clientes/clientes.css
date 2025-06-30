@@ -33,8 +33,8 @@
 .container-index{
     display: grid;
     grid-column: 2;
-    width: 90%;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    width: 95%;
+    grid-template-columns: 1fr;
     justify-content: center;
     background-color: var(--branco);
     padding: 20px;
@@ -43,8 +43,6 @@
 }
 
 .container-index .button{
-    grid-row: 1;
-    grid-column: span 3;
     justify-self: center;
     width: 80px;
     height: 80px;
@@ -54,7 +52,13 @@ a.signup{
     display: block;
 }
 
-.container-index .wrapper{
+.container-clients{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
+    justify-content: center;
+}
+
+.container-clients .wrapper{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     justify-content: center;
@@ -135,5 +139,21 @@ a.signup{
 
     &:hover{
         background-color: var(--amarelo-claro);
+    }
+}
+
+/*Media queries*/
+@media screen and (max-width: 1200px) {
+
+    .flt-container{
+        width: 25%;
+        transform: translateY(50%);
+    }
+
+    .filtro_clientes{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
     }
 }
