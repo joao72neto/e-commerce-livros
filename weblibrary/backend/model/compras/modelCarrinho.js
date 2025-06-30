@@ -9,22 +9,52 @@ module.exports.buscarCarrinhoClienteId = async (clt_id) => {
     //Obtendo o banco
     const db = await getDb();
     
+    //Preparing query to show cart items
+    const sql = `
+        SELECT
+            *
+        FROM
+            carrinho c
+        JOIN
+            livros l ON l.lvr_id = c.crr_lvr_id
+        WHERE
+            c.crr_clt_id = ?
+        ORDER BY
+            c.crr_id desc;
+    `;
+
+    //Preparing query to get expiration date
+    const sql_expiration = `
+        select
+            max(crr_expiration) expiration
+        from
+            carrinho
+        where
+            crr_clt_id = ?
+        group by
+            crr_clt_id;
+    `;
+
     try{
 
-        const sql = `
-        
-            SELECT 
-                *
-            FROM 
-                carrinho c
-            JOIN 
-                livros l ON l.lvr_id = c.crr_lvr_id
-            WHERE 
-                c.crr_clt_id = ?
-            ORDER BY 
-                c.crr_id desc;
-        `;
+        //Deleting cart based on expiration date
+        const [date] = await db.query(sql_expiration, clt_id);
 
+        if(date.length > 0){
+            const expiration = new Date(date[0].expiration);
+            const now = new Date();
+
+            if(expiration <= now){
+                await db.query(`
+                    delete from
+                        carrinho
+                    where
+                        crr_clt_id = ?
+                `, [clt_id])
+            }
+        }
+        
+        //Returning cart
         const [carrinho] = await db.query(sql, clt_id);
         return carrinho;
         
@@ -80,9 +110,11 @@ module.exports.adicionarCarrinho = async (dados) => {
             crr_qtd,
             crr_total,
             crr_adicao,
-            crr_status
+            crr_status,
+            crr_expiration,
+            crr_warned
         ) VALUES (
-            ?, ?, ?, ?, NOW(), 'adicionado'
+            ?, ?, ?, ?, NOW(), 'adicionado', DATE_ADD(NOW(), INTERVAL 15 MINUTE), 0
         )
     `;
 

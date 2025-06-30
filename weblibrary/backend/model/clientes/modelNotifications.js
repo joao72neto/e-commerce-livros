@@ -96,6 +96,57 @@ module.exports.registerNotification = async (dados) => {
     }
 }
 
+//Function that notifies user if cart is about to expire
+module.exports.checkCartAndNotify = async () => {
+
+    //Setting up db
+    const db = await getDb();
+
+    //Getting logged in client
+    const client = await buscarClienteLogado();
+    const clt_id = client[0].clt_id;
+
+    //Preparing my query
+    const sql = `
+        select
+            max(crr_expiration) expiration
+        from
+            carrinho
+        where
+            crr_warned = 0 and crr_clt_id = ?
+        group by
+            crr_clt_id
+        having
+            expiration between now() and date_add(now(), interval 5 minute)
+    `;
+
+    //Inserting the data into the db
+    try{
+        const [result] = await db.query(sql, [clt_id]);
+        if(result.length > 0){
+            let notData = {
+                not_clt_id: '',
+                not_title: 'Seu carrinho vai expirar! ⚠️',
+                not_msg: 'Seus itens serão removidos em 5 minutos. Finalize sua compra para mantê-los.',
+                not_status: 0
+            }
+            await module.exports.registerNotification(notData);
+
+            //Update all items for that client
+            await db.query(`
+                UPDATE
+                    carrinho
+                    SET crr_warned = 1
+                WHERE crr_clt_id = ? AND crr_warned = 0
+            `, [clt_id]);
+        }
+
+    }catch(err){
+        console.error(`Erro no checkCartAndNotify - modelNotifications: ${err}`);
+        throw err;
+    }
+};
+
 //Function to update notification status
 module.exports.sendNotifcation = async (data) => {
 

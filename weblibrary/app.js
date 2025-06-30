@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const routes = require('./backend/routes');
 const { verificarInicializarBanco } = require('./backend/model/database/modelReset');
+const { checkCartAndNotify } = require('./backend/model/clientes/modelNotifications');
 
 //Iniciando o express
 const app = express();
@@ -28,3 +29,7 @@ verificarInicializarBanco().then(() => {
     });
 });
 
+//Cart Notifications
+setInterval(() => {
+    checkCartAndNotify();
+}, 60 * 1000);
