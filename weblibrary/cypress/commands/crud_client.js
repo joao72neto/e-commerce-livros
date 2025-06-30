@@ -141,9 +141,100 @@ Cypress.Commands.add('showPopup', (clt_id, sleep=time) => {
     });
 
     //Fechando o popup caso ele seja exibido
-    cy.get('.popup').should('exist').click();
+    cy.get('.popup').should('exist');
 
     cy.wait(sleep);
     cy.visit('/clientes');
     cy.wait(sleep);
+});
+
+//Show client popup
+Cypress.Commands.add('showTransactions', (clt_id, sleep=time) => {
+
+    cy.visit('/clientes');
+
+    //Clicking on client
+    cy.wait(sleep);
+    cy.get('.wrapper .cliente-id').each($id => {
+        if($id.text().trim() === String(clt_id)){
+            cy.wrap($id).closest('.wrapper').then($wrapper => {
+                cy.wrap($wrapper).find('.tran').click();
+            });
+        }
+    });
+
+    //Fechando o popup caso ele seja exibido
+    cy.get('.transaction').should('exist');
+
+    cy.wait(sleep);
+    cy.visit('/clientes');
+    cy.wait(sleep);
+});
+
+//Delete clients
+Cypress.Commands.add('deleteClientById', (clt_id, sleep=time) => {
+
+    cy.visit('/clientes');
+
+    //Selecting client by id
+    cy.wait(sleep);
+    cy.get('.wrapper .cliente-id').each($id => {
+        if($id.text().trim() === String(clt_id)){
+            cy.wrap($id).closest('.wrapper').then($wrapper => {
+                cy.wrap($wrapper).find('.inat').click();
+            });
+        }
+    });
+
+    //Going to inactive clients page
+    cy.wait(sleep);
+    cy.get('#btn-inativados').should('exist').click();
+
+    //Deleting client by id
+    cy.wait(sleep);
+    cy.get('.wrapper .cliente-inat-id').each($id => {
+        if($id.text().trim() === String(clt_id)){
+            cy.wrap($id).closest('.wrapper').then($wrapper => {
+                cy.wrap($wrapper).find('.btn-delete').click();
+            });
+        }
+    });
+
+    cy.wait(sleep);
+    cy.visit('/clientes');
+    cy.wait(sleep);
+});
+
+//Filtering clients
+Cypress.Commands.add('filterClients', (sleep=time) => {
+
+    cy.visit('/clientes');
+
+    //Nome 
+    cy.get('#nome').type('José');
+    cy.get('#btn-filtro').click();
+
+    //E-mail
+    cy.get('#email').type('diego.costa@email.com');
+    cy.get('#btn-filtro').click();
+
+    //CPF
+    cy.get('#cpf').type('999.888.777-66');
+    cy.get('#btn-filtro').click();
+
+    //Telefone
+    cy.get('#telefone').type('55 (11) 91234-5678');
+    cy.get('#btn-filtro').click();
+
+    //Genero
+    cy.get('#genero').type('M');
+    cy.get('#btn-filtro').click();
+
+    //Data de Nascimento
+    cy.get('#dataNasc').type('1990-12-12');
+    cy.get('#btn-filtro').click();
+
+    //Mostrando todos os dados
+    cy.get('#btn-filtro').click();
+
 });

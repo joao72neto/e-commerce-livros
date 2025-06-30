@@ -33,6 +33,26 @@ describe('Testes Relacionados a Operações com Clientes', () => {
         cy.showPopup(5, fastSleep);
         cy.wait(standardSleep);
     });
+    
+    it('Deve mostrar as transações dos usuários corretamente', () => {
+        cy.showTransactions(1, fastSleep);
+        cy.showTransactions(2, fastSleep);
+        cy.showTransactions(5, fastSleep);
+        cy.showTransactions(3, fastSleep);
+        cy.wait(standardSleep);
+    });
+
+    it('Deve excluir um cliente corretamente', () => {
+        cy.deleteClientById(2, fastSleep);
+        cy.deleteClientById(3, fastSleep);
+        cy.deleteClientById(6, fastSleep);
+        cy.wait(standardSleep);
+    });
+
+    it('Deve testar todos os campos do filtro', () => {
+        cy.filterClients();
+        cy.wait(standardSleep);
+    });
 });
 
   
