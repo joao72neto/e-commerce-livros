@@ -12,7 +12,7 @@ before(() => {
 describe('Realizando o login do usuário no sistema', () => {
 
     it('Deve logar um usuário no sistema', () => {
-        cy.logarUsuario(1, fastSleep);
+        cy.logarUsuario(5, fastSleep);
         if (pause) cy.pause();
     });
 });
@@ -25,7 +25,7 @@ describe('Realizando a compra de um livro no sistema', () => {
     });
 
     it('Deve finalizar o pagamento do livro', () => {
-        cy.finalizarCompra(1, 1, standardSleep);
+        cy.finalizarCompra(10, 1, standardSleep);
         if (pause) cy.pause();
     });
 
@@ -43,7 +43,7 @@ describe('Realizando a compra de múltiplos livros', () => {
     });
 
     it('Deve finalizar a compra de vários itens', () => {
-        cy.finalizarCompra(2, 2, standardSleep);
+        cy.finalizarCompra(10, 2, standardSleep);
         if (pause) cy.pause();
     });
 
@@ -54,45 +54,45 @@ describe('Gerenciar pedidos dos clientes', () => {
     it('Deve processar os pedidos dos clientes', () => {
 
         //Gerenciando os pedidos da Eduarda
-        cy.aprovarPedidoId(15, standardSleep);
-        cy.cancelarPedidoId(14, fastSleep);
-        cy.aprovarPedidoId(13, fastSleep);
-        cy.aprovarPedidoId(12, fastSleep);
-        cy.aprovarPedidoId(11, fastSleep);
-        cy.reprovarPedidoId(10, fastSleep);
+        cy.aprovarPedidoId(6, standardSleep);
+        cy.cancelarPedidoId(5, fastSleep);
+        cy.aprovarPedidoId(4, fastSleep);
+        cy.aprovarPedidoId(3, fastSleep);
+        cy.aprovarPedidoId(2, fastSleep);
+        cy.reprovarPedidoId(1, fastSleep);
         if (pause) cy.pause();
     });
 
     it('Deve tratar as solicitações de devolução dos clientes', () => {
 
         //Tratando das devoluções da Eduarda
-        cy.devolverLivroId(13, false, 1, standardSleep);
-        cy.devolverLivroId(11, true, 4, fastSleep);
+        cy.devolverLivroId(4, false, 1, standardSleep);
+        cy.devolverLivroId(2, true, 4, fastSleep);
         if (pause) cy.pause();
     });
 
     it('Deve tratar as solicitações de troca dos clientes', () => {
-        cy.trocarLivroId(15, true, 2, standardSleep);
+        cy.trocarLivroId(6, true, 2, standardSleep);
         if (pause) cy.pause();
     });
 
     it('Deve gerenciar os pedidos de devolução', () => {
 
-        cy.aceitarTrocaId(15, standardSleep);
-        cy.recusarDevolucaoId(13, fastSleep);
-        cy.aceitarDevolucaoId(11, fastSleep);
+        cy.aceitarTrocaId(6, standardSleep);
+        cy.recusarDevolucaoId(4, fastSleep);
+        cy.aceitarDevolucaoId(2, fastSleep);
         if (pause) cy.pause();
     });
 
     it('Deve retornar ao estoque todos os itens aceitos para devolução', () => {
 
-        cy.retornarEstoqueId(11, true, standardSleep);
+        cy.retornarEstoqueId(2, true, standardSleep);
         if (pause) cy.pause();
     });
 
     it('Deve retornar ao estoque todos os itens aceitos para troca', () => {
         
-        cy.retornarEstoqueId(15, false, standardSleep);
+        cy.retornarEstoqueId(6, false, standardSleep);
         cy.exibirEstoque(standardSleep);
         if (pause) cy.pause();
     });
@@ -110,12 +110,12 @@ describe('Usando cupons recebidos pela troca de produtos', () => {
     });
 
     it('Deve finalizar a compra usando cupons', () => {
-        cy.finalizarCompraCupom(2, 2, 2, standardSleep);
+        cy.finalizarCompraCupom(10, 2, 2, standardSleep);
         if (pause) cy.pause();
     });
 
     it('Deve entregar o produto para o cliente', () => {
-        cy.aprovarPedidoId(16, fastSleep);
+        cy.aprovarPedidoId(7, fastSleep);
 
         //Visitando a página de pedidos
         cy.visit('/pedidos');
