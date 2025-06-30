@@ -20,4 +20,14 @@ describe('Testes Relacionados a Alteração de Senha', () => {
         cy.recuperarSenha(6);
         cy.wait(standardSleep);
     });
+
+    it('Deve exibir alerta de erro se a senha atual estiver incorreta', () => {
+        cy.senhaAtualIncorretaMsg(6);
+        cy.wait(standardSleep);
+    });
+
+    it('Deve exibir alerta de erro se as senhas não coincidirem', () => {
+        cy.senhasDiferentesMsg(6);
+        cy.wait(standardSleep);
+    });
 });
