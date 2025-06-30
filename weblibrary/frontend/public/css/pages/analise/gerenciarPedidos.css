@@ -55,6 +55,17 @@ div.empty{
     line-height: 1.4em;
 }
 
+.wrapper{
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: var(--branco);
+}
+
+.wrapper select{
+    background-color: var(--cinza);
+    border: 1px dashed rgba(0, 0, 0, 0.5);
+}
+
 .pedidos, .troca, .devolucao{
     padding: 20px;
 }

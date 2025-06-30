@@ -262,7 +262,7 @@ div.empty{
     text-align: center;
     flex-basis: 250px;
     padding: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.493);
+    border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 20px;
     background-color: var(--branco);
     transition: 0.3s ease;
