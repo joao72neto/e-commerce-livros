@@ -1,5 +1,8 @@
 //Crud commands
 import "../commands/crud_login";
+import "../commands/crud_client";
+import "../commands/crud_card";
+import "../commands/crud_address";
 
 //Sales commands
 import "../commands/sales_compras";
