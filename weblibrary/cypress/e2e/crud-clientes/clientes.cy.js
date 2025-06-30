@@ -27,10 +27,10 @@ describe('Testes Relacionados a Operações com Clientes', () => {
     });
 
     it('Deve mostrar o popups dos clientes corretamente', () => {
-        cy.showPopup(1, fastSleep);
-        cy.showPopup(3, fastSleep);
-        cy.showPopup(4, fastSleep);
-        cy.showPopup(5, fastSleep);
+        cy.showPopupClient(1, fastSleep);
+        cy.showPopupClient(3, fastSleep);
+        cy.showPopupClient(4, fastSleep);
+        cy.showPopupClient(5, fastSleep);
         cy.wait(standardSleep);
     });
     

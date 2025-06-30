@@ -126,7 +126,7 @@ Cypress.Commands.add('inativarReativarClienteId', (clt_id, sleep=time) => {
 });
 
 //Show client popup
-Cypress.Commands.add('showPopup', (clt_id, sleep=time) => {
+Cypress.Commands.add('showPopupClient', (clt_id, sleep=time) => {
 
     cy.visit('/clientes');
 
