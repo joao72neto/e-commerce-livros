@@ -1,6 +1,6 @@
 const time = 1500;
 
-//Abrindo um livro por id
+//Registering a client
 Cypress.Commands.add('cadastrarCliente', (sleep=time) => {
 
     // Indo para a página de cadastro de cliente
@@ -40,6 +40,48 @@ Cypress.Commands.add('cadastrarCliente', (sleep=time) => {
     //Verificando se a msg de cadastro está sendo exibida corretamente
     cy.on('window:alert', (alertText) => {
         expect(alertText).to.contains('Cliente foi Cadastrado com Sucesso!');
+    });
+
+    cy.wait(sleep);
+});
+
+//Updating client
+Cypress.Commands.add('alterarClienteId', (clt_id, sleep=time) => {
+
+    // Indo para a página de alteração de cliente
+    cy.visit(`/clientes/signup/${clt_id}`);
+
+    // Modificando os dados do cliente
+    cy.get('#nome').clear().type('José Neto');
+    cy.get('#email').clear().type('joseemail@example.com');
+    cy.get('#telefone').clear().type('+55 11 99999-9999');
+    cy.get('#cpf').clear().type('098.467.584-65');
+    cy.get('#gen01').check();
+    cy.get('#data').clear().type('1990-01-01');
+
+    // Modificando o endereço do cliente
+    cy.get('#tipo_residencia').clear().type('Apartamento');
+    cy.get('#tipo_logradouro').clear().type('Rua');
+    cy.get('#logradouro').clear().type('Nova Rua');
+    cy.get('#numero').clear().type('123');
+    cy.get('#bairro').clear().type('Centro');
+    cy.get('#cep').clear().type('12345-678');
+    cy.get('#cidade').clear().type('São Paulo');
+    cy.get('#estado').clear().type('SP');
+    cy.get('#pais').clear().type('Brasil');
+    cy.get('#observacoes').clear().type('Cliente VIP');
+
+    // Modificando o cartão do cliente
+    cy.get('#numero_cartao').clear().type('4111114531113');
+    cy.get('#nome_cartao').clear().type('José Neto');
+    cy.get('#bandeira_cartao').clear().type('Mastercard');
+    cy.get('#codigo_seguranca').clear().type('456');
+
+    // Confirmando as alterações
+    cy.get('button[type="submit"]').click();
+
+    cy.on('window:alert', (alertText) => {
+        expect(alertText).to.contains('Cliente foi atualizado com sucesso!');
     });
 
     cy.wait(sleep);
