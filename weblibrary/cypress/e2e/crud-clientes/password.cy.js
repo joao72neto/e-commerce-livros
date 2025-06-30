@@ -13,21 +13,21 @@ describe('Testes Relacionados a Alteração de Senha', () => {
     it('Deve cadastrar um cliente corretamente', () => {
         cy.logarUsuario(1);
         cy.cadastrarCliente();
-        cy.wait(standardSleep);
+        if (pause) cy.pause();
     });
 
     it('Deve permitir a recuperação de senha', () => {
-        cy.recuperarSenha(6);
-        cy.wait(standardSleep);
+        cy.recuperarSenha(6, fastSleep);
+        if (pause) cy.pause();
     });
 
     it('Deve exibir alerta de erro se a senha atual estiver incorreta', () => {
-        cy.senhaAtualIncorretaMsg(6);
-        cy.wait(standardSleep);
+        cy.senhaAtualIncorretaMsg(6, fastSleep);
+        if (pause) cy.pause();
     });
 
     it('Deve exibir alerta de erro se as senhas não coincidirem', () => {
-        cy.senhasDiferentesMsg(6);
-        cy.wait(standardSleep);
+        cy.senhasDiferentesMsg(6, fastSleep);
+        if (pause) cy.pause();
     });
 });

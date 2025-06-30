@@ -13,17 +13,17 @@ describe('Testes Relacionados a Operações com Clientes', () => {
     it('Deve Preencher e enviar o formulário de cadastro de clientes', () => {
         cy.logarUsuario(1);
         cy.cadastrarCliente(fastSleep);
-        cy.wait(standardSleep);
+        if (pause) cy.pause();
     });
 
     it('Deve preencher e submeter o formulário de alteração', () => {
         cy.alterarClienteId(6);
-        cy.wait(standardSleep);
+        if (pause) cy.pause();
     });
 
     it('Deve inativar e reativar um usuário corretamente', () => {
         cy.inativarReativarClienteId(2, fastSleep);
-        cy.wait(standardSleep);
+        if (pause) cy.pause();
     });
 
     it('Deve mostrar o popups dos clientes corretamente', () => {
@@ -31,7 +31,7 @@ describe('Testes Relacionados a Operações com Clientes', () => {
         cy.showPopupClient(3, fastSleep);
         cy.showPopupClient(4, fastSleep);
         cy.showPopupClient(5, fastSleep);
-        cy.wait(standardSleep);
+        if (pause) cy.pause();
     });
     
     it('Deve mostrar as transações dos usuários corretamente', () => {
@@ -39,19 +39,19 @@ describe('Testes Relacionados a Operações com Clientes', () => {
         cy.showTransactions(2, fastSleep);
         cy.showTransactions(5, fastSleep);
         cy.showTransactions(3, fastSleep);
-        cy.wait(standardSleep);
+        if (pause) cy.pause();
     });
 
     it('Deve excluir um cliente corretamente', () => {
         cy.deleteClientById(2, fastSleep);
         cy.deleteClientById(3, fastSleep);
         cy.deleteClientById(6, fastSleep);
-        cy.wait(standardSleep);
+        if (pause) cy.pause();
     });
 
     it('Deve testar todos os campos do filtro', () => {
         cy.filterClients();
-        cy.wait(standardSleep);
+        if (pause) cy.pause();
     });
 });
 

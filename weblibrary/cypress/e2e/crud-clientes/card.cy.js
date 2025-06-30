@@ -13,16 +13,17 @@ describe('Teste Relacionados a Operações com Cartões', () => {
     it('Deve preencher e submeter o formulário de adição de cartão', () => {
         cy.logarUsuario(1);
         cy.cadastrarCartao(5, fastSleep);
-        cy.wait(standardSleep);
+        if (pause) cy.pause();
     });
 
     it('Deve preencher e submeter o formulário de alteração de cartão', () => {
         cy.atualizarCartao(5, 11, fastSleep);
-        cy.wait(standardSleep);
+        if (pause) cy.pause();
     });
 
     it('Deve excluir um cartão corretamente',() => {
         cy.excluirCartao(5, 11, fastSleep);
-        cy.wait(standardSleep);
+        cy.excluirCartao(5, 10, fastSleep);
+        if (pause) cy.pause();
     });
 });
