@@ -41,7 +41,7 @@ body, html{
 }
 
 #busca-index:focus {
-    border-color: rgba(255, 255, 0, 0.5);
+    border-color: rgba(255, 255, 0, 0.6);
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 

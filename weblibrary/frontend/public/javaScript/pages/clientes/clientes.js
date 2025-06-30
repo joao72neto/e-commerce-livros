@@ -71,8 +71,8 @@ document.querySelector('#btn-filtro').addEventListener('click', (event) => {
 
     event.preventDefault();
 
-    //Selecionando o formulário do filtro
-    const form = document.querySelector('.filtro_clientes');
+    // //Selecionando o formulário do filtro
+    // const form = document.querySelector('.filtro_clientes');
 
     //Obetndo os dados
     const nome = document.getElementById("nome").value;
@@ -94,9 +94,9 @@ document.querySelector('#btn-filtro').addEventListener('click', (event) => {
 
     url = url.slice(0, -1);
 
-    if(!validarFiltro(event, form)){
-        return;
-    }
+    // if(!validarFiltro(event, form)){
+    //     return;
+    // }
 
     //Filtrando os dados
     window.location.href = url;

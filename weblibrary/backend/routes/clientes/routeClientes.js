@@ -5,7 +5,7 @@ const { validarFiltro } = require('../../validations/clientes/validacoesFiltro')
 
 //Rotas para páginas
 router.get('/clientes', 
-    validarFiltro,
+    // validarFiltro,
     controllerClientes.getClientes);
 
 //Rotas para apis

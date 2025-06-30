@@ -63,7 +63,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
             retorno_atual = `/perfil?retorno_pag=${retorno_pag}&tipo=${tipo}&compra=${compra}`;
 
         }else{
-            retorno_atual = `/clientes/address/${clt_id}`;
+            retorno_atual = `/clientes/card/${clt_id}`;
         }
 
         window.location.href = retorno_atual;
