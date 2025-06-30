@@ -205,7 +205,7 @@ ul{
 div.empty{
     padding: 30px;
     border-radius: 20px;
-    background-color: var(--cinza);
+    background-color: var(--branco);
 }
 
 .empty p{
