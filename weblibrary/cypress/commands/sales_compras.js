@@ -28,6 +28,30 @@ Cypress.Commands.add('comprarLivroId', (lvr_id, lvr_qtd=1, sleep=time) => {
     cy.wait(sleep);
 });
 
+//Abrindo um livro por id
+Cypress.Commands.add('comprarLivroNome', (lvr_nome, lvr_qtd=1, sleep=time) => {
+
+    //Visitando a página principal do e-commerce
+    cy.visit('/');
+
+    //Abrindo o livro
+    cy.wait(sleep);
+    cy.get('#busca-index').type(lvr_nome).closest('form').submit();
+    cy.wait(sleep);
+    cy.get('.book').first().find('.imagem').click();
+    
+    //Definindo a qtd do livro a ser comprado
+    cy.wait(sleep);
+    cy.get('#contador').then($cont => {
+        $cont.text(lvr_qtd);
+    });
+
+    //Clicando no botão de compra
+    cy.wait(sleep);
+    cy.get('.comprar').click();
+    cy.wait(sleep);
+});
+
 //Finalizando a compra
 Cypress.Commands.add('finalizarCompra', (end=9, cardTot=1, sleep=time) => {
 
