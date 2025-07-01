@@ -19,8 +19,8 @@
 
         <main>
             <div class="container">
-                <table>
-                    <tr class="tb-header">
+                <table data-cy="log-table">
+                    <tr class="tb-header" data-cy="log-header">
                         <th class="top-left">Data</th>
                         <th>Usuário</th>
                         <th>Operação</th>
@@ -29,7 +29,7 @@
 
                     <% logs.forEach(log => { %>
 
-                        <tr class="tb-body">
+                        <tr class="tb-body" data-cy="log-row">
                             <td><%=log.hlog_dataHora%></td>
                             <td><%=log.hlog_usuario%></td>
                             <td><%=log.hlog_operacao%></td>

@@ -2,6 +2,7 @@
 import "../commands/feat_notifications";
 import "../commands/feat_history";
 import "../commands/feat_ai";
+import "../commands/feat_logs";
 
 //Crud commands
 import "../commands/crud_login";

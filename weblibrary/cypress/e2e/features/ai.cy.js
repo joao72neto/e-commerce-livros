@@ -2,7 +2,7 @@ const pause = false;
 const standardSleep = 200;
 const fastSleep = 200;
 
-describe('Testando a correspondencia dos dados no gráfico', () => {
+describe('Testando apenas a UI do chatbot', () => {
 
     before(() => {
         cy.wait(1000);
