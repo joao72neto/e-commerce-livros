@@ -53,8 +53,7 @@ Cypress.Commands.add('novaEntradaEstoque', (livro, sleep=time) => {
     cy.get('#valor_custo').type(livro.valor_custo);
 
     //Adding new entry
-    cy.get('button[type="submit"]').click();
-    cy.visit('/estoque');
+    cy.get('button[type="submit"]').click({force: true});
 });
 
 
