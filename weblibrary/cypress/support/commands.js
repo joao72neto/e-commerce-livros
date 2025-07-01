@@ -1,5 +1,6 @@
 //Feature commands
 import "../commands/feat_notifications";
+import "../commands/feat_history";
 
 //Crud commands
 import "../commands/crud_login";
