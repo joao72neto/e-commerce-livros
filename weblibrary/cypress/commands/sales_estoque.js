@@ -1,3 +1,5 @@
+const time = 1500;
+
 //Retornando item para o estoque
 Cypress.Commands.add('retornarEstoqueId', (vnd_id, dev=true, sleep=time) => {
 
@@ -37,6 +39,24 @@ Cypress.Commands.add('retornarEstoqueId', (vnd_id, dev=true, sleep=time) => {
     return;
   
 });
+
+//Exibindo o estoque
+Cypress.Commands.add('novaEntradaEstoque', (livro, sleep=time) => {
+
+    cy.visit('/estoque');
+    cy.wait(sleep);
+    cy.get('.btn-entrada a').click();
+
+    //Selecting book by name
+    cy.get('#livro').select(livro.nome, {force: true});
+    cy.get('#qtd').type(livro.qtd);
+    cy.get('#valor_custo').type(livro.valor_custo);
+
+    //Adding new entry
+    cy.get('button[type="submit"]').click();
+    cy.visit('/estoque');
+});
+
 
 //Exibindo o estoque
 Cypress.Commands.add('exibirEstoque', (sleep=time) => {
