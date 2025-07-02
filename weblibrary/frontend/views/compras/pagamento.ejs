@@ -42,7 +42,7 @@
             <section class="informacoes">
                 <div class="enderecos">
 
-                    <h2 class="title">Escolha um Endereço</h2>
+                    <h2 class="title">Escolha um Endereço de Entrega</h2>
 
                     <div class="container">
                         <div class="wrapper select">
@@ -65,6 +65,7 @@
                                         <h2><%=endereco.end_nome%></h2>
                                         <p><%=endereco.end_bairro%></p>
                                         <p><strong>Número: </strong><%=endereco.end_numero%></p>
+                                        <p class="<%=endereco.end_entrega !== 1 ? 'invisible' : ''%>"><strong>Entrega</strong></p>
                                     </div>
                                     <div class="acoes-address">
                                         <a class="rm-endereco">Remover</a>
