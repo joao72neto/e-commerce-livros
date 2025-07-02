@@ -1,9 +1,39 @@
-import { deletarCardIdService } from "/javaScript/service/clientes/serviceCard.js"
+import { deletarCardIdService } from "/javaScript/service/clientes/serviceCard.js";
+import { updateDefaulCardService } from "/javaScript/service/clientes/serviceCard.js";
+import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
 
 document.addEventListener('DOMContentLoaded', function(){
+    updateDefaultCard();
     redirectAltCardPage();
     deleteCard();
 });
+
+function updateDefaultCard(){
+    document.querySelector('#preferencia').addEventListener('change', async function(){
+
+        //Get current client
+        const client = await buscarClienteLogadoService();
+        const clt_id = client[0].clt_id;
+
+        //Prepara data
+        const data = {
+            clt_id: clt_id,
+            car_id: Number(this.value)
+        }
+
+        //Update default card status
+        const res = await updateDefaulCardService(data);
+
+        //Catching error
+        if(!res === 200){
+            alert('Não foi possível atualizar o status do cartão');
+            return;
+        }
+
+        //Reloading page
+        window.location.reload();
+    });
+}
 
 
 function redirectAltCardPage(){

@@ -84,3 +84,20 @@ export async function desativarCartoesClienteIdService(clt_id) {
     }
 }
 
+//Updating deafult card status
+export async function updateDefaulCardService(data) {
+    try{
+        const result = await fetch(`/card/default/update`, {
+           method: 'PATCH',
+           headers: {'Content-Type':'application/json'},
+           body: JSON.stringify(data)
+        });
+
+        return result.status;
+
+    }catch(err){
+        console.error(`Erro no updateDefaulCardService - serviceCard: ${err}`);
+        throw err;
+    }
+}
+
