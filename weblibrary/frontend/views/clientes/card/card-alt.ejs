@@ -15,7 +15,7 @@
         <% 
             let retorno_atual = '';
 
-            if(retorno){
+            if(retorno && !retorno_pag){
                 retorno_atual = `/perfil`;
 
             }else if(retorno_pag && page){

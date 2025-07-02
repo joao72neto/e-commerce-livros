@@ -53,7 +53,7 @@ document.querySelector('form').addEventListener('submit', async function(event){
         //Definindo o retorno
         let retorno_atual =  '';
 
-        if(retorno){
+        if(retorno && !retorno_pag){
             retorno_atual = `/perfil`;
 
         }else if(retorno_pag && retorno && page){
