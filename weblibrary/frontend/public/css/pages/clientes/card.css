@@ -24,17 +24,6 @@
     margin-bottom: 20px;
 }
 
-.preferencia-cartao{
-    text-align: center;
-}
-
-.preferencia-cartao label{
-    display: block;
-    text-align: center;
-    margin: 0 0 10px 0;
-
-}
-
 .container-card-main .card-wrapper{
     display: flex;
     background-color: white;

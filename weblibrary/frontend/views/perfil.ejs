@@ -58,6 +58,17 @@
 
                     <h2 class="title">Cartões Cadastrados</h2>
 
+                    <div class="preferencia-cartao">
+                        <label>Preferencia</label>
+                        <select name="preferencia" id="preferencia">
+                            <% cartoes.forEach(carttao => { %>
+                                <option value="<%=carttao.car_id%>" <%=carttao.car_principal === 1 ? 'selected' : ''%>>
+                                    <%=`${carttao.car_bandeira}-${carttao.car_numero.slice(-4)}`%>
+                                </option>
+                            <% }); %>
+                        </select>
+                    </div>
+
                     <% cartoes.forEach(cartao => { %>
 
                         <div class="wrapper">
@@ -67,6 +78,7 @@
                                 <h2><%=cartao.car_bandeira%></h2>
                                 <p><%=cartao.car_nome%></p>
                                 <p><strong>Final: </strong><%=cartao.car_numero.slice(-4)%></p>
+                                <p class="<%=cartao.car_principal !== 1 ? 'invisible' : ''%>"><strong>Principal</strong></p>
                             </div>
                             <div class="acoes">
                                 <a class="alt" href="/clientes/card/<%=cliente.clt_id%>/alt/<%=cartao.car_id%>?retorno_pag=<%=retorno_pag%>&tipo=<%=tipo%>&retorno=perfil&compra=<%=compra%>&page=<%=page%>">Alterar</a>

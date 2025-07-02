@@ -2,12 +2,12 @@ import { deletarCardIdService } from "/javaScript/service/clientes/serviceCard.j
 import { updateDefaulCardService } from "/javaScript/service/clientes/serviceCard.js";
 
 document.addEventListener('DOMContentLoaded', function(){
-    updateDefaultCard();
+    updateDefaultCardCrud();
     redirectAltCardPage();
     deleteCard();
 });
 
-function updateDefaultCard(){
+function updateDefaultCardCrud(){
     document.querySelector('#preferencia').addEventListener('change', async function(){
 
         //Get current client

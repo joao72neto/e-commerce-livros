@@ -221,6 +221,19 @@ div.empty{
     margin: 0 auto;
 }
 
+/*Card*/
+
+.preferencia-cartao{
+    text-align: center;
+}
+
+.preferencia-cartao label{
+    display: block;
+    text-align: center;
+    margin: 0 0 10px 0;
+
+}
+
 /*Scroll Bar*/
 ::-webkit-scrollbar {
     width: 5px; 

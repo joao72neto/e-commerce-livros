@@ -89,8 +89,8 @@
                             
                             <select name="cartao" id="cartao">
                                 <% cartoesInativos.forEach(cartao => { %>
-                                    <option value="<%= cartao.car_id %>">
-                                    <%= cartao.car_bandeira %> - <%= cartao.car_nome %>, Final <%= cartao.car_numero.slice(-4) %>
+                                    <option value="<%= cartao.car_id %>" <%=cartao.car_principal === 1 ? 'selected' : ''%>>
+                                    <%= cartao.car_bandeira %> - <%= cartao.car_nome %>, Final <%= cartao.car_numero.slice(-4) %><%=cartao.car_principal === 1 ? ' - Principal' : ''%>
                                     </option>
                                 <% }); %>
                             </select>
@@ -104,6 +104,7 @@
                                         <h2><%=cartao.car_bandeira%></h2>
                                         <p><%=cartao.car_nome%></p>
                                         <p><strong>Final: </strong><%=cartao.car_numero.slice(-4)%></p>
+                                        <p class="<%=cartao.car_principal !== 1 ? 'invisible' : ''%>"><strong>Principal</strong></p>
                                     </div>
                                     <div class="acoes">
                                         <input class="valor" type="number" placeholder="Valor R$">

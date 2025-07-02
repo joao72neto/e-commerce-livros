@@ -1,5 +1,7 @@
 import { deletarCardIdService } from "/javaScript/service/clientes/serviceCard.js";
-import { deletarAddressIdService } from "/javaScript/service/clientes/serviceAddress.js"
+import { deletarAddressIdService } from "/javaScript/service/clientes/serviceAddress.js";
+import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
+import { updateDefaulCardService } from "/javaScript/service/clientes/serviceCard.js";
 
 //Verificando o tipo de operação
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,58 +20,90 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.cartoes').remove();
         }
     }
+
+    //Calling functions
+    deleteCard();
+    deleteAddress();
+    updateDefaultCardProfile();
 });
 
-//deletando um cartão
-document.querySelectorAll('.delete-card').forEach(button => {
-    
-    button.addEventListener('click', async function(event){
+function updateDefaultCardProfile(){
+    document.querySelector('#preferencia').addEventListener('change', async function(){
 
-        event.preventDefault();
+        //Get current client
+        const client = await buscarClienteLogadoService();
+        const clt_id = client[0].clt_id;
 
-        let resposta = confirm('Deseja realmente deletar o cartão?');
+        //Prepara data
+        const data = {
+            clt_id: clt_id,
+            car_id: Number(this.value)
+        }
 
-        if(!resposta){
+        //Update default card status
+        const res = await updateDefaulCardService(data);
+
+        //Catching error
+        if(!res === 200){
+            alert('Não foi possível atualizar o status do cartão');
             return;
         }
 
-        const enderecoWrapper = this.closest('.wrapper');
-        const car_id = enderecoWrapper.querySelector('.card-id').textContent;
-        const clt_id = enderecoWrapper.querySelector('.cliente-id').textContent;
-
-        const res = await deletarCardIdService(clt_id, car_id, '');
-
-        if(res.status === 204){
-            location.reload();
-        }
-
-        alert(res.msg.msg);
+        //Reloading page
+        window.location.reload();
     });
-});
+}
 
-//deletando um endereço
-document.querySelectorAll('.delete-address').forEach(button => {
-    
-    button.addEventListener('click', async function(event){
+function deleteCard(){
+    document.querySelectorAll('.delete-card').forEach(button => {
+        button.addEventListener('click', async function(event){
+            event.preventDefault();
 
-        event.preventDefault();
+            let resposta = confirm('Deseja realmente deletar o cartão?');
 
-        let resposta = confirm('Deseja realmente deletar o endereço?');
+            if(!resposta){
+                return;
+            }
 
-        if(!resposta){
-            return;
-        }
+            const enderecoWrapper = this.closest('.wrapper');
+            const car_id = enderecoWrapper.querySelector('.card-id').textContent;
+            const clt_id = enderecoWrapper.querySelector('.cliente-id').textContent;
 
-        const enderecoWrapper = this.closest('.wrapper');
-        const end_id = enderecoWrapper.querySelector('.address-id').textContent;
-        const clt_id = enderecoWrapper.querySelector('.cliente-id').textContent;
+            const res = await deletarCardIdService(clt_id, car_id, '');
 
-        const res = await deletarAddressIdService(clt_id, end_id, '');
+            if(res.status === 204){
+                location.reload();
+            }
 
-        if(res.status === 204){
-            location.reload();
-        }
-
-        alert(res.msg.msg);
+            alert(res.msg.msg);
+        });
     });
-});
+}
+
+function deleteAddress(){
+    document.querySelectorAll('.delete-address').forEach(button => {
+        button.addEventListener('click', async function(event){
+            event.preventDefault();
+
+            let resposta = confirm('Deseja realmente deletar o endereço?');
+
+            if(!resposta){
+                return;
+            }
+
+            const enderecoWrapper = this.closest('.wrapper');
+            const end_id = enderecoWrapper.querySelector('.address-id').textContent;
+            const clt_id = enderecoWrapper.querySelector('.cliente-id').textContent;
+
+            const res = await deletarAddressIdService(clt_id, end_id, '');
+
+            if(res.status === 204){
+                location.reload();
+            }
+
+            alert(res.msg.msg);
+        });
+    });
+}
+
+
