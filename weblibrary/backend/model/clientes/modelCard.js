@@ -59,6 +59,41 @@ module.exports.cadastrarCartao = async (dados) => {
 
 //UPDATE
 
+//Updating default card
+module.exports.updateDefaultCard = async (clt_id, car_id) => {
+
+    //Obtendo o banco
+    const db = await getDb();
+
+    //Build queires
+    const sql_clear = `
+
+        update
+            cartoes
+            set car_principal = false
+        where
+            car_clt_id = ?
+    `;
+
+    const sql_default_car = `
+
+        update
+            cartoes
+            set car_principal = true
+        where
+            car_id = ?
+    `;
+
+    //Updating card status
+    try{
+        await db.query(sql_clear, clt_id);
+        await db.query(sql_default_car, car_id);
+    }catch(err){
+        console.error(`Erro no updateDefaultCard - modelCard: ${err}`);
+        throw err;
+    }
+}
+
 //Atualizando os dados dos cartões no banco
 module.exports.atualizarCard = async (dados, car_id) => {
     
