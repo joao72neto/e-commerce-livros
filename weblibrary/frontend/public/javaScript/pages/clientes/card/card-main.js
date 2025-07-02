@@ -1,6 +1,5 @@
 import { deletarCardIdService } from "/javaScript/service/clientes/serviceCard.js";
 import { updateDefaulCardService } from "/javaScript/service/clientes/serviceCard.js";
-import { buscarClienteLogadoService } from "/javaScript/service/clientes/serviceClientes.js";
 
 document.addEventListener('DOMContentLoaded', function(){
     updateDefaultCard();
@@ -12,8 +11,8 @@ function updateDefaultCard(){
     document.querySelector('#preferencia').addEventListener('change', async function(){
 
         //Get current client
-        const client = await buscarClienteLogadoService();
-        const clt_id = client[0].clt_id;
+        const url = window.location.pathname.split('/');
+        const clt_id = url[url.length -1];
 
         //Prepara data
         const data = {

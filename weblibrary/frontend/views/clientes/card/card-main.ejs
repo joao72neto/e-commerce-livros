@@ -25,7 +25,9 @@
                     <label>Preferencia</label>
                     <select name="preferencia" id="preferencia">
                         <% cartoes.forEach(carttao => { %>
-                            <option value="<%=carttao.car_id%>"><%=`${carttao.car_bandeira}-${carttao.car_numero.slice(-4)}`%></option>
+                            <option value="<%=carttao.car_id%>" <%=carttao.car_principal === 1 ? 'selected' : ''%>>
+                                <%=`${carttao.car_bandeira}-${carttao.car_numero.slice(-4)}`%>
+                            </option>
                         <% }); %>
                     </select>
                 </div>
@@ -36,6 +38,7 @@
                             <h2><%=carttao.car_bandeira%></h2>
                             <p><%=carttao.car_nome%></p>
                             <p><strong>Final: </strong><%=carttao.car_numero.slice(-4)%></p>
+                            <p class="<%=carttao.car_principal !== 1 ? 'invisible' : ''%>"><strong>Principal</strong></p>
                         </div>
                         <div class="acoes-card">
                             <a class="alt" href="#">Alterar</a>
