@@ -41,7 +41,7 @@ module.exports.cadastrarCartao = async (dados) => {
     const db = await getDb();
 
     //Consulta SQL
-    sql = `INSERT INTO cartoes (car_clt_id, car_nome, car_numero, car_bandeira, car_cvv, car_principal) VALUES (?, ?, ?, ?, ?, 1)`;
+    sql = `INSERT INTO cartoes (car_clt_id, car_nome, car_numero, car_bandeira, car_cvv, car_principal) VALUES (?, ?, ?, ?, ?, 0)`;
 
     //Valores a serem inseridos no banco
     const valores = [
