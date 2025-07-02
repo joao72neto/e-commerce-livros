@@ -4,6 +4,7 @@ const { buscarCartoesClienteIdFiltrado } = require('../../model/clientes/modelCa
 const { registerLog } = require('../../model/analise/modelLogs');
 const { buscarClienteId } = require('../../model/clientes/modelClientes');
 const { buscarClienteLogado } = require('../../model/clientes/modelClientes');
+const { updateDefaultCard } = require('../../model/clientes/modelCard');
 
 //Páginas
 module.exports.getCard = async (req, res) => {
@@ -106,6 +107,16 @@ module.exports.deleteCardId = async (req, res) => {
 };
 
 //Atualizando os dados dos cartões
+module.exports.patchUpdateDefaulCard = async (req, res) => {
+    try{
+        await updateDefaultCard(req.body.clt_id, req.body.car_id);
+        return res.status(200).json({msg: 'Cartão padrão atualizado com sucesso!'});
+    }catch(err){
+        console.error(`Erro no patchUpdateDefaulCard - controllerCard: ${err}`);
+        return res.status(500).json({msg: 'Não foi possível atualizar o cartão padrão'});
+    }
+};
+
 module.exports.putCardAlt = async (req, res) => {
 
     const cartao = await atualizarCard(req.body.card, req.params.car_id);

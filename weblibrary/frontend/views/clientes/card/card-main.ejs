@@ -21,14 +21,14 @@
             <div class="container-card-main">
                 <h2 class="title">Cartões</h2>
         
-                <!-- <div class="preferencia-cartao">
+                <div class="preferencia-cartao">
                     <label>Preferencia</label>
                     <select name="preferencia" id="preferencia">
                         <% cartoes.forEach(carttao => { %>
-                            <option value=""><%=`${carttao.car_bandeira}-${carttao.car_numero.slice(-4)}`%></option>
+                            <option value="<%=carttao.car_id%>"><%=`${carttao.car_bandeira}-${carttao.car_numero.slice(-4)}`%></option>
                         <% }); %>
                     </select>
-                </div> -->
+                </div>
                 <% cartoes.forEach(carttao => { %>
                     <div class="card-wrapper">
                         <div class="card-main">
