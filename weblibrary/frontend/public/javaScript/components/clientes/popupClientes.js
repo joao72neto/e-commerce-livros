@@ -1,4 +1,5 @@
 import { buscarClienteIdService } from '/javaScript/service/clientes/serviceClientes.js';
+import { buscarRankingService } from '/javaScript/service/analise/serviceHistoricoVendas.js';
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -39,6 +40,8 @@ function showPopup() {
             let cliente = await buscarClienteIdService(id);
             cliente.clt_dataNasc = new Date(cliente.clt_dataNasc).toLocaleDateString('pt-BR');
 
+            let ranking = await getRanking(cliente.clt_id);
+
             popup.innerHTML = `
                 <h2>Dados de ${cliente.clt_nome.split(' ')[0]}</h2>
                 <p class="invisible" id="popup-id">${cliente.clt_id}</p>
@@ -48,13 +51,34 @@ function showPopup() {
                 <p><strong>CPF: </strong>${cliente.clt_cpf}</p>
                 <p><strong>Gênero: </strong>${cliente.clt_genero}</p>
                 <p><strong>Data Nascimento: </strong>${cliente.clt_dataNasc}</p>
-                <p><strong>Ranking: </strong>${cliente.clt_ranking}</p>
+                <hr>
+                <div class="ranking">
+                    <h3>Ranking</h3>
+                    <p>Posição: ${ranking.position}</p>
+                    <p>Total Gasto: ${ranking.total_spent}</p>
+                </div>
             `;
 
             filter.classList.add('invisible');
             document.body.appendChild(popup);
         });
     });
+}
+
+async function getRanking(clt_id){
+    const ranking = await buscarRankingService(clt_id);
+
+    if(ranking.length > 0){
+        return {
+            position: ranking[0].position,
+            total_spent:'R$ ' + String(ranking[0].total_spent).replace('.', ',')
+        }
+    }
+
+    return {
+        position: 'Realize uma compra para calcular',
+        total_spent: 'R$ 00,00'
+    }
 }
 
 function removePopup() {

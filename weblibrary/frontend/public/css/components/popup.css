@@ -10,7 +10,7 @@
     position: fixed;
     top: 50%;
     left: 0%;
-    transform: translate(0, -55%);
+    transform: translate(0, -50%);
     background-color: var(--branco);
     z-index: 1;
 }
@@ -28,5 +28,14 @@
 }
 
 .popup p{
+    padding: 5px 0;
+}
+
+.popup hr{
+    margin: 20px 0;
+}
+
+.popup h3{
+    text-align: left;
     padding: 5px 0;
 }
