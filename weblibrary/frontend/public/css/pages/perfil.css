@@ -41,7 +41,6 @@ p{
     border-radius: 20px;
 }
 
-
 .flex-usuario{
     display: flex;
     flex-wrap: wrap;
@@ -69,6 +68,10 @@ p{
 
 .usuario .botao button{
     width: 150px;
+}
+
+.usuario .dados h3{
+    margin-top: 12px;
 }
 
 .add{
