@@ -26,7 +26,7 @@ function validarDados(){
     const valorVenda = document.querySelector('#valor_custo').value;
 
     //Validando
-    if(!selectValue || !qtd || !valorVenda){
+    if(!selectValue || !qtd || !valorVenda || qtd < 1){
         return false;
     }
 
