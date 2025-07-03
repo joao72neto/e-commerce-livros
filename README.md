@@ -1,54 +1,54 @@
 
-<h1 align="center" style="font-weight: bold;">E-commerce de Livros 📚</h1>
+<h1 align="center" style="font-weight: bold;">WebLibrary 📚</h1>
 
 <p align="center">
- <a href="#ecommerce">Layout do E-commerce</a> •
+ <a href="#ecommerce">Layout do Sistema</a> •
  <a href="#tech">Tecnologias</a> • 
- <a href="#started">Como rodar CRUD</a> 
+ <a href="#ai-start">Execução com IA </a> •
+ <a href="#no-ai-start">Execução sem IA</a> •
+ <a href="#scripts">Scripts e Comandos</a>
 </p>
 
-<h2>Descrição do Projeto</h2>
+<h2>>📘 Descrição do Projeto</h2>
 
-<p align="left">
-  <p>O sistema consiste em um e-commerce de livros que permite o cadastro e gerenciamento de livros e clientes, controle de vendas e análise do histórico de compras.</p>
+<div align="justify">
+  <p>Este sistema é um e-commerce de livros completo, desenvolvido como parte da disciplina de <strong>Laboratório de Engenharia de Software da Fatec Mogi das Cruzes (Fatec MC).</strong></p>
 
-  <p>Além disso, o sistema conta com uma IA integrada, capaz de interagir via chatbot para auxiliar os clientes. Essa IA é treinada exclusivamente para responder perguntas relacionadas à base de dados do e-commerce, fornecendo recomendações personalizadas e facilitando a busca por livros.</p>
+  <p>A plataforma permite o <strong>cadastro e gerenciamento de livros e clientes, o controle de vendas e a visualização do histórico de compras</strong>, oferecendo uma estrutura funcional para simular um ambiente real de comércio eletrônico.</p>
+
+  <p>Como diferencial, o sistema conta com uma <strong>Inteligência Artificial integrada via chatbot</strong>, projetada para interagir com os usuários de forma personalizada. Essa IA responde exclusivamente com base nos dados internos do sistema, sendo capaz de <strong>recomendar livros, esclarecer dúvidas e facilitar a navegação no catálogo</strong>, aprimorando a experiência do usuário.</p>
  
-</p>
-
-<h2 id="ecommerce">Layout E-commerce</h2>
-
- <div align="center">
-    <img src="https://github.com/user-attachments/assets/e2fd89a1-1a4d-4365-aa63-992809524b0c">
 </div>
 
-<h2 id="tech">💻 Tecnologias</h2>
+<h2 id="ecommerce">🖼️ Layout WebLibrary</h2>
 
-Abaixo estão listadas todas as tecnologias que serão utilizadas para realizar este sistema:
+ <div align="center">
+    <img src="https://github.com/user-attachments/assets/9e918419-b3eb-4ddc-bf62-3ad80e7d154c">
+</div>
+
+<h2 id="tech">🛠️ Tecnologias</h2>
+
+Abaixo estão listadas todas as tecnologias que foram utilizadas para a construção deste sistema:
 
 - JavaScript
 - HTML
 - CSS
 - Node.js
 - MySQL
+- Gemini
 - Python 3
 
-<h2 id="started">🚀 Como rodar o crud localmente</h2>
+<h2 id="ai-start">🤖 Executando WebLibrary localmente com IA</h2>
 
 <h3>Pré-Requisitos</h3>
 
 - [Node.js](https://nodejs.org/pt)
-- Navegador (O crud foi feito inteiramente no [Google Chrome](https://www.google.pt/intl/pt-PT/chrome/?brand=FHFK&ds_kid=43700076570751463&gad_source=1&gclid=CjwKCAjwnPS-BhBxEiwAZjMF0qoMYAhnW_TjZMxq-DQQjfiJw79PMomQhhoNvzEn79KgchseT9NmbxoCSQ0QAvD_BwE&gclsrc=aw.ds))
-- MySQL
-  - Servers (Qualquer um dos 3)
-    - [USBWebServer](https://usbwebserver.yura.mk.ua/)
-    - [WampServer](https://www.wampserver.com/en/)
-    - [Xampp](https://www.apachefriends.org/pt_br/index.html)
-  - IDE (Opcional)
-    - [Workbench](https://www.mysql.com/products/workbench/)
+- [MySQL Server](https://dev.mysql.com/downloads/installer/)
+- [Python 3](https://www.python.org/downloads/)
+- [API Gemini](https://aistudio.google.com/prompts/new_chat)
+- [Google Chrome](https://www.google.pt/intl/pt-PT/chrome/?brand=FHFK&ds_kid=43700076570751463&gad_source=1&gclid=CjwKCAjwnPS-BhBxEiwAZjMF0qoMYAhnW_TjZMxq-DQQjfiJw79PMomQhhoNvzEn79KgchseT9NmbxoCSQ0QAvD_BwE&gclsrc=aw.ds) (O sistema foi feito e testado inteiramente neste navegador)
 
-
-## Configuração do Banco
+## Configurações Iniciais
 
 #### 1. Clone o repositório
 Abra o terminal e execute o seguinte comando para baixar o projeto:
@@ -56,67 +56,104 @@ Abra o terminal e execute o seguinte comando para baixar o projeto:
 ```bash
 git clone https://github.com/joao72neto/e-commerce-livros.git
 ```
-
-#### 2. Criação do banco
-Entre no diretório abaixo, procure pelo ddl-completo do banco e o execute no seu SGBD:
-```bash
-cd e-commerce-livros/modelo-bd/
-```
-
-#### 3. Conexão com o Banco
-Entre no diretório abaixo:
+#### 2. Configuração do .env
+Entre no diretório root do sistema:
 
 ```bash
-cd e-commerce-livros/crud-clientes/backend/config/
+cd e-commerce-livros/weblibrary/
+```
+Crie uma cópia do arquivo ```.env.example``` e renomeie para ```.env```
 
+Windows (cmd):
+```bash
+copy .env.example .env
 ```
 
-Abra o arquivo ```db.js``` e coloque o nome do seu usuário e senha:
-
-```javaScript
-const mysql = require('mysql2/promise');
-
-//Configurando a conexão
-const bd = mysql.createPool({
-    host: 'localhost',
-    user: '<SEU USUÁRIO>',
-    password: '<SUA SENHA>',
-    database: 'e_commerce_books',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-});
-
-//Exportando as configurações do banco de dados
-module.exports = bd;
+Unix-based:
+```bash
+cp .env.example .env
 ```
-## Executando o CRUD
 
-#### 1. Acesse o diretório do CRUD de clientes
-Após a clonagem, entre na pasta correta:
+Configure o .env:
+```.env
+DB_HOST=
+DB_USER=
+DB_PASSWORD=
+GOOGLE_API_KEY=
+```
+## Execução do sistema
+
+#### 1. Instale todas as dependências
+Certifique-se de estar na pasta root do sistema ```e-commerce-livros/weblibrary/```.
+
+Instale todas as dependências com o comando abaixo:
 
 ```bash
-cd e-commerce-livros/crud-clientes/
+node setup.js
 ```
 
-#### 2. Instale as dependências
-Agora, instale todas as bibliotecas necessárias:
+#### 2. Ative ambiente virtual python
 
+Windows (cmd):
 ```bash
-npm install
+
+```
+Unix-based:
+```bash
+source ai-service/.venv/bin/activate
 ```
 
-#### 3. Inicie o servidor
-Execute o seguinte comando para rodar o CRUD na porta 3000:
+#### 3. Inicie o servidor node e python
+Execute o seguinte comando para iniciar o servidor na porta 3000:
 
 ```bash
-node app.js
+npm start
 ```
 #### 4. Acesse a aplicação no navegador
-Copie e cole a URL abaixo na barra de endereços do seu navegador:
+Copie e cole a URL abaixo na barra de endereços:
 
 ```bash
 http://localhost:3000/
 ```
-Agora, seu CRUD está pronto para uso! 🚀
+A aplicação WebLibrary deve estar rodando e pronta para uso! 🚀
+
+<h2 id="no-ai-start">🚀 Executando WebLibrary sem IA</h2>
+
+#### 1. Inicie o apenas o servidor node
+Execute o comando abaixo:
+```bash
+npx nodemon app.js
+```
+
+Pode-se também optar pelo seguinte comando:
+```bash
+node app.js
+```
+
+#### 2. Acesse a aplicação no navegador
+A porta se mantem a mesma:
+
+```bash
+http://localhost:3000/
+```
+
+<h2 id="scripts">💻 Scripts e Comandos</h2>
+
+#### 1. DDL e Inserts do banco de dados
+Todos os seguintes arquivos se encontram no diretório abaixo. O sistema os executa automaticamente ao iniciar o servidor, não há necessidade de criar o banco e inserir os dados manualmente.
+
+```bash
+cd e-commerce-livros/weblibrary/scripts/
+```
+
+#### 2. Comandos node
+
+| Comando                    | Descrição                          |
+|----------------------------|------------------------------------|
+| `npm run bd:reset`         | Reseta e povoa o banco por completo |
+| `npm run start-servers`    | Inicia o servidor python e node, sem resetar o banco |
+| `npm start`                | Inicia servidor python e node resetando o banco|
+| `npx nodemon app.js`       | Inicia apenas o servidor node, sem IA |
+| `node app.js`              | Semelhante ao comando acima, porém não atualiza o servidor automaticamente |
+
 
