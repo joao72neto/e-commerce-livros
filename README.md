@@ -104,7 +104,7 @@ source ai-service/.venv/bin/activate
 ```
 
 #### 3. Inicie o servidor node e python
-Execute o seguinte comando para iniciar o servidor na porta 3000:
+Execute o seguinte comando para iniciar o sistema na porta 3000:
 
 ```bash
 npm start
