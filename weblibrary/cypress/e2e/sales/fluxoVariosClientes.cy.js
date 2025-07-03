@@ -36,7 +36,7 @@ describe('Realizando a compra de múltiplos livros', () => {
     it('Deve adicionar itens ao carrinho', () => {
         cy.adicionarCarrinhoId(2, 4, standardSleep);
         cy.adicionarCarrinhoId(3, 2, fastSleep);
-        cy.adicionarCarrinhoId(4, 1, fastSleep);
+        cy.adicionarCarrinhoId(4, 5, fastSleep);
         cy.adicionarCarrinhoId(5, 20, fastSleep);
         cy.adicionarCarrinhoId(6, 3, fastSleep);
         if (pause) cy.pause();
