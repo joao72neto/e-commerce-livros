@@ -14,13 +14,7 @@ module.exports.getPerfil = async (req, res) => {
     const tipo = req.query.tipo;
 
     //Getting client ranking
-    let ranking = await buscarRanking(cliente[0].clt_id);
-    if(ranking.length < 0){
-        ranking[0].position = 'Realize uma compra para calcular';
-        ranking[0].total_spent = 'R$ 00,00';
-    }else{
-        ranking[0].total_spent = 'R$ ' + String(ranking[0].total_spent).replace('.', ',');
-    }
+    let ranking = await getRanking(cliente[0].clt_id);
 
     return res.render('perfil', {
         retorno_pag: retorno_pag,
@@ -33,3 +27,19 @@ module.exports.getPerfil = async (req, res) => {
         tipo: tipo
     });
 };
+
+async function getRanking(clt_id){
+    const ranking = await buscarRanking(clt_id);
+
+    if(ranking.length > 0){
+        return {
+            position: ranking[0].position,
+            total_spent:'R$ ' + String(ranking[0].total_spent).replace('.', ',')
+        }
+    }
+
+    return {
+        position: 'Realize uma compra para calcular',
+        total_spent: 'R$ 00,00'
+    }
+}
