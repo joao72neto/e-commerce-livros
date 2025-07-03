@@ -22,7 +22,10 @@ module.exports.atualizarStatusPedidoId = async (dados) => {
 
     try{
         await db.query(sql, valores);
-        if(valores[0] === 'Entregue') await db.query('CALL seed_sales_history()');
+
+        if(['Aprovado', 'Em Transporte', 'Entregue'].includes(valores[0])){
+            await db.query('CALL seed_sales_history()');
+        }
         
     }catch(err){
         console.error(`Erro no atualizarStatusPedidoId - modelGerenciarPedidos: ${err}`);

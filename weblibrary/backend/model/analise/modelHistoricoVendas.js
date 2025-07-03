@@ -2,6 +2,33 @@ const { getDb } = require('../../config/db');
 
 //SELECT
 
+//Ranking clients based on amount spent
+module.exports.buscarRanking = async (clt_id) => {
+
+    //Obtendo o banco
+    const db = await getDb();
+
+    //Preparing query
+    const sql_ranking = `
+
+        select
+            *
+        from
+            vw_ranking
+        where
+            clt_id = ?;
+    `;
+
+    try{
+        const [ranking] = await db.query(sql_ranking, clt_id);
+        return ranking;
+
+    }catch(err){
+        console.error(`Erro no buscarRanking - modelHistoricoVendas: ${err}`);
+        throw err;
+    }
+};
+
 //Obtendo categorias distintas da vw_historico_vendas
 module.exports.buscarCategoriasVendidas = async () => {
     

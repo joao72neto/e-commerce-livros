@@ -1,6 +1,7 @@
 const { buscarCategoriasVendidas } = require('../../model/analise/modelHistoricoVendas');
 const { buscarLivrosVendidos } = require('../../model/analise/modelHistoricoVendas');
 const { buscarDatasVendas } = require('../../model/analise/modelHistoricoVendas');
+const { buscarRanking } = require('../../model/analise/modelHistoricoVendas');
 
 //Página
 module.exports.getHistoricoVendas = async (req, res) => {
@@ -15,6 +16,11 @@ module.exports.getHistoricoVendas = async (req, res) => {
 };
 
 //Apis
+module.exports.getRanking = async (req, res) => {
+    const ranking = await buscarRanking(req.params.clt_id);
+    return res.json(ranking);
+};
+
 module.exports.getApiLivrosVendidos = async (req, res) => {
     
     //Preparando os dados dos filtros

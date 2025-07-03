@@ -1,5 +1,19 @@
 //GET
 
+//Get clients ranking
+export async function buscarRankingService(clt_id) {
+    try{
+
+        const res = await fetch(`/api/ranking/${clt_id}`);
+        const ranking = await res.json();
+        return ranking;
+
+    }catch(err){
+        console.error(`Erro no buscarRankingService - serviceHistoricoVendas: ${err}`);
+        throw err;
+    }
+}
+
 //Obtendo dados dos livros vendidos para análise
 export async function buscarLivrosVendidoService() {
     try{
