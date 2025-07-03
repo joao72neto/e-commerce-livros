@@ -423,7 +423,30 @@ WHERE
   vh.hvnd_status = 'entregue';
 
 -- -----------------------------------------------------
--- View `vw_historico_vendas`
+-- View `vw_ranking`
+-- -----------------------------------------------------
+CREATE OR REPLACE VIEW vw_ranking AS
+SELECT
+	clt_id,
+    clt_nome,
+    total_spent,
+    rank() OVER (ORDER BY total_spent DESC) position
+FROM (
+	SELECT
+		c.clt_id,
+		c.clt_nome,
+		sum(hv.hvnd_valorTotal) total_spent
+	FROM
+		vendas_history hv
+		JOIN clientes c ON c.clt_id = hv.hvnd_clt_id
+	WHERE
+		hvnd_status IN ('aprovado', 'em transporte', 'entregue')
+	GROUP BY
+		c.clt_id
+) ranking;
+
+-- -----------------------------------------------------
+-- View `vw_estoque`
 -- -----------------------------------------------------
 CREATE OR REPLACE VIEW vw_estoque AS
 SELECT
