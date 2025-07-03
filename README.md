@@ -96,7 +96,7 @@ node setup.js
 
 Windows (cmd):
 ```bash
-
+ai-service\.venv\Scripts\activate.bat
 ```
 Unix-based:
 ```bash
