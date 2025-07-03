@@ -28,7 +28,7 @@
 
 <h2 id="tech">🛠️ Tecnologias</h2>
 
-Abaixo estão listadas todas as tecnologias que foram utilizadas para a construção deste sistema:
+<p align="justify">Abaixo estão listadas todas as tecnologias que foram utilizadas para a construção deste sistema:</p>
 
 - JavaScript
 - HTML
@@ -40,7 +40,7 @@ Abaixo estão listadas todas as tecnologias que foram utilizadas para a constru�
 
 <h2 id="ai-start">🤖 Executando WebLibrary localmente com IA</h2>
 
-<h3>Pré-Requisitos</h3>
+### Pré-Requisitos
 
 - [Node.js](https://nodejs.org/pt)
 - [MySQL Server](https://dev.mysql.com/downloads/installer/)
@@ -119,7 +119,7 @@ A aplicação WebLibrary deve estar rodando e pronta para uso! 🚀
 
 <h2 id="no-ai-start">🚀 Executando WebLibrary sem IA</h2>
 
-#### 1. Inicie o apenas o servidor node
+#### 1. Inicie apenas o servidor node
 Execute o comando abaixo:
 ```bash
 npx nodemon app.js
@@ -140,7 +140,9 @@ http://localhost:3000/
 <h2 id="scripts">💻 Scripts e Comandos</h2>
 
 #### 1. DDL e Inserts do banco de dados
-Todos os seguintes arquivos se encontram no diretório abaixo. O sistema os executa automaticamente ao iniciar o servidor, não há necessidade de criar o banco e inserir os dados manualmente.
+<p align="justify">
+Todos os scripts de manipulação e criação do banco de dados se encontram no diretório abaixo. O sistema os executa automaticamente ao iniciar o servidor, não há necessidade de criar o banco e inserir os dados manualmente.
+</p>
 
 ```bash
 cd e-commerce-livros/weblibrary/scripts/
