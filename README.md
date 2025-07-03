@@ -148,12 +148,13 @@ cd e-commerce-livros/weblibrary/scripts/
 
 #### 2. Comandos node
 
-| Comando                    | Descrição                          |
-|----------------------------|------------------------------------|
-| `npm run bd:reset`         | Reseta e povoa o banco por completo |
-| `npm run start-servers`    | Inicia o servidor python e node, sem resetar o banco |
-| `npm start`                | Inicia servidor python e node resetando o banco|
-| `npx nodemon app.js`       | Inicia apenas o servidor node, sem IA |
-| `node app.js`              | Semelhante ao comando acima, porém não atualiza o servidor automaticamente |
+| Comando                   | Descrição                                     |
+|---------------------------|-----------------------------------------------|
+| `npm run bd:reset`        | Reseta e povoa o banco de dados               |
+| `npm run start-servers`   | Inicia servidores Node e Python (sem reset)   |
+| `npm start`               | Inicia tudo com reset do banco                |
+| `npx nodemon app.js`      | Inicia só o servidor Node (sem IA)            |
+| `node app.js`             | Igual ao acima, mas sem auto-reload           |
+
 
 
