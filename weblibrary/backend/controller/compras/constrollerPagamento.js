@@ -13,6 +13,7 @@ const { buscarEnderecosInativosClienteId } = require('../../model/clientes/model
 const { buscarEnderecosAtivosClienteId } = require('../../model/clientes/modelAddress');
 const { atualizarEnderecoIdStatus } = require('../../model/clientes/modelAddress');
 const { registerLog } = require('../../model/analise/modelLogs');
+const { registerNotification } = require('../../model/clientes/modelNotifications');
 
 //Log model
 let logData = {
@@ -20,6 +21,14 @@ let logData = {
     log_usuario: '',
     log_operacao: '',
     log_desc: ''
+}
+
+//Notification model
+let notData = {
+    not_clt_id: '',
+    not_title: '',
+    not_msg: '',
+    not_status: 0
 }
 
 //Página
@@ -203,6 +212,11 @@ module.exports.postAdicionarCupons = async (req, res) => {
         logData.log_operacao = 'INSERT';
         logData.log_desc = `Cupom de "R$ ${cup_value}" adicionado a "${client[0].clt_nome}"`;
         await registerLog(logData);
+
+        //Registering notification
+        notData.not_title = 'Novo cupom disponível! 🎉';
+        notData.not_msg = `Você acabou de receber um novo cupom de R$ ${cup_value} em seu perfil! Aproveite os descontos e boas compras!`;
+        await registerNotification(notData);
 
         return res.status(201).json({msg: 'Cupom adicionado com sucesso!'})
 

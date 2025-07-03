@@ -1,5 +1,14 @@
 const { getDb } = require('../../config/db');
 const { buscarClienteLogado } = require('../clientes/modelClientes');
+const { registerNotification } = require('../../model/clientes/modelNotifications');
+
+//Notification model
+let notData = {
+    not_clt_id: '',
+    not_title: '',
+    not_msg: '',
+    not_status: 0
+}
 
 //SELECT
 
@@ -50,7 +59,12 @@ module.exports.buscarCarrinhoClienteId = async (clt_id) => {
                         carrinho
                     where
                         crr_clt_id = ?
-                `, [clt_id])
+                `, [clt_id]);
+
+                //Registering notification
+                notData.not_title = 'Itens removidos do carrinho 🛒';
+                notData.not_msg = `Seus itens foram removidos do carrinho após 15 minutos de inatividade. Mas não se preocupe, você pode adicioná-los novamente a qualquer momento!`;
+                await registerNotification(notData);
             }
         }
         
